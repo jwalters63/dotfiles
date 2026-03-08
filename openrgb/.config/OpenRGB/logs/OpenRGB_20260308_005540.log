@@ -1,0 +1,70 @@
+    OpenRGB v0.9+ (1.0rc2)
+    Commit:  from 
+    Launched: 20260308_005540
+====================================================================================================
+
+51    |Info:    [ResourceManager] Initializing HID interfaces: Success
+51    |Info:    ------------------------------------------------------
+51    |Info:    |               Start device detection               |
+51    |Info:    ------------------------------------------------------
+64    |Info:    ------------------------------------------------------
+64    |Info:    |             Detecting I2C interfaces               |
+64    |Info:    ------------------------------------------------------
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-3 Device 1002:744C Subsystem: 1002:0E3B
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-20 Device 1022:790B Subsystem: 1462:7D78
+64    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-10 Device 0000:0000 Subsystem: 0000:0000
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-1 Device 1002:7444 Subsystem: 1002:0408
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-19 Device 1022:790B Subsystem: 1462:7D78
+64    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-17 Device 0000:0000 Subsystem: 0000:0000
+65    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-8 Device 0000:0000 Subsystem: 0000:0000
+65    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-15 Device 0000:0000 Subsystem: 0000:0000
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-6 Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-13 Device 1002:164E Subsystem: 1462:7D78
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-4 Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-11 Device 1002:164E Subsystem: 1462:7D78
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-2 Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-0 Device 0000:0000 Subsystem: 0000:0000
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-18 Device 1022:790B Subsystem: 1462:7D78
+65    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-9 Device 0000:0000 Subsystem: 0000:0000
+65    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-16 Device 0000:0000 Subsystem: 0000:0000
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-7 Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-14 Device 1002:164E Subsystem: 1462:7D78
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-5 Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-12 Device 1002:164E Subsystem: 1462:7D78
+65    |Info:    ------------------------------------------------------
+65    |Info:    |               Detecting I2C devices                |
+65    |Info:    ------------------------------------------------------
+903   |Info:    ------------------------------------------------------
+903   |Info:    |            Detecting I2C DIMM modules              |
+903   |Info:    ------------------------------------------------------
+955   |Info:    [ResourceManager] Detected occupied slot 2, bus 14, type DDR5
+959   |Info:    [ResourceManager] Detected occupied slot 4, bus 14, type DDR5
+971   |Info:    ------------------------------------------------------
+971   |Info:    |               Detecting I2C PCI devices            |
+971   |Info:    ------------------------------------------------------
+972   |Info:    ------------------------------------------------------
+972   |Info:    |               Detecting HID devices                |
+972   |Info:    ------------------------------------------------------
+1068  |Info:    [KLM] Created new Full 104 key ISO QWERTY with 6 rows and 21 columns containing 105 keys
+1068  |Info:    [Razer Blackwidow V4 X] Registering RGB controller
+1069  |Info:    [HyperX Pulsefire Core] Registering RGB controller
+1142  |Info:    [MSI PRO B650-VC WIFI (MS-7D78)] Registering RGB controller
+1185  |Info:    [Razer Firefly V2] Registering RGB controller
+1186  |Info:    ------------------------------------------------------
+1186  |Info:    |            Detecting libusb HID devices            |
+1186  |Info:    ------------------------------------------------------
+1462  |Info:    ------------------------------------------------------
+1462  |Info:    |              Detecting other devices               |
+1462  |Info:    ------------------------------------------------------
+1482  |Info:    [ResourceManager] Calling Post-detection callbacks
+1482  |Info:    ------------------------------------------------------
+1482  |Info:    |                Detection completed                 |
+1482  |Info:    ------------------------------------------------------
+1482  |Dialog:  <h2>Some internal devices may not be detected:</h2><p>One or more I2C or SMBus interfaces failed to initialize.</p><p><b>RGB DRAM modules, some motherboards' onboard RGB lighting, and RGB Graphics Cards, will not be available in OpenRGB</b> without I2C or SMBus.</p><h4>How to fix this:</h4><p>On Linux, this is usually because the i2c-dev module is not loaded.</p><p>You must load the i2c-dev module along with the correct i2c driver for your motherboard. This is usually i2c-piix4 for AMD systems and i2c-i801 for Intel systems.</p><p>See <a href='https://help.openrgb.org/'>help.openrgb.org</a> for additional troubleshooting steps if you keep seeing this message.<br></p><h3>If you are not using internal RGB on a desktop this message is not important to you.</h3>
+73263 |ERROR:   [OpenRGBPluginsPage] Failed to install plugin: filesystem error: cannot copy: No such file or directory [] [/home/jwalters/.config/OpenRGB/plugins/]

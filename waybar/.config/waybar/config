@@ -1,0 +1,12 @@
+{
+    "layer": "top",
+    "height": 30,
+    "modules-left": ["hyprland/workspaces", "hyprland/mode"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["clock", "tray"],
+
+    "clock": {
+        "format": "{:%H:%M:%S}",
+        "interval": 1
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "AllowOnlyFirst": false,
+    "Brightness": 100,
+    "CustomSettings": {
+        "crop_stream": false,
+        "framerate": 1,
+        "height": 1,
+        "left": 0,
+        "mode": 1,
+        "restore_token": "",
+        "screen_index": 0,
+        "smoothness": 0,
+        "top": 0,
+        "width": 1
+    },
+    "EffectClassName": "Ambient",
+    "FPS": 1,
+    "RandomColors": false,
+    "Slider2Val": 1,
+    "Speed": 1,
+    "Temperature": 0,
+    "Tint": 0
+}

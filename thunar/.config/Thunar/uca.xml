@@ -5,11 +5,10 @@
 	<name>Open Terminal Here</name>
 	<submenu></submenu>
 	<unique-id>1772914746690356-1</unique-id>
-	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<command>exo-open --working-directory %f --launch kitty</command>
 	<description>Example for a custom action</description>
 	<range></range>
 	<patterns>*</patterns>
-	<startup-notify/>
 	<directories/>
 </action>
 </actions>
