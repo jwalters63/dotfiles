@@ -1,0 +1,9 @@
+# Archivos temporales y cachés
+.cache/
+*~
+*.swp
+.DS_Store
+
+# Archivos de entorno y credenciales
+.env
+secrets/
