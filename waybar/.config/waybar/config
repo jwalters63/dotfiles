@@ -1,12 +1,55 @@
 {
     "layer": "top",
-    "height": 30,
-    "modules-left": ["hyprland/workspaces", "hyprland/mode"],
+    "position": "top",
+    "height": 40,
+    "spacing": 0,
+
+    "modules-left": ["custom/menu", "hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["clock", "tray"],
+    "modules-right": ["cpu", "memory", "network", "tray", "clock"],
+
+    "custom/menu": {
+        "format": "≡",
+        "tooltip": false,
+        "on-click": "rofi -show drun" 
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}"
+    },
+
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 60,
+        "separate-outputs": true
+    },
+
+    "cpu": {
+        "format": " {usage}%",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": " {}%",
+        "tooltip": false
+    },
+
+    "network": {
+        "format-wifi": " Wifi",
+        "format-ethernet": "󰈀 Ethernet",
+        "format-disconnected": "⚠ ¡Sin conexión!",
+        "tooltip-format": "{ifname} via {gwaddr}"
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 12
+    },
 
     "clock": {
-        "format": "{:%H:%M:%S}",
-        "interval": 1
+        "format": "{:%H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     }
 }

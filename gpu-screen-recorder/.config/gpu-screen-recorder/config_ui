@@ -5,7 +5,7 @@ main.language
 main.notification_speed normal
 main.show_hide_hotkey 26 16
 main.software_encoding_warning_shown false
-main.tint_color 
+main.tint_color amd
 main.wayland_warning_shown true
 record.container mp4
 record.pause_unpause_hotkey 92 16

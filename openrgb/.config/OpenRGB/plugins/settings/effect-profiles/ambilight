@@ -1,0 +1,123 @@
+{
+    "Effects": [
+        {
+            "AllowOnlyFirst": false,
+            "AutoStart": false,
+            "Brightness": 100,
+            "ControllerZones": [
+                {
+                    "description": "Razer Device, Spanish (Europe) (ISO), Unkown Variant",
+                    "is_segment": false,
+                    "location": "HID: /dev/hidraw6",
+                    "name": "Razer Blackwidow V4 X",
+                    "reverse": false,
+                    "segment_idx": -1,
+                    "self_brightness": 100,
+                    "serial": "IO2436F90800086       ",
+                    "vendor": "Razer",
+                    "version": "v1.3",
+                    "zone_idx": 0
+                },
+                {
+                    "description": "HyperX Pulsefire FPS Pro Device",
+                    "is_segment": false,
+                    "location": "HID /dev/hidraw9",
+                    "name": "HyperX Pulsefire Core",
+                    "reverse": false,
+                    "segment_idx": -1,
+                    "self_brightness": 100,
+                    "serial": "",
+                    "vendor": "HyperX",
+                    "version": "",
+                    "zone_idx": 0
+                },
+                {
+                    "description": "MSI Mystic Light Device (185-byte)",
+                    "is_segment": false,
+                    "location": "HID: /dev/hidraw2",
+                    "name": "MSI PRO B650-VC WIFI (MS-7D78)",
+                    "reverse": false,
+                    "segment_idx": -1,
+                    "self_brightness": 100,
+                    "serial": "7D7823032408",
+                    "vendor": "MSI",
+                    "version": "AP/LD 0.8 / 1.5",
+                    "zone_idx": 0
+                },
+                {
+                    "description": "MSI Mystic Light Device (185-byte)",
+                    "is_segment": false,
+                    "location": "HID: /dev/hidraw2",
+                    "name": "MSI PRO B650-VC WIFI (MS-7D78)",
+                    "reverse": false,
+                    "segment_idx": -1,
+                    "self_brightness": 100,
+                    "serial": "7D7823032408",
+                    "vendor": "MSI",
+                    "version": "AP/LD 0.8 / 1.5",
+                    "zone_idx": 1
+                },
+                {
+                    "description": "MSI Mystic Light Device (185-byte)",
+                    "is_segment": false,
+                    "location": "HID: /dev/hidraw2",
+                    "name": "MSI PRO B650-VC WIFI (MS-7D78)",
+                    "reverse": false,
+                    "segment_idx": -1,
+                    "self_brightness": 100,
+                    "serial": "7D7823032408",
+                    "vendor": "MSI",
+                    "version": "AP/LD 0.8 / 1.5",
+                    "zone_idx": 2
+                },
+                {
+                    "description": "MSI Mystic Light Device (185-byte)",
+                    "is_segment": false,
+                    "location": "HID: /dev/hidraw2",
+                    "name": "MSI PRO B650-VC WIFI (MS-7D78)",
+                    "reverse": false,
+                    "segment_idx": -1,
+                    "self_brightness": 100,
+                    "serial": "7D7823032408",
+                    "vendor": "MSI",
+                    "version": "AP/LD 0.8 / 1.5",
+                    "zone_idx": 3
+                },
+                {
+                    "description": "Razer Device, Black",
+                    "is_segment": false,
+                    "location": "HID: /dev/hidraw0",
+                    "name": "Razer Firefly V2",
+                    "reverse": false,
+                    "segment_idx": -1,
+                    "self_brightness": 100,
+                    "serial": "382516V03400926       ",
+                    "vendor": "Razer",
+                    "version": "v1.0",
+                    "zone_idx": 0
+                }
+            ],
+            "CustomName": "Ambient",
+            "CustomSettings": {
+                "crop_stream": false,
+                "framerate": 1,
+                "height": 1,
+                "left": 0,
+                "mode": 1,
+                "restore_token": "",
+                "screen_index": 0,
+                "smoothness": 0,
+                "top": 0,
+                "width": 1
+            },
+            "EffectClassName": "Ambient",
+            "FPS": 1,
+            "RandomColors": false,
+            "Slider2Val": 1,
+            "Speed": 1,
+            "Temperature": 0,
+            "Tint": 0
+        }
+    ],
+    "version": 2
+}
