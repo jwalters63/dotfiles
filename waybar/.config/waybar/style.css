@@ -1,4 +1,4 @@
-/* 1. TIPOGRAFÍA Y RESETEO */
+
 * {
     border: none;
     border-radius: 0;
@@ -8,29 +8,23 @@
     min-height: 0;
 }
 
-/* 2. EL FONDO (El Fractal puro y desatado) */
 window#waybar {
     background-image: url('/home/jwalters/dotfiles/waybar/.config/waybar/assets/fractal.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    /* FILTRO ELIMINADO. Ahora el verde militar se muestra en su color 100% original */
     color: #ffffff;
 }
 
-/* 3. MÓDULOS BASE (Transparencia Total) */
 #custom-menu, #workspaces, #cpu, #memory, #network, #clock, #window {
     background-color: transparent;
     color: #ffffff; 
 }
 
-/* 4. SEPARACIÓN Y AGRUPACIÓN */
 #cpu, #memory, #network {
     padding: 0 10px;
     color: #e0e0e0;
 }
-
-/* 5. MENÚ Y WORKSPACES (Versión Revertida + Cristal 40px) */
 
 #custom-menu {
     font-size: 22px; 
@@ -41,27 +35,22 @@ window#waybar {
 
 #workspaces button {
     padding: 0 16px;
-    color: #8b929a; 
-    
-    /* DIRECTIVA APLICADA: Transparencia oscura directamente en cada botón */
-    background-color: rgba(23, 26, 33, 0.5); 
-    
-    /* CRÍTICO PARA LOS 40px: Cero márgenes y cero bordes redondeados. 
-       Esto fuerza al botón a tocar el techo y el suelo de la Waybar */
-    margin: 0; 
+    color: #8b929a;
+
+    background-color: rgba(23, 26, 33, 0.5);
+
+    margin: 0;
     border-radius: 0;
     
     transition: color 0.1s ease;
     font-weight: 700;
-    /* Aseguramos que el estado inactivo no tenga sombras residuales */
-    box-shadow: 0 0 0 0 transparent inset; 
+    box-shadow: 0 0 0 0 transparent inset;
 }
 
 #workspaces button:hover {
     color: #ffffff;
-    /* Un brillo blanco sutil al pasar el ratón para mantener la interacción */
     background-color: rgba(255, 255, 255, 0.1);
-    color: #000000; /* El texto se vuelve negro */
+    color: #000000;
     text-shadow: none;
 }
 
@@ -69,36 +58,29 @@ window#waybar {
     color: #000000;
 }
 
-/* El estado "En Foco" (La barra plana de Valve) */
 #workspaces button.active {
     color: #ffffff;
     font-weight: 800; 
-    background-color: rgba(23, 26, 33, 0.5); /* Mantiene el cristal */
-    
-    /* LA BARRA PLANA INTACTA: Línea inferior recta y blanca de 4px */
-    box-shadow: 0 -4px 0 0 #ffffff inset; 
+    background-color: rgba(23, 26, 33, 0.5);
+
+    box-shadow: 0 -4px 0 0 #ffffff inset;
 }
 
 #workspaces button.active label {
     color: #ffffff;
 }
 
-/* La intersección: Cuando el botón está ACTIVO y además le haces HOVER */
 #workspaces button.active:hover {
-    background-color: #ffffff; /* El fondo se ilumina en blanco como los demás */
-    color: #000000; /* Texto negro para máxima legibilidad */
-    
-    /* CRÍTICO: Invertimos la línea de 4px a negro. 
-       Si la dejamos blanca, desaparecería contra el fondo blanco del hover. */
-    box-shadow: 0 -4px 0 0 #000000 inset; 
+    background-color: #ffffff;
+    color: #000000;
+
+    box-shadow: 0 -4px 0 0 #000000 inset;
 }
 
-/* Forzamos al motor GTK a pintar el número interno en negro también en este estado */
 #workspaces button.active:hover label {
     color: #000000;
 }
 
-/* 6. EL TÍTULO DE VENTANA */
 #window {
     color: #ffffff;
     font-weight: 800; 
@@ -106,7 +88,6 @@ window#waybar {
     letter-spacing: 0.5px; 
 }
 
-/* 7. LA HORA */
 #clock {
     font-weight: 800;
     font-size: 16px;
@@ -114,12 +95,10 @@ window#waybar {
     padding: 0 20px 0 10px;
 }
 
-/* 8. EL TRAY (Ajuste de 3 píxeles) */
 #tray {
     background-color: rgba(23, 26, 33, 0.5); 
-    border-radius: 4px; 
-    
-    /* DIRECTIVA APLICADA: 3 píxeles de margen superior e inferior */
-    margin: 6px 12px; 
+    border-radius: 4px;
+
+    margin: 6px 12px;
     padding: 0 8px;
 }

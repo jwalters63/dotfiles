@@ -1763,6 +1763,9 @@
             }
         ]
     },
+    "Theme": {
+        "theme": "Light"
+    },
     "UserInterface": {
         "RunZoneChecks": true,
         "autoload_profiles": {
