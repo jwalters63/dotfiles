@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
 <action>
-	<icon>utilities-terminal</icon>
-	<name>Open Terminal Here</name>
+	<icon>kitty</icon>
+	<name>Abrir Terminal Aquí</name>
 	<submenu></submenu>
-	<unique-id>1772914746690356-1</unique-id>
-	<command>exo-open --working-directory %f --launch kitty</command>
-	<description>Example for a custom action</description>
-	<range></range>
+	<unique-id>1773207869891388-1</unique-id>
+	<command>kitty -d %f</command>
+	<description>Lanzar la terminal designada en este directorio</description>
+	<range>*</range>
 	<patterns>*</patterns>
 	<directories/>
 </action>
