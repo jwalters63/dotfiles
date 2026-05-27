@@ -13,7 +13,7 @@ window#waybar {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: #ffffff;
+    color: #000000;
 }
 
 #custom-menu, #workspaces, #cpu, #memory, #network, #clock, #window {

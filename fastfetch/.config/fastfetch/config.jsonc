@@ -5,7 +5,7 @@
         "source": "/home/jwalters/dotfiles/fastfetch/.config/fastfetch/garchi.png", 
         "height": 8, 
         "padding": {
-            "top": 0,
+            "top": 3,
             "right": 3,
             "left": 3
         }

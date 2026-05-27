@@ -1,0 +1,59 @@
+    OpenRGB v0.9+ (1.0rc2)
+    Commit:  from 
+    Launched: 20260316_221717
+====================================================================================================
+
+0     |Info:    [ProfileManager] Found file: sssijue.orp attempting to validate header
+0     |Info:    [ProfileManager] Valid v5 profile found for sssijue
+55    |Info:    [ResourceManager] Initializing HID interfaces: Success
+55    |Info:    ------------------------------------------------------
+55    |Info:    |               Start device detection               |
+55    |Info:    ------------------------------------------------------
+64    |Info:    ------------------------------------------------------
+64    |Info:    |             Detecting I2C interfaces               |
+64    |Info:    ------------------------------------------------------
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-3 Device 1002:744C Subsystem: 1002:0E3B
+64    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-10 Device 0000:0000 Subsystem: 0000:0000
+64    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-1 Device 1002:7444 Subsystem: 1002:0408
+64    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-8 Device 0000:0000 Subsystem: 0000:0000
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-6 Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-13 Device 1022:790B Subsystem: 1462:7D78
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-4 Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-11 Device 1022:790B Subsystem: 1462:7D78
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-2 Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-0 Device 0000:0000 Subsystem: 0000:0000
+65    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-9 Device 0000:0000 Subsystem: 0000:0000
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-7 Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-5 Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-12 Device 1022:790B Subsystem: 1462:7D78
+65    |Info:    ------------------------------------------------------
+65    |Info:    |               Detecting I2C devices                |
+65    |Info:    ------------------------------------------------------
+1057  |Info:    ------------------------------------------------------
+1057  |Info:    |            Detecting I2C DIMM modules              |
+1057  |Info:    ------------------------------------------------------
+2190  |Info:    [ResourceManager] Detected occupied slot 2, bus 7, type DDR5
+3109  |Info:    [ResourceManager] Detected occupied slot 4, bus 7, type DDR5
+3177  |Info:    ------------------------------------------------------
+3177  |Info:    |               Detecting I2C PCI devices            |
+3177  |Info:    ------------------------------------------------------
+3178  |Info:    ------------------------------------------------------
+3178  |Info:    |               Detecting HID devices                |
+3178  |Info:    ------------------------------------------------------
+3331  |Info:    [KLM] Created new Full 104 key ISO QWERTY with 6 rows and 21 columns containing 105 keys
+3331  |Info:    [Razer Blackwidow V4 X] Registering RGB controller
+3361  |Info:    [MSI PRO B650-VC WIFI (MS-7D78)] Registering RGB controller
+3413  |Info:    [Razer Firefly V2] Registering RGB controller
+3413  |Info:    ------------------------------------------------------
+3413  |Info:    |            Detecting libusb HID devices            |
+3413  |Info:    ------------------------------------------------------
+3718  |Info:    ------------------------------------------------------
+3718  |Info:    |              Detecting other devices               |
+3718  |Info:    ------------------------------------------------------
+3743  |Info:    [ResourceManager] Calling Post-detection callbacks
+3743  |Info:    ------------------------------------------------------
+3743  |Info:    |                Detection completed                 |
+3743  |Info:    ------------------------------------------------------

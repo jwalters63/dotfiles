@@ -1,0 +1,108 @@
+configuration {
+    modi: "drun";
+    show-icons: true;
+    display-drun: " ";
+    drun-display-format: "{name}";
+    font: "Motiva Sans 14";
+    
+    /* Activa la selección al pasar el ratón (Hover) */
+    hover-select: true;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+}
+
+* {
+    /* Paleta Estricta SteamOS */
+    bg: #0e141b;             /* El fondo oscuro que pediste */
+    highlight-bg: #b8bcbf;   /* El resaltado gris claro */
+    fg-active: #ffffff;      /* Texto blanco puro */
+    fg-dim: #8b929a;         /* Gris apagado para inactivos */
+
+    background-color: transparent;
+}
+
+window {
+    transparency: "real";
+    location: northwest;
+    anchor: northwest;
+    x-offset: 0px;
+    y-offset: 0px;      /* Respeta la Waybar */
+    width: 640px;        /* Ancho estricto */
+    height: 100%;
+    background-color: @bg;
+}
+
+mainbox {
+    /* Eliminamos el padding aquí para que el resaltado toque los bordes */
+    padding: 0px;
+    spacing: 0px;
+}
+
+inputbar {
+    background-color: transparent; 
+    border-radius: 0px;  /* Cuadrada, sin bordes redondeados */
+    padding: 40px 30px 20px 30px; /* Margen interno para empujar el texto */
+    spacing: 15px;
+    children: [ prompt, entry ];
+}
+
+prompt {
+    text-color: @fg-active;
+    font: "Motiva Sans Bold 16";
+}
+
+entry {
+    /* Inyectamos etiquetas de Pango Markup para la itálica */
+    placeholder: "<i>Búsqueda del sistema...</i>";
+    placeholder-markup: true; /* Le dice a Rofi que lea las etiquetas HTML */
+    placeholder-color: @fg-dim;
+    
+    /* El texto real que tú tecleas usa la fuente principal recta y pesada */
+    text-color: @fg-active;
+    font: "Motiva Sans 14"; 
+}
+
+listview {
+    columns: 1;
+    lines: 10;
+    spacing: 0px;        /* Sin espacio entre cajas para un look de bloque sólido */
+    scrollbar: false;
+    border: 0px;
+    padding: 10px 0px 0px 0px;
+}
+
+element {
+    /* El padding interno reemplaza al externo. Mantiene el texto alineado pero la caja es gigante */
+    padding: 15px 30px; 
+    spacing: 20px;
+    border: 0px;
+    border-radius: 0px;  /* Completamente cuadrado */
+}
+
+/* ESTADO INACTIVO */
+element normal.normal, element alternate.normal {
+    background-color: transparent;
+    text-color: @fg-dim;
+}
+
+/* ESTADO ACTIVO (Hover / Teclado) */
+element selected.normal, element selected.active {
+    background-color: @highlight-bg; /* Se enciende el fondo gris #b8bcbf */
+    text-color: @bg;                 /* Invierto el texto a oscuro para que se pueda leer sobre el gris claro */
+}
+
+element-icon {
+    size: 32px;
+    text-color: inherit;
+}
+
+element-text {
+    vertical-align: 0.5;
+    text-color: inherit;
+    font: "Motiva Sans Bold 16";
+}
+
+/* El color de la letra que coincide con tu búsqueda */
+element-text highlight {
+    text-color: @bg;
+}
