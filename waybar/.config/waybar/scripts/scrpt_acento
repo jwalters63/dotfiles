@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Extrae la hora actual en formato 24h
+HOUR=$(date +%H)
+COLORS_FILE="$HOME/.config/waybar/colors.css"
+
+# Rango diurno definido: 07:00 a 18:59
+if [ "$HOUR" -ge 07 ] && [ "$HOUR" -lt 21 ]; then
+    # DÍA: Acento Diurno + Modo Oscuro (para contrastar con fondos claros)
+    echo '@define-color accent #ff004d;' > "$COLORS_FILE"
+    echo '@define-color bg_color rgba(0, 0, 0, 0.3);' >> "$COLORS_FILE"
+    echo '@define-color text_color #ffffff;' >> "$COLORS_FILE"
+    echo '@define-color hover_bg rgba(255, 255, 255, 0.2);' >> "$COLORS_FILE"
+else
+    # NOCHE: Acento Nocturno + Modo Claro (para contrastar con fondos oscuros)
+    echo '@define-color accent #576fbd;' > "$COLORS_FILE"
+    echo '@define-color bg_color rgba(255, 255, 255, 0.3);' >> "$COLORS_FILE"
+    echo '@define-color text_color #000000;' >> "$COLORS_FILE"
+    echo '@define-color hover_bg rgba(0, 0, 0, 0.1);' >> "$COLORS_FILE"
+fi
+
+# Envía una señal SIGUSR2 a Waybar para recargar el CSS en caliente
+killall -SIGUSR2 waybar

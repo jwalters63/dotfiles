@@ -1,55 +1,97 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 40,
+    "height": 28,
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
     "spacing": 0,
 
-    "modules-left": ["custom/menu", "hyprland/workspaces"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["cpu", "memory", "network", "tray", "clock"],
+    "modules-left": [
+        "custom/logo",
+        "custom/terminal",
+        "custom/browser",
+        "custom/files",
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "tray",
+        "pulseaudio",
+        "network",
+        "clock",
+        "custom/notification_center"
+    ],
 
-    "custom/menu": {
-        "format": "≡",
+    "custom/logo": {
+        "format": " ",
         "tooltip": false,
-        "on-click": "rofi -show drun" 
+        "on-click": "rofi -show drun"
     },
-
+    "custom/terminal": {
+        "format": "Terminal",
+        "tooltip": false,
+        "on-click": "kitty"
+    },
+    "custom/browser": {
+        "format": "Navegador",
+        "tooltip": false,
+        "on-click": "firefox"
+    },
+    "custom/files": {
+        "format": "Explorador de archivos",
+        "tooltip": false,
+        "on-click": "thunar"
+    },
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-        "format": "{name}"
+        "persistent-workspaces": {
+            "*": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        },
+        "format": "{icon}",
+        "format-icons": {
+            "active": "●",
+            "default": "○",
+            "empty": "○"
+        }
     },
-
     "hyprland/window": {
         "format": "{title}",
-        "max-length": 60,
-        "separate-outputs": true
+        "max-length": 50,
+        "rewrite": {
+            "(.*) - Mozilla Firefox": "$1",
+            "(.*) - kitty": "$1"
+        }
     },
-
-    "cpu": {
-        "format": " {usage}%",
-        "tooltip": false
-    },
-
-    "memory": {
-        "format": " {}%",
-        "tooltip": false
-    },
-
-    "network": {
-        "format-wifi": " Wifi",
-        "format-ethernet": "󰈀 Ethernet",
-        "format-disconnected": "⚠ ¡Sin conexión!",
-        "tooltip-format": "{ifname} via {gwaddr}"
-    },
-
     "tray": {
-        "icon-size": 18,
-        "spacing": 12
+        "icon-size": 14,
+        "spacing": 8
     },
-
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "tooltip": false,
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": "",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "⚠",
+        "tooltip": false
+    },
     "clock": {
-        "format": "{:%H:%M}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "format": "{:%a %b %d  %I:%M %p}",
+        "tooltip": false
+    },
+    "custom/notification_center": {
+        "format": "", 
+        "tooltip": false,
+        "on-click": "swaync-client -t -sw"
     }
 }

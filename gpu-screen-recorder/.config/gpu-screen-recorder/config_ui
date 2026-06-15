@@ -95,7 +95,7 @@ replay.save_hotkey 95 16
 replay.save_video_in_game_folder false
 replay.start_stop_hotkey 95 17
 replay.time 60
-replay.turn_on_replay_automatically_mode dont_turn_on_automatically
+replay.turn_on_replay_automatically_mode turn_on_at_system_startup
 screenshot.change_image_resolution false
 screenshot.custom_script 
 screenshot.image_format jpg

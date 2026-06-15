@@ -1,0 +1,169 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   nwg-dock-hyprland — macOS Tahoe Glass  (GTK3 strict)
+
+   Comando:
+     nwg-dock-hyprland -p bottom -a center -i 52 -mb 8 -d -nolauncher
+
+   Blur (hyprland.conf):
+     layerrule = blur,       gtk-layer-shell
+     layerrule = ignorezero, gtk-layer-shell
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Ventana raíz ─────────────────────────────────────────────────────────── */
+window {
+    background-color: transparent;
+    background-image: none;
+    background: none;
+    border: none;
+    box-shadow: none; /* ELIMINA LA CAJA FANTASMA */
+    outline: none;
+}
+
+/* ── Anular TODOS los fondos de cajas internas (las que mete GTK/nwg-dock) ── */
+box {
+    background-color: transparent;
+    background-image: none;
+    background: none;
+    border-style: none;
+    box-shadow: none;
+    outline: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   #box — la cápsula de cristal
+   ═══════════════════════════════════════════════════════════════════════════ */
+#box {
+    /* Base semitranslúcida intacta */
+    background-color: rgba(18, 18, 22, 0.50);
+
+    /* Gradiente interno intacto */
+    background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.00)  0%,
+        rgba(255, 255, 255, 0.14) 12%,
+        rgba(255, 255, 255, 0.07) 32%,
+        rgba(255, 255, 255, 0.02) 58%,
+        rgba(0,   0,   0,   0.04) 80%,
+        rgba(0,   0,   0,   0.10) 100%
+    );
+
+    /* Bordes asimétricos intactos */
+    border-style:        solid;
+    border-width:        1px;
+    border-top-color:    rgba(255, 255, 255, 0.28);
+    border-left-color:   rgba(255, 255, 255, 0.11);
+    border-right-color:  rgba(255, 255, 255, 0.08);
+    border-bottom-color: rgba(0,   0,   0,   0.35);
+
+    border-radius: 22px;
+    padding:       8px 14px;
+    margin:        0 0 6px 0;
+
+    /* LA SOLUCIÓN: Solo conservar la luz y sombreado interno (inset). 
+       Se eliminan las sombras exteriores para destruir el rectángulo de Wayland. */
+    box-shadow:
+        inset 0  0px 10px rgba(255, 255, 255, 0.04),
+        inset 0  1px  2px rgba(255, 255, 255, 0.20),
+        inset 0 -1px  2px rgba(0,   0,   0,   0.22);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Botones — completamente limpios
+   ═══════════════════════════════════════════════════════════════════════════ */
+button,
+button:link,
+button:visited,
+button:focus,
+button:focus:hover,
+button:checked {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    border-style:     none;
+    border-width:     0;
+    border-radius:    14px;
+    box-shadow:       none;
+    outline-style:    none;
+    outline-width:    0;
+    padding:          6px;
+    margin:           0 3px;
+    transition:       background-color 0.15s ease;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.11);
+    background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.08) 0%,
+        rgba(255, 255, 255, 0.00) 100%
+    );
+    border-style: none;
+    box-shadow:   none;
+}
+
+button:active {
+    background-color: rgba(0, 0, 0, 0.08);
+    background-image: none;
+    box-shadow:       none;
+}
+
+/* ── Imágenes y todo lo que esté dentro de un botón ─────────────────────── */
+button image,
+button box,
+button > *,
+image {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    border-style:     none;
+    border-width:     0;
+    box-shadow:       none;
+    outline-style:    none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   #active — solo el punto, sin ningún fondo
+   ═══════════════════════════════════════════════════════════════════════════ */
+#active {
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    border-style:     none;
+    border-radius:    14px;
+    box-shadow:       0 3px 0 rgba(255, 255, 255, 0.68);
+}
+
+#active:hover {
+    background-color: rgba(255, 255, 255, 0.11);
+    background-image: none;
+    box-shadow:       0 3px 0 rgba(255, 255, 255, 0.68);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Separador
+   ═══════════════════════════════════════════════════════════════════════════ */
+#separator {
+    background-color: rgba(255, 255, 255, 0.12);
+    background-image: none;
+    border-style:     none;
+    border-radius:    1px;
+    min-width:        1px;
+    min-height:       36px;
+    margin:           6px 8px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tooltip
+   ═══════════════════════════════════════════════════════════════════════════ */
+tooltip {
+    background-color: rgba(22, 22, 26, 0.94);
+    background-image: none;
+    border:           1px solid rgba(255, 255, 255, 0.09);
+    border-radius:    10px;
+    padding:          4px 2px;
+}
+
+tooltip label {
+    font-family: "Motiva Sans", "SF Pro Display", "Inter", sans-serif;
+    font-size:   12px;
+    font-weight: 700;
+    color:       rgba(255, 255, 255, 0.90);
+    padding:     2px 10px;
+}

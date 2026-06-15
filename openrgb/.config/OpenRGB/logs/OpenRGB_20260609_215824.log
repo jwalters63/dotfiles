@@ -1,0 +1,64 @@
+    OpenRGB v0.9+ (1.0rc2)
+    Commit:  from 
+    Launched: 20260609_215824
+====================================================================================================
+
+0     |Info:    [ProfileManager] Found file: sssijue.orp attempting to validate header
+0     |Info:    [ProfileManager] Valid v5 profile found for sssijue
+0     |Info:    [ProfileManager] Found file: ambilight.orp attempting to validate header
+0     |Info:    [ProfileManager] Valid v5 profile found for ambilight
+52    |Info:    [ResourceManager] Initializing HID interfaces: Success
+52    |Info:    ------------------------------------------------------
+52    |Info:    |               Start device detection               |
+52    |Info:    ------------------------------------------------------
+65    |Info:    ------------------------------------------------------
+65    |Info:    |             Detecting I2C interfaces               |
+65    |Info:    ------------------------------------------------------
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-3 Device 1002:744C Subsystem: 1002:0E3B
+65    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-10 Device 0000:0000 Subsystem: 0000:0000
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-1 Device 1002:7444 Subsystem: 1002:0408
+65    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-8 Device 0000:0000 Subsystem: 0000:0000
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-6 Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-13 Device 1022:790B Subsystem: 1462:7D78
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-4 Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-11 Device 1022:790B Subsystem: 1462:7D78
+65    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-2 Device 1002:744C Subsystem: 1002:0E3B
+66    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-0 Device 0000:0000 Subsystem: 0000:0000
+66    |Warning: [i2c_smbus_linux] Failed to read i2c device PCI device ID
+66    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-9 Device 0000:0000 Subsystem: 0000:0000
+66    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-7 Device 1002:744C Subsystem: 1002:0E3B
+66    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-5 Device 1002:744C Subsystem: 1002:0E3B
+66    |Info:    [ResourceManager] Registering I2C interface: /dev/i2c-12 Device 1022:790B Subsystem: 1462:7D78
+66    |Info:    ------------------------------------------------------
+66    |Info:    |               Detecting I2C devices                |
+66    |Info:    ------------------------------------------------------
+1142  |Info:    ------------------------------------------------------
+1142  |Info:    |            Detecting I2C DIMM modules              |
+1142  |Info:    ------------------------------------------------------
+1687  |Info:    [ResourceManager] Detected occupied slot 2, bus 7, type DDR5
+2556  |Info:    [ResourceManager] Detected occupied slot 4, bus 7, type DDR5
+2628  |Info:    ------------------------------------------------------
+2628  |Info:    |               Detecting I2C PCI devices            |
+2628  |Info:    ------------------------------------------------------
+2907  |Info:    ------------------------------------------------------
+2907  |Info:    |               Detecting HID devices                |
+2907  |Info:    ------------------------------------------------------
+3069  |Info:    [KLM] Created new Full 104 key ISO QWERTY with 6 rows and 21 columns containing 105 keys
+3069  |Info:    [Razer Blackwidow V4 X] Registering RGB controller
+3147  |Info:    [MSI PRO B650-VC WIFI (MS-7D78)] Registering RGB controller
+3197  |Info:    [Razer Firefly V2] Registering RGB controller
+3197  |Info:    ------------------------------------------------------
+3197  |Info:    |            Detecting libusb HID devices            |
+3197  |Info:    ------------------------------------------------------
+3614  |Info:    ------------------------------------------------------
+3614  |Info:    |              Detecting other devices               |
+3614  |Info:    ------------------------------------------------------
+3640  |Info:    [ResourceManager] Calling Post-detection callbacks
+3640  |Info:    ------------------------------------------------------
+3640  |Info:    |                Detection completed                 |
+3640  |Info:    ------------------------------------------------------
+3642  |Info:    [ProfileManager] Profile loading: Succeeded for Razer Blackwidow V4 X @ HID: /dev/hidraw8
+3642  |Info:    [ProfileManager] Profile loading: Succeeded for MSI PRO B650-VC WIFI (MS-7D78) @ HID: /dev/hidraw2
+3642  |Info:    [ProfileManager] Profile loading: Succeeded for Razer Firefly V2 @ HID: /dev/hidraw0

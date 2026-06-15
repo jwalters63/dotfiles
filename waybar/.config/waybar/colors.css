@@ -1,0 +1,4 @@
+@define-color accent #ff004d;
+@define-color bg_color rgba(0, 0, 0, 0.3);
+@define-color text_color #ffffff;
+@define-color hover_bg rgba(255, 255, 255, 0.2);

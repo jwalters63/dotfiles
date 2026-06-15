@@ -1,104 +1,108 @@
+/* Importación de variables generadas por el script */
+@import "colors.css";
 
+/* Configuración Global: Inter como base del entorno */
 * {
     border: none;
     border-radius: 0;
-    font-family: "Motiva Sans", "Symbols Nerd Font", sans-serif;
-    font-size: 15px; 
-    font-weight: 700; 
+    font-family: "Inter", "Symbols Nerd Font", sans-serif;
+    font-size: 13.5px;
     min-height: 0;
-}
-
-window#waybar {
-    background-image: url('/home/jwalters/dotfiles/waybar/.config/waybar/assets/fractal.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: #000000;
-}
-
-#custom-menu, #workspaces, #cpu, #memory, #network, #clock, #window {
-    background-color: transparent;
-    color: #ffffff; 
-}
-
-#cpu, #memory, #network {
-    padding: 0 10px;
-    color: #e0e0e0;
-}
-
-#custom-menu {
-    font-size: 22px; 
-    padding: 0 18px;
-    color: #ffffff;
-    font-weight: 800;
-}
-
-#workspaces button {
-    padding: 0 16px;
-    color: #8b929a;
-
-    background-color: rgba(23, 26, 33, 0.5);
-
-    margin: 0;
-    border-radius: 0;
-    
-    transition: color 0.1s ease;
-    font-weight: 700;
-    box-shadow: 0 0 0 0 transparent inset;
-}
-
-#workspaces button:hover {
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #000000;
+    box-shadow: none;
     text-shadow: none;
 }
 
-#workspaces button:hover label {
-    color: #000000;
+window#waybar {
+    background: @bg_color;
+    color: @text_color;
+    
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* -----------------------------------------
+   SECTOR IZQUIERDO: LOGO, MENÚ Y WORKSPACES
+----------------------------------------- */
+
+#custom-logo {
+    min-width: 20px;
+    background-image: url('/home/jwalters/.config/waybar/assets/dragonicon.png');
+    background-size: 20px 22px;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+#custom-terminal,
+#custom-browser,
+#custom-files {
+    padding: 0px 8px;
+    background: transparent;
+    color: @text_color;
+}
+
+/* EXCEPCIÓN TIPOGRÁFICA ESTRICTA: Peso 700 retiene Motiva Sans */
+#custom-terminal {
+    font-family: "Motiva Sans", "Symbols Nerd Font", sans-serif;
+    font-weight: 700;
+}
+
+/* Pesos medios heredan Inter automáticamente */
+#custom-browser, 
+#custom-files {
+    font-weight: 500;
+}
+
+#custom-terminal:hover,
+#custom-browser:hover,
+#custom-files:hover {
+    background-color: @hover_bg;
+    border-radius: 4px;
+}
+
+#workspaces {
+    padding: 0px 4px 0px 14px;
+    background: transparent;
+}
+
+#workspaces button {
+    padding: 0px 4px;
+    background: transparent;
+    color: rgba(128, 128, 128, 0.6);
+    transition: color 0.3s ease;
 }
 
 #workspaces button.active {
-    color: #ffffff;
-    font-weight: 800; 
-    background-color: rgba(23, 26, 33, 0.5);
-
-    box-shadow: 0 -4px 0 0 #ffffff inset;
+    color: @accent;
+    text-shadow: 0 0 4px @accent;
 }
 
-#workspaces button.active label {
-    color: #ffffff;
+#workspaces button:hover {
+    color: @text_color;
 }
 
-#workspaces button.active:hover {
-    background-color: #ffffff;
-    color: #000000;
-
-    box-shadow: 0 -4px 0 0 #000000 inset;
-}
-
-#workspaces button.active:hover label {
-    color: #000000;
-}
+/* -----------------------------------------
+   SECTOR CENTRAL Y DERECHO
+----------------------------------------- */
 
 #window {
-    color: #ffffff;
-    font-weight: 800; 
-    font-size: 16px;
-    letter-spacing: 0.5px; 
+    font-family: "Motiva Sans", "Symbols Nerd Font", sans-serif;
+    font-weight: 600;
+    color: @text_color;
+    background: transparent;
 }
 
-#clock {
-    font-weight: 800;
-    font-size: 16px;
-    color: #ffffff;
-    padding: 0 20px 0 10px;
+#tray, 
+#pulseaudio, 
+#network, 
+#clock, 
+#custom-notification_center {
+    padding: 0px 8px;
+    background: transparent;
+    font-weight: 500; /* Heredan Inter */
 }
 
-#tray {
-    background-color: rgba(23, 26, 33, 0.5); 
-    border-radius: 4px;
-
-    margin: 6px 12px;
-    padding: 0 8px;
+#custom-notification_center {
+    padding-right: 14px;
 }
