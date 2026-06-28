@@ -10,6 +10,8 @@ import VolumeSlider from "./VolumeSlider"
 import QuickActions from "./QuickActions"
 import AppLauncher from "./AppLauncher"
 import WifiMenu from "./WifiMenu"
+import VpnMenu from "./VpnMenu"
+import MirrorMenu from "./MirrorMenu"
 import PowerMenu from "./PowerMenu"
 import { activeTab } from "./state"
 
@@ -27,6 +29,8 @@ export default function ControlCenter() {
   stack.add_named(<PowerMenu />, "power")
   stack.add_named(<WifiMenu />, "wifi")
   stack.add_named(<BluetoothMenu />, "bluetooth")
+  stack.add_named(<VpnMenu />, "vpn")
+  stack.add_named(<MirrorMenu />, "mirror")
   
   // Bind stack visibility to the activeTab state
   activeTab.subscribe((val) => {
@@ -57,7 +61,7 @@ export default function ControlCenter() {
                 }}
               >
                 <image
-                  iconName="cpu-symbolic"
+                  iconName="power-profile-performance-symbolic"
                   pixelSize={24}
                   halign={Gtk.Align.CENTER}
                   valign={Gtk.Align.CENTER}
@@ -119,10 +123,22 @@ export default function ControlCenter() {
 
         self.connect("notify::visible", () => {
           if (self.visible) {
-            activeTab.set("apps")
-            setTimeout(() => {
-              ;(appLauncher as any).focusSearch()
-            }, 50)
+            execAsync("cat /tmp/ags_initial_tab")
+              .then((out) => {
+                const init = out.trim()
+                if (init) {
+                  activeTab.set(init)
+                  execAsync("rm -f /tmp/ags_initial_tab").catch(() => {})
+                } else {
+                  activeTab.set("apps")
+                  setTimeout(() => { ;(appLauncher as any).focusSearch() }, 50)
+                }
+              })
+              .catch(() => {
+                activeTab.set("apps")
+                setTimeout(() => { ;(appLauncher as any).focusSearch() }, 50)
+              })
+              
             if (self.child && (self.child as any).openPanel) {
               ;(self.child as any).openPanel()
             }

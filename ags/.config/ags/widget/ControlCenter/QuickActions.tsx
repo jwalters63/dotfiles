@@ -3,38 +3,7 @@ import { createPoll } from "ags/time"
 import { execAsync } from "ags/process"
 import { activeTab } from "./state"
 
-function doNothing() {
-  // The user requested the button to do nothing
-}
-
-// ── Screenshot via hyprshot / grim fallback ──
-async function takeScreenshot() {
-  try {
-    await execAsync(["bash", "-c", "hyprshot -m output &"])
-  } catch {
-    try {
-      await execAsync(["bash", "-c", "grim ~/Pictures/screenshot-$(date +%s).png &"])
-    } catch {}
-  }
-}
-
-// ── Color picker ──
-async function openColorPicker() {
-  try {
-    await execAsync(["bash", "-c", "hyprpicker -a &"])
-  } catch {}
-}
-
-// ── Lock screen ──
-async function lockScreen() {
-  try {
-    await execAsync(["bash", "-c", "hyprlock &"])
-  } catch {
-    try {
-      await execAsync(["bash", "-c", "swaylock &"])
-    } catch {}
-  }
-}
+function doNothing() {}
 
 export default function QuickActions() {
   const appsBtn = new Gtk.Button({
@@ -48,19 +17,29 @@ export default function QuickActions() {
     else appsBtn.remove_css_class("active-tab")
   })
 
-  const pickBtn = new Gtk.Button({
+  const vpnBtn = new Gtk.Button({
     cssClasses: ["quick-btn"],
-    tooltipText: "Pick Color",
-    child: new Gtk.Image({ iconName: "color-select-symbolic", pixelSize: 20 })
+    tooltipText: "VPN Menu (Disabled)",
+    sensitive: false,
+    child: new Gtk.Image({ iconName: "network-vpn-symbolic", pixelSize: 20 })
   })
-  pickBtn.connect("clicked", openColorPicker)
+  // vpnBtn.connect("clicked", () => activeTab.set("vpn"))
+  activeTab.subscribe(v => {
+    if (v === "vpn") vpnBtn.add_css_class("active-tab")
+    else vpnBtn.remove_css_class("active-tab")
+  })
 
-  const shotBtn = new Gtk.Button({
+  const mirrorBtn = new Gtk.Button({
     cssClasses: ["quick-btn"],
-    tooltipText: "Screenshot",
-    child: new Gtk.Image({ iconName: "camera-photo-symbolic", pixelSize: 20 })
+    tooltipText: "Screen Mirror (Disabled)",
+    sensitive: false,
+    child: new Gtk.Image({ iconName: "phone-symbolic", pixelSize: 20 })
   })
-  shotBtn.connect("clicked", takeScreenshot)
+  // mirrorBtn.connect("clicked", () => activeTab.set("mirror"))
+  activeTab.subscribe(v => {
+    if (v === "mirror") mirrorBtn.add_css_class("active-tab")
+    else mirrorBtn.remove_css_class("active-tab")
+  })
 
   const powerBtn = new Gtk.Button({
     cssClasses: ["quick-btn", "power-btn"],
@@ -81,8 +60,8 @@ export default function QuickActions() {
   })
 
   mainBox.append(appsBtn)
-  mainBox.append(pickBtn)
-  mainBox.append(shotBtn)
+  mainBox.append(vpnBtn)
+  mainBox.append(mirrorBtn)
   mainBox.append(powerBtn)
 
   return mainBox
