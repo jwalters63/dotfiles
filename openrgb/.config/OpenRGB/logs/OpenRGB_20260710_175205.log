@@ -1,0 +1,130 @@
+    OpenRGB v0.9+ (1.0rc3)
+    Commit:  from 
+    Launched: 20260710_175205
+====================================================================================================
+
+0     |Info:    [ProfileManager] Found file: ambilight.orp attempting to validate header
+0     |Info:    [ProfileManager] Valid v5 profile found for ambilight
+52    |Info:    [ResourceManager] Initializing HID interfaces: Success
+52    |Info:    ------------------------------------------------------
+52    |Info:    |               Start device detection               |
+52    |Info:    ------------------------------------------------------
+64    |Info:    ------------------------------------------------------
+64    |Info:    |             Detecting I2C interfaces               |
+64    |Info:    ------------------------------------------------------
+64    |Info:    [ResourceManager] Registering I2C interface: AMDGPU SMU 1 (/dev/i2c-3) Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [i2c_smbus_linux] Failed to read i2c device PCI device ID
+65    |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM aux hw bus 2 (/dev/i2c-10) Device 0000:0000 Subsystem: 0000:0000
+65    |Info:    [ResourceManager] Registering I2C interface: Synopsys DesignWare I2C adapter (/dev/i2c-1) Device 1002:7444 Subsystem: 1002:0408
+65    |Info:    [i2c_smbus_linux] Failed to read i2c device PCI device ID
+65    |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM aux hw bus 0 (/dev/i2c-8) Device 0000:0000 Subsystem: 0000:0000
+65    |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM i2c hw bus 2 (/dev/i2c-6) Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: SMBus PIIX4 adapter port 1 at 0b20 (/dev/i2c-13) Device 1022:790B Subsystem: 1462:7D78
+65    |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM i2c hw bus 0 (/dev/i2c-4) Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: SMBus PIIX4 adapter port 0 at 0b00 (/dev/i2c-11) Device 1022:790B Subsystem: 1462:7D78
+65    |Info:    [ResourceManager] Registering I2C interface: AMDGPU SMU 0 (/dev/i2c-2) Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: Synopsys DesignWare I2C adapter (/dev/i2c-0) Device 0000:0000 Subsystem: 0000:0000
+65    |Info:    [i2c_smbus_linux] Failed to read i2c device PCI device ID
+65    |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM aux hw bus 1 (/dev/i2c-9) Device 0000:0000 Subsystem: 0000:0000
+65    |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM i2c hw bus 3 (/dev/i2c-7) Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM i2c hw bus 1 (/dev/i2c-5) Device 1002:744C Subsystem: 1002:0E3B
+65    |Info:    [ResourceManager] Registering I2C interface: SMBus PIIX4 adapter port 2 at 0b00 (/dev/i2c-12) Device 1022:790B Subsystem: 1462:7D78
+65    |Info:    ------------------------------------------------------
+65    |Info:    |               Detecting I2C devices                |
+65    |Info:    ------------------------------------------------------
+749   |Info:    ------------------------------------------------------
+749   |Info:    |            Detecting I2C DIMM modules              |
+749   |Info:    ------------------------------------------------------
+810   |Info:    [ResourceManager] Detected occupied slot 2, bus 7, type DDR5
+816   |Info:    [ResourceManager] Detected occupied slot 4, bus 7, type DDR5
+894   |Info:    ------------------------------------------------------
+894   |Info:    |               Detecting I2C PCI devices            |
+894   |Info:    ------------------------------------------------------
+895   |Info:    ------------------------------------------------------
+895   |Info:    |               Detecting HID devices                |
+895   |Info:    ------------------------------------------------------
+919   |Info:    [MSI PRO B650-VC WIFI (MS-7D78)] Registering RGB controller
+972   |Info:    [Razer Firefly V2] Registering RGB controller
+1014  |Info:    [KLM] Created new Full 104 key ISO QWERTY with 6 rows and 21 columns containing 105 keys
+1015  |Info:    [Razer Blackwidow V4 X] Registering RGB controller
+1015  |Info:    ------------------------------------------------------
+1015  |Info:    |            Detecting libusb HID devices            |
+1015  |Info:    ------------------------------------------------------
+1182  |Info:    ------------------------------------------------------
+1182  |Info:    |              Detecting other devices               |
+1182  |Info:    ------------------------------------------------------
+1203  |Info:    [ResourceManager] Calling Post-detection callbacks
+1203  |Info:    ------------------------------------------------------
+1203  |Info:    |                Detection completed                 |
+1203  |Info:    ------------------------------------------------------
+53754 |Info:    [ResourceManager] Initializing HID interfaces: Success
+53754 |Info:    ------------------------------------------------------
+53754 |Info:    |               Start device detection               |
+53754 |Info:    ------------------------------------------------------
+53765 |Info:    ------------------------------------------------------
+53765 |Info:    |             Detecting I2C interfaces               |
+53765 |Info:    ------------------------------------------------------
+53765 |Info:    [ResourceManager] Registering I2C interface: AMDGPU SMU 1 (/dev/i2c-3) Device 1002:744C Subsystem: 1002:0E3B
+53765 |Info:    [i2c_smbus_linux] Failed to read i2c device PCI device ID
+53765 |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM aux hw bus 2 (/dev/i2c-10) Device 0000:0000 Subsystem: 0000:0000
+53765 |Info:    [ResourceManager] Registering I2C interface: Synopsys DesignWare I2C adapter (/dev/i2c-1) Device 1002:7444 Subsystem: 1002:0408
+53765 |Info:    [i2c_smbus_linux] Failed to read i2c device PCI device ID
+53765 |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM aux hw bus 0 (/dev/i2c-8) Device 0000:0000 Subsystem: 0000:0000
+53765 |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM i2c hw bus 2 (/dev/i2c-6) Device 1002:744C Subsystem: 1002:0E3B
+53765 |Info:    [ResourceManager] Registering I2C interface: SMBus PIIX4 adapter port 1 at 0b20 (/dev/i2c-13) Device 1022:790B Subsystem: 1462:7D78
+53765 |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM i2c hw bus 0 (/dev/i2c-4) Device 1002:744C Subsystem: 1002:0E3B
+53766 |Info:    [ResourceManager] Registering I2C interface: SMBus PIIX4 adapter port 0 at 0b00 (/dev/i2c-11) Device 1022:790B Subsystem: 1462:7D78
+53766 |Info:    [ResourceManager] Registering I2C interface: AMDGPU SMU 0 (/dev/i2c-2) Device 1002:744C Subsystem: 1002:0E3B
+53766 |Info:    [ResourceManager] Registering I2C interface: Synopsys DesignWare I2C adapter (/dev/i2c-0) Device 0000:0000 Subsystem: 0000:0000
+53766 |Info:    [i2c_smbus_linux] Failed to read i2c device PCI device ID
+53766 |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM aux hw bus 1 (/dev/i2c-9) Device 0000:0000 Subsystem: 0000:0000
+53766 |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM i2c hw bus 3 (/dev/i2c-7) Device 1002:744C Subsystem: 1002:0E3B
+53766 |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM i2c hw bus 1 (/dev/i2c-5) Device 1002:744C Subsystem: 1002:0E3B
+53766 |Info:    [ResourceManager] Registering I2C interface: SMBus PIIX4 adapter port 2 at 0b00 (/dev/i2c-12) Device 1022:790B Subsystem: 1462:7D78
+53766 |Info:    ------------------------------------------------------
+53766 |Info:    |               Detecting I2C devices                |
+53766 |Info:    ------------------------------------------------------
+54441 |Info:    ------------------------------------------------------
+54441 |Info:    |            Detecting I2C DIMM modules              |
+54441 |Info:    ------------------------------------------------------
+54502 |Info:    [ResourceManager] Detected occupied slot 2, bus 7, type DDR5
+54507 |Info:    [ResourceManager] Detected occupied slot 4, bus 7, type DDR5
+54586 |Info:    ------------------------------------------------------
+54586 |Info:    |               Detecting I2C PCI devices            |
+54586 |Info:    ------------------------------------------------------
+54588 |Info:    ------------------------------------------------------
+54588 |Info:    |               Detecting HID devices                |
+54588 |Info:    ------------------------------------------------------
+54609 |Info:    [MSI PRO B650-VC WIFI (MS-7D78)] Registering RGB controller
+54662 |Info:    [Razer Firefly V2] Registering RGB controller
+54702 |Info:    [KLM] Created new Full 104 key ISO QWERTY with 6 rows and 21 columns containing 105 keys
+54702 |Info:    [Razer Blackwidow V4 X] Registering RGB controller
+54702 |Info:    ------------------------------------------------------
+54702 |Info:    |            Detecting libusb HID devices            |
+54702 |Info:    ------------------------------------------------------
+54860 |Info:    ------------------------------------------------------
+54860 |Info:    |              Detecting other devices               |
+54860 |Info:    ------------------------------------------------------
+54870 |Info:    [ResourceManager] Calling Post-detection callbacks
+54870 |Info:    ------------------------------------------------------
+54870 |Info:    |                Detection completed                 |
+54870 |Info:    ------------------------------------------------------
+58823 |Info:    [ProfileManager] Profile loading: Succeeded for MSI PRO B650-VC WIFI (MS-7D78) @ HID: /dev/hidraw2
+58823 |Info:    [ProfileManager] Profile loading: Succeeded for Razer Firefly V2 @ HID: /dev/hidraw0
+58823 |Info:    [ProfileManager] Profile loading: FAILED! for Razer Blackwidow V4 X @ HID: /dev/hidraw9
+68827 |Info:    [ProfileManager] Profile loading: Succeeded for MSI PRO B650-VC WIFI (MS-7D78) @ HID: /dev/hidraw2
+68827 |Info:    [ProfileManager] Profile loading: Succeeded for Razer Firefly V2 @ HID: /dev/hidraw0
+68827 |Info:    [ProfileManager] Profile loading: FAILED! for Razer Blackwidow V4 X @ HID: /dev/hidraw9
+698548|Info:    [ProfileManager] Found file: ambilight.orp attempting to validate header
+698548|Info:    [ProfileManager] Valid v5 profile found for ambilight
+698548|Info:    [ProfileManager] Found file: ambilight2.orp attempting to validate header
+698548|Info:    [ProfileManager] Valid v5 profile found for ambilight2
+705483|Info:    [ProfileManager] Profile loading: Succeeded for MSI PRO B650-VC WIFI (MS-7D78) @ HID: /dev/hidraw2
+705483|Info:    [ProfileManager] Profile loading: Succeeded for Razer Firefly V2 @ HID: /dev/hidraw0
+705483|Info:    [ProfileManager] Profile loading: FAILED! for Razer Blackwidow V4 X @ HID: /dev/hidraw9
+706900|Info:    [ProfileManager] Profile loading: Succeeded for MSI PRO B650-VC WIFI (MS-7D78) @ HID: /dev/hidraw2
+706900|Info:    [ProfileManager] Profile loading: Succeeded for Razer Firefly V2 @ HID: /dev/hidraw0
+706900|Info:    [ProfileManager] Profile loading: FAILED! for Razer Blackwidow V4 X @ HID: /dev/hidraw9
+708525|Info:    [ProfileManager] Profile loading: Succeeded for MSI PRO B650-VC WIFI (MS-7D78) @ HID: /dev/hidraw2
+708525|Info:    [ProfileManager] Profile loading: Succeeded for Razer Firefly V2 @ HID: /dev/hidraw0
+708525|Info:    [ProfileManager] Profile loading: Succeeded for Razer Blackwidow V4 X @ HID: /dev/hidraw9

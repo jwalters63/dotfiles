@@ -1,7 +1,5 @@
-/* Importación de variables generadas por el script */
 @import "colors.css";
 
-/* Configuración Global: Inter como base del entorno */
 * {
     border: none;
     border-radius: 0;
@@ -15,15 +13,11 @@
 window#waybar {
     background: @bg_color;
     color: @text_color;
-    
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* -----------------------------------------
-   SECTOR IZQUIERDO: LOGO, MENÚ Y WORKSPACES
------------------------------------------ */
-
+/* ── Logo ── */
 #custom-logo {
     min-width: 20px;
     background-image: url('/home/jwalters/.config/waybar/assets/dragonicon.png');
@@ -34,33 +28,29 @@ window#waybar {
     padding-right: 14px;
 }
 
-#custom-terminal,
-#custom-browser,
-#custom-files {
-    padding: 0px 8px;
+/* ── Métricas: CPU, RAM, GPU ── */
+#cpu,
+#memory,
+#custom-gpu {
+    padding: 0px 4px 0px 6px;
     background: transparent;
     color: @text_color;
-}
-
-/* EXCEPCIÓN TIPOGRÁFICA ESTRICTA: Peso 700 retiene Motiva Sans */
-#custom-terminal {
     font-family: "Motiva Sans", "Symbols Nerd Font", sans-serif;
-    font-weight: 700;
+    font-weight: 600;
+    font-feature-settings: "tnum";
 }
 
-/* Pesos medios heredan Inter automáticamente */
-#custom-browser, 
-#custom-files {
-    font-weight: 500;
+/* ── Temperaturas ── */
+#temperature {
+    padding: 0px 20px 0px 6px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: "Motiva Sans", "Symbols Nerd Font", sans-serif;
+    font-weight: 600;
+    font-feature-settings: "tnum";
 }
 
-#custom-terminal:hover,
-#custom-browser:hover,
-#custom-files:hover {
-    background-color: @hover_bg;
-    border-radius: 4px;
-}
-
+/* ── Workspaces ── */
 #workspaces {
     padding: 0px 4px 0px 14px;
     background: transparent;
@@ -69,10 +59,16 @@ window#waybar {
 #workspaces button {
     padding: 0px 4px;
     background: transparent;
-    color: rgba(128, 128, 128, 0.6);
+    color: rgba(128, 128, 128, 0.5);
     transition: color 0.3s ease;
 }
 
+/* Tiene ventanas pero NO es el focus → ○ blanco */
+#workspaces button:not(.active):not(.empty) {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Workspace activo → ● con color acento */
 #workspaces button.active {
     color: @accent;
     text-shadow: 0 0 4px @accent;
@@ -82,10 +78,7 @@ window#waybar {
     color: @text_color;
 }
 
-/* -----------------------------------------
-   SECTOR CENTRAL Y DERECHO
------------------------------------------ */
-
+/* ── Centro y Derecha ── */
 #window {
     font-family: "Motiva Sans", "Symbols Nerd Font", sans-serif;
     font-weight: 600;
@@ -93,14 +86,14 @@ window#waybar {
     background: transparent;
 }
 
-#tray, 
-#pulseaudio, 
-#network, 
-#clock, 
+#tray,
+#pulseaudio,
+#network,
+#clock,
 #custom-notification_center {
     padding: 0px 8px;
     background: transparent;
-    font-weight: 500; /* Heredan Inter */
+    font-weight: 500;
 }
 
 #custom-notification_center {

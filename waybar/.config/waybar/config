@@ -6,13 +6,15 @@
     "passthrough": false,
     "gtk-layer-shell": true,
     "spacing": 0,
-
     "modules-left": [
         "custom/logo",
-        "custom/terminal",
-        "custom/browser",
-        "custom/files",
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "cpu",
+        "temperature#cpu",
+        "memory",
+        "temperature#ram",
+        "custom/gpu",
+        "temperature#gpu"
     ],
     "modules-center": [
         "hyprland/window"
@@ -24,32 +26,61 @@
         "clock",
         "custom/notification_center"
     ],
-
     "custom/logo": {
         "format": " ",
         "tooltip": false,
-        "on-click": "rofi -show drun"
+        "on-click": "ags toggle control-center"
     },
-    "custom/terminal": {
-        "format": "Terminal",
-        "tooltip": false,
-        "on-click": "kitty"
+    "cpu": {
+        "interval": 3,
+        "format": " {usage}%",
+        "tooltip": false
     },
-    "custom/browser": {
-        "format": "Navegador",
-        "tooltip": false,
-        "on-click": "firefox"
+    "temperature#cpu": {
+        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "format": " {temperatureC}°",
+        "interval": 5,
+        "tooltip": false
     },
-    "custom/files": {
-        "format": "Explorador de archivos",
-        "tooltip": false,
-        "on-click": "thunar"
+    "memory": {
+        "interval": 5,
+        "format": " {percentage}%",
+        "tooltip": false
+    },
+    "temperature#ram": {
+        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+        "format": " {temperatureC}°",
+        "interval": 5,
+        "tooltip": false
+    },
+    "custom/gpu": {
+        "exec": "cat /sys/class/drm/card1/device/gpu_busy_percent",
+        "format": "󰾲 {}%",
+        "interval": 3,
+        "tooltip": false
+    },
+    "temperature#gpu": {
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "format": " {temperatureC}°",
+        "interval": 5,
+        "tooltip": false
     },
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "persistent-workspaces": {
-            "*": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            "*": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+            ]
         },
         "format": "{icon}",
         "format-icons": {
@@ -74,7 +105,11 @@
         "format": "{icon}",
         "format-muted": "",
         "format-icons": {
-            "default": ["", "", ""]
+            "default": [
+                "",
+                "",
+                ""
+            ]
         },
         "tooltip": false,
         "on-click": "pavucontrol"
@@ -90,7 +125,7 @@
         "tooltip": false
     },
     "custom/notification_center": {
-        "format": "", 
+        "format": "",
         "tooltip": false,
         "on-click": "swaync-client -t -sw"
     }
