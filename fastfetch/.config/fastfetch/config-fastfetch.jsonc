@@ -1,0 +1,35 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "kitty-direct", 
+        "source": "/home/jwalters/dotfiles/fastfetch/.config/fastfetch/garchi.png", 
+        "height": 14, 
+        "padding": {
+            "top": 3,
+            "right": 4,
+            "left": 2
+        }
+    },
+    "display": {
+        "separator": "  "
+    },
+    "modules": [
+        { "type": "custom",   "key": "╭──────────────╮", "keyColor": "blue", "format": " " },
+        { "type": "custom",   "key": "│  user       │", "keyColor": "blue", "format": "\u001b[36mjwalters\u001b[0m@\u001b[34mJEFF-WALTERS\u001b[0m" },
+        { "type": "os",       "key": "│  distro     │", "keyColor": "blue" },
+        { "type": "kernel",   "key": "│  kernel     │", "keyColor": "blue" },
+        { "type": "wm",       "key": "│  wm         │", "keyColor": "blue" },
+        { "type": "terminal", "key": "│  term       │", "keyColor": "magenta" },
+        { "type": "shell",    "key": "│  shell      │", "keyColor": "magenta" },
+        { "type": "packages", "key": "│ 󰏗 packages   │", "keyColor": "magenta" },
+        { "type": "uptime",   "key": "│  uptime     │", "keyColor": "magenta" },
+        { "type": "cpu",      "key": "│  cpu        │", "keyColor": "cyan" },
+        { "type": "gpu",      "key": "│  gpu        │", "keyColor": "cyan" },        
+        { "type": "memory",   "key": "│  memory     │", "keyColor": "cyan" },
+        { "type": "disk",     "key": "│  disk       │", "keyColor": "cyan" },
+        { "type": "custom",   "key": "╰──────────────╯", "keyColor": "cyan", "format": " " },        
+        { "type": "custom",   "key": "╭──────────────╮", "keyColor": "red", "format": " " },       
+        { "type": "colors",   "key": "│  colors     │", "keyColor": "red", "symbol": "circle" },
+        { "type": "custom",   "key": "╰──────────────╯", "keyColor": "red", "format": "\u001b[1A" }
+    ]
+}

@@ -3,37 +3,33 @@
     "logo": {
         "type": "kitty-direct", 
         "source": "/home/jwalters/dotfiles/fastfetch/.config/fastfetch/garchi.png", 
-        "height": 8, 
+        "height": 14, 
         "padding": {
             "top": 3,
-            "right": 3,
-            "left": 3
+            "right": 4,
+            "left": 2
         }
     },
     "display": {
-        // Un punto limpio de Nerd Fonts en lugar de espacio vacío
-        "separator": " ",
-        "color": { "keys": "blue" }
+        "separator": "  "
     },
     "modules": [
-        "break",
-        {
-            // Título con los colores de tu tema
-            "type": "title",
-            "color": { "user": "cyan", "at": "white", "host": "blue" }
-        },
-        "break",
-        
-        // Bloque 1: Sistema Base (Azul)
-        { "type": "os",       "key": "  OS      ", "keyColor": "blue" },
-        { "type": "kernel",   "key": "  Kernel  ", "keyColor": "blue" },
-        
-        // Bloque 2: Entorno (Magenta)
-        { "type": "shell",    "key": "  Shell   ", "keyColor": "magenta" },
-        { "type": "terminal", "key": "  Terminal", "keyColor": "magenta" },
-        
-        // Bloque 3: Interfaz Gráfica (Cian)
-        { "type": "wm",       "key": "  WM      ", "keyColor": "cyan" },
-        { "type": "display",  "key": "󰍹  Res.    ", "keyColor": "cyan" }
+        { "type": "custom",   "key": "╭──────────────╮", "keyColor": "blue", "format": " " },
+        { "type": "custom",   "key": "│  user       │", "keyColor": "blue", "format": "\u001b[36mjwalters\u001b[0m@\u001b[34mJEFF-WALTERS\u001b[0m" },
+        { "type": "os",       "key": "│  distro     │", "keyColor": "blue" },
+        { "type": "kernel",   "key": "│  kernel     │", "keyColor": "blue" },
+        { "type": "wm",       "key": "│  wm         │", "keyColor": "blue" },
+        { "type": "terminal", "key": "│  term       │", "keyColor": "magenta" },
+        { "type": "shell",    "key": "│  shell      │", "keyColor": "magenta" },
+        { "type": "packages", "key": "│ 󰏗 packages   │", "keyColor": "magenta" },
+        { "type": "uptime",   "key": "│  uptime     │", "keyColor": "magenta" },
+        { "type": "cpu",      "key": "│  cpu        │", "keyColor": "cyan" },
+        { "type": "gpu",      "key": "│  gpu        │", "keyColor": "cyan" },        
+        { "type": "memory",   "key": "│  memory     │", "keyColor": "cyan" },
+        { "type": "disk",     "key": "│  disk       │", "keyColor": "cyan" },
+        { "type": "custom",   "key": "╰──────────────╯", "keyColor": "cyan", "format": " " },        
+        { "type": "custom",   "key": "╭──────────────╮", "keyColor": "red", "format": " " },       
+        { "type": "colors",   "key": "│  colors     │", "keyColor": "red", "symbol": "circle" },
+        { "type": "custom",   "key": "╰──────────────╯", "keyColor": "red", "format": " " }
     ]
 }

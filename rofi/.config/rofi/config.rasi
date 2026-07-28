@@ -1,108 +1,127 @@
+/* ---------------------------------------------------------
+ * Arquitectura UI: Spotlight / Gruvbox Light Custom (#fff1e8)
+ * --------------------------------------------------------- */
+
 configuration {
-    modi: "drun";
     show-icons: true;
-    display-drun: " ";
-    drun-display-format: "{name}";
-    font: "Motiva Sans 14";
-    
-    /* Activa la selección al pasar el ratón (Hover) */
+    icon-theme: "Papirus";
+    display-drun: "";
+    drun-display-format: "{name} <span foreground='#7c6f64' size='small'>({comment})</span>";
+    drun-match-fields: "name,exec";
+
+    /* Habilita el resaltado automático al pasar el cursor */
     hover-select: true;
+
+    /* Ejecución con 1 solo clic */
     me-select-entry: "";
     me-accept-entry: "MousePrimary";
 }
 
 * {
-    /* Paleta Estricta SteamOS */
-    bg: #0e141b;             /* El fondo oscuro que pediste */
-    highlight-bg: #b8bcbf;   /* El resaltado gris claro */
-    fg-active: #ffffff;      /* Texto blanco puro */
-    fg-dim: #8b929a;         /* Gris apagado para inactivos */
+    /* ── Mapeo de tu paleta personalizada ── */
+    bg-col:       #fff1e8;                
+    fg-col:       #3c3836;                
+    fg-inact:     #7c6f64;                
+    border-col:   rgba(60, 56, 54, 0.15); 
+    bg-selected:  rgba(60, 56, 54, 0.06); 
 
     background-color: transparent;
+    text-color: @fg-col;
+    font: "Motiva Sans Regular 12";
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
+/* 1. El Lienzo de la Sombra (Resolución 1209x617 - Desplazado) */
 window {
-    transparency: "real";
-    location: northwest;
-    anchor: northwest;
-    x-offset: 0px;
-    y-offset: 0px;      /* Respeta la Waybar */
-    width: 640px;        /* Ancho estricto */
-    height: 100%;
-    background-color: @bg;
+    width: 1209px;
+    background-color: transparent;
+    background-image: url("~/.config/rofi/sombra.png", width);
+    border: 0px;
+    
+    /* padding: Arriba Derecha Abajo Izquierda */
+    padding: 139px 150px 154px 149px; 
 }
 
 mainbox {
-    /* Eliminamos el padding aquí para que el resaltado toque los bordes */
-    padding: 0px;
-    spacing: 0px;
+    background-color: @bg-col;
+    
+    /* Restauración del borde */
+    border: 2px solid;        /* Ajusta el grosor al valor que tenías originalmente */
+    border-color: @border-col; /* Utiliza la variable de color de tu tema actual */
+    
+    border-radius: 18px;
+    clip-to-border: true;
+    children: [ inputbar, listview ];
 }
 
+/* ── Área de Búsqueda ── */
 inputbar {
-    background-color: transparent; 
-    border-radius: 0px;  /* Cuadrada, sin bordes redondeados */
-    padding: 40px 30px 20px 30px; /* Margen interno para empujar el texto */
-    spacing: 15px;
+    margin: 0px 15px;      
+    padding: 18px 9px;     
+    spacing: 16px;
+    background-color: transparent;
+    border: 0px 0px 1px 0px;
+    border-color: @border-col;
     children: [ prompt, entry ];
 }
 
 prompt {
-    text-color: @fg-active;
-    font: "Motiva Sans Bold 16";
+    text-color: @fg-inact;
+    font: "Symbols Nerd Font 12";
+    vertical-align: 0.5;
 }
 
 entry {
-    /* Inyectamos etiquetas de Pango Markup para la itálica */
-    placeholder: "<i>Búsqueda del sistema...</i>";
-    placeholder-markup: true; /* Le dice a Rofi que lea las etiquetas HTML */
-    placeholder-color: @fg-dim;
-    
-    /* El texto real que tú tecleas usa la fuente principal recta y pesada */
-    text-color: @fg-active;
-    font: "Motiva Sans 14"; 
+    placeholder: "Search...";
+    placeholder-color: @fg-inact;
+    font: "Motiva Sans Regular 12";
+    vertical-align: 0.5;
+    text-color: @fg-col;
 }
 
+/* ── Área de Resultados ── */
 listview {
-    columns: 1;
-    lines: 10;
-    spacing: 0px;        /* Sin espacio entre cajas para un look de bloque sólido */
-    scrollbar: false;
+    lines: 5;
+    padding: 8px 0px;
+    spacing: 0px;
     border: 0px;
-    padding: 10px 0px 0px 0px;
+    background-color: transparent;
+    scrollbar: false;
 }
 
 element {
-    /* El padding interno reemplaza al externo. Mantiene el texto alineado pero la caja es gigante */
-    padding: 15px 30px; 
-    spacing: 20px;
-    border: 0px;
-    border-radius: 0px;  /* Completamente cuadrado */
-}
-
-/* ESTADO INACTIVO */
-element normal.normal, element alternate.normal {
+    padding: 12px 24px;
+    spacing: 16px;
     background-color: transparent;
-    text-color: @fg-dim;
+    children: [ element-icon, element-text ];
 }
 
-/* ESTADO ACTIVO (Hover / Teclado) */
-element selected.normal, element selected.active {
-    background-color: @highlight-bg; /* Se enciende el fondo gris #b8bcbf */
-    text-color: @bg;                 /* Invierto el texto a oscuro para que se pueda leer sobre el gris claro */
+/* Estado base: Transparente */
+element normal.normal, 
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg-col;
+}
+
+/* Estado de selección (Activado por teclado o ratón) */
+element selected.normal,
+element selected.active,
+element selected.urgent {
+    background-color: @bg-selected;
+    text-color: @fg-col;
+    border-radius: 6px; 
 }
 
 element-icon {
-    size: 32px;
-    text-color: inherit;
+    size: 24px;
+    vertical-align: 0.5;
 }
 
 element-text {
     vertical-align: 0.5;
+    font: "Motiva Sans Regular 12";
     text-color: inherit;
-    font: "Motiva Sans Bold 16";
-}
-
-/* El color de la letra que coincide con tu búsqueda */
-element-text highlight {
-    text-color: @bg;
+    markup: true;                         
 }

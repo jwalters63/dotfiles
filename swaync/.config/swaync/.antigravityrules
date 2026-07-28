@@ -1,0 +1,50 @@
+# Human Interface Guidelines (HIG) Specs & Custom Layout for SwayNC
+
+## 1. Topography & Layout Architecture (Refactored Apple Control Center)
+The layout MUST strictly implement this modified structure, mapping SwayNC widgets top-to-bottom:
+
+1. **Top Row (Connectivity + Media Grid)**:
+   - Left: Grid with `Wi-Fi` button and `Bluetooth` button.
+   - Right: `MPRIS` widget (Media Player).
+   - REMOVED: AirDrop, Focus Mode, Screen Mirroring, Display Mirroring.
+
+2. **Middle Sliders (Audio Controls)**:
+   - Upper Slider: Microphone Input Volume (`widget-volume` targeting capture source or custom slider script).
+   - Lower Slider: System Output Volume (`widget-volume` targeting sink audio).
+   - REMOVED: Display Brightness slider (`widget-backlight`).
+
+3. **Bottom Platter (Notifications Stream)**:
+   - Replace the "Edit Controls" pill button and the bottom 4 utility icons (Theme, Calculator, Timer, Screenshot) with the active Notification History stream/list widget (`title`, `dnd`, `notifications`).
+
+## 2. Apple Vibrancy Material System (Physical Rules)
+- **Container Isolation**: `.control-center` MUST be a non-rendering pass-through (`background: transparent; border: none; box-shadow: none;`).
+- **Platter Geometry**: Every widget/island is a "Platter". Use uniform rounded geometry (`border-radius: 20px;`) and padding (`padding: 12px;`).
+- **Specular Border (1px Top Light)**: All platters MUST implement a top-left specular highlight to simulate 3D edge refraction using dual `box-shadow`:
+  `box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.6), 0px 8px 24px rgba(0, 0, 0, 0.15);`
+- **Substrate Blend**: `background-color: rgba(255, 241, 232, 0.5);`.
+
+## 3. Color System Integration (Gruvbox Light Tokens)
+- `systemMaterial`: `rgba(255, 241, 232, 0.5)` (#fff1e8) -> Platter Background
+- `labelPrimary`: `rgb(60, 56, 54)` (#3c3836) -> Main Text / Icons
+- `labelSecondary`: `rgb(124, 111, 100)` (#7c6f64) -> Subtitles / Sliders
+- `controlAccent`: `rgb(213, 196, 161)` (#d5c4a1) -> Active States / Hover
+
+## 4. GTK3 Parsing & Execution Protocol
+- No `backdrop-filter` or WebKit pseudo-elements.
+- Modify `style.css` and `config.json`.
+- Execute `swaync-client -rs` via terminal, check logs for GTK warnings, and auto-correct.
+
+# SwayNC Architecture & Anti-Hallucination Boundaries
+
+## 1. Engine Truths (Rust + GTK3 / gtk-layer-shell)
+- **NO JS/TS Runtime**: SwayNC is NOT AGS (Ags/GJS). Do NOT generate TypeScript, JSX, React, or GObject bindings.
+- **NO WebKit / HTML / DOM**: SwayNC is NOT Electron/Browser-based. Do NOT use HTML tags, CSS Flexbox (`display: flex`), CSS Grid (`display: grid`), or CSS variables defined with `--custom-var`.
+- **CSS Engine**: GTK3 CSS Engine only. Supported properties are strictly limited to GTK3 CSS specifications:
+  - Layouts are controlled via `config.json` widget structures, NOT via CSS layout rules.
+  - Allowed styling: `background-color`, `border`, `border-radius`, `padding`, `margin`, `box-shadow`, `color`, `font-family`, `font-size`.
+  - GTK-specific nodes must be targeted (e.g., `scale trough`, `scale highlight`, `button`, `label`).
+
+## 2. Structural Hierarchy (config.json)
+The UI topology is defined ONLY via `config.json` using SwayNC's built-in widget array:
+- `"widgets"` array defines vertical ordering.
+- Valid built-in widget names: `"title"`, `"dnd"`, `"notifications"`, `"mpris"`, `"volume"`, `"backlight"`, `"buttons-grid"`, `"menubar"`.

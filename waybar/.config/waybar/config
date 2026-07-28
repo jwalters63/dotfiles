@@ -7,22 +7,22 @@
     "gtk-layer-shell": true,
     "spacing": 0,
     "modules-left": [
-        "custom/logo",
         "hyprland/workspaces",
         "cpu",
         "temperature#cpu",
         "memory",
         "temperature#ram",
         "custom/gpu",
-        "temperature#gpu"
+        "temperature#gpu",
     ],
     "modules-center": [
         "hyprland/window"
     ],
     "modules-right": [
         "tray",
-        "pulseaudio",
         "network",
+        "pulseaudio",
+        "custom/recording",
         "clock",
         "custom/notification_center"
     ],
@@ -128,5 +128,11 @@
         "format": "",
         "tooltip": false,
         "on-click": "swaync-client -t -sw"
+    },
+    "custom/recording": {
+        "exec": "if pgrep gpu-screen-reco > /dev/null; then echo '{\"text\": \"●\", \"class\": \"recording\"}'; else echo '{\"text\": \"●\", \"class\": \"inactive\"}'; fi",
+        "return-type": "json",
+        "interval": 1,
+        "tooltip": false
     }
 }

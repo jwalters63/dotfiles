@@ -32,7 +32,7 @@ window#waybar {
 #cpu,
 #memory,
 #custom-gpu {
-    padding: 0px 4px 0px 6px;
+    padding: 0px 0px 0px 5px;
     background: transparent;
     color: @text_color;
     font-family: "Motiva Sans", "Symbols Nerd Font", sans-serif;
@@ -42,7 +42,7 @@ window#waybar {
 
 /* ── Temperaturas ── */
 #temperature {
-    padding: 0px 20px 0px 6px;
+    padding: 0px 10px 0px 6px;
     background: transparent;
     color: rgba(255, 255, 255, 0.6);
     font-family: "Motiva Sans", "Symbols Nerd Font", sans-serif;
@@ -52,7 +52,8 @@ window#waybar {
 
 /* ── Workspaces ── */
 #workspaces {
-    padding: 0px 4px 0px 14px;
+    padding-left: 6px;
+    padding-right: 18px;
     background: transparent;
 }
 
@@ -98,4 +99,24 @@ window#waybar {
 
 #custom-notification_center {
     padding-right: 14px;
+}
+
+/* ── Indicador de Grabación (GPU Screen Recorder) ── */
+#custom-recording {
+    padding: 0px 8px;
+    font-size: 14px;
+    background: transparent;
+    /* Define la curva de animación para el fade */
+    transition: color 0.4s ease-in-out;
+}
+
+/* Estado inactivo: Gris mitigado (coincidente con los workspaces vacíos) */
+#custom-recording.inactive {
+    color: rgba(128, 128, 128, 0.5);
+}
+
+/* Estado activo: Rojo con emisión de luz */
+#custom-recording.recording {
+    color: #cc241d; 
+    text-shadow: 0 0 4px rgba(204, 36, 29, 0.6);
 }
