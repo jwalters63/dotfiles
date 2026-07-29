@@ -12,7 +12,7 @@
     /* Material: muy transparente, el blur define la opacidad percibida */
     background-color: rgba(255, 255, 255, 0.08);
 
-    border-radius: 18px;
+    border-radius: 24px;
 
     /* REGRESAMOS AL PADDING ORIGINAL PARA QUE NO QUEDE CABEZÓN */
     padding: 6px 10px;
@@ -21,10 +21,10 @@
        dándole espacio a los íconos para subir sin clipearse */
     margin: 10px 0 4px 0;
 
-    /* Borde: ligeramente más claro que el vidrio */
+    /* Borde: sólido, fino, consistente en todo el contorno */
     border-style: solid;
-    border-width: 1px;
-    border-color: rgba(255, 255, 255, 0.16);
+    border-width: 0.8px;
+    border-color: rgba(255, 255, 255, 0.1);
 
     /* Efecto cristal */
     box-shadow:

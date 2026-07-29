@@ -11,10 +11,20 @@
 }
 
 window#waybar {
-    background: @bg_color;
+    background: alpha(@bg_color, 0.45);
     color: @text_color;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    border-bottom: 0.5px solid;
+    border-image: linear-gradient(to right,
+        alpha(#ffffff, 0.04) 0%,
+        alpha(#ffffff, 0.55) 12%,
+        alpha(#ffffff, 0.07) 30%,
+        alpha(#ffffff, 0.35) 45%,
+        alpha(#ffffff, 0.05) 60%,
+        alpha(#ffffff, 0.5) 78%,
+        alpha(#ffffff, 0.06) 92%,
+        alpha(#ffffff, 0.3) 100%
+    ) 1;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 /* ── Logo ── */
