@@ -1,7 +1,3 @@
-/**
- * This file exports all GIR module type definitions.
- */
-
 import './glib-2.0.d.ts';
 import './gio-2.0.d.ts';
 import './gobject-2.0.d.ts';
@@ -167,5 +163,3 @@ import './xfixes-4.0.d.ts';
 import './xft-2.0.d.ts';
 import './xlib-2.0.d.ts';
 import './xrandr-1.3.d.ts';
-
-

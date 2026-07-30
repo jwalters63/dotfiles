@@ -1,10 +1,8 @@
-// Gruvbox Light Palette
-$background: #fff1e8; // Original Gruvbox Light background
+$background: #fff1e8; 
 $foreground: #3c3836;
 $cursor: #7c6f64;
 $selection_background: #d5c4a1;
 $selection_foreground: #3c3836;
-
 $color0: #fdf4c1;
 $color8: #928374;
 $color1: #cc241d;
@@ -21,10 +19,8 @@ $color6: #689d6a;
 $color14: #427b58;
 $color7: #7c6f64;
 $color15: #3c3836;
-
 .app-launcher-window {
   background-color: transparent;
-
   > box {
     background-color: $background;
     border-radius: 0;
@@ -35,29 +31,23 @@ $color15: #3c3836;
     color: $foreground;
   }
 }
-
 .search-box {
   margin-bottom: 12px;
   padding: 8px 12px;
   border: 1px solid $selection_background;
   border-radius: 8px;
-
   image {
     color: $color8;
     margin-right: 12px;
   }
-
   entry {
     background: transparent;
     color: $foreground;
     font-size: 1.1em;
     caret-color: $cursor;
-    
-    // Remove default entry borders in GTK
     border: none;
     box-shadow: none;
     outline: none;
-
     &:focus, &:focus-within, &:focus-visible {
       border: none;
       box-shadow: none;
@@ -65,17 +55,14 @@ $color15: #3c3836;
     }
   }
 }
-
 .separator {
   background-color: $selection_background;
   min-height: 1px;
   margin-bottom: 8px;
 }
-
 .app-list {
   padding: 4px;
 }
-
 .app-item {
   padding: 8px 12px;
   border-radius: 8px;
@@ -85,24 +72,20 @@ $color15: #3c3836;
   border: none;
   box-shadow: none;
   outline: none;
-
   &:hover, &:focus {
     background-color: $selection_background;
     color: $selection_foreground;
     outline: none;
   }
-
   .app-icon {
     margin-right: 16px;
     font-size: 24px;
   }
-
   .app-name {
     font-weight: bold;
     font-size: 1em;
     margin-right: 8px;
   }
-
   .app-desc {
     color: $color8;
     font-size: 0.9em;

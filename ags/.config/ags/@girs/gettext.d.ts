@@ -23,7 +23,6 @@ export function domain(domainName: string): {
     ngettext: (msgid: string, msgid_plural: string, n: number) => string
     pgettext: (context: string, msgid: string) => string
 }
-
  const Gettext: {
     LocaleCategory: typeof LocaleCategory,
     setlocale: typeof setlocale,
@@ -38,8 +37,5 @@ export function domain(domainName: string): {
     dpgettext: typeof dpgettext,
     domain: typeof domain,
 }
-
 export default Gettext
-
 }
-

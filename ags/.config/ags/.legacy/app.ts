@@ -2,7 +2,6 @@ import app from "ags/gtk4/app"
 import ControlCenter from "./widget/ControlCenter"
 import { activeTab } from "./widget/ControlCenter/state"
 import style from "./style.scss"
-
 app.start({
   css: style,
   requestHandler(request, res) {

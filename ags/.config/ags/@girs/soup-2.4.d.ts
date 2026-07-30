@@ -1,111 +1,35 @@
-/// <reference path="./gio-2.0.d.ts" />
-/// <reference path="./gobject-2.0.d.ts" />
-/// <reference path="./glib-2.0.d.ts" />
-/// <reference path="./gmodule-2.0.d.ts" />
-
-/**
- * Type Definitions for Gjs (https://gjs.guide/)
- *
- * These type definitions are automatically generated, do not edit them by hand.
- * If you found a bug fix it in `ts-for-gir` or create a bug report on https://github.com/gjsify/ts-for-gir
- *
- * The based EJS template file is used for the generated .d.ts file of each GIR module like Gtk-4.0, GObject-2.0, ...
- */
-
 declare module 'gi://Soup?version=2.4' {
-
-// Module dependencies
 import type Gio from 'gi://Gio?version=2.0';
 import type GObject from 'gi://GObject?version=2.0';
 import type GLib from 'gi://GLib?version=2.0';
 import type GModule from 'gi://GModule?version=2.0';
-
 export namespace Soup {
-
-    /**
-     * Soup-2.4
-     */
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace AddressFamily {
         export const $gtype: GObject.GType<AddressFamily>;
     }
-
-    /**
-     * The supported address families.
-     * @gir-type Enum
-     */
     enum AddressFamily {
-        /**
-         * an invalid %SoupAddress
-         */
         INVALID,
-        /**
-         * an IPv4 address
-         */
         IPV4,
-        /**
-         * an IPv6 address
-         */
         IPV6,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace CacheResponse {
         export const $gtype: GObject.GType<CacheResponse>;
     }
-
-    /**
-     * @gir-type Enum
-     */
     enum CacheResponse {
         FRESH,
         NEEDS_VALIDATION,
         STALE,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace CacheType {
         export const $gtype: GObject.GType<CacheType>;
     }
-
-    /**
-     * The type of cache; this affects what kinds of responses will be
-     * saved.
-     * @gir-type Enum
-     * @since 2.34
-     */
     enum CacheType {
-        /**
-         * a single-user cache
-         */
         SINGLE_USER,
-        /**
-         * a shared cache
-         */
         SHARED,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace ConnectionState {
         export const $gtype: GObject.GType<ConnectionState>;
     }
-
-    /**
-     * @gir-type Enum
-     */
     enum ConnectionState {
         NEW,
         CONNECTING,
@@ -114,194 +38,48 @@ export namespace Soup {
         REMOTE_DISCONNECTED,
         DISCONNECTED,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace CookieJarAcceptPolicy {
         export const $gtype: GObject.GType<CookieJarAcceptPolicy>;
     }
-
-    /**
-     * The policy for accepting or rejecting cookies returned in
-     * responses.
-     * @gir-type Enum
-     * @since 2.30
-     */
     enum CookieJarAcceptPolicy {
-        /**
-         * accept all cookies unconditionally.
-         */
         ALWAYS,
-        /**
-         * reject all cookies unconditionally.
-         */
         NEVER,
-        /**
-         * accept all cookies set by
-         * the main document loaded in the application using libsoup. An
-         * example of the most common case, web browsers, would be: If
-         * http://www.example.com is the page loaded, accept all cookies set
-         * by example.com, but if a resource from http://www.third-party.com
-         * is loaded from that page reject any cookie that it could try to
-         * set. For libsoup to be able to tell apart first party cookies from
-         * the rest, the application must call `soup_message_set_first_party()`
-         * on each outgoing {@link Soup.Message}, setting the {@link Soup.URI} of the main
-         * document. If no first party is set in a message when this policy is
-         * in effect, cookies will be assumed to be third party by default.
-         */
         NO_THIRD_PARTY,
-        /**
-         * accept all cookies
-         * set by the main document loaded in the application using libsoup, and
-         * from domains that have previously set at least one cookie when loaded
-         * as the main document. An example of the most common case, web browsers,
-         * would be: if http://www.example.com is the page loaded, accept all
-         * cookies set by example.com, but if a resource from http://www.third-party.com
-         * is loaded from that page, reject any cookie that it could try to
-         * set unless it already has a cookie in the cookie jar. For libsoup to
-         * be able to tell apart first party cookies from the rest, the
-         * application must call `soup_message_set_first_party()` on each outgoing
-         * {@link Soup.Message}, setting the {@link Soup.URI} of the main document. If no first
-         * party is set in a message when this policy is in effect, cookies will
-         * be assumed to be third party by default. Since 2.72.
-         */
         GRANDFATHERED_THIRD_PARTY,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace DateFormat {
         export const $gtype: GObject.GType<DateFormat>;
     }
-
-    /**
-     * Date formats that `soup_date_to_string()` can use.
-     * 
-     * `SOUP_DATE_HTTP` and `SOUP_DATE_COOKIE` always coerce the time to
-     * UTC. `SOUP_DATE_ISO8601_XMLRPC` uses the time as given, ignoring the
-     * offset completely. `SOUP_DATE_RFC2822` and the other ISO 8601
-     * variants use the local time, appending the offset information if
-     * available.
-     * 
-     * This enum may be extended with more values in future releases.
-     * @gir-type Enum
-     */
     enum DateFormat {
-        /**
-         * RFC 1123 format, used by the HTTP "Date" header. Eg
-         * "Sun, 06 Nov 1994 08:49:37 GMT"
-         */
         HTTP,
-        /**
-         * The format for the "Expires" timestamp in the
-         * Netscape cookie specification. Eg, "Sun, 06-Nov-1994 08:49:37 GMT".
-         */
         COOKIE,
-        /**
-         * RFC 2822 format, eg "Sun, 6 Nov 1994 09:49:37 -0100"
-         */
         RFC2822,
-        /**
-         * ISO 8601 date/time with no optional
-         * punctuation. Eg, "19941106T094937-0100".
-         */
         ISO8601_COMPACT,
-        /**
-         * ISO 8601 date/time with all optional
-         * punctuation. Eg, "1994-11-06T09:49:37-01:00".
-         */
         ISO8601_FULL,
-        /**
-         * An alias for `SOUP_DATE_ISO8601_FULL`.
-         */
         ISO8601,
-        /**
-         * ISO 8601 date/time as used by XML-RPC.
-         * Eg, "19941106T09:49:37".
-         */
         ISO8601_XMLRPC,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace Encoding {
         export const $gtype: GObject.GType<Encoding>;
     }
-
-    /**
-     * How a message body is encoded for transport
-     * @gir-type Enum
-     */
     enum Encoding {
-        /**
-         * unknown / error
-         */
         UNRECOGNIZED,
-        /**
-         * no body is present (which is not the same as a
-         * 0-length body, and only occurs in certain places)
-         */
         NONE,
-        /**
-         * Content-Length encoding
-         */
         CONTENT_LENGTH,
-        /**
-         * Response body ends when the connection is closed
-         */
         EOF,
-        /**
-         * chunked encoding (currently only supported
-         * for response)
-         */
         CHUNKED,
-        /**
-         * multipart/byteranges (Reserved for future
-         * use: NOT CURRENTLY IMPLEMENTED)
-         */
         BYTERANGES,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace HTTPVersion {
         export const $gtype: GObject.GType<HTTPVersion>;
     }
-
-    /**
-     * Indicates the HTTP protocol version being used.
-     * @gir-type Enum
-     */
     enum HTTPVersion {
-        /**
-         * HTTP 1.0 (RFC 1945)
-         */
         HTTP_1_0,
-        /**
-         * HTTP 1.1 (RFC 2616)
-         */
         HTTP_1_1,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace KnownStatusCode {
         export const $gtype: GObject.GType<KnownStatusCode>;
     }
-
-    /**
-     * @gir-type Enum
-     */
     enum KnownStatusCode {
         NONE,
         CANCELLED,
@@ -367,2795 +145,500 @@ export namespace Soup {
         INSUFFICIENT_STORAGE,
         NOT_EXTENDED,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace LoggerLogLevel {
         export const $gtype: GObject.GType<LoggerLogLevel>;
     }
-
-    /**
-     * Describes the level of logging output to provide.
-     * @gir-type Enum
-     */
     enum LoggerLogLevel {
-        /**
-         * No logging
-         */
         NONE,
-        /**
-         * Log the Request-Line or Status-Line and
-         * the Soup-Debug pseudo-headers
-         */
         MINIMAL,
-        /**
-         * Log the full request/response headers
-         */
         HEADERS,
-        /**
-         * Log the full headers and request/response
-         * bodies.
-         */
         BODY,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace MemoryUse {
         export const $gtype: GObject.GType<MemoryUse>;
     }
-
-    /**
-     * Describes how {@link Soup.Buffer} should use the data passed in by the
-     * caller.
-     * 
-     * See also `soup_buffer_new_with_owner()`, which allows to you create a
-     * buffer containing data which is owned by another object.
-     * @gir-type Enum
-     */
     enum MemoryUse {
-        /**
-         * The memory is statically allocated and
-         * constant; libsoup can use the passed-in buffer directly and not
-         * need to worry about it being modified or freed.
-         */
         STATIC,
-        /**
-         * The caller has allocated the memory for the
-         * {@link Soup.Buffer}'s use; libsoup will assume ownership of it and free it
-         * (with `g_free()`) when it is done with it.
-         */
         TAKE,
-        /**
-         * The passed-in data belongs to the caller; the
-         * {@link Soup.Buffer} will copy it into new memory, leaving the caller free
-         * to reuse the original memory.
-         */
         COPY,
-        /**
-         * The passed-in data belongs to the caller,
-         * but will remain valid for the lifetime of the {@link Soup.Buffer}. The
-         * difference between this and `SOUP_MEMORY_STATIC` is that if you copy
-         * a `SOUP_MEMORY_TEMPORARY` buffer, it will make a copy of the memory
-         * as well, rather than reusing the original memory.
-         */
         TEMPORARY,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace MessageHeadersType {
         export const $gtype: GObject.GType<MessageHeadersType>;
     }
-
-    /**
-     * Value passed to `soup_message_headers_new()` to set certain default
-     * behaviors.
-     * @gir-type Enum
-     */
     enum MessageHeadersType {
-        /**
-         * request headers
-         */
         REQUEST,
-        /**
-         * response headers
-         */
         RESPONSE,
-        /**
-         * multipart body part headers
-         */
         MULTIPART,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace MessagePriority {
         export const $gtype: GObject.GType<MessagePriority>;
     }
-
-    /**
-     * Priorities that can be set on a {@link Soup.Message} to instruct the
-     * message queue to process it before any other message with lower
-     * priority.
-     * @gir-type Enum
-     */
     enum MessagePriority {
-        /**
-         * The lowest priority, the messages
-         *   with this priority will be the last ones to be attended.
-         */
         VERY_LOW,
-        /**
-         * Use this for low priority messages, a
-         *   {@link Soup.Message} with the default priority will be processed first.
-         */
         LOW,
-        /**
-         * The default priotity, this is the
-         *   priority assigned to the {@link Soup.Message} by default.
-         */
         NORMAL,
-        /**
-         * High priority, a {@link Soup.Message} with
-         *   this priority will be processed before the ones with the default
-         *   priority.
-         */
         HIGH,
-        /**
-         * The highest priority, use this
-         *   for very urgent {@link Soup.Message} as they will be the first ones to be
-         *   attended.
-         */
         VERY_HIGH,
     }
-
-
-    /**
-     * A {@link Soup.Request} error.
-     * @gir-type Struct
-     */
     class RequestError extends GLib.Error {
         static $gtype: GObject.GType<GLib.Error>;
-
-        // Static fields
-        /**
-         * the URI could not be parsed
-         */
         static BAD_URI: number;
-
-        /**
-         * the URI scheme is not
-         *   supported by this {@link Soup.Session}
-         */
         static UNSUPPORTED_URI_SCHEME: number;
-
-        /**
-         * the server's response could not
-         *   be parsed
-         */
         static PARSING: number;
-
-        /**
-         * the server's response was in an
-         *   unsupported format
-         */
         static ENCODING: number;
-
-        // Constructors
         constructor(options: { message: string; code: number });
-
-        // Static methods
         static quark(): GLib.Quark;
     }
-
-
-    /**
-     * @gir-type Struct
-     */
     class RequesterError extends GLib.Error {
         static $gtype: GObject.GType<GLib.Error>;
-
-        // Static fields
         static BAD_URI: number;
-
         static UNSUPPORTED_URI_SCHEME: number;
-
-        // Constructors
         constructor(options: { message: string; code: number });
-
-        // Static methods
         static quark(): GLib.Quark;
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace SameSitePolicy {
         export const $gtype: GObject.GType<SameSitePolicy>;
     }
-
-    /**
-     * @gir-type Enum
-     * @since 2.70
-     */
     enum SameSitePolicy {
-        /**
-         * The cookie is exposed with both cross-site and same-site requests
-         */
         NONE,
-        /**
-         * The cookie is withheld on cross-site requests but exposed on cross-site navigations
-         */
         LAX,
-        /**
-         * The cookie is only exposed for same-site requests
-         */
         STRICT,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace SocketIOStatus {
         export const $gtype: GObject.GType<SocketIOStatus>;
     }
-
-    /**
-     * Return value from the {@link Soup.Socket} IO methods.
-     * @gir-type Enum
-     */
     enum SocketIOStatus {
-        /**
-         * Success
-         */
         OK,
-        /**
-         * Cannot read/write any more at this time
-         */
         WOULD_BLOCK,
-        /**
-         * End of file
-         */
         EOF,
-        /**
-         * Other error
-         */
         ERROR,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace Status {
         export const $gtype: GObject.GType<Status>;
     }
-
-    /**
-     * These represent the known HTTP status code values, plus various
-     * network and internal errors.
-     * 
-     * Note that no libsoup functions take or return this type directly;
-     * any function that works with status codes will accept unrecognized
-     * status codes as well.
-     * 
-     * Prior to 2.44 this type was called
-     * <literal>SoupKnownStatusCode</literal>, but the individual values
-     * have always had the names they have now.
-     * @gir-type Enum
-     */
     enum Status {
-        /**
-         * No status available. (Eg, the message has not
-         * been sent yet)
-         */
         NONE,
-        /**
-         * Message was cancelled locally
-         */
         CANCELLED,
-        /**
-         * Unable to resolve destination host name
-         */
         CANT_RESOLVE,
-        /**
-         * Unable to resolve proxy host name
-         */
         CANT_RESOLVE_PROXY,
-        /**
-         * Unable to connect to remote host
-         */
         CANT_CONNECT,
-        /**
-         * Unable to connect to proxy
-         */
         CANT_CONNECT_PROXY,
-        /**
-         * SSL/TLS negotiation failed
-         */
         SSL_FAILED,
-        /**
-         * A network error occurred, or the other end
-         * closed the connection unexpectedly
-         */
         IO_ERROR,
-        /**
-         * Malformed data (usually a programmer error)
-         */
         MALFORMED,
-        /**
-         * Used internally
-         */
         TRY_AGAIN,
-        /**
-         * There were too many redirections
-         */
         TOO_MANY_REDIRECTS,
-        /**
-         * Used internally
-         */
         TLS_FAILED,
-        /**
-         * 100 Continue (HTTP)
-         */
         CONTINUE,
-        /**
-         * 101 Switching Protocols (HTTP)
-         */
         SWITCHING_PROTOCOLS,
-        /**
-         * 102 Processing (WebDAV)
-         */
         PROCESSING,
-        /**
-         * 200 Success (HTTP). Also used by many lower-level
-         * soup routines to indicate success.
-         */
         OK,
-        /**
-         * 201 Created (HTTP)
-         */
         CREATED,
-        /**
-         * 202 Accepted (HTTP)
-         */
         ACCEPTED,
-        /**
-         * 203 Non-Authoritative Information
-         * (HTTP)
-         */
         NON_AUTHORITATIVE,
-        /**
-         * 204 No Content (HTTP)
-         */
         NO_CONTENT,
-        /**
-         * 205 Reset Content (HTTP)
-         */
         RESET_CONTENT,
-        /**
-         * 206 Partial Content (HTTP)
-         */
         PARTIAL_CONTENT,
-        /**
-         * 207 Multi-Status (WebDAV)
-         */
         MULTI_STATUS,
-        /**
-         * 300 Multiple Choices (HTTP)
-         */
         MULTIPLE_CHOICES,
-        /**
-         * 301 Moved Permanently (HTTP)
-         */
         MOVED_PERMANENTLY,
-        /**
-         * 302 Found (HTTP)
-         */
         FOUND,
-        /**
-         * 302 Moved Temporarily (old name,
-         * RFC 2068)
-         */
         MOVED_TEMPORARILY,
-        /**
-         * 303 See Other (HTTP)
-         */
         SEE_OTHER,
-        /**
-         * 304 Not Modified (HTTP)
-         */
         NOT_MODIFIED,
-        /**
-         * 305 Use Proxy (HTTP)
-         */
         USE_PROXY,
-        /**
-         * 306 [Unused] (HTTP)
-         */
         NOT_APPEARING_IN_THIS_PROTOCOL,
-        /**
-         * 307 Temporary Redirect (HTTP)
-         */
         TEMPORARY_REDIRECT,
         PERMANENT_REDIRECT,
-        /**
-         * 400 Bad Request (HTTP)
-         */
         BAD_REQUEST,
-        /**
-         * 401 Unauthorized (HTTP)
-         */
         UNAUTHORIZED,
-        /**
-         * 402 Payment Required (HTTP)
-         */
         PAYMENT_REQUIRED,
-        /**
-         * 403 Forbidden (HTTP)
-         */
         FORBIDDEN,
-        /**
-         * 404 Not Found (HTTP)
-         */
         NOT_FOUND,
-        /**
-         * 405 Method Not Allowed (HTTP)
-         */
         METHOD_NOT_ALLOWED,
-        /**
-         * 406 Not Acceptable (HTTP)
-         */
         NOT_ACCEPTABLE,
-        /**
-         * 407 Proxy Authentication
-         * Required (HTTP)
-         */
         PROXY_AUTHENTICATION_REQUIRED,
-        /**
-         * shorter alias for
-         * {@link Soup.Status.PROXY_AUTHENTICATION_REQUIRED}
-         */
         PROXY_UNAUTHORIZED,
-        /**
-         * 408 Request Timeout (HTTP)
-         */
         REQUEST_TIMEOUT,
-        /**
-         * 409 Conflict (HTTP)
-         */
         CONFLICT,
-        /**
-         * 410 Gone (HTTP)
-         */
         GONE,
-        /**
-         * 411 Length Required (HTTP)
-         */
         LENGTH_REQUIRED,
-        /**
-         * 412 Precondition Failed (HTTP)
-         */
         PRECONDITION_FAILED,
-        /**
-         * 413 Request Entity Too Large
-         * (HTTP)
-         */
         REQUEST_ENTITY_TOO_LARGE,
-        /**
-         * 414 Request-URI Too Long (HTTP)
-         */
         REQUEST_URI_TOO_LONG,
-        /**
-         * 415 Unsupported Media Type
-         * (HTTP)
-         */
         UNSUPPORTED_MEDIA_TYPE,
-        /**
-         * 416 Requested Range
-         * Not Satisfiable (HTTP)
-         */
         REQUESTED_RANGE_NOT_SATISFIABLE,
-        /**
-         * shorter alias for
-         * {@link Soup.Status.REQUESTED_RANGE_NOT_SATISFIABLE}
-         */
         INVALID_RANGE,
-        /**
-         * 417 Expectation Failed (HTTP)
-         */
         EXPECTATION_FAILED,
-        /**
-         * 422 Unprocessable Entity
-         * (WebDAV)
-         */
         UNPROCESSABLE_ENTITY,
-        /**
-         * 423 Locked (WebDAV)
-         */
         LOCKED,
-        /**
-         * 424 Failed Dependency (WebDAV)
-         */
         FAILED_DEPENDENCY,
-        /**
-         * 500 Internal Server Error
-         * (HTTP)
-         */
         INTERNAL_SERVER_ERROR,
-        /**
-         * 501 Not Implemented (HTTP)
-         */
         NOT_IMPLEMENTED,
-        /**
-         * 502 Bad Gateway (HTTP)
-         */
         BAD_GATEWAY,
-        /**
-         * 503 Service Unavailable (HTTP)
-         */
         SERVICE_UNAVAILABLE,
-        /**
-         * 504 Gateway Timeout (HTTP)
-         */
         GATEWAY_TIMEOUT,
-        /**
-         * 505 HTTP Version Not
-         * Supported (HTTP)
-         */
         HTTP_VERSION_NOT_SUPPORTED,
-        /**
-         * 507 Insufficient Storage
-         * (WebDAV)
-         */
         INSUFFICIENT_STORAGE,
-        /**
-         * 510 Not Extended (RFC 2774)
-         */
         NOT_EXTENDED,
     }
-
-
-    /**
-     * Error codes for `SOUP_TLD_ERROR`.
-     * @gir-type Struct
-     */
     class TLDError extends GLib.Error {
         static $gtype: GObject.GType<GLib.Error>;
-
-        // Static fields
-        /**
-         * A hostname was syntactically
-         *   invalid.
-         */
         static INVALID_HOSTNAME: number;
-
-        /**
-         * The passed-in "hostname" was
-         *   actually an IP address (and thus has no base domain or
-         *   public suffix).
-         */
         static IS_IP_ADDRESS: number;
-
-        /**
-         * The passed-in hostname
-         *   did not have enough components. Eg, calling
-         *   `soup_tld_get_base_domain()` on <literal>"co.uk"</literal>.
-         */
         static NOT_ENOUGH_DOMAINS: number;
-
-        /**
-         * The passed-in hostname has
-         *   no recognized public suffix.
-         */
         static NO_BASE_DOMAIN: number;
-
         static NO_PSL_DATA: number;
-
-        // Constructors
         constructor(options: { message: string; code: number });
-
-        // Static methods
         static quark(): GLib.Quark;
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace WebsocketCloseCode {
         export const $gtype: GObject.GType<WebsocketCloseCode>;
     }
-
-    /**
-     * Pre-defined close codes that can be passed to
-     * `soup_websocket_connection_close()` or received from
-     * `soup_websocket_connection_get_close_code()`. (However, other codes
-     * are also allowed.)
-     * @gir-type Enum
-     * @since 2.50
-     */
     enum WebsocketCloseCode {
-        /**
-         * a normal, non-error close
-         */
         NORMAL,
-        /**
-         * the client/server is going away
-         */
         GOING_AWAY,
-        /**
-         * a protocol error occurred
-         */
         PROTOCOL_ERROR,
-        /**
-         * the endpoint received data
-         *   of a type that it does not support.
-         */
         UNSUPPORTED_DATA,
-        /**
-         * reserved value indicating that
-         *   no close code was present; must not be sent.
-         */
         NO_STATUS,
-        /**
-         * reserved value indicating that
-         *   the connection was closed abnormally; must not be sent.
-         */
         ABNORMAL,
-        /**
-         * the endpoint received data that
-         *   was invalid (eg, non-UTF-8 data in a text message).
-         */
         BAD_DATA,
-        /**
-         * generic error code
-         *   indicating some sort of policy violation.
-         */
         POLICY_VIOLATION,
-        /**
-         * the endpoint received a message
-         *   that is too big to process.
-         */
         TOO_BIG,
-        /**
-         * the client is closing the
-         *   connection because the server failed to negotiate a required
-         *   extension.
-         */
         NO_EXTENSION,
-        /**
-         * the server is closing the
-         *   connection because it was unable to fulfill the request.
-         */
         SERVER_ERROR,
-        /**
-         * reserved value indicating that
-         *   the TLS handshake failed; must not be sent.
-         */
         TLS_HANDSHAKE,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace WebsocketConnectionType {
         export const $gtype: GObject.GType<WebsocketConnectionType>;
     }
-
-    /**
-     * The type of a {@link Soup.WebsocketConnection}.
-     * @gir-type Enum
-     * @since 2.50
-     */
     enum WebsocketConnectionType {
-        /**
-         * unknown/invalid connection
-         */
         UNKNOWN,
-        /**
-         * a client-side connection
-         */
         CLIENT,
-        /**
-         * a server-side connection
-         */
         SERVER,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace WebsocketDataType {
         export const $gtype: GObject.GType<WebsocketDataType>;
     }
-
-    /**
-     * The type of data contained in a {@link Soup.WebsocketConnection.SignalSignatures.message | Soup.WebsocketConnection::message}
-     * signal.
-     * @gir-type Enum
-     * @since 2.50
-     */
     enum WebsocketDataType {
-        /**
-         * UTF-8 text
-         */
         TEXT,
-        /**
-         * binary data
-         */
         BINARY,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace WebsocketError {
         export const $gtype: GObject.GType<WebsocketError>;
     }
-
-    /**
-     * WebSocket-related errors.
-     * @gir-type Enum
-     * @since 2.50
-     */
     enum WebsocketError {
-        /**
-         * a generic error
-         */
         FAILED,
-        /**
-         * attempted to handshake with a
-         *   server that does not appear to understand WebSockets.
-         */
         NOT_WEBSOCKET,
-        /**
-         * the WebSocket handshake failed
-         *   because some detail was invalid (eg, incorrect accept key).
-         */
         BAD_HANDSHAKE,
-        /**
-         * the WebSocket handshake failed
-         *   because the "Origin" header was not an allowed value.
-         */
         BAD_ORIGIN,
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace WebsocketState {
         export const $gtype: GObject.GType<WebsocketState>;
     }
-
-    /**
-     * The state of the WebSocket connection.
-     * @gir-type Enum
-     * @since 2.50
-     */
     enum WebsocketState {
-        /**
-         * the connection is ready to send messages
-         */
         OPEN,
-        /**
-         * the connection is in the process of
-         *   closing down; messages may be received, but not sent
-         */
         CLOSING,
-        /**
-         * the connection is completely closed down
-         */
         CLOSED,
     }
-
-
-    /**
-     * @gir-type Struct
-     */
     class XMLRPCError extends GLib.Error {
         static $gtype: GObject.GType<GLib.Error>;
-
-        // Static fields
         static ARGUMENTS: number;
-
         static RETVAL: number;
-
-        // Constructors
         constructor(options: { message: string; code: number });
-
-        // Static methods
         static quark(): GLib.Quark;
     }
-
-
-    /**
-     * @gir-type Enum
-     */
     export namespace XMLRPCFault {
         export const $gtype: GObject.GType<XMLRPCFault>;
     }
-
-    /**
-     * Pre-defined XML-RPC fault codes from <ulink
-     * url="http://xmlrpc-epi.sourceforge.net/specs/rfc.fault_codes.php">http://xmlrpc-epi.sourceforge.net/specs/rfc.fault_codes.php</ulink>.
-     * These are an extension, not part of the XML-RPC spec; you can't
-     * assume servers will use them.
-     * @gir-type Enum
-     */
     enum XMLRPCFault {
-        /**
-         * request was not
-         *   well-formed
-         */
         PARSE_ERROR_NOT_WELL_FORMED,
-        /**
-         * request was in
-         *   an unsupported encoding
-         */
         PARSE_ERROR_UNSUPPORTED_ENCODING,
-        /**
-         * request contained an invalid character
-         */
         PARSE_ERROR_INVALID_CHARACTER_FOR_ENCODING,
-        /**
-         * request was not
-         *   valid XML-RPC
-         */
         SERVER_ERROR_INVALID_XML_RPC,
-        /**
-         * method
-         *   not found
-         */
         SERVER_ERROR_REQUESTED_METHOD_NOT_FOUND,
-        /**
-         * invalid
-         *   parameters
-         */
         SERVER_ERROR_INVALID_METHOD_PARAMETERS,
-        /**
-         * internal
-         *   error
-         */
         SERVER_ERROR_INTERNAL_XML_RPC_ERROR,
-        /**
-         * start of reserved range for
-         *   application error codes
-         */
         APPLICATION_ERROR,
-        /**
-         * start of reserved range for
-         *   system error codes
-         */
         SYSTEM_ERROR,
-        /**
-         * start of reserved range for
-         *   transport error codes
-         */
         TRANSPORT_ERROR,
     }
-
-
-    /**
-     * This can be passed to any {@link Soup.Address} method that expects a port,
-     * to indicate that you don't care what port is used.
-     */
     const ADDRESS_ANY_PORT: number;
-
-    /**
-     * Alias for the {@link Soup.Address.family} property. (The
-     * {@link Soup.AddressFamily} for this address.)
-     */
     const ADDRESS_FAMILY: string;
-
-    /**
-     * Alias for the {@link Soup.Address.name} property. (The hostname for
-     * this address.)
-     */
     const ADDRESS_NAME: string;
-
-    /**
-     * An alias for the {@link Soup.Address.physical} property. (The
-     * stringified IP address for this address.)
-     */
     const ADDRESS_PHYSICAL: string;
-
-    /**
-     * An alias for the {@link Soup.Address.port} property. (The port for
-     * this address.)
-     */
     const ADDRESS_PORT: string;
-
-    /**
-     * Alias for the {@link Soup.Address.protocol} property. (The URI scheme
-     * used with this address.)
-     */
     const ADDRESS_PROTOCOL: string;
-
-    /**
-     * An alias for the {@link Soup.Address.sockaddr} property. (A pointer
-     * to the struct sockaddr for this address.)
-     */
     const ADDRESS_SOCKADDR: string;
-
-    /**
-     * Alias for the {@link Soup.AuthDomain.add_path} property. (Shortcut
-     * for calling `soup_auth_domain_add_path()`.)
-     */
     const AUTH_DOMAIN_ADD_PATH: string;
-
-    /**
-     * Alias for the {@link Soup.AuthDomainBasic.auth_callback} property.
-     * (The {@link Soup.AuthDomainBasicAuthCallback}.)
-     */
     const AUTH_DOMAIN_BASIC_AUTH_CALLBACK: string;
-
-    /**
-     * Alias for the {@link Soup.AuthDomainBasic.auth_data} property.
-     * (The data to pass to the {@link Soup.AuthDomainBasicAuthCallback}.)
-     */
     const AUTH_DOMAIN_BASIC_AUTH_DATA: string;
-
-    /**
-     * Alias for the {@link Soup.AuthDomainDigest.auth_callback} property.
-     * (The {@link Soup.AuthDomainDigestAuthCallback}.)
-     */
     const AUTH_DOMAIN_DIGEST_AUTH_CALLBACK: string;
-
-    /**
-     * Alias for the {@link Soup.AuthDomainDigest.auth_callback} property.
-     * (The {@link Soup.AuthDomainDigestAuthCallback}.)
-     */
     const AUTH_DOMAIN_DIGEST_AUTH_DATA: string;
-
-    /**
-     * Alias for the {@link Soup.AuthDomain.filter} property. (The
-     * {@link Soup.AuthDomainFilter} for the domain.)
-     */
     const AUTH_DOMAIN_FILTER: string;
-
-    /**
-     * Alias for the {@link Soup.AuthDomain.filter_data} property. (Data
-     * to pass to the {@link Soup.AuthDomainFilter}.)
-     */
     const AUTH_DOMAIN_FILTER_DATA: string;
-
-    /**
-     * Alias for the {@link Soup.AuthDomain.generic_auth_callback} property.
-     * (The {@link Soup.AuthDomainGenericAuthCallback}.)
-     */
     const AUTH_DOMAIN_GENERIC_AUTH_CALLBACK: string;
-
-    /**
-     * Alias for the {@link Soup.AuthDomain.generic_auth_data} property.
-     * (The data to pass to the {@link Soup.AuthDomainGenericAuthCallback}.)
-     */
     const AUTH_DOMAIN_GENERIC_AUTH_DATA: string;
-
-    /**
-     * Alias for the {@link Soup.AuthDomain.proxy} property. (Whether or
-     * not this is a proxy auth domain.)
-     */
     const AUTH_DOMAIN_PROXY: string;
-
-    /**
-     * Alias for the {@link Soup.AuthDomain.realm} property. (The realm of
-     * this auth domain.)
-     */
     const AUTH_DOMAIN_REALM: string;
-
-    /**
-     * Alias for the {@link Soup.AuthDomain.remove_path} property.
-     * (Shortcut for calling `soup_auth_domain_remove_path()`.)
-     */
     const AUTH_DOMAIN_REMOVE_PATH: string;
-
-    /**
-     * An alias for the {@link Soup.Auth.host} property. (The
-     * host being authenticated to.)
-     */
     const AUTH_HOST: string;
-
-    /**
-     * An alias for the {@link Soup.Auth.is_authenticated} property.
-     * (Whether or not the auth has been authenticated.)
-     */
     const AUTH_IS_AUTHENTICATED: string;
-
-    /**
-     * An alias for the {@link Soup.Auth.is_for_proxy} property. (Whether
-     * or not the auth is for a proxy server.)
-     */
     const AUTH_IS_FOR_PROXY: string;
-
-    /**
-     * An alias for the {@link Soup.Auth.realm} property. (The
-     * authentication realm.)
-     */
     const AUTH_REALM: string;
-
-    /**
-     * An alias for the {@link Soup.Auth.scheme_name} property. (The
-     * authentication scheme name.)
-     */
     const AUTH_SCHEME_NAME: string;
-
     const CHAR_HTTP_CTL: number;
-
     const CHAR_HTTP_SEPARATOR: number;
-
     const CHAR_URI_GEN_DELIMS: number;
-
     const CHAR_URI_PERCENT_ENCODED: number;
-
     const CHAR_URI_SUB_DELIMS: number;
-
-    /**
-     * Alias for the {@link Soup.CookieJar.accept_policy} property.
-     * @since 2.30
-     */
     const COOKIE_JAR_ACCEPT_POLICY: string;
-
-    /**
-     * Alias for the {@link Soup.CookieJarDB.filename} property. (The
-     * cookie-storage filename.)
-     */
     const COOKIE_JAR_DB_FILENAME: string;
-
-    /**
-     * Alias for the {@link Soup.CookieJar.read_only} property. (Whether
-     * or not the cookie jar is read-only.)
-     */
     const COOKIE_JAR_READ_ONLY: string;
-
-    /**
-     * Alias for the {@link Soup.CookieJarText.filename} property. (The
-     * cookie-storage filename.)
-     */
     const COOKIE_JAR_TEXT_FILENAME: string;
-
-    /**
-     * A constant corresponding to 1 day, for use with `soup_cookie_new()`
-     * and `soup_cookie_set_max_age()`.
-     * @since 2.24
-     */
     const COOKIE_MAX_AGE_ONE_DAY: number;
-
-    /**
-     * A constant corresponding to 1 hour, for use with `soup_cookie_new()`
-     * and `soup_cookie_set_max_age()`.
-     * @since 2.24
-     */
     const COOKIE_MAX_AGE_ONE_HOUR: number;
-
-    /**
-     * A constant corresponding to 1 week, for use with `soup_cookie_new()`
-     * and `soup_cookie_set_max_age()`.
-     * @since 2.24
-     */
     const COOKIE_MAX_AGE_ONE_WEEK: number;
-
-    /**
-     * A constant corresponding to 1 year, for use with `soup_cookie_new()`
-     * and `soup_cookie_set_max_age()`.
-     * @since 2.24
-     */
     const COOKIE_MAX_AGE_ONE_YEAR: number;
-
-    /**
-     * A macro containing the value
-     * <literal>"multipart/form-data"</literal>; the MIME type used for
-     * posting form data that contains files to be uploaded.
-     * @since 2.26
-     */
     const FORM_MIME_TYPE_MULTIPART: string;
-
-    /**
-     * A macro containing the value
-     * <literal>"application/x-www-form-urlencoded"</literal>; the default
-     * MIME type for POSTing HTML form data.
-     * @since 2.26
-     */
     const FORM_MIME_TYPE_URLENCODED: string;
-
     const HSTS_ENFORCER_DB_FILENAME: string;
-
     const HSTS_POLICY_MAX_AGE_PAST: number;
-
-    /**
-     * Alias for the {@link Soup.Logger.level} property, qv.
-     * @since 2.56
-     */
     const LOGGER_LEVEL: string;
-
-    /**
-     * Alias for the {@link Soup.Logger.max_body_size} property, qv.
-     * @since 2.56
-     */
     const LOGGER_MAX_BODY_SIZE: string;
-
-    /**
-     * Like `soup_get_major_version()`, but from the headers used at
-     * application compile time, rather than from the library linked
-     * against at application run time.
-     * @since 2.42
-     */
     const MAJOR_VERSION: number;
-
-    /**
-     * Alias for the {@link Soup.Message.first_party} property. (The
-     * {@link Soup.URI} loaded in the application when the message was
-     * queued.)
-     * @since 2.30
-     */
     const MESSAGE_FIRST_PARTY: string;
-
-    /**
-     * Alias for the {@link Soup.Message.flags} property. (The message's
-     * {@link Soup.MessageFlags}.)
-     */
     const MESSAGE_FLAGS: string;
-
-    /**
-     * Alias for the {@link Soup.Message.http_version} property. (The
-     * message's {@link Soup.HTTPVersion}.)
-     */
     const MESSAGE_HTTP_VERSION: string;
-
     const MESSAGE_IS_TOP_LEVEL_NAVIGATION: string;
-
-    /**
-     * Alias for the {@link Soup.Message.method} property. (The message's
-     * HTTP method.)
-     */
     const MESSAGE_METHOD: string;
-
-    /**
-     * Sets the priority of the {@link Soup.Message}. See
-     * `soup_message_set_priority()` for further details.
-     * @since 2.44
-     */
     const MESSAGE_PRIORITY: string;
-
-    /**
-     * Alias for the {@link Soup.Message.reason_phrase} property. (The
-     * message's HTTP response reason phrase.)
-     */
     const MESSAGE_REASON_PHRASE: string;
-
-    /**
-     * Alias for the {@link Soup.Message.request_body} property. (The
-     * message's HTTP request body.)
-     */
     const MESSAGE_REQUEST_BODY: string;
-
-    /**
-     * Alias for the {@link Soup.Message.request_body_data} property. (The
-     * message's HTTP request body, as a {@link GLib.Bytes}.)
-     * @since 2.46
-     */
     const MESSAGE_REQUEST_BODY_DATA: string;
-
-    /**
-     * Alias for the {@link Soup.Message.request_headers} property. (The
-     * message's HTTP request headers.)
-     */
     const MESSAGE_REQUEST_HEADERS: string;
-
-    /**
-     * Alias for the {@link Soup.Message.response_body} property. (The
-     * message's HTTP response body.)
-     */
     const MESSAGE_RESPONSE_BODY: string;
-
-    /**
-     * Alias for the {@link Soup.Message.response_body_data} property. (The
-     * message's HTTP response body, as a {@link GLib.Bytes}.)
-     * @since 2.46
-     */
     const MESSAGE_RESPONSE_BODY_DATA: string;
-
-    /**
-     * Alias for the {@link Soup.Message.response_headers} property. (The
-     * message's HTTP response headers.)
-     */
     const MESSAGE_RESPONSE_HEADERS: string;
-
-    /**
-     * Alias for the {@link Soup.Message.server_side} property. (`true` if
-     * the message was created by {@link Soup.Server}.)
-     */
     const MESSAGE_SERVER_SIDE: string;
-
     const MESSAGE_SITE_FOR_COOKIES: string;
-
-    /**
-     * Alias for the {@link Soup.Message.status_code} property. (The
-     * message's HTTP response status code.)
-     */
     const MESSAGE_STATUS_CODE: string;
-
-    /**
-     * Alias for the {@link Soup.Message.tls_certificate} property. (The
-     * TLS certificate associated with the message, if any.)
-     * @since 2.34
-     */
     const MESSAGE_TLS_CERTIFICATE: string;
-
-    /**
-     * Alias for the {@link Soup.Message.tls_errors} property. (The
-     * verification errors on {@link Soup.Message.tls_certificate}.)
-     * @since 2.34
-     */
     const MESSAGE_TLS_ERRORS: string;
-
-    /**
-     * Alias for the {@link Soup.Message.uri} property. (The message's
-     * {@link Soup.URI}.)
-     */
     const MESSAGE_URI: string;
-
-    /**
-     * Like `soup_get_micro_version()`, but from the headers used at
-     * application compile time, rather than from the library linked
-     * against at application run time.
-     * @since 2.42
-     */
     const MICRO_VERSION: number;
-
-    /**
-     * Like `soup_get_minor_version()`, but from the headers used at
-     * application compile time, rather than from the library linked
-     * against at application run time.
-     * @since 2.42
-     */
     const MINOR_VERSION: number;
-
-    /**
-     * Alias for the {@link Soup.Request.session} property, qv.
-     * @since 2.42
-     */
     const REQUEST_SESSION: string;
-
-    /**
-     * Alias for the {@link Soup.Request.uri} property, qv.
-     * @since 2.42
-     */
     const REQUEST_URI: string;
-
-    /**
-     * Alias for the deprecated {@link Soup.Server.async_context}
-     * property, qv.
-     * @deprecated The new API uses the thread-default {@link GLib.MainContext} rather than having an explicitly-specified one.
-     */
     const SERVER_ASYNC_CONTEXT: string;
-
-    /**
-     * Alias for the {@link Soup.Server.https_aliases} property, qv.
-     * @since 2.44
-     */
     const SERVER_HTTPS_ALIASES: string;
-
-    /**
-     * Alias for the {@link Soup.Server.http_aliases} property, qv.
-     * @since 2.44
-     */
     const SERVER_HTTP_ALIASES: string;
-
-    /**
-     * Alias for the {@link Soup.Server.interface} property, qv.
-     * @deprecated `SoupServers` can listen on multiple interfaces at once now. Use `soup_server_listen()`, etc, to listen on an interface, and `soup_server_get_uris()` to see what addresses are being listened on.
-     */
     const SERVER_INTERFACE: string;
-
-    /**
-     * Alias for the deprecated {@link Soup.Server.port} property, qv.
-     * @deprecated `SoupServers` can listen on multiple interfaces at once now. Use `soup_server_listen()`, etc, to listen on a port, and `soup_server_get_uris()` to see what ports are being listened on.
-     */
     const SERVER_PORT: string;
-
-    /**
-     * Alias for the {@link Soup.Server.raw_paths} property. (If `true`,
-     * percent-encoding in the Request-URI path will not be
-     * automatically decoded.)
-     */
     const SERVER_RAW_PATHS: string;
-
-    /**
-     * Alias for the {@link Soup.Server.server_header} property, qv.
-     */
     const SERVER_SERVER_HEADER: string;
-
-    /**
-     * Alias for the {@link Soup.Server.ssl_cert_file} property, qv.
-     * @deprecated use {@link Soup.Server.tls_certificate} or `soup_server_set_ssl_certificate()`.
-     */
     const SERVER_SSL_CERT_FILE: string;
-
-    /**
-     * Alias for the {@link Soup.Server.ssl_key_file} property, qv.
-     * @deprecated use {@link Soup.Server.tls_certificate} or `soup_server_set_ssl_certificate()`.
-     */
     const SERVER_SSL_KEY_FILE: string;
-
-    /**
-     * Alias for the {@link Soup.Server.tls_certificate} property, qv.
-     * @since 2.38
-     */
     const SERVER_TLS_CERTIFICATE: string;
-
-    /**
-     * Alias for the {@link Soup.Session.accept_language} property, qv.
-     * @since 2.30
-     */
     const SESSION_ACCEPT_LANGUAGE: string;
-
-    /**
-     * Alias for the {@link Soup.Session.accept_language_auto} property, qv.
-     * @since 2.30
-     */
     const SESSION_ACCEPT_LANGUAGE_AUTO: string;
-
-    /**
-     * Alias for the {@link Soup.Session.async_context} property, qv.
-     */
     const SESSION_ASYNC_CONTEXT: string;
-
-    /**
-     * Alias for the {@link Soup.Session.https_aliases} property, qv.
-     * @since 2.38
-     */
     const SESSION_HTTPS_ALIASES: string;
-
-    /**
-     * Alias for the {@link Soup.Session.http_aliases} property, qv.
-     * @since 2.38
-     */
     const SESSION_HTTP_ALIASES: string;
-
-    /**
-     * Alias for the {@link Soup.Session.idle_timeout} property, qv.
-     * @since 2.24
-     */
     const SESSION_IDLE_TIMEOUT: string;
-
-    /**
-     * Alias for the {@link Soup.Session.local_address} property, qv.
-     * @since 2.42
-     */
     const SESSION_LOCAL_ADDRESS: string;
-
-    /**
-     * Alias for the {@link Soup.Session.max_conns} property, qv.
-     */
     const SESSION_MAX_CONNS: string;
-
-    /**
-     * Alias for the {@link Soup.Session.max_conns_per_host} property, qv.
-     */
     const SESSION_MAX_CONNS_PER_HOST: string;
-
-    /**
-     * Alias for the {@link Soup.Session.proxy_resolver} property, qv.
-     */
     const SESSION_PROXY_RESOLVER: string;
-
-    /**
-     * Alias for the {@link Soup.Session.proxy_uri} property, qv.
-     */
     const SESSION_PROXY_URI: string;
-
-    /**
-     * Alias for the {@link Soup.Session.ssl_ca_file} property, qv.
-     */
     const SESSION_SSL_CA_FILE: string;
-
-    /**
-     * Alias for the {@link Soup.Session.ssl_strict} property, qv.
-     * @since 2.30
-     */
     const SESSION_SSL_STRICT: string;
-
-    /**
-     * Alias for the {@link Soup.Session.ssl_use_system_ca_file} property,
-     * qv.
-     * @since 2.38
-     */
     const SESSION_SSL_USE_SYSTEM_CA_FILE: string;
-
-    /**
-     * Alias for the {@link Soup.Session.timeout} property, qv.
-     */
     const SESSION_TIMEOUT: string;
-
-    /**
-     * Alias for the {@link Soup.Session.tls_database} property, qv.
-     * @since 2.38
-     */
     const SESSION_TLS_DATABASE: string;
-
-    /**
-     * Alias for the {@link Soup.Session.tls_interaction} property, qv.
-     * @since 2.48
-     */
     const SESSION_TLS_INTERACTION: string;
-
-    /**
-     * Alias for the {@link Soup.Session.user_agent} property, qv.
-     */
     const SESSION_USER_AGENT: string;
-
-    /**
-     * Alias for the {@link Soup.Session.use_ntlm} property, qv.
-     */
     const SESSION_USE_NTLM: string;
-
-    /**
-     * Alias for the {@link Soup.Session.use_thread_context} property, qv.
-     * @since 2.38
-     */
     const SESSION_USE_THREAD_CONTEXT: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.async_context} property. (The
-     * socket's {@link GLib.MainContext}.)
-     */
     const SOCKET_ASYNC_CONTEXT: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.non_blocking} property. (Whether
-     * or not the socket uses non-blocking I/O.)
-     */
     const SOCKET_FLAG_NONBLOCKING: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.is_server} property, qv.
-     */
     const SOCKET_IS_SERVER: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.local_address} property. (Address
-     * of local end of socket.)
-     */
     const SOCKET_LOCAL_ADDRESS: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.remote_address} property. (Address
-     * of remote end of socket.)
-     */
     const SOCKET_REMOTE_ADDRESS: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.ssl_creds} property.
-     * (SSL credential information.)
-     */
     const SOCKET_SSL_CREDENTIALS: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.ssl_fallback} property.
-     */
     const SOCKET_SSL_FALLBACK: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.ssl_strict} property.
-     */
     const SOCKET_SSL_STRICT: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.timeout} property. (The timeout
-     * in seconds for blocking socket I/O operations.)
-     */
     const SOCKET_TIMEOUT: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.tls_certificate}
-     * property. Note that this property's value is only useful
-     * if the socket is for a TLS connection, and only reliable
-     * after some data has been transferred to or from it.
-     * @since 2.34
-     */
     const SOCKET_TLS_CERTIFICATE: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.tls_errors}
-     * property. Note that this property's value is only useful
-     * if the socket is for a TLS connection, and only reliable
-     * after some data has been transferred to or from it.
-     * @since 2.34
-     */
     const SOCKET_TLS_ERRORS: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.trusted_certificate}
-     * property.
-     */
     const SOCKET_TRUSTED_CERTIFICATE: string;
-
-    /**
-     * Alias for the {@link Soup.Socket.use_thread_context} property. (Use
-     * `g_main_context_get_thread_default()`)
-     * @since 2.38
-     */
     const SOCKET_USE_THREAD_CONTEXT: string;
-
-    /**
-     * A macro that should be defined by the user prior to including
-     * libsoup.h. The definition should be one of the predefined libsoup
-     * version macros: `SOUP_VERSION_2_24`, `SOUP_VERSION_2_26`, ...
-     * 
-     * This macro defines the earliest version of libsoup that the package
-     * is required to be able to compile against.
-     * 
-     * If the compiler is configured to warn about the use of deprecated
-     * functions, then using functions that were deprecated in version
-     * `SOUP_VERSION_MIN_REQUIRED` or earlier will cause warnings (but
-     * using functions deprecated in later releases will not).
-     * @since 2.42
-     */
     const VERSION_MIN_REQUIRED: number;
-
-    /**
-     * Like SOUP_CHECK_VERSION, but the check for soup_check_version is
-     * at runtime instead of compile time. This is useful for compiling
-     * against older versions of libsoup, but using features from newer
-     * versions.
-     * @param major the major version to check
-     * @param minor the minor version to check
-     * @param micro the micro version to check
-     * @returns `true` if the version of the libsoup currently loaded is the same as or newer than the passed-in version.
-     * @since 2.42
-     */
     function check_version(major: number, minor: number, micro: number): boolean;
-
-    /**
-     * Parses `header` and returns a {@link Soup.Cookie}. (If `header` contains
-     * multiple cookies, only the first one will be parsed.)
-     * 
-     * If `header` does not have "path" or "domain" attributes, they will
-     * be defaulted from `origin`. If `origin` is `null`, path will default
-     * to "/", but domain will be left as `null`. Note that this is not a
-     * valid state for a {@link Soup.Cookie}, and you will need to fill in some
-     * appropriate string for the domain if you want to actually make use
-     * of the cookie.
-     * @param header a cookie string (eg, the value of a Set-Cookie header)
-     * @param origin origin of the cookie, or `null`
-     * @returns a new {@link Soup.Cookie}, or `null` if it could not be parsed, or contained an illegal "domain" attribute for a cookie originating from `origin`.
-     * @since 2.24
-     */
     function cookie_parse(header: string, origin: URI): Cookie | null;
-
-    /**
-     * Parses `msg`'s Cookie request header and returns a {@link GLib.SList} of
-     * {@link Soup.Cookie}<!-- -->s. As the "Cookie" header, unlike "Set-Cookie",
-     * only contains cookie names and values, none of the other
-     * {@link Soup.Cookie} fields will be filled in. (Thus, you can't generally
-     * pass a cookie returned from this method directly to
-     * `soup_cookies_to_response()`.)
-     * @param msg a {@link Soup.Message} containing a "Cookie" request header
-     * @returns a {@link GLib.SList} of {@link Soup.Cookie}<!-- -->s, which can be freed with `soup_cookies_free()`.
-     * @since 2.24
-     */
     function cookies_from_request(msg: Message): Cookie[];
-
-    /**
-     * Parses `msg`'s Set-Cookie response headers and returns a {@link GLib.SList} of
-     * {@link Soup.Cookie}<!-- -->s. Cookies that do not specify "path" or
-     * "domain" attributes will have their values defaulted from `msg`.
-     * @param msg a {@link Soup.Message} containing a "Set-Cookie" response header
-     * @returns a {@link GLib.SList} of {@link Soup.Cookie}<!-- -->s, which can be freed with `soup_cookies_free()`.
-     * @since 2.24
-     */
     function cookies_from_response(msg: Message): Cookie[];
-
-    /**
-     * Serializes a {@link GLib.SList} of {@link Soup.Cookie} into a string suitable for
-     * setting as the value of the "Cookie" header.
-     * @param cookies a {@link GLib.SList} of {@link Soup.Cookie}
-     * @returns the serialization of `cookies`
-     * @since 2.24
-     */
     function cookies_to_cookie_header(cookies: Cookie[]): string;
-
-    /**
-     * Adds the name and value of each cookie in `cookies` to `msg`'s
-     * "Cookie" request. (If `msg` already has a "Cookie" request header,
-     * these cookies will be appended to the cookies already present. Be
-     * careful that you do not append the same cookies twice, eg, when
-     * requeuing a message.)
-     * @param cookies a {@link GLib.SList} of {@link Soup.Cookie}
-     * @param msg a {@link Soup.Message}
-     * @since 2.24
-     */
     function cookies_to_request(cookies: Cookie[], msg: Message): void;
-
-    /**
-     * Appends a "Set-Cookie" response header to `msg` for each cookie in
-     * `cookies`. (This is in addition to any other "Set-Cookie" headers
-     * `msg` may already have.)
-     * @param cookies a {@link GLib.SList} of {@link Soup.Cookie}
-     * @param msg a {@link Soup.Message}
-     * @since 2.24
-     */
     function cookies_to_response(cookies: Cookie[], msg: Message): void;
-
-    /**
-     * Decodes `form`, which is an urlencoded dataset as defined in the
-     * HTML 4.01 spec.
-     * @param encoded_form data of type "application/x-www-form-urlencoded"
-     * @returns a hash table containing the name/value pairs from `encoded_form`, which you can free with `g_hash_table_destroy()`.
-     */
     function form_decode(encoded_form: string): { [key: string]: string };
-
-    /**
-     * Decodes the "multipart/form-data" request in `msg`; this is a
-     * convenience method for the case when you have a single file upload
-     * control in a form. (Or when you don't have any file upload
-     * controls, but are still using "multipart/form-data" anyway.) Pass
-     * the name of the file upload control in `file_control_name`, and
-     * `soup_form_decode_multipart()` will extract the uploaded file data
-     * into `filename`, `content_type`, and `file`. All of the other form
-     * control data will be returned (as strings, as with
-     * `soup_form_decode()`) in the returned {@link GLib.HashTable}.
-     * 
-     * You may pass `null` for `filename`, `content_type` and/or `file` if you do not
-     * care about those fields. `soup_form_decode_multipart()` may also
-     * return `null` in those fields if the client did not provide that
-     * information. You must free the returned filename and content-type
-     * with `g_free()`, and the returned file data with `soup_buffer_free()`.
-     * 
-     * If you have a form with more than one file upload control, you will
-     * need to decode it manually, using `soup_multipart_new_from_message()`
-     * and `soup_multipart_get_part()`.
-     * @param msg a {@link Soup.Message} containing a "multipart/form-data" request body
-     * @param file_control_name the name of the HTML file upload control, or `null`
-     * @returns a hash table containing the name/value pairs (other than `file_control_name`) from `msg`, which you can free with `g_hash_table_destroy()`. On error, it will return `null`.
-     * @since 2.26
-     */
     function form_decode_multipart(msg: Message, file_control_name: string | null): [{ [key: string]: string } | null, string, string, Buffer | null];
-
-    /**
-     * Encodes `form_data_set` into a value of type
-     * "application/x-www-form-urlencoded", as defined in the HTML 4.01
-     * spec. Unlike `soup_form_encode_hash()`, this preserves the ordering
-     * of the form elements, which may be required in some situations.
-     * @param form_data_set a datalist containing name/value pairs
-     * @returns the encoded form
-     */
     function form_encode_datalist(form_data_set: GLib.Data): string;
-
-    /**
-     * Encodes `form_data_set` into a value of type
-     * "application/x-www-form-urlencoded", as defined in the HTML 4.01
-     * spec.
-     * 
-     * Note that the HTML spec states that "The control names/values are
-     * listed in the order they appear in the document." Since this method
-     * takes a hash table, it cannot enforce that; if you care about the
-     * ordering of the form fields, use `soup_form_encode_datalist()`.
-     * @param form_data_set a hash table containing name/value pairs (as strings)
-     * @returns the encoded form
-     */
     function form_encode_hash(form_data_set: { [key: string]: string }): string;
-
-    /**
-     * Creates a new %SoupMessage and sets it up to send `form_data_set` to
-     * `uri` via `method`, as with `soup_form_request_new()`.
-     * @param method the HTTP method, either "GET" or "POST"
-     * @param uri the URI to send the form data to
-     * @param form_data_set the data to send to `uri`
-     * @returns the new %SoupMessage
-     */
     function form_request_new_from_datalist(method: string, uri: string, form_data_set: GLib.Data): Message;
-
-    /**
-     * Creates a new %SoupMessage and sets it up to send `form_data_set` to
-     * `uri` via `method`, as with `soup_form_request_new()`.
-     * @param method the HTTP method, either "GET" or "POST"
-     * @param uri the URI to send the form data to
-     * @param form_data_set the data to send to `uri`
-     * @returns the new %SoupMessage
-     */
     function form_request_new_from_hash(method: string, uri: string, form_data_set: { [key: string]: string }): Message;
-
-    /**
-     * Creates a new %SoupMessage and sets it up to send `multipart` to
-     * `uri` via POST.
-     * 
-     * To send a <literal>"multipart/form-data"</literal> POST, first
-     * create a {@link Soup.Multipart}, using `SOUP_FORM_MIME_TYPE_MULTIPART` as
-     * the MIME type. Then use `soup_multipart_append_form_string()` and
-     * `soup_multipart_append_form_file()` to add the value of each form
-     * control to the multipart. (These are just convenience methods, and
-     * you can use `soup_multipart_append_part()` if you need greater
-     * control over the part headers.) Finally, call
-     * `soup_form_request_new_from_multipart()` to serialize the multipart
-     * structure and create a {@link Soup.Message}.
-     * @param uri the URI to send the form data to
-     * @param multipart a "multipart/form-data" {@link Soup.Multipart}
-     * @returns the new %SoupMessage
-     * @since 2.26
-     */
     function form_request_new_from_multipart(uri: string, multipart: Multipart): Message;
-
-    /**
-     * Returns the major version number of the libsoup library.
-     * (e.g. in libsoup version 2.42.0 this is 2.)
-     * 
-     * This function is in the library, so it represents the libsoup library
-     * your code is running against. Contrast with the #SOUP_MAJOR_VERSION
-     * macro, which represents the major version of the libsoup headers you
-     * have included when compiling your code.
-     * @returns the major version number of the libsoup library
-     * @since 2.42
-     */
     function get_major_version(): number;
-
-    /**
-     * Returns the micro version number of the libsoup library.
-     * (e.g. in libsoup version 2.42.0 this is 0.)
-     * 
-     * This function is in the library, so it represents the libsoup library
-     * your code is running against. Contrast with the #SOUP_MICRO_VERSION
-     * macro, which represents the micro version of the libsoup headers you
-     * have included when compiling your code.
-     * @returns the micro version number of the libsoup library
-     * @since 2.42
-     */
     function get_micro_version(): number;
-
-    /**
-     * Returns the minor version number of the libsoup library.
-     * (e.g. in libsoup version 2.42.0 this is 42.)
-     * 
-     * This function is in the library, so it represents the libsoup library
-     * your code is running against. Contrast with the #SOUP_MINOR_VERSION
-     * macro, which represents the minor version of the libsoup headers you
-     * have included when compiling your code.
-     * @returns the minor version number of the libsoup library
-     * @since 2.42
-     */
     function get_minor_version(): number;
-
     function get_resource(): Gio.Resource;
-
-    /**
-     * Parses `header` to see if it contains the token `token` (matched
-     * case-insensitively). Note that this can't be used with lists
-     * that have qvalues.
-     * @param header An HTTP header suitable for parsing with `soup_header_parse_list()`
-     * @param token a token
-     * @returns whether or not `header` contains `token`
-     */
     function header_contains(header: string, token: string): boolean;
-
-    /**
-     * Frees `param_list`.
-     * @param param_list a {@link GLib.HashTable} returned from `soup_header_parse_param_list()` or `soup_header_parse_semi_param_list()`
-     */
     function header_free_param_list(param_list: { [key: string]: string }): void;
-
-    /**
-     * Appends something like <literal>`name`=`value`</literal> to `string`,
-     * taking care to quote `value` if needed, and if so, to escape any
-     * quotes or backslashes in `value`.
-     * 
-     * Alternatively, if `value` is a non-ASCII UTF-8 string, it will be
-     * appended using RFC5987 syntax. Although in theory this is supposed
-     * to work anywhere in HTTP that uses this style of parameter, in
-     * reality, it can only be used portably with the Content-Disposition
-     * "filename" parameter.
-     * 
-     * If `value` is `null`, this will just append `name` to `string`.
-     * @param string a {@link GLib.String} being used to construct an HTTP header value
-     * @param name a parameter name
-     * @param value a parameter value, or `null`
-     * @since 2.26
-     */
     function header_g_string_append_param(string: GLib.String, name: string, value: string): void;
-
-    /**
-     * Appends something like <literal>`name`="`value`"</literal> to
-     * `string`, taking care to escape any quotes or backslashes in `value`.
-     * 
-     * If `value` is (non-ASCII) UTF-8, this will instead use RFC 5987
-     * encoding, just like `soup_header_g_string_append_param()`.
-     * @param string a {@link GLib.String} being used to construct an HTTP header value
-     * @param name a parameter name
-     * @param value a parameter value
-     * @since 2.30
-     */
     function header_g_string_append_param_quoted(string: GLib.String, name: string, value: string): void;
-
-    /**
-     * Parses a header whose content is described by RFC2616 as
-     * "#something", where "something" does not itself contain commas,
-     * except as part of quoted-strings.
-     * @param header a header value
-     * @returns a {@link GLib.SList} of list elements, as allocated strings
-     */
     function header_parse_list(header: string): string[];
-
-    /**
-     * Parses a header which is a comma-delimited list of something like:
-     * <literal>token [ "=" ( token | quoted-string ) ]</literal>.
-     * 
-     * Tokens that don't have an associated value will still be added to
-     * the resulting hash table, but with a `null` value.
-     * 
-     * This also handles RFC5987 encoding (which in HTTP is mostly used
-     * for giving UTF8-encoded filenames in the Content-Disposition
-     * header).
-     * @param header a header value
-     * @returns a {@link GLib.HashTable} of list elements, which can be freed with `soup_header_free_param_list()`.
-     */
     function header_parse_param_list(header: string): { [key: string]: string };
-
-    /**
-     * A strict version of `soup_header_parse_param_list()`
-     * that bails out if there are duplicate parameters.
-     * Note that this function will treat RFC5987-encoded
-     * parameters as duplicated if an ASCII version is also
-     * present. For header fields that might contain
-     * RFC5987-encoded parameters, use
-     * `soup_header_parse_param_list()` instead.
-     * @param header a header value
-     * @returns a {@link GLib.HashTable} of list elements, which can be freed with `soup_header_free_param_list()` or `null` if there are duplicate elements.
-     * @since 2.66
-     */
     function header_parse_param_list_strict(header: string): { [key: string]: string } | null;
-
-    /**
-     * Parses a header whose content is a list of items with optional
-     * "qvalue"s (eg, Accept, Accept-Charset, Accept-Encoding,
-     * Accept-Language, TE).
-     * 
-     * If `unacceptable` is not `null`, then on return, it will contain the
-     * items with qvalue 0. Either way, those items will be removed from
-     * the main list.
-     * @param header a header value
-     * @returns a {@link GLib.SList} of acceptable values (as allocated strings), highest-qvalue first.
-     */
     function header_parse_quality_list(header: string): [string[], string[] | null];
-
-    /**
-     * Parses a header which is a semicolon-delimited list of something
-     * like: <literal>token [ "=" ( token | quoted-string ) ]</literal>.
-     * 
-     * Tokens that don't have an associated value will still be added to
-     * the resulting hash table, but with a `null` value.
-     * 
-     * This also handles RFC5987 encoding (which in HTTP is mostly used
-     * for giving UTF8-encoded filenames in the Content-Disposition
-     * header).
-     * @param header a header value
-     * @returns a {@link GLib.HashTable} of list elements, which can be freed with `soup_header_free_param_list()`.
-     * @since 2.24
-     */
     function header_parse_semi_param_list(header: string): { [key: string]: string };
-
-    /**
-     * A strict version of `soup_header_parse_semi_param_list()`
-     * that bails out if there are duplicate parameters.
-     * Note that this function will treat RFC5987-encoded
-     * parameters as duplicated if an ASCII version is also
-     * present. For header fields that might contain
-     * RFC5987-encoded parameters, use
-     * `soup_header_parse_semi_param_list()` instead.
-     * @param header a header value
-     * @returns a {@link GLib.HashTable} of list elements, which can be freed with `soup_header_free_param_list()` or `null` if there are duplicate elements.
-     * @since 2.66
-     */
     function header_parse_semi_param_list_strict(header: string): { [key: string]: string } | null;
-
-    /**
-     * Parses the headers of an HTTP request or response in `str` and
-     * stores the results in `dest`. Beware that `dest` may be modified even
-     * on failure.
-     * 
-     * This is a low-level method; normally you would use
-     * `soup_headers_parse_request()` or `soup_headers_parse_response()`.
-     * @param str the header string (including the Request-Line or Status-Line,   but not the trailing blank line)
-     * @param len length of `str`
-     * @param dest {@link Soup.MessageHeaders} to store the header values in
-     * @returns success or failure
-     * @since 2.26
-     */
     function headers_parse(str: string, len: number, dest: MessageHeaders): boolean;
-
-    /**
-     * Parses the headers of an HTTP request in `str` and stores the
-     * results in `req_method`, `req_path`, `ver`, and `req_headers`.
-     * 
-     * Beware that `req_headers` may be modified even on failure.
-     * @param str the headers (up to, but not including, the trailing blank line)
-     * @param len length of `str`
-     * @param req_headers {@link Soup.MessageHeaders} to store the header values in
-     * @returns {@link Soup.Status.OK} if the headers could be parsed, or an HTTP error to be returned to the client if they could not be.
-     */
     function headers_parse_request(str: string, len: number, req_headers: MessageHeaders): [number, string, string, HTTPVersion | null];
-
-    /**
-     * Parses the headers of an HTTP response in `str` and stores the
-     * results in `ver`, `status_code`, `reason_phrase`, and `headers`.
-     * 
-     * Beware that `headers` may be modified even on failure.
-     * @param str the headers (up to, but not including, the trailing blank line)
-     * @param len length of `str`
-     * @param headers {@link Soup.MessageHeaders} to store the header values in
-     * @returns success or failure.
-     */
     function headers_parse_response(str: string, len: number, headers: MessageHeaders): [boolean, HTTPVersion | null, number, string];
-
-    /**
-     * Parses the HTTP Status-Line string in `status_line` into `ver`,
-     * `status_code`, and `reason_phrase`. `status_line` must be terminated by
-     * either "\0" or "\r\n".
-     * @param status_line an HTTP Status-Line
-     * @returns `true` if `status_line` was parsed successfully.
-     */
     function headers_parse_status_line(status_line: string): [boolean, HTTPVersion | null, number, string];
-
     function http_error_quark(): GLib.Quark;
-
-    /**
-     * Initializes `iter` for iterating `hdrs`.
-     * @param hdrs a %SoupMessageHeaders
-     */
     function message_headers_iter_init(hdrs: MessageHeaders): MessageHeadersIter;
-
-    /**
-     * Yields the next name/value pair in the %SoupMessageHeaders being
-     * iterated by `iter`. If `iter` has already yielded the last header,
-     * then `soup_message_headers_iter_next()` will return `false` and `name`
-     * and `value` will be unchanged.
-     * @param iter a %SoupMessageHeadersIter
-     * @returns `true` if another name and value were returned, `false` if the end of the headers has been reached.
-     */
     function message_headers_iter_next(iter: MessageHeadersIter): [boolean, MessageHeadersIter, string, string];
-
     function request_error_quark(): GLib.Quark;
-
     function requester_error_quark(): GLib.Quark;
-
-    /**
-     * Looks up the stock HTTP description of `status_code`. This is used
-     * by `soup_message_set_status()` to get the correct text to go with a
-     * given status code.
-     * 
-     * <emphasis>There is no reason for you to ever use this
-     * function.</emphasis> If you wanted the textual description for the
-     * {@link Soup.Message.status_code} of a given {@link Soup.Message}, you should just
-     * look at the message's {@link Soup.Message.reason_phrase}. However, you
-     * should only do that for use in debugging messages; HTTP reason
-     * phrases are not localized, and are not generally very descriptive
-     * anyway, and so they should never be presented to the user directly.
-     * Instead, you should create you own error messages based on the
-     * status code, and on what you were trying to do.
-     * @param status_code an HTTP status code
-     * @returns the (terse, English) description of `status_code`
-     */
     function status_get_phrase(status_code: number): string;
-
-    /**
-     * Turns {@link Soup.Status.CANT_RESOLVE} into
-     * {@link Soup.Status.CANT_RESOLVE_PROXY} and {@link Soup.Status.CANT_CONNECT} into
-     * {@link Soup.Status.CANT_CONNECT_PROXY}. Other status codes are passed
-     * through unchanged.
-     * @param status_code a status code
-     * @returns the "proxified" equivalent of `status_code`.
-     * @since 2.26
-     */
     function status_proxify(status_code: number): number;
-
-    /**
-     * Compares `v1` and `v2` in a case-insensitive manner
-     * @param v1 an ASCII string
-     * @param v2 another ASCII string
-     * @returns `true` if they are equal (modulo case)
-     */
     function str_case_equal(v1: null, v2: null): boolean;
-
-    /**
-     * Hashes `key` in a case-insensitive manner.
-     * @param key ASCII string to hash
-     * @returns the hash code.
-     */
     function str_case_hash(key: null): number;
-
-    /**
-     * Looks whether the `domain` passed as argument is a public domain
-     * suffix (.org, .com, .co.uk, etc) or not.
-     * 
-     * Prior to libsoup 2.46, this function required that `domain` be in
-     * UTF-8 if it was an IDN. From 2.46 on, the name can be in either
-     * UTF-8 or ASCII format.
-     * @param domain a domain name
-     * @returns `true` if it is a public domain, `false` otherwise.
-     * @since 2.40
-     */
     function tld_domain_is_public_suffix(domain: string): boolean;
-
     function tld_error_quark(): GLib.Quark;
-
-    /**
-     * Finds the base domain for a given `hostname`. The base domain is
-     * composed by the top level domain (such as .org, .com, .co.uk, etc)
-     * plus the second level domain, for example for myhost.mydomain.com
-     * it will return mydomain.com.
-     * 
-     * Note that `null` will be returned for private URLs (those not ending
-     * with any well known TLD) because choosing a base domain for them
-     * would be totally arbitrary.
-     * 
-     * Prior to libsoup 2.46, this function required that `hostname` be in
-     * UTF-8 if it was an IDN. From 2.46 on, the name can be in either
-     * UTF-8 or ASCII format (and the return value will be in the same
-     * format).
-     * @param hostname a hostname
-     * @returns a pointer to the start of the base domain in `hostname`. If an error occurs, `null` will be returned and `error` set.
-     * @since 2.40
-     */
     function tld_get_base_domain(hostname: string): string;
-
-    /**
-     * Fully %<!-- -->-decodes `part`.
-     * 
-     * In the past, this would return `null` if `part` contained invalid
-     * percent-encoding, but now it just ignores the problem (as
-     * `soup_uri_new()` already did).
-     * @param part a URI part
-     * @returns the decoded URI part.
-     */
     function uri_decode(part: string): string;
-
-    /**
-     * This %<!-- -->-encodes the given URI part and returns the escaped
-     * version in allocated memory, which the caller must free when it is
-     * done.
-     * @param part a URI part
-     * @param escape_extra additional reserved characters to escape (or `null`)
-     * @returns the encoded URI part
-     */
     function uri_encode(part: string, escape_extra: string | null): string;
-
-    /**
-     * %<!-- -->-decodes any "unreserved" characters (or characters in
-     * `unescape_extra`) in `part`, and %<!-- -->-encodes any non-ASCII
-     * characters, spaces, and non-printing characters in `part`.
-     * 
-     * "Unreserved" characters are those that are not allowed to be used
-     * for punctuation according to the URI spec. For example, letters are
-     * unreserved, so `soup_uri_normalize()` will turn
-     * <literal>http://example.com/foo/b%<!-- -->61r</literal> into
-     * <literal>http://example.com/foo/bar</literal>, which is guaranteed
-     * to mean the same thing. However, "/" is "reserved", so
-     * <literal>http://example.com/foo%<!-- -->2Fbar</literal> would not
-     * be changed, because it might mean something different to the
-     * server.
-     * 
-     * In the past, this would return `null` if `part` contained invalid
-     * percent-encoding, but now it just ignores the problem (as
-     * `soup_uri_new()` already did).
-     * @param part a URI part
-     * @param unescape_extra reserved characters to unescape (or `null`)
-     * @returns the normalized URI part
-     */
     function uri_normalize(part: string, unescape_extra: string | null): string;
-
-    /**
-     * Creates a new %GValueArray. (This is just a wrapper around
-     * `g_value_array_new()`, for naming consistency purposes.)
-     * @returns a new %GValueArray
-     * @deprecated Use {@link GLib.Variant} API instead.
-     */
     function value_array_new(): GObject.ValueArray;
-
-    /**
-     * Inserts `value` into `hash`. (Unlike with `g_hash_table_insert()`, both
-     * the key and the value are copied).
-     * @param hash a value hash
-     * @param key the key
-     * @param value a value
-     * @deprecated Use {@link GLib.Variant} API instead.
-     */
     function value_hash_insert_value(hash: { [key: string]: GObject.Value }, key: string, value: GObject.Value | any): void;
-
-    /**
-     * Creates a {@link GLib.HashTable} whose keys are strings and whose values
-     * are {@link GObject.Value}.
-     * @returns a new empty {@link GLib.HashTable}
-     * @deprecated Use {@link GLib.Variant} API instead.
-     */
     function value_hash_new(): { [key: string]: GObject.Value };
-
-    /**
-     * Adds the necessary headers to `msg` to request a WebSocket
-     * handshake. The message body and non-WebSocket-related headers are
-     * not modified.
-     * 
-     * Use `soup_websocket_client_prepare_handshake_with_extensions()` if you
-     * want to include "Sec-WebSocket-Extensions" header in the request.
-     * 
-     * This is a low-level function; if you use
-     * `soup_session_websocket_connect_async()` to create a WebSocket
-     * connection, it will call this for you.
-     * @param msg a {@link Soup.Message}
-     * @param origin the "Origin" header to set
-     * @param protocols list of   protocols to offer
-     * @since 2.50
-     */
     function websocket_client_prepare_handshake(msg: Message, origin: string | null, protocols: string[] | null): void;
-
-    /**
-     * Adds the necessary headers to `msg` to request a WebSocket
-     * handshake including supported WebSocket extensions.
-     * The message body and non-WebSocket-related headers are
-     * not modified.
-     * 
-     * This is a low-level function; if you use
-     * `soup_session_websocket_connect_async()` to create a WebSocket
-     * connection, it will call this for you.
-     * @param msg a {@link Soup.Message}
-     * @param origin the "Origin" header to set
-     * @param protocols list of   protocols to offer
-     * @param supported_extensions list   of supported extension types
-     * @since 2.68
-     */
     function websocket_client_prepare_handshake_with_extensions(msg: Message, origin: string | null, protocols: string[] | null, supported_extensions: GObject.TypeClass[] | null): void;
-
-    /**
-     * Looks at the response status code and headers in `msg` and
-     * determines if they contain a valid WebSocket handshake response
-     * (given the handshake request in `msg`'s request headers).
-     * 
-     * If the response contains the "Sec-WebSocket-Extensions" header,
-     * the handshake will be considered invalid. You need to use
-     * `soup_websocket_client_verify_handshake_with_extensions()` to handle
-     * responses with extensions.
-     * 
-     * This is a low-level function; if you use
-     * `soup_session_websocket_connect_async()` to create a WebSocket
-     * connection, it will call this for you.
-     * @param msg {@link Soup.Message} containing both client and server sides of a   WebSocket handshake
-     * @returns `true` if `msg` contains a completed valid WebSocket   handshake, `false` and an error if not.
-     * @since 2.50
-     */
     function websocket_client_verify_handshake(msg: Message): boolean;
-
-    /**
-     * Looks at the response status code and headers in `msg` and
-     * determines if they contain a valid WebSocket handshake response
-     * (given the handshake request in `msg`'s request headers).
-     * 
-     * If `supported_extensions` is non-`null`, extensions included in the
-     * response "Sec-WebSocket-Extensions" are verified too. Accepted
-     * extensions are returned in `accepted_extensions` parameter if non-`null`.
-     * 
-     * This is a low-level function; if you use
-     * `soup_session_websocket_connect_async()` to create a WebSocket
-     * connection, it will call this for you.
-     * @param msg {@link Soup.Message} containing both client and server sides of a   WebSocket handshake
-     * @param supported_extensions list   of supported extension types
-     * @returns `true` if `msg` contains a completed valid WebSocket   handshake, `false` and an error if not.
-     * @since 2.68
-     */
     function websocket_client_verify_handshake_with_extensions(msg: Message, supported_extensions: GObject.TypeClass[] | null): [boolean, WebsocketExtension[] | null];
-
     function websocket_error_get_quark(): GLib.Quark;
-
-    /**
-     * Examines the method and request headers in `msg` and determines
-     * whether `msg` contains a valid handshake request.
-     * 
-     * If `origin` is non-`null`, then only requests containing a matching
-     * "Origin" header will be accepted. If `protocols` is non-`null`, then
-     * only requests containing a compatible "Sec-WebSocket-Protocols"
-     * header will be accepted.
-     * 
-     * Requests containing "Sec-WebSocket-Extensions" header will be
-     * accepted even if the header is not valid. To check a request
-     * with extensions you need to use
-     * `soup_websocket_server_check_handshake_with_extensions()` and provide
-     * the list of supported extension types.
-     * 
-     * Normally `soup_websocket_server_process_handshake()` will take care
-     * of this for you, and if you use `soup_server_add_websocket_handler()`
-     * to handle accepting WebSocket connections, it will call that for
-     * you. However, this function may be useful if you need to perform
-     * more complicated validation; eg, accepting multiple different Origins,
-     * or handling different protocols depending on the path.
-     * @param msg {@link Soup.Message} containing the client side of a WebSocket handshake
-     * @param origin expected Origin header
-     * @param protocols allowed WebSocket   protocols.
-     * @returns `true` if `msg` contained a valid WebSocket handshake,   `false` and an error if not.
-     * @since 2.50
-     */
     function websocket_server_check_handshake(msg: Message, origin: string | null, protocols: string[] | null): boolean;
-
-    /**
-     * Examines the method and request headers in `msg` and determines
-     * whether `msg` contains a valid handshake request.
-     * 
-     * If `origin` is non-`null`, then only requests containing a matching
-     * "Origin" header will be accepted. If `protocols` is non-`null`, then
-     * only requests containing a compatible "Sec-WebSocket-Protocols"
-     * header will be accepted. If `supported_extensions` is non-`null`, then
-     * only requests containing valid supported extensions in
-     * "Sec-WebSocket-Extensions" header will be accepted.
-     * 
-     * Normally `soup_websocket_server_process_handshake_with_extensioins()`
-     * will take care of this for you, and if you use
-     * `soup_server_add_websocket_handler()` to handle accepting WebSocket
-     * connections, it will call that for you. However, this function may
-     * be useful if you need to perform more complicated validation; eg,
-     * accepting multiple different Origins, or handling different protocols
-     * depending on the path.
-     * @param msg {@link Soup.Message} containing the client side of a WebSocket handshake
-     * @param origin expected Origin header
-     * @param protocols allowed WebSocket   protocols.
-     * @param supported_extensions list   of supported extension types
-     * @returns `true` if `msg` contained a valid WebSocket handshake,   `false` and an error if not.
-     * @since 2.68
-     */
     function websocket_server_check_handshake_with_extensions(msg: Message, origin: string | null, protocols: string[] | null, supported_extensions: GObject.TypeClass[] | null): boolean;
-
-    /**
-     * Examines the method and request headers in `msg` and (assuming `msg`
-     * contains a valid handshake request), fills in the handshake
-     * response.
-     * 
-     * If `expected_origin` is non-`null`, then only requests containing a matching
-     * "Origin" header will be accepted. If `protocols` is non-`null`, then
-     * only requests containing a compatible "Sec-WebSocket-Protocols"
-     * header will be accepted.
-     * 
-     * Requests containing "Sec-WebSocket-Extensions" header will be
-     * accepted even if the header is not valid. To process a request
-     * with extensions you need to use
-     * `soup_websocket_server_process_handshake_with_extensions()` and provide
-     * the list of supported extension types.
-     * 
-     * This is a low-level function; if you use
-     * `soup_server_add_websocket_handler()` to handle accepting WebSocket
-     * connections, it will call this for you.
-     * @param msg {@link Soup.Message} containing the client side of a WebSocket handshake
-     * @param expected_origin expected Origin header
-     * @param protocols allowed WebSocket   protocols.
-     * @returns `true` if `msg` contained a valid WebSocket handshake   request and was updated to contain a handshake response. `false` if not.
-     * @since 2.50
-     */
     function websocket_server_process_handshake(msg: Message, expected_origin: string | null, protocols: string[] | null): boolean;
-
-    /**
-     * Examines the method and request headers in `msg` and (assuming `msg`
-     * contains a valid handshake request), fills in the handshake
-     * response.
-     * 
-     * If `expected_origin` is non-`null`, then only requests containing a matching
-     * "Origin" header will be accepted. If `protocols` is non-`null`, then
-     * only requests containing a compatible "Sec-WebSocket-Protocols"
-     * header will be accepted. If `supported_extensions` is non-`null`, then
-     * only requests containing valid supported extensions in
-     * "Sec-WebSocket-Extensions" header will be accepted. The accepted extensions
-     * will be returned in `accepted_extensions` parameter if non-`null`.
-     * 
-     * This is a low-level function; if you use
-     * `soup_server_add_websocket_handler()` to handle accepting WebSocket
-     * connections, it will call this for you.
-     * @param msg {@link Soup.Message} containing the client side of a WebSocket handshake
-     * @param expected_origin expected Origin header
-     * @param protocols allowed WebSocket   protocols.
-     * @param supported_extensions list   of supported extension types
-     * @returns `true` if `msg` contained a valid WebSocket handshake   request and was updated to contain a handshake response. `false` if not.
-     * @since 2.68
-     */
     function websocket_server_process_handshake_with_extensions(msg: Message, expected_origin: string | null, protocols: string[] | null, supported_extensions: GObject.TypeClass[] | null): [boolean, WebsocketExtension[] | null];
-
-    /**
-     * This creates an XML-RPC methodCall and returns it as a string.
-     * This is the low-level method that `soup_xmlrpc_request_new()` is
-     * built on.
-     * 
-     * `params` is an array of {@link GObject.Value} representing the parameters to
-     * `method`. (It is *not* a {@link GObject.ValueArray}, although if you have a
-     * {@link GObject.ValueArray}, you can just pass its <literal>values</literal>f and
-     * <literal>n_values</literal> fields.)
-     * 
-     * The correspondence between glib types and XML-RPC types is:
-     * 
-     *   int: #int (`G_TYPE_INT`)
-     *   boolean: `gboolean` (`G_TYPE_BOOLEAN`)
-     *   string: #char* (`G_TYPE_STRING`)
-     *   double: #double (`G_TYPE_DOUBLE`)
-     *   datetime.iso8601: {@link Soup.Date} (`SOUP_TYPE_DATE`)
-     *   base64: {@link GLib.ByteArray} (`SOUP_TYPE_BYTE_ARRAY`)
-     *   struct: {@link GLib.HashTable} (`G_TYPE_HASH_TABLE`)
-     *   array: {@link GObject.ValueArray} (`G_TYPE_VALUE_ARRAY`)
-     * 
-     * For structs, use a {@link GLib.HashTable} that maps strings to {@link GObject.Value};
-     * `soup_value_hash_new()` and related methods can help with this.
-     * @param method_name the name of the XML-RPC method
-     * @param params arguments to `method`
-     * @returns the text of the methodCall, or `null` on error
-     * @deprecated Use `soup_xmlrpc_build_request()` instead.
-     */
     function xmlrpc_build_method_call(method_name: string, params: (GObject.Value | any)[]): string | null;
-
-    /**
-     * This creates a (successful) XML-RPC methodResponse and returns it
-     * as a string. To create a fault response, use
-     * `soup_xmlrpc_build_fault()`.
-     * 
-     * The glib type to XML-RPC type mapping is as with
-     * `soup_xmlrpc_build_method_call()`, qv.
-     * @param value the return value
-     * @returns the text of the methodResponse, or `null` on error
-     * @deprecated Use `soup_xmlrpc_build_response()` instead.
-     */
     function xmlrpc_build_method_response(value: GObject.Value | any): string | null;
-
-    /**
-     * This creates an XML-RPC methodCall and returns it as a string.
-     * This is the low-level method that `soup_xmlrpc_message_new()` is
-     * built on.
-     * 
-     * `params` is a {@link GLib.Variant} tuple representing the method parameters.
-     * 
-     * Serialization details:
-     *  - "a{s*}" and "{s*}" are serialized as &lt;struct&gt;
-     *  - "ay" is serialized as &lt;base64&gt;
-     *  - Other arrays and tuples are serialized as &lt;array&gt;
-     *  - booleans are serialized as &lt;boolean&gt;
-     *  - byte, int16, uint16 and int32 are serialized as &lt;int&gt;
-     *  - uint32 and int64 are serialized as the nonstandard &lt;i8&gt; type
-     *  - doubles are serialized as &lt;double&gt;
-     *  - Strings are serialized as &lt;string&gt;
-     *  - Variants (i.e. "v" type) are unwrapped and their child is serialized.
-     *  - `GVariants` created by `soup_xmlrpc_variant_new_datetime()` are serialized as
-     *    &lt;dateTime.iso8601&gt;
-     *  - Other types are not supported and will return `null` and set `error`.
-     *    This notably includes: object-paths, signatures, uint64, handles, maybes
-     *    and dictionaries with non-string keys.
-     * 
-     * If `params` is floating, it is consumed.
-     * @param method_name the name of the XML-RPC method
-     * @param params a {@link GLib.Variant} tuple
-     * @returns the text of the methodCall, or `null` on error.
-     * @since 2.52
-     */
     function xmlrpc_build_request(method_name: string, params: GLib.Variant): string;
-
-    /**
-     * This creates a (successful) XML-RPC methodResponse and returns it
-     * as a string. To create a fault response, use `soup_xmlrpc_build_fault()`. This
-     * is the low-level method that `soup_xmlrpc_message_set_response()` is built on.
-     * 
-     * See `soup_xmlrpc_build_request()` for serialization details, but note
-     * that since a method can only have a single return value, `value`
-     * should not be a tuple here (unless the return value is an array).
-     * 
-     * If `value` is floating, it is consumed.
-     * @param value the return value
-     * @returns the text of the methodResponse, or `null` on error.
-     * @since 2.52
-     */
     function xmlrpc_build_response(value: GLib.Variant): string;
-
     function xmlrpc_error_quark(): GLib.Quark;
-
     function xmlrpc_fault_quark(): GLib.Quark;
-
-    /**
-     * Creates an XML-RPC methodCall and returns a {@link Soup.Message}, ready
-     * to send, for that method call.
-     * 
-     * See `soup_xmlrpc_build_request()` for serialization details.
-     * 
-     * If `params` is floating, it is consumed.
-     * @param uri URI of the XML-RPC service
-     * @param method_name the name of the XML-RPC method to invoke at `uri`
-     * @param params a {@link GLib.Variant} tuple
-     * @returns a {@link Soup.Message} encoding the   indicated XML-RPC request, or `null` on error.
-     * @since 2.52
-     */
     function xmlrpc_message_new(uri: string, method_name: string, params: GLib.Variant): Message;
-
-    /**
-     * Sets the status code and response body of `msg` to indicate a
-     * successful XML-RPC call, with a return value given by `value`. To set a
-     * fault response, use `soup_xmlrpc_message_set_fault()`.
-     * 
-     * See `soup_xmlrpc_build_request()` for serialization details.
-     * 
-     * If `value` is floating, it is consumed.
-     * @param msg an XML-RPC request
-     * @param value a {@link GLib.Variant}
-     * @returns `true` on success, `false` otherwise.
-     * @since 2.52
-     */
     function xmlrpc_message_set_response(msg: Message, value: GLib.Variant): boolean;
-
-    /**
-     * Parses `method_call` to get the name and parameters, and returns the
-     * parameter values in a {@link GObject.ValueArray}; see also
-     * `soup_xmlrpc_extract_method_call()`, which is more convenient if you
-     * know in advance what the types of the parameters will be.
-     * @param method_call the XML-RPC methodCall string
-     * @param length the length of `method_call`, or -1 if it is NUL-terminated
-     * @returns success or failure.
-     * @deprecated Use `soup_xmlrpc_parse_request_full()` instead.
-     */
     function xmlrpc_parse_method_call(method_call: string, length: number): [boolean, string, GObject.ValueArray];
-
-    /**
-     * Parses `method_response` and returns the return value in `value`. If
-     * `method_response` is a fault, `value` will be unchanged, and `error`
-     * will be set to an error of type `SOUP_XMLRPC_FAULT`, with the error
-     * #code containing the fault code, and the error #message containing
-     * the fault string. (If `method_response` cannot be parsed at all,
-     * `soup_xmlrpc_parse_method_response()` will return `false`, but `error`
-     * will be unset.)
-     * @param method_response the XML-RPC methodResponse string
-     * @param length the length of `method_response`, or -1 if it is NUL-terminated
-     * @returns `true` if a return value was parsed, `false` if the response could not be parsed, or contained a fault.
-     * @deprecated Use `soup_xmlrpc_parse_response()` instead.
-     */
     function xmlrpc_parse_method_response(method_response: string, length: number): [boolean, unknown];
-
-    /**
-     * Parses `method_call` and return the method name. Method parameters can be
-     * parsed later using `soup_xmlrpc_params_parse()`.
-     * @param method_call the XML-RPC methodCall string
-     * @param length the length of `method_call`, or -1 if it is NUL-terminated
-     * @returns method's name, or `null` on error.
-     * @since 2.52
-     */
     function xmlrpc_parse_request(method_call: string, length: number): [string, XMLRPCParams];
-
-    /**
-     * Parses `method_response` and returns the return value. If
-     * `method_response` is a fault, `null` is returned, and `error`
-     * will be set to an error in the `SOUP_XMLRPC_FAULT` domain, with the error
-     * code containing the fault code, and the error message containing
-     * the fault string. If `method_response` cannot be parsed, `null` is returned,
-     * and `error` will be set to an error in the `SOUP_XMLRPC_ERROR` domain.
-     * 
-     * See `soup_xmlrpc_params_parse()` for deserialization details.
-     * @param method_response the XML-RPC methodResponse string
-     * @param length the length of `method_response`, or -1 if it is NUL-terminated
-     * @param signature A valid {@link GLib.Variant} type string, or `null`
-     * @returns a new (non-floating) {@link GLib.Variant}, or `null`
-     * @since 2.52
-     */
     function xmlrpc_parse_response(method_response: string, length: number, signature: string | null): GLib.Variant;
-
-    /**
-     * Get the {@link Soup.Date} from special {@link GLib.Variant} created by
-     * `soup_xmlrpc_variant_new_datetime()` or by parsing a &lt;dateTime.iso8601&gt;
-     * node. See `soup_xmlrpc_params_parse()`.
-     * 
-     * If `variant` does not contain a datetime it will return an error but it is not
-     * considered a programmer error because it generally means parameters received
-     * are not in the expected type.
-     * @param variant a {@link GLib.Variant}
-     * @returns a new {@link Soup.Date}, or `null` on error.
-     * @since 2.52
-     */
     function xmlrpc_variant_get_datetime(variant: GLib.Variant): Date;
-
-    /**
-     * Construct a special {@link GLib.Variant} used to serialize a &lt;dateTime.iso8601&gt;
-     * node. See `soup_xmlrpc_build_request()`.
-     * 
-     * The actual type of the returned {@link GLib.Variant} is unspecified and "v" or "*"
-     * should be used in variant format strings. For example:
-     * <informalexample><programlisting>
-     * args = g_variant_new ("(v)", soup_xmlrpc_variant_new_datetime (date));
-     * </programlisting></informalexample>
-     * @param date a {@link Soup.Date}
-     * @returns a floating {@link GLib.Variant}.
-     * @since 2.52
-     */
     function xmlrpc_variant_new_datetime(date: Date): GLib.Variant;
-
-    /**
-     * @gir-type Callback
-     */
     interface AddressCallback {
         (addr: Address, status: number): void;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface AuthDomainBasicAuthCallback {
         (domain: AuthDomainBasic, msg: Message, username: string, password: string): boolean;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface AuthDomainDigestAuthCallback {
         (domain: AuthDomainDigest, msg: Message, username: string): string | null;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface AuthDomainFilter {
         (domain: AuthDomain, msg: Message): boolean;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface AuthDomainGenericAuthCallback {
         (domain: AuthDomain, msg: Message, username: string): boolean;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface ChunkAllocator {
         (msg: Message, max_len: number): Buffer | null;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface LoggerFilter {
         (logger: Logger, msg: Message): LoggerLogLevel;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface LoggerPrinter {
         (logger: Logger, level: LoggerLogLevel, direction: number, data: string): void;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface MessageHeadersForeachFunc {
         (name: string, value: string): void;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface PasswordManagerCallback {
         (password_manager: PasswordManager, msg: Message, auth: Auth, retrying: boolean): void;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface ProxyResolverCallback {
         (proxy_resolver: ProxyResolver, msg: Message, arg: number, addr: Address): void;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface ProxyURIResolverCallback {
         (resolver: ProxyURIResolver, status: number, proxy_uri: URI): void;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface ServerCallback {
         (server: Server, msg: Message, path: string, query: { [key: string]: string } | null, client: ClientContext): void;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface ServerWebsocketCallback {
         (server: Server, connection: WebsocketConnection, path: string, client: ClientContext): void;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface SessionCallback {
         (session: Session, msg: Message): void;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface SessionConnectProgressCallback {
         (session: Session, event: Gio.SocketClientEvent, connection: Gio.IOStream): void;
     }
-
-    /**
-     * @gir-type Callback
-     */
     interface SocketCallback {
         (sock: Socket, status: number): void;
     }
-
-    /**
-     * @gir-type Alias
-     */
     type ByteArray = object | null;
-
-    /**
-     * @gir-type Flags
-     */
     export namespace Cacheability {
         export const $gtype: GObject.GType<Cacheability>;
     }
-
-    /**
-     * @gir-type Flags
-     */
     enum Cacheability {
         CACHEABLE,
         UNCACHEABLE,
         INVALIDATES,
         VALIDATES,
     }
-
-
-    /**
-     * @gir-type Flags
-     */
     export namespace Expectation {
         export const $gtype: GObject.GType<Expectation>;
     }
-
-    /**
-     * Represents the parsed value of the "Expect" header.
-     * @gir-type Flags
-     */
     enum Expectation {
-        /**
-         * any unrecognized expectation
-         */
         UNRECOGNIZED,
-        /**
-         * "100-continue"
-         */
         CONTINUE,
     }
-
-
-    /**
-     * @gir-type Flags
-     */
     export namespace MessageFlags {
         export const $gtype: GObject.GType<MessageFlags>;
     }
-
-    /**
-     * Various flags that can be set on a {@link Soup.Message} to alter its
-     * behavior.
-     * @gir-type Flags
-     */
     enum MessageFlags {
-        /**
-         * The session should not follow redirect
-         *   (3xx) responses received by this message.
-         */
         NO_REDIRECT,
-        /**
-         * The caller will rebuild the request
-         *   body if the message is restarted; see
-         *   `soup_message_body_set_accumulate()` for more details.
-         */
         CAN_REBUILD,
-        /**
-         * Deprecated: equivalent to calling
-         *   `soup_message_body_set_accumulate()` on the incoming message body
-         *   (ie, {@link Soup.Message.response_body} for a client-side request),
-         *   passing `false`.
-         */
         OVERWRITE_CHUNKS,
-        /**
-         * Set by {@link Soup.ContentDecoder} to
-         *   indicate that it has removed the Content-Encoding on a message (and
-         *   so headers such as Content-Length may no longer accurately describe
-         *   the body).
-         */
         CONTENT_DECODED,
-        /**
-         * if set after an https response
-         *   has been received, indicates that the server's SSL certificate is
-         *   trusted according to the session's CA.
-         */
         CERTIFICATE_TRUSTED,
-        /**
-         * Requests that the message should be
-         *   sent on a newly-created connection, not reusing an existing
-         *   persistent connection. Note that messages with non-idempotent
-         *   {@link Soup.Message.method}<!-- -->s behave this way by default, unless
-         *   #SOUP_MESSAGE_IDEMPOTENT is set.
-         */
         NEW_CONNECTION,
-        /**
-         * The message is considered idempotent,
-         *   regardless its {@link Soup.Message.method}, and allows reuse of existing
-         *   idle connections, instead of always requiring a new one, unless
-         *   #SOUP_MESSAGE_NEW_CONNECTION is set.
-         */
         IDEMPOTENT,
-        /**
-         * Request that a new connection is
-         *   created for the message if there aren't idle connections available
-         *   and it's not possible to create new connections due to any of the
-         *   connection limits has been reached. If a dedicated connection is
-         *   eventually created for this message, it will be dropped when the
-         *   message finishes. Since 2.50
-         */
         IGNORE_CONNECTION_LIMITS,
-        /**
-         * The {@link Soup.AuthManager} should not use
-         *   the credentials cache for this message, neither to use cached credentials
-         *   to automatically authenticate this message nor to cache the credentials
-         *   after the message is successfully authenticated. This applies to both server
-         *   and proxy authentication. Note that {@link Soup.Session.SignalSignatures.authenticate | Soup.Session::authenticate} signal will
-         *   be emitted, if you want to disable authentication for a message use
-         *   `soup_message_disable_feature()` passing #SOUP_TYPE_AUTH_MANAGER instead. Since 2.58
-         */
         DO_NOT_USE_AUTH_CACHE,
     }
-
-
-    /**
-     * @gir-type Flags
-     */
     export namespace ServerListenOptions {
         export const $gtype: GObject.GType<ServerListenOptions>;
     }
-
-    /**
-     * Options to pass to `soup_server_listen()`, etc.
-     * 
-     * {@link Soup.ServerListenOptions.IPV4_ONLY} and {@link Soup.ServerListenOptions.IPV6_ONLY}
-     * only make sense with `soup_server_listen_all()` and
-     * `soup_server_listen_local()`, not plain `soup_server_listen()` (which
-     * simply listens on whatever kind of socket you give it). And you
-     * cannot specify both of them in a single call.
-     * @gir-type Flags
-     * @since 2.48
-     */
     enum ServerListenOptions {
-        /**
-         * Listen for https connections rather
-         *   than plain http.
-         */
         HTTPS,
-        /**
-         * Only listen on IPv4 interfaces.
-         */
         IPV4_ONLY,
-        /**
-         * Only listen on IPv6 interfaces.
-         */
         IPV6_ONLY,
     }
-
-
     namespace Address {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
             "notify::family": (pspec: GObject.ParamSpec) => void;
             "notify::name": (pspec: GObject.ParamSpec) => void;
@@ -3164,8 +647,6 @@ export namespace Soup {
             "notify::protocol": (pspec: GObject.ParamSpec) => void;
             "notify::sockaddr": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, Gio.SocketConnectable.ConstructorProps {
             family: AddressFamily;
             name: string | null;
@@ -3175,300 +656,46 @@ export namespace Soup {
             sockaddr: never;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class Address extends GObject.Object implements Gio.SocketConnectable {
         static $gtype: GObject.GType<Address>;
-
-        // Properties
-        /**
-         * @construct-only
-         * @default Soup.AddressFamily.INVALID
-         */
         get family(): AddressFamily;
-
-        /**
-         * @construct-only
-         * @default null
-         */
         get name(): string | null;
-
-        /**
-         * @read-only
-         * @default null
-         */
         get physical(): string | null;
-
-        /**
-         * @construct-only
-         * @default -1
-         */
         get port(): number;
-
-        /**
-         * @construct-only
-         * @default null
-         */
         get protocol(): string;
-
-        /**
-         * @construct-only
-         */
         get sockaddr(): null;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: Address.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<Address.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](name: string, port: number): Address;
-
         static new_any(family: AddressFamily, port: number): Address;
-
         static new_from_sockaddr(sa: null, len: number): Address;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof Address.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Address.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof Address.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Address.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof Address.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Address.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Methods
-        /**
-         * Tests if `addr1` and `addr2` have the same IP address. This method
-         * can be used with `soup_address_hash_by_ip()` to create a
-         * {@link GLib.HashTable} that hashes on IP address.
-         * 
-         * This would be used to distinguish hosts in situations where
-         * different virtual hosts on the same IP address should be considered
-         * the same. Eg, if "www.example.com" and "www.example.net" have the
-         * same IP address, then a single connection can be used to talk
-         * to either of them.
-         * 
-         * See also `soup_address_equal_by_name()`, which compares by name
-         * rather than by IP address.
-         * @param addr2 another {@link Soup.Address} with a resolved   IP address
-         * @returns whether or not `addr1` and `addr2` have the same IP address.
-         */
         equal_by_ip(addr2: Address): boolean;
-
-        /**
-         * Tests if `addr1` and `addr2` have the same "name". This method can be
-         * used with `soup_address_hash_by_name()` to create a {@link GLib.HashTable} that
-         * hashes on address "names".
-         * 
-         * Comparing by name normally means comparing the addresses by their
-         * hostnames. But if the address was originally created using an IP
-         * address literal, then it will be compared by that instead.
-         * 
-         * In particular, if "www.example.com" has the IP address 10.0.0.1,
-         * and `addr1` was created with the name "www.example.com" and `addr2`
-         * was created with the name "10.0.0.1", then they will compare as
-         * unequal for purposes of `soup_address_equal_by_name()`.
-         * 
-         * This would be used to distinguish hosts in situations where
-         * different virtual hosts on the same IP address should be considered
-         * different. Eg, for purposes of HTTP authentication or cookies, two
-         * hosts with the same IP address but different names are considered
-         * to be different hosts.
-         * 
-         * See also `soup_address_equal_by_ip()`, which compares by IP address
-         * rather than by name.
-         * @param addr2 another {@link Soup.Address} with a resolved   name
-         * @returns whether or not `addr1` and `addr2` have the same name
-         */
         equal_by_name(addr2: Address): boolean;
-
-        /**
-         * Creates a new {@link Gio.SocketAddress} corresponding to `addr` (which is assumed
-         * to only have one socket address associated with it).
-         * @returns a new {@link Gio.SocketAddress}
-         */
         get_gsockaddr(): Gio.SocketAddress;
-
-        /**
-         * Returns the hostname associated with `addr`.
-         * 
-         * This method is not thread-safe; if you call it while `addr` is being
-         * resolved in another thread, it may return garbage. You can use
-         * `soup_address_is_resolved()` to safely test whether or not an address
-         * is resolved before fetching its name or address.
-         * @returns the hostname, or `null` if it is not known.
-         */
         get_name(): string | null;
-
-        /**
-         * Returns the physical address associated with `addr` as a string.
-         * (Eg, "127.0.0.1"). If the address is not yet known, returns `null`.
-         * 
-         * This method is not thread-safe; if you call it while `addr` is being
-         * resolved in another thread, it may return garbage. You can use
-         * `soup_address_is_resolved()` to safely test whether or not an address
-         * is resolved before fetching its name or address.
-         * @returns the physical address, or `null`
-         */
         get_physical(): string | null;
-
-        /**
-         * Returns the port associated with `addr`.
-         * @returns the port
-         */
         get_port(): number;
-
-        /**
-         * Returns the sockaddr associated with `addr`, with its length in
-         * *`len`. If the sockaddr is not yet known, returns `null`.
-         * 
-         * This method is not thread-safe; if you call it while `addr` is being
-         * resolved in another thread, it may return garbage. You can use
-         * `soup_address_is_resolved()` to safely test whether or not an address
-         * is resolved before fetching its name or address.
-         * @returns the sockaddr, or `null`
-         */
         get_sockaddr(): [null, number];
-
-        /**
-         * A hash function (for {@link GLib.HashTable}) that corresponds to
-         * `soup_address_equal_by_ip()`, qv
-         * @returns the IP-based hash value for `addr`.
-         */
         hash_by_ip(): number;
-
-        /**
-         * A hash function (for {@link GLib.HashTable}) that corresponds to
-         * `soup_address_equal_by_name()`, qv
-         * @returns the named-based hash value for `addr`.
-         */
         hash_by_name(): number;
-
-        /**
-         * Tests if `addr` has already been resolved. Unlike the other
-         * {@link Soup.Address} "get" methods, this is safe to call when `addr` might
-         * be being resolved in another thread.
-         * @returns `true` if `addr` has been resolved.
-         */
         is_resolved(): boolean;
-
-        /**
-         * Asynchronously resolves the missing half of `addr` (its IP address
-         * if it was created with `soup_address_new()`, or its hostname if it
-         * was created with `soup_address_new_from_sockaddr()` or
-         * `soup_address_new_any()`.)
-         * 
-         * If `cancellable` is non-`null`, it can be used to cancel the
-         * resolution. `callback` will still be invoked in this case, with a
-         * status of {@link Soup.Status.CANCELLED}.
-         * 
-         * It is safe to call this more than once on a given address, from the
-         * same thread, with the same `async_context` (and doing so will not
-         * result in redundant DNS queries being made). But it is not safe to
-         * call from multiple threads, or with different `async_contexts`, or
-         * mixed with calls to `soup_address_resolve_sync()`.
-         * @param async_context the {@link GLib.MainContext} to call `callback` from
-         * @param cancellable a {@link Gio.Cancellable} object, or `null`
-         * @param callback callback to call with the result
-         */
         resolve_async(async_context: GLib.MainContext | null, cancellable: Gio.Cancellable | null, callback: AddressCallback): void;
-
-        /**
-         * Synchronously resolves the missing half of `addr`, as with
-         * `soup_address_resolve_async()`.
-         * 
-         * If `cancellable` is non-`null`, it can be used to cancel the
-         * resolution. `soup_address_resolve_sync()` will then return a status
-         * of {@link Soup.Status.CANCELLED}.
-         * 
-         * It is safe to call this more than once, even from different
-         * threads, but it is not safe to mix calls to
-         * `soup_address_resolve_sync()` with calls to
-         * `soup_address_resolve_async()` on the same address.
-         * @param cancellable a {@link Gio.Cancellable} object, or `null`
-         * @returns {@link Soup.Status.OK}, {@link Soup.Status.CANT_RESOLVE}, or {@link Soup.Status.CANCELLED}.
-         */
         resolve_sync(cancellable: Gio.Cancellable | null): number;
-
-        /**
-         * Creates a {@link Gio.SocketAddressEnumerator} for `connectable`.
-         * @returns a new {@link Gio.SocketAddressEnumerator}.
-         */
         enumerate(): Gio.SocketAddressEnumerator;
-
-        /**
-         * Creates a {@link Gio.SocketAddressEnumerator} for `connectable` that will
-         * return a {@link Gio.ProxyAddress} for each of its addresses that you must connect
-         * to via a proxy.
-         * 
-         * If `connectable` does not implement
-         * `g_socket_connectable_proxy_enumerate()`, this will fall back to
-         * calling `g_socket_connectable_enumerate()`.
-         * @returns a new {@link Gio.SocketAddressEnumerator}.
-         */
         proxy_enumerate(): Gio.SocketAddressEnumerator;
-
-        /**
-         * Format a {@link Gio.SocketConnectable} as a string. This is a human-readable format for
-         * use in debugging output, and is not a stable serialization format. It is not
-         * suitable for use in user interfaces as it exposes too much information for a
-         * user.
-         * 
-         * If the {@link Gio.SocketConnectable} implementation does not support string formatting,
-         * the implementation’s type name will be returned as a fallback.
-         * @returns the formatted string
-         */
         to_string(): string;
-
-        /**
-         * Creates a {@link Gio.SocketAddressEnumerator} for `connectable`.
-         * @virtual
-         */
         vfunc_enumerate(): Gio.SocketAddressEnumerator;
-
-        /**
-         * Creates a {@link Gio.SocketAddressEnumerator} for `connectable` that will
-         * return a {@link Gio.ProxyAddress} for each of its addresses that you must connect
-         * to via a proxy.
-         * 
-         * If `connectable` does not implement
-         * `g_socket_connectable_proxy_enumerate()`, this will fall back to
-         * calling `g_socket_connectable_enumerate()`.
-         * @virtual
-         */
         vfunc_proxy_enumerate(): Gio.SocketAddressEnumerator;
-
-        /**
-         * Format a {@link Gio.SocketConnectable} as a string. This is a human-readable format for
-         * use in debugging output, and is not a stable serialization format. It is not
-         * suitable for use in user interfaces as it exposes too much information for a
-         * user.
-         * 
-         * If the {@link Gio.SocketConnectable} implementation does not support string formatting,
-         * the implementation’s type name will be returned as a fallback.
-         * @virtual
-         */
         vfunc_to_string(): string;
     }
-
-
     namespace Auth {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
             "notify::host": (pspec: GObject.ParamSpec) => void;
             "notify::is-authenticated": (pspec: GObject.ParamSpec) => void;
@@ -3476,8 +703,6 @@ export namespace Soup {
             "notify::realm": (pspec: GObject.ParamSpec) => void;
             "notify::scheme-name": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps {
             host: string;
             is_authenticated: boolean;
@@ -3489,265 +714,53 @@ export namespace Soup {
             schemeName: string;
         }
     }
-
-    /**
-     * The abstract base class for handling authentication. Specific HTTP
-     * Authentication mechanisms are implemented by its subclasses, but
-     * applications never need to be aware of the specific subclasses
-     * being used.
-     * @gir-type Class
-     */
     abstract class Auth extends GObject.Object {
         static $gtype: GObject.GType<Auth>;
-
-        // Properties
-        /**
-         * @default null
-         */
         get host(): string;
         set host(val: string);
-
-        /**
-         * @read-only
-         * @default false
-         */
         get is_authenticated(): boolean;
-
-        /**
-         * @read-only
-         * @default false
-         */
         get isAuthenticated(): boolean;
-
-        /**
-         * @default false
-         */
         get is_for_proxy(): boolean;
         set is_for_proxy(val: boolean);
-
-        /**
-         * @default false
-         */
         get isForProxy(): boolean;
         set isForProxy(val: boolean);
-
-        /**
-         * @default null
-         */
         get realm(): string;
         set realm(val: string);
-
-        /**
-         * @read-only
-         * @default null
-         */
         get scheme_name(): string;
-
-        /**
-         * @read-only
-         * @default null
-         */
         get schemeName(): string;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: Auth.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<Auth.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](type: GObject.GType, msg: Message, auth_header: string): Auth;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof Auth.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Auth.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof Auth.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Auth.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof Auth.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Auth.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * Call this on an auth to authenticate it; normally this will cause
-         * the auth's message to be requeued with the new authentication info.
-         * @param username the username provided by the user or client
-         * @param password the password provided by the user or client
-         * @virtual
-         */
         vfunc_authenticate(username: string, password: string): void;
-
-        /**
-         * Tests if `auth` is able to authenticate by providing credentials to the
-         * `soup_auth_authenticate()`.
-         * @virtual
-         */
         vfunc_can_authenticate(): boolean;
-
-        /**
-         * Generates an appropriate "Authorization" header for `msg`. (The
-         * session will only call this if `soup_auth_is_authenticated()`
-         * returned `true`.)
-         * @param msg the {@link Soup.Message} to be authorized
-         * @virtual
-         */
         vfunc_get_authorization(msg: Message): string;
-
-        /**
-         * Returns a list of paths on the server which `auth` extends over.
-         * (All subdirectories of these paths are also assumed to be part
-         * of `auth`'s protection space, unless otherwise discovered not to
-         * be.)
-         * @param source_uri the URI of the request that `auth` was generated in response to.
-         * @virtual
-         */
         vfunc_get_protection_space(source_uri: URI): string[];
-
-        /**
-         * Tests if `auth` has been given a username and password
-         * @virtual
-         */
         vfunc_is_authenticated(): boolean;
-
-        /**
-         * Tests if `auth` is ready to make a request for `msg` with. For most
-         * auths, this is equivalent to `soup_auth_is_authenticated()`, but for
-         * some auth types (eg, NTLM), the auth may be sendable (eg, as an
-         * authentication request) even before it is authenticated.
-         * @param msg a {@link Soup.Message}
-         * @virtual
-         */
         vfunc_is_ready(msg: Message): boolean;
-
-        /**
-         * Updates `auth` with the information from `msg` and `auth_header`,
-         * possibly un-authenticating it. As with `soup_auth_new()`, this is
-         * normally only used by {@link Soup.Session}.
-         * @param msg the {@link Soup.Message} `auth` is being updated for
-         * @param auth_header the WWW-Authenticate/Proxy-Authenticate header
-         * @virtual
-         */
         vfunc_update(msg: Message, auth_header: never): boolean;
-
-        // Methods
-        /**
-         * Call this on an auth to authenticate it; normally this will cause
-         * the auth's message to be requeued with the new authentication info.
-         * @param username the username provided by the user or client
-         * @param password the password provided by the user or client
-         */
         authenticate(username: string, password: string): void;
-
-        /**
-         * Tests if `auth` is able to authenticate by providing credentials to the
-         * `soup_auth_authenticate()`.
-         * @returns `true` if `auth` is able to accept credentials.
-         */
         can_authenticate(): boolean;
-
-        /**
-         * Generates an appropriate "Authorization" header for `msg`. (The
-         * session will only call this if `soup_auth_is_authenticated()`
-         * returned `true`.)
-         * @param msg the {@link Soup.Message} to be authorized
-         * @returns the "Authorization" header, which must be freed.
-         */
         get_authorization(msg: Message): string;
-
-        /**
-         * Returns the host that `auth` is associated with.
-         * @returns the hostname
-         */
         get_host(): string;
-
-        /**
-         * Gets an opaque identifier for `auth`, for use as a hash key or the
-         * like. {@link Soup.Auth} objects from the same server with the same
-         * identifier refer to the same authentication domain (eg, the URLs
-         * associated with them take the same usernames and passwords).
-         * @returns the identifier
-         */
         get_info(): string;
-
-        /**
-         * Returns a list of paths on the server which `auth` extends over.
-         * (All subdirectories of these paths are also assumed to be part
-         * of `auth`'s protection space, unless otherwise discovered not to
-         * be.)
-         * @param source_uri the URI of the request that `auth` was generated in response to.
-         * @returns the list of paths, which can be freed with `soup_auth_free_protection_space()`.
-         */
         get_protection_space(source_uri: URI): string[];
-
-        /**
-         * Returns `auth`'s realm. This is an identifier that distinguishes
-         * separate authentication spaces on a given server, and may be some
-         * string that is meaningful to the user. (Although it is probably not
-         * localized.)
-         * @returns the realm name
-         */
         get_realm(): string;
-
-        /**
-         * @param user 
-         */
         get_saved_password(user: string): string;
-
         get_saved_users(): string[];
-
-        /**
-         * Returns `auth`'s scheme name. (Eg, "Basic", "Digest", or "NTLM")
-         * @returns the scheme name
-         */
         get_scheme_name(): string;
-
-        /**
-         * @param username 
-         * @param password 
-         */
         has_saved_password(username: string, password: string): void;
-
-        /**
-         * Tests if `auth` is ready to make a request for `msg` with. For most
-         * auths, this is equivalent to `soup_auth_is_authenticated()`, but for
-         * some auth types (eg, NTLM), the auth may be sendable (eg, as an
-         * authentication request) even before it is authenticated.
-         * @param msg a {@link Soup.Message}
-         * @returns `true` if `auth` is ready to make a request with.
-         */
         is_ready(msg: Message): boolean;
-
-        /**
-         * @param username 
-         * @param password 
-         */
         save_password(username: string, password: string): void;
-
-        /**
-         * Updates `auth` with the information from `msg` and `auth_header`,
-         * possibly un-authenticating it. As with `soup_auth_new()`, this is
-         * normally only used by {@link Soup.Session}.
-         * @param msg the {@link Soup.Message} `auth` is being updated for
-         * @param auth_header the WWW-Authenticate/Proxy-Authenticate header
-         * @returns `true` if `auth` is still a valid (but potentially unauthenticated) {@link Soup.Auth}. `false` if something about `auth_params` could not be parsed or incorporated into `auth` at all.
-         */
         update(msg: Message, auth_header: string): boolean;
     }
-
-
     namespace AuthBasic {
-        // Signal signatures
         interface SignalSignatures extends Auth.SignalSignatures {
             "notify::host": (pspec: GObject.ParamSpec) => void;
             "notify::is-authenticated": (pspec: GObject.ParamSpec) => void;
@@ -3755,48 +768,21 @@ export namespace Soup {
             "notify::realm": (pspec: GObject.ParamSpec) => void;
             "notify::scheme-name": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends Auth.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class AuthBasic extends Auth {
         static $gtype: GObject.GType<AuthBasic>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: AuthBasic.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<AuthBasic.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof AuthBasic.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthBasic.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof AuthBasic.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthBasic.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof AuthBasic.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AuthBasic.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
     }
-
-
     namespace AuthDigest {
-        // Signal signatures
         interface SignalSignatures extends Auth.SignalSignatures {
             "notify::host": (pspec: GObject.ParamSpec) => void;
             "notify::is-authenticated": (pspec: GObject.ParamSpec) => void;
@@ -3804,48 +790,21 @@ export namespace Soup {
             "notify::realm": (pspec: GObject.ParamSpec) => void;
             "notify::scheme-name": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends Auth.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class AuthDigest extends Auth {
         static $gtype: GObject.GType<AuthDigest>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: AuthDigest.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<AuthDigest.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof AuthDigest.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthDigest.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof AuthDigest.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthDigest.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof AuthDigest.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AuthDigest.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
     }
-
-
     namespace AuthDomain {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
             "notify::add-path": (pspec: GObject.ParamSpec) => void;
             "notify::filter": (pspec: GObject.ParamSpec) => void;
@@ -3856,8 +815,6 @@ export namespace Soup {
             "notify::realm": (pspec: GObject.ParamSpec) => void;
             "notify::remove-path": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps {
             add_path: string;
             addPath: string;
@@ -3874,243 +831,50 @@ export namespace Soup {
             removePath: string;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     abstract class AuthDomain extends GObject.Object {
         static $gtype: GObject.GType<AuthDomain>;
-
-        // Properties
-        /**
-         * @write-only
-         * @default null
-         */
         set add_path(val: string);
-
-        /**
-         * @write-only
-         * @default null
-         */
         set addPath(val: string);
-
-        /**
-         * The {@link Soup.AuthDomainFilter} for the domain
-         */
         get filter(): AuthDomainFilter;
         set filter(val: AuthDomainFilter);
-
         get filter_data(): null;
         set filter_data(val: never);
-
         get filterData(): null;
         set filterData(val: never);
-
-        /**
-         * The {@link Soup.AuthDomainGenericAuthCallback} for the domain
-         */
         get generic_auth_callback(): AuthDomainGenericAuthCallback;
         set generic_auth_callback(val: AuthDomainGenericAuthCallback);
-
-        /**
-         * The {@link Soup.AuthDomainGenericAuthCallback} for the domain
-         */
         get genericAuthCallback(): AuthDomainGenericAuthCallback;
         set genericAuthCallback(val: AuthDomainGenericAuthCallback);
-
         get generic_auth_data(): null;
         set generic_auth_data(val: never);
-
         get genericAuthData(): null;
         set genericAuthData(val: never);
-
-        /**
-         * @construct-only
-         * @default false
-         */
         get proxy(): boolean;
-
-        /**
-         * @construct-only
-         * @default null
-         */
         get realm(): string;
-
-        /**
-         * @write-only
-         * @default null
-         */
         set remove_path(val: string);
-
-        /**
-         * @write-only
-         * @default null
-         */
         set removePath(val: string);
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: AuthDomain.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<AuthDomain.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof AuthDomain.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthDomain.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof AuthDomain.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthDomain.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof AuthDomain.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AuthDomain.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * @param msg 
-         * @param header 
-         * @virtual
-         */
         vfunc_accepts(msg: Message, header: string): string;
-
-        /**
-         * Adds a "WWW-Authenticate" or "Proxy-Authenticate" header to `msg`,
-         * requesting that the client authenticate, and sets `msg`'s status
-         * accordingly.
-         * 
-         * This is used by {@link Soup.Server} internally and is probably of no use to
-         * anyone else.
-         * @param msg a {@link Soup.Message}
-         * @virtual
-         */
         vfunc_challenge(msg: Message): string;
-
-        /**
-         * Checks if `msg` authenticates to `domain` via `username` and
-         * `password`. This would normally be called from a
-         * {@link Soup.AuthDomainGenericAuthCallback}.
-         * @param msg a {@link Soup.Message}
-         * @param username a username
-         * @param password a password
-         * @virtual
-         */
         vfunc_check_password(msg: Message, username: string, password: string): boolean;
-
-        // Methods
-        /**
-         * Checks if `msg` contains appropriate authorization for `domain` to
-         * accept it. Mirroring `soup_auth_domain_covers()`, this does not check
-         * whether or not `domain` <emphasis>cares</emphasis> if `msg` is
-         * authorized.
-         * 
-         * This is used by {@link Soup.Server} internally and is probably of no use to
-         * anyone else.
-         * @param msg a {@link Soup.Message}
-         * @returns the username that `msg` has authenticated as, if in fact it has authenticated. `null` otherwise.
-         */
         accepts(msg: Message): string | null;
-
-        /**
-         * Adds a "WWW-Authenticate" or "Proxy-Authenticate" header to `msg`,
-         * requesting that the client authenticate, and sets `msg`'s status
-         * accordingly.
-         * 
-         * This is used by {@link Soup.Server} internally and is probably of no use to
-         * anyone else.
-         * @param msg a {@link Soup.Message}
-         */
         challenge(msg: Message): void;
-
-        /**
-         * Checks if `msg` authenticates to `domain` via `username` and
-         * `password`. This would normally be called from a
-         * {@link Soup.AuthDomainGenericAuthCallback}.
-         * @param msg a {@link Soup.Message}
-         * @param username a username
-         * @param password a password
-         * @returns whether or not the message is authenticated
-         */
         check_password(msg: Message, username: string, password: string): boolean;
-
-        /**
-         * Checks if `domain` requires `msg` to be authenticated (according to
-         * its paths and filter function). This does not actually look at
-         * whether `msg` <emphasis>is</emphasis> authenticated, merely whether
-         * or not it needs to be.
-         * 
-         * This is used by {@link Soup.Server} internally and is probably of no use to
-         * anyone else.
-         * @param msg a {@link Soup.Message}
-         * @returns `true` if `domain` requires `msg` to be authenticated
-         */
         covers(msg: Message): boolean;
-
-        /**
-         * Gets the realm name associated with `domain`
-         * @returns `domain`'s realm
-         */
         get_realm(): string;
-
-        /**
-         * Adds `filter` as an authentication filter to `domain`. The filter
-         * gets a chance to bypass authentication for certain requests that
-         * would otherwise require it. Eg, it might check the message's path
-         * in some way that is too complicated to do via the other methods, or
-         * it might check the message's method, and allow GETs but not PUTs.
-         * 
-         * The filter function returns `true` if the request should still
-         * require authentication, or `false` if authentication is unnecessary
-         * for this request.
-         * 
-         * To help prevent security holes, your filter should return `true` by
-         * default, and only return `false` under specifically-tested
-         * circumstances, rather than the other way around. Eg, in the example
-         * above, where you want to authenticate PUTs but not GETs, you should
-         * check if the method is GET and return `false` in that case, and then
-         * return `true` for all other methods (rather than returning `true` for
-         * PUT and `false` for all other methods). This way if it turned out
-         * (now or later) that some paths supported additional methods besides
-         * GET and PUT, those methods would default to being NOT allowed for
-         * unauthenticated users.
-         * 
-         * You can also set the filter by setting the `SOUP_AUTH_DOMAIN_FILTER`
-         * and `SOUP_AUTH_DOMAIN_FILTER_DATA` properties, which can also be
-         * used to set the filter at construct time.
-         * @param filter the auth filter for `domain`
-         */
         set_filter(filter: AuthDomainFilter): void;
-
-        /**
-         * Sets `auth_callback` as an authentication-handling callback for
-         * `domain`. Whenever a request comes in to `domain` which cannot be
-         * authenticated via a domain-specific auth callback (eg,
-         * {@link Soup.AuthDomainDigestAuthCallback}), the generic auth callback
-         * will be invoked. See {@link Soup.AuthDomainGenericAuthCallback} for information
-         * on what the callback should do.
-         * @param auth_callback the auth callback
-         */
         set_generic_auth_callback(auth_callback: AuthDomainGenericAuthCallback): void;
-
-        /**
-         * @param msg 
-         * @param username 
-         */
         try_generic_auth_callback(msg: Message, username: string): boolean;
     }
-
-
     namespace AuthDomainBasic {
-        // Signal signatures
         interface SignalSignatures extends AuthDomain.SignalSignatures {
             "notify::auth-callback": (pspec: GObject.ParamSpec) => void;
             "notify::auth-data": (pspec: GObject.ParamSpec) => void;
@@ -4123,8 +887,6 @@ export namespace Soup {
             "notify::realm": (pspec: GObject.ParamSpec) => void;
             "notify::remove-path": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends AuthDomain.ConstructorProps {
             auth_callback: AuthDomainBasicAuthCallback;
             authCallback: AuthDomainBasicAuthCallback;
@@ -4132,84 +894,28 @@ export namespace Soup {
             authData: never;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class AuthDomainBasic extends AuthDomain {
         static $gtype: GObject.GType<AuthDomainBasic>;
-
-        // Properties
-        /**
-         * The {@link Soup.AuthDomainBasicAuthCallback}
-         */
         get auth_callback(): AuthDomainBasicAuthCallback;
         set auth_callback(val: AuthDomainBasicAuthCallback);
-
-        /**
-         * The {@link Soup.AuthDomainBasicAuthCallback}
-         */
         get authCallback(): AuthDomainBasicAuthCallback;
         set authCallback(val: AuthDomainBasicAuthCallback);
-
-        /**
-         * The data to pass to the {@link Soup.AuthDomainBasicAuthCallback}
-         */
         get auth_data(): null;
         set auth_data(val: never);
-
-        /**
-         * The data to pass to the {@link Soup.AuthDomainBasicAuthCallback}
-         */
         get authData(): null;
         set authData(val: never);
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: AuthDomainBasic.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<AuthDomainBasic.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof AuthDomainBasic.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthDomainBasic.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof AuthDomainBasic.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthDomainBasic.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof AuthDomainBasic.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AuthDomainBasic.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Methods
-        /**
-         * Sets the callback that `domain` will use to authenticate incoming
-         * requests. For each request containing authorization, `domain` will
-         * invoke the callback, and then either accept or reject the request
-         * based on `callback`'s return value.
-         * 
-         * You can also set the auth callback by setting the
-         * `SOUP_AUTH_DOMAIN_BASIC_AUTH_CALLBACK` and
-         * `SOUP_AUTH_DOMAIN_BASIC_AUTH_DATA` properties, which can also be
-         * used to set the callback at construct time.
-         * @param callback the callback
-         */
         set_auth_callback(callback: AuthDomainBasicAuthCallback): void;
     }
-
-
     namespace AuthDomainDigest {
-        // Signal signatures
         interface SignalSignatures extends AuthDomain.SignalSignatures {
             "notify::auth-callback": (pspec: GObject.ParamSpec) => void;
             "notify::auth-data": (pspec: GObject.ParamSpec) => void;
@@ -4222,8 +928,6 @@ export namespace Soup {
             "notify::realm": (pspec: GObject.ParamSpec) => void;
             "notify::remove-path": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends AuthDomain.ConstructorProps {
             auth_callback: AuthDomainDigestAuthCallback;
             authCallback: AuthDomainDigestAuthCallback;
@@ -4231,291 +935,63 @@ export namespace Soup {
             authData: never;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class AuthDomainDigest extends AuthDomain {
         static $gtype: GObject.GType<AuthDomainDigest>;
-
-        // Properties
-        /**
-         * The {@link Soup.AuthDomainDigestAuthCallback}
-         */
         get auth_callback(): AuthDomainDigestAuthCallback;
         set auth_callback(val: AuthDomainDigestAuthCallback);
-
-        /**
-         * The {@link Soup.AuthDomainDigestAuthCallback}
-         */
         get authCallback(): AuthDomainDigestAuthCallback;
         set authCallback(val: AuthDomainDigestAuthCallback);
-
-        /**
-         * The data to pass to the {@link Soup.AuthDomainDigestAuthCallback}
-         */
         get auth_data(): null;
         set auth_data(val: never);
-
-        /**
-         * The data to pass to the {@link Soup.AuthDomainDigestAuthCallback}
-         */
         get authData(): null;
         set authData(val: never);
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: AuthDomainDigest.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<AuthDomainDigest.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof AuthDomainDigest.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthDomainDigest.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof AuthDomainDigest.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthDomainDigest.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof AuthDomainDigest.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AuthDomainDigest.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Static methods
-        /**
-         * Encodes the username/realm/password triplet for Digest
-         * authentication. (That is, it returns a stringified MD5 hash of
-         * `username`, `realm`, and `password` concatenated together). This is
-         * the form that is needed as the return value of
-         * {@link Soup.AuthDomainDigest}'s auth handler.
-         * 
-         * For security reasons, you should store the encoded hash, rather
-         * than storing the cleartext password itself and calling this method
-         * only when you need to verify it. This way, if your server is
-         * compromised, the attackers will not gain access to cleartext
-         * passwords which might also be usable at other sites. (Note also
-         * that the encoded password returned by this method is identical to
-         * the encoded password stored in an Apache .htdigest file.)
-         * @param username a username
-         * @param realm an auth realm name
-         * @param password the password for `username` in `realm`
-         */
         static encode_password(username: string, realm: string, password: string): string;
-
-        // Methods
-        /**
-         * Sets the callback that `domain` will use to authenticate incoming
-         * requests. For each request containing authorization, `domain` will
-         * invoke the callback, and then either accept or reject the request
-         * based on `callback`'s return value.
-         * 
-         * You can also set the auth callback by setting the
-         * `SOUP_AUTH_DOMAIN_DIGEST_AUTH_CALLBACK` and
-         * `SOUP_AUTH_DOMAIN_DIGEST_AUTH_DATA` properties, which can also be
-         * used to set the callback at construct time.
-         * @param callback the callback
-         */
         set_auth_callback(callback: AuthDomainDigestAuthCallback): void;
     }
-
-
     namespace AuthManager {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
-            /**
-             * Emitted when the manager requires the application to
-             * provide authentication credentials.
-             * 
-             * {@link Soup.Session} connects to this signal and emits its own
-             * {@link Soup.Session.SignalSignatures.authenticate | Soup.Session::authenticate} signal when it is emitted, so
-             * you shouldn't need to use this signal directly.
-             * @signal
-             * @run-first
-             */
             authenticate: (arg0: Message, arg1: Auth, arg2: boolean) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, SessionFeature.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class AuthManager extends GObject.Object implements SessionFeature {
         static $gtype: GObject.GType<AuthManager>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: AuthManager.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<AuthManager.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof AuthManager.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthManager.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof AuthManager.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthManager.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof AuthManager.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AuthManager.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * @param msg 
-         * @param auth 
-         * @param retrying 
-         * @virtual
-         */
         vfunc_authenticate(msg: Message, auth: Auth, retrying: boolean): void;
-
-        // Methods
-        /**
-         * Clear all credentials cached by `manager`
-         */
         clear_cached_credentials(): void;
-
-        /**
-         * Records that `auth` is to be used under `uri`, as though a
-         * WWW-Authenticate header had been received at that URI. This can be
-         * used to "preload" `manager`'s auth cache, to avoid an extra HTTP
-         * round trip in the case where you know ahead of time that a 401
-         * response will be returned.
-         * 
-         * This is only useful for authentication types where the initial
-         * Authorization header does not depend on any additional information
-         * from the server. (Eg, Basic or NTLM, but not Digest.)
-         * @param uri the {@link Soup.URI} under which `auth` is to be used
-         * @param auth the {@link Soup.Auth} to use
-         */
         use_auth(uri: URI, auth: Auth): void;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
     namespace AuthNTLM {
-        // Signal signatures
         interface SignalSignatures extends Auth.SignalSignatures {
             "notify::host": (pspec: GObject.ParamSpec) => void;
             "notify::is-authenticated": (pspec: GObject.ParamSpec) => void;
@@ -4523,48 +999,21 @@ export namespace Soup {
             "notify::realm": (pspec: GObject.ParamSpec) => void;
             "notify::scheme-name": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends Auth.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class AuthNTLM extends Auth {
         static $gtype: GObject.GType<AuthNTLM>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: AuthNTLM.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<AuthNTLM.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof AuthNTLM.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthNTLM.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof AuthNTLM.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthNTLM.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof AuthNTLM.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AuthNTLM.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
     }
-
-
     namespace AuthNegotiate {
-        // Signal signatures
         interface SignalSignatures extends Auth.SignalSignatures {
             "notify::host": (pspec: GObject.ParamSpec) => void;
             "notify::is-authenticated": (pspec: GObject.ParamSpec) => void;
@@ -4572,63 +1021,26 @@ export namespace Soup {
             "notify::realm": (pspec: GObject.ParamSpec) => void;
             "notify::scheme-name": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends Auth.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class AuthNegotiate extends Auth {
         static $gtype: GObject.GType<AuthNegotiate>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: AuthNegotiate.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<AuthNegotiate.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof AuthNegotiate.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthNegotiate.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof AuthNegotiate.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, AuthNegotiate.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof AuthNegotiate.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<AuthNegotiate.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Static methods
-        /**
-         * Indicates whether libsoup was built with GSSAPI support. If this is
-         * `false`, `SOUP_TYPE_AUTH_NEGOTIATE` will still be defined and can
-         * still be added to a {@link Soup.Session}, but libsoup will never attempt to
-         * actually use this auth type.
-         */
         static supported(): boolean;
     }
-
-
     namespace Cache {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
             "notify::cache-dir": (pspec: GObject.ParamSpec) => void;
             "notify::cache-type": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, SessionFeature.ConstructorProps {
             cache_dir: string;
             cacheDir: string;
@@ -4636,566 +1048,112 @@ export namespace Soup {
             cacheType: CacheType;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class Cache extends GObject.Object implements SessionFeature {
         static $gtype: GObject.GType<Cache>;
-
-        // Properties
-        /**
-         * @construct-only
-         * @default null
-         */
         get cache_dir(): string;
-
-        /**
-         * @construct-only
-         * @default null
-         */
         get cacheDir(): string;
-
-        /**
-         * @construct-only
-         * @default Soup.CacheType.SINGLE_USER
-         */
         get cache_type(): CacheType;
-
-        /**
-         * @construct-only
-         * @default Soup.CacheType.SINGLE_USER
-         */
         get cacheType(): CacheType;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: Cache.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<Cache.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](cache_dir: string | null, cache_type: CacheType): Cache;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof Cache.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Cache.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof Cache.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Cache.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof Cache.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Cache.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * @param msg 
-         * @virtual
-         */
         vfunc_get_cacheability(msg: Message): Cacheability;
-
-        // Methods
-        /**
-         * Will remove all entries in the `cache` plus all the cache files.
-         */
         clear(): void;
-
-        /**
-         * Synchronously writes the cache index out to disk. Contrast with
-         * `soup_cache_flush()`, which writes pending cache
-         * <emphasis>entries</emphasis> to disk.
-         * 
-         * You must call this before exiting if you want your cache data to
-         * persist between sessions.
-         */
         dump(): void;
-
-        /**
-         * This function will force all pending writes in the `cache` to be
-         * committed to disk. For doing so it will iterate the {@link GLib.MainContext}
-         * associated with `cache`'s session as long as needed.
-         * 
-         * Contrast with `soup_cache_dump()`, which writes out the cache index
-         * file.
-         */
         flush(): void;
-
-        /**
-         * Gets the maximum size of the cache.
-         * @returns the maximum size of the cache, in bytes.
-         */
         get_max_size(): number;
-
-        /**
-         * Loads the contents of `cache`'s index into memory.
-         */
         load(): void;
-
-        /**
-         * Sets the maximum size of the cache.
-         * @param max_size the maximum size of the cache, in bytes
-         */
         set_max_size(max_size: number): void;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
     namespace ContentDecoder {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {}
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, SessionFeature.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class ContentDecoder extends GObject.Object implements SessionFeature {
         static $gtype: GObject.GType<ContentDecoder>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: ContentDecoder.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<ContentDecoder.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof ContentDecoder.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ContentDecoder.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof ContentDecoder.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ContentDecoder.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof ContentDecoder.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ContentDecoder.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
     namespace ContentSniffer {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {}
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, SessionFeature.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class ContentSniffer extends GObject.Object implements SessionFeature {
         static $gtype: GObject.GType<ContentSniffer>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: ContentSniffer.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<ContentSniffer.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](): ContentSniffer;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof ContentSniffer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ContentSniffer.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof ContentSniffer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ContentSniffer.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof ContentSniffer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ContentSniffer.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * Gets the number of bytes `sniffer` needs in order to properly sniff
-         * a buffer.
-         * @virtual
-         */
         vfunc_get_buffer_size(): bigint | number;
-
-        /**
-         * Sniffs `buffer` to determine its Content-Type. The result may also
-         * be influenced by the Content-Type declared in `msg`'s response
-         * headers.
-         * @param msg the message to sniff
-         * @param buffer a buffer containing the start of `msg`'s response body
-         * @virtual
-         */
         vfunc_sniff(msg: Message, buffer: Buffer): [string, { [key: string]: string } | null];
-
-        // Methods
-        /**
-         * Gets the number of bytes `sniffer` needs in order to properly sniff
-         * a buffer.
-         * @returns the number of bytes to sniff
-         */
         get_buffer_size(): number;
-
-        /**
-         * Sniffs `buffer` to determine its Content-Type. The result may also
-         * be influenced by the Content-Type declared in `msg`'s response
-         * headers.
-         * @param msg the message to sniff
-         * @param buffer a buffer containing the start of `msg`'s response body
-         * @returns the sniffed Content-Type of `buffer`; this will never be `null`,   but may be "application/octet-stream".
-         */
         sniff(msg: Message, buffer: Buffer): [string, { [key: string]: string } | null];
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
     namespace CookieJar {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
-            /**
-             * Emitted when `jar` changes. If a cookie has been added,
-             * `new_cookie` will contain the newly-added cookie and
-             * `old_cookie` will be `null`. If a cookie has been deleted,
-             * `old_cookie` will contain the to-be-deleted cookie and
-             * `new_cookie` will be `null`. If a cookie has been changed,
-             * `old_cookie` will contain its old value, and `new_cookie` its
-             * new value.
-             * @signal
-             * @run-first
-             */
             changed: (arg0: Cookie, arg1: Cookie) => void;
             "notify::accept-policy": (pspec: GObject.ParamSpec) => void;
             "notify::read-only": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, SessionFeature.ConstructorProps {
             accept_policy: CookieJarAcceptPolicy;
             acceptPolicy: CookieJarAcceptPolicy;
@@ -5203,1489 +1161,271 @@ export namespace Soup {
             readOnly: boolean;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class CookieJar extends GObject.Object implements SessionFeature {
         static $gtype: GObject.GType<CookieJar>;
-
-        // Properties
-        /**
-         * The policy the jar should follow to accept or reject cookies
-         * @since 2.30
-         * @default Soup.CookieJarAcceptPolicy.ALWAYS
-         */
         get accept_policy(): CookieJarAcceptPolicy;
         set accept_policy(val: CookieJarAcceptPolicy);
-
-        /**
-         * The policy the jar should follow to accept or reject cookies
-         * @since 2.30
-         * @default Soup.CookieJarAcceptPolicy.ALWAYS
-         */
         get acceptPolicy(): CookieJarAcceptPolicy;
         set acceptPolicy(val: CookieJarAcceptPolicy);
-
-        /**
-         * @construct-only
-         * @default false
-         */
         get read_only(): boolean;
-
-        /**
-         * @construct-only
-         * @default false
-         */
         get readOnly(): boolean;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: CookieJar.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<CookieJar.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](): CookieJar;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof CookieJar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CookieJar.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof CookieJar.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CookieJar.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof CookieJar.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CookieJar.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * @param old_cookie 
-         * @param new_cookie 
-         * @virtual
-         */
         vfunc_changed(old_cookie: Cookie, new_cookie: Cookie): void;
-
-        /**
-         * Gets whether `jar` stores cookies persistenly.
-         * @virtual
-         */
         vfunc_is_persistent(): boolean;
-
-        /**
-         * This function exists for backward compatibility, but does not do
-         * anything any more; cookie jars are saved automatically when they
-         * are changed.
-         * @virtual
-         */
         vfunc_save(): void;
-
-        // Methods
-        /**
-         * Adds `cookie` to `jar`, emitting the 'changed' signal if we are modifying
-         * an existing cookie or adding a valid new cookie ('valid' means
-         * that the cookie's expire date is not in the past).
-         * 
-         * `cookie` will be 'stolen' by the jar, so don't free it afterwards.
-         * @param cookie a {@link Soup.Cookie}
-         */
         add_cookie(cookie: Cookie): void;
-
-        /**
-         * Adds `cookie` to `jar`, emitting the 'changed' signal if we are modifying
-         * an existing cookie or adding a valid new cookie ('valid' means
-         * that the cookie's expire date is not in the past).
-         * 
-         * `first_party` will be used to reject cookies coming from third party
-         * resources in case such a security policy is set in the `jar`.
-         * 
-         * `uri` will be used to reject setting or overwriting secure cookies
-         * from insecure origins. `null` is treated as secure.
-         * 
-         * `cookie` will be 'stolen' by the jar, so don't free it afterwards.
-         * @param cookie a {@link Soup.Cookie}
-         * @param uri the URI setting the cookie
-         * @param first_party the URI for the main document
-         */
         add_cookie_full(cookie: Cookie, uri: URI | null, first_party: URI | null): void;
-
-        /**
-         * Adds `cookie` to `jar`, emitting the 'changed' signal if we are modifying
-         * an existing cookie or adding a valid new cookie ('valid' means
-         * that the cookie's expire date is not in the past).
-         * 
-         * `first_party` will be used to reject cookies coming from third party
-         * resources in case such a security policy is set in the `jar`.
-         * 
-         * `cookie` will be 'stolen' by the jar, so don't free it afterwards.
-         * 
-         * For secure cookies to work properly you may want to use
-         * `soup_cookie_jar_add_cookie_full()`.
-         * @param first_party the URI for the main document
-         * @param cookie a {@link Soup.Cookie}
-         */
         add_cookie_with_first_party(first_party: URI, cookie: Cookie): void;
-
-        /**
-         * Constructs a {@link GLib.SList} with every cookie inside the `jar`.
-         * The cookies in the list are a copy of the original, so
-         * you have to free them when you are done with them.
-         * @returns a {@link GLib.SList} with all the cookies in the `jar`.
-         */
         all_cookies(): Cookie[];
-
-        /**
-         * Deletes `cookie` from `jar`, emitting the 'changed' signal.
-         * @param cookie a {@link Soup.Cookie}
-         */
         delete_cookie(cookie: Cookie): void;
-
-        /**
-         * Gets `jar`'s {@link Soup.CookieJarAcceptPolicy}
-         * @returns the {@link Soup.CookieJarAcceptPolicy} set in the `jar`
-         */
         get_accept_policy(): CookieJarAcceptPolicy;
-
-        /**
-         * Retrieves the list of cookies that would be sent with a request to `uri`
-         * as a {@link GLib.SList} of {@link Soup.Cookie} objects.
-         * 
-         * If `for_http` is `true`, the return value will include cookies marked
-         * "HttpOnly" (that is, cookies that the server wishes to keep hidden
-         * from client-side scripting operations such as the JavaScript
-         * document.cookies property). Since {@link Soup.CookieJar} sets the Cookie
-         * header itself when making the actual HTTP request, you should
-         * almost certainly be setting `for_http` to `false` if you are calling
-         * this.
-         * @param uri a {@link Soup.URI}
-         * @param for_http whether or not the return value is being passed directly to an HTTP operation
-         * @returns a {@link GLib.SList} with the cookies in the `jar` that would be sent with a request to `uri`.
-         */
         get_cookie_list(uri: URI, for_http: boolean): Cookie[];
-
-        /**
-         * This is an extended version of `soup_cookie_jar_get_cookie_list()` that
-         * provides more information required to use SameSite cookies. See the
-         * [SameSite cookies spec](https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00)
-         * for more detailed information.
-         * @param uri a {@link Soup.URI}
-         * @param top_level a {@link Soup.URI} for the top level document
-         * @param site_for_cookies a {@link Soup.URI} indicating the origin to get cookies for
-         * @param for_http whether or not the return value is being passed directly to an HTTP operation
-         * @param is_safe_method if the HTTP method is safe, as defined by RFC 7231, ignored when `for_http` is `false`
-         * @param is_top_level_navigation whether or not the HTTP request is part of top level navigation
-         * @returns a {@link GLib.SList} with the cookies in the `jar` that would be sent with a request to `uri`.
-         */
         get_cookie_list_with_same_site_info(uri: URI, top_level: URI | null, site_for_cookies: URI | null, for_http: boolean, is_safe_method: boolean, is_top_level_navigation: boolean): Cookie[];
-
-        /**
-         * Retrieves (in Cookie-header form) the list of cookies that would
-         * be sent with a request to `uri`.
-         * 
-         * If `for_http` is `true`, the return value will include cookies marked
-         * "HttpOnly" (that is, cookies that the server wishes to keep hidden
-         * from client-side scripting operations such as the JavaScript
-         * document.cookies property). Since {@link Soup.CookieJar} sets the Cookie
-         * header itself when making the actual HTTP request, you should
-         * almost certainly be setting `for_http` to `false` if you are calling
-         * this.
-         * @param uri a {@link Soup.URI}
-         * @param for_http whether or not the return value is being passed directly to an HTTP operation
-         * @returns the cookies, in string form, or `null` if there are no cookies for `uri`.
-         */
         get_cookies(uri: URI, for_http: boolean): string | null;
-
-        /**
-         * Gets whether `jar` stores cookies persistenly.
-         * @returns `true` if `jar` storage is persistent or `false` otherwise.
-         */
         is_persistent(): boolean;
-
-        /**
-         * This function exists for backward compatibility, but does not do
-         * anything any more; cookie jars are saved automatically when they
-         * are changed.
-         */
         save(): void;
-
-        /**
-         * Sets `policy` as the cookie acceptance policy for `jar`.
-         * @param policy a {@link Soup.CookieJarAcceptPolicy}
-         */
         set_accept_policy(policy: CookieJarAcceptPolicy): void;
-
-        /**
-         * Adds `cookie` to `jar`, exactly as though it had appeared in a
-         * Set-Cookie header returned from a request to `uri`.
-         * 
-         * Keep in mind that if the {@link Soup.CookieJarAcceptPolicy} set is either
-         * {@link Soup.CookieJarAcceptPolicy.NO_THIRD_PARTY} or
-         * {@link Soup.CookieJarAcceptPolicy.GRANDFATHERED_THIRD_PARTY} you'll need to use
-         * `soup_cookie_jar_set_cookie_with_first_party()`, otherwise the jar
-         * will have no way of knowing if the cookie is being set by a third
-         * party or not.
-         * @param uri the URI setting the cookie
-         * @param cookie the stringified cookie to set
-         */
         set_cookie(uri: URI, cookie: string): void;
-
-        /**
-         * Adds `cookie` to `jar`, exactly as though it had appeared in a
-         * Set-Cookie header returned from a request to `uri`. `first_party`
-         * will be used to reject cookies coming from third party resources in
-         * case such a security policy is set in the `jar`.
-         * @param uri the URI setting the cookie
-         * @param first_party the URI for the main document
-         * @param cookie the stringified cookie to set
-         */
         set_cookie_with_first_party(uri: URI, first_party: URI, cookie: string): void;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
     namespace CookieJarDB {
-        // Signal signatures
         interface SignalSignatures extends CookieJar.SignalSignatures {
             "notify::filename": (pspec: GObject.ParamSpec) => void;
             "notify::accept-policy": (pspec: GObject.ParamSpec) => void;
             "notify::read-only": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends CookieJar.ConstructorProps, SessionFeature.ConstructorProps {
             filename: string;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class CookieJarDB extends CookieJar implements SessionFeature {
         static $gtype: GObject.GType<CookieJarDB>;
-
-        // Properties
-        /**
-         * @construct-only
-         * @default null
-         */
         get filename(): string;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: CookieJarDB.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<CookieJarDB.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](filename: string, read_only: boolean): CookieJarDB;
-
-        // Conflicted with Soup.CookieJar.new
         static ["new"](...args: never[]): any;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof CookieJarDB.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CookieJarDB.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof CookieJarDB.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CookieJarDB.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof CookieJarDB.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CookieJarDB.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
     namespace CookieJarText {
-        // Signal signatures
         interface SignalSignatures extends CookieJar.SignalSignatures {
             "notify::filename": (pspec: GObject.ParamSpec) => void;
             "notify::accept-policy": (pspec: GObject.ParamSpec) => void;
             "notify::read-only": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends CookieJar.ConstructorProps, SessionFeature.ConstructorProps {
             filename: string;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class CookieJarText extends CookieJar implements SessionFeature {
         static $gtype: GObject.GType<CookieJarText>;
-
-        // Properties
-        /**
-         * @construct-only
-         * @default null
-         */
         get filename(): string;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: CookieJarText.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<CookieJarText.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](filename: string, read_only: boolean): CookieJarText;
-
-        // Conflicted with Soup.CookieJar.new
         static ["new"](...args: never[]): any;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof CookieJarText.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CookieJarText.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof CookieJarText.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, CookieJarText.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof CookieJarText.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<CookieJarText.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
     namespace HSTSEnforcer {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
-            /**
-             * Emitted when `hsts_enforcer` changes. If a policy has been added,
-             * `new_policy` will contain the newly-added policy and
-             * `old_policy` will be `null`. If a policy has been deleted,
-             * `old_policy` will contain the to-be-deleted policy and
-             * `new_policy` will be `null`. If a policy has been changed,
-             * `old_policy` will contain its old value, and `new_policy` its
-             * new value.
-             * 
-             * Note that you shouldn't modify the policies from a callback to
-             * this signal.
-             * @signal
-             * @run-first
-             */
             changed: (arg0: HSTSPolicy, arg1: HSTSPolicy) => void;
-            /**
-             * Emitted when `hsts_enforcer` has upgraded the protocol
-             * for `message` to HTTPS as a result of matching its domain with
-             * a HSTS policy.
-             * @signal
-             * @run-first
-             */
             "hsts-enforced": (arg0: Message) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, SessionFeature.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class HSTSEnforcer extends GObject.Object implements SessionFeature {
         static $gtype: GObject.GType<HSTSEnforcer>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: HSTSEnforcer.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<HSTSEnforcer.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](): HSTSEnforcer;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof HSTSEnforcer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, HSTSEnforcer.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof HSTSEnforcer.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, HSTSEnforcer.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof HSTSEnforcer.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<HSTSEnforcer.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * the class closure for the {@link Soup.HSTSEnforcer.SignalSignatures.changed | Soup.HSTSEnforcer::changed} signal.
-         * @param old_policy 
-         * @param new_policy 
-         * @virtual
-         */
         vfunc_changed(old_policy: HSTSPolicy, new_policy: HSTSPolicy): void;
-
-        /**
-         * Gets whether `hsts_enforcer` has a currently valid policy for `domain`.
-         * @param domain a domain.
-         * @virtual
-         */
         vfunc_has_valid_policy(domain: string): boolean;
-
-        /**
-         * @param message 
-         * @virtual
-         */
         vfunc_hsts_enforced(message: Message): void;
-
-        /**
-         * Gets whether `hsts_enforcer` stores policies persistenly.
-         * @virtual
-         */
         vfunc_is_persistent(): boolean;
-
-        // Methods
-        /**
-         * Gets a list of domains for which there are policies in `enforcer`.
-         * @param session_policies whether to include session policies
-         * @returns a newly allocated list of domains. Use `g_list_free_full()` and `g_free()` to free the list.
-         */
         get_domains(session_policies: boolean): string[];
-
-        /**
-         * Gets a list with the policies in `enforcer`.
-         * @param session_policies whether to include session policies
-         * @returns a newly allocated list of policies. Use `g_list_free_full()` and `soup_hsts_policy_free()` to free the list.
-         */
         get_policies(session_policies: boolean): HSTSPolicy[];
-
-        /**
-         * Gets whether `hsts_enforcer` has a currently valid policy for `domain`.
-         * @param domain a domain.
-         * @returns `true` if access to `domain` should happen over HTTPS, false otherwise.
-         */
         has_valid_policy(domain: string): boolean;
-
-        /**
-         * Gets whether `hsts_enforcer` stores policies persistenly.
-         * @returns `true` if `hsts_enforcer` storage is persistent or `false` otherwise.
-         */
         is_persistent(): boolean;
-
-        /**
-         * Sets `policy` to `hsts_enforcer`. If `policy` is expired, any
-         * existing HSTS policy for its host will be removed instead. If a
-         * policy existed for this host, it will be replaced. Otherwise, the
-         * new policy will be inserted. If the policy is a session policy, that
-         * is, one created with `soup_hsts_policy_new_session_policy()`, the policy
-         * will not expire and will be enforced during the lifetime of
-         * `hsts_enforcer`'s {@link Soup.Session}.
-         * @param policy the policy of the HSTS host
-         */
         set_policy(policy: HSTSPolicy): void;
-
-        /**
-         * Sets a session policy for `domain`. A session policy is a policy
-         * that is permanent to the lifetime of `hsts_enforcer`'s {@link Soup.Session}
-         * and doesn't expire.
-         * @param domain policy domain or hostname
-         * @param include_subdomains `true` if the policy applies on sub domains
-         */
         set_session_policy(domain: string, include_subdomains: boolean): void;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
     namespace HSTSEnforcerDB {
-        // Signal signatures
         interface SignalSignatures extends HSTSEnforcer.SignalSignatures {
             "notify::filename": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends HSTSEnforcer.ConstructorProps, SessionFeature.ConstructorProps {
             filename: string;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class HSTSEnforcerDB extends HSTSEnforcer implements SessionFeature {
         static $gtype: GObject.GType<HSTSEnforcerDB>;
-
-        // Properties
-        /**
-         * The filename of the SQLite database where HSTS policies are stored.
-         * @construct-only
-         * @default null
-         */
         get filename(): string;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: HSTSEnforcerDB.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<HSTSEnforcerDB.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](filename: string): HSTSEnforcerDB;
-
-        // Conflicted with Soup.HSTSEnforcer.new
         static ["new"](...args: never[]): any;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof HSTSEnforcerDB.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, HSTSEnforcerDB.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof HSTSEnforcerDB.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, HSTSEnforcerDB.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof HSTSEnforcerDB.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<HSTSEnforcerDB.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
     namespace Logger {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
             "notify::level": (pspec: GObject.ParamSpec) => void;
             "notify::max-body-size": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, SessionFeature.ConstructorProps {
             level: LoggerLogLevel;
             max_body_size: number;
             maxBodySize: number;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class Logger extends GObject.Object implements SessionFeature {
         static $gtype: GObject.GType<Logger>;
-
-        // Properties
-        /**
-         * The level of logging output
-         * @since 2.56
-         * @default Soup.LoggerLogLevel.MINIMAL
-         */
         get level(): LoggerLogLevel;
         set level(val: LoggerLogLevel);
-
-        /**
-         * If {@link Soup.Logger.level} is {@link Soup.LoggerLogLevel.BODY}, this gives
-         * the maximum number of bytes of the body that will be logged.
-         * (-1 means "no limit".)
-         * @since 2.56
-         * @default -1
-         */
         get max_body_size(): number;
         set max_body_size(val: number);
-
-        /**
-         * If {@link Soup.Logger.level} is {@link Soup.LoggerLogLevel.BODY}, this gives
-         * the maximum number of bytes of the body that will be logged.
-         * (-1 means "no limit".)
-         * @since 2.56
-         * @default -1
-         */
         get maxBodySize(): number;
         set maxBodySize(val: number);
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: Logger.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<Logger.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](level: LoggerLogLevel, max_body_size: number): Logger;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof Logger.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Logger.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof Logger.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Logger.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof Logger.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Logger.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Methods
-        /**
-         * Sets `logger` to watch `session` and print debug information for
-         * its messages.
-         * 
-         * (The session will take a reference on `logger`, which will be
-         * removed when you call `soup_logger_detach()`, or when the session is
-         * destroyed.)
-         * @param session a {@link Soup.Session}
-         */
         attach(session: Session): void;
-
-        /**
-         * Stops `logger` from watching `session`.
-         * @param session a {@link Soup.Session}
-         */
         detach(session: Session): void;
-
-        /**
-         * Sets up an alternate log printing routine, if you don't want
-         * the log to go to <literal>stdout</literal>.
-         * @param printer the callback for printing logging output
-         */
         set_printer(printer: LoggerPrinter): void;
-
-        /**
-         * Sets up a filter to determine the log level for a given request.
-         * For each HTTP request `logger` will invoke `request_filter` to
-         * determine how much (if any) of that request to log. (If you do not
-         * set a request filter, `logger` will just always log requests at the
-         * level passed to `soup_logger_new()`.)
-         * @param request_filter the callback for request debugging
-         */
         set_request_filter(request_filter: LoggerFilter): void;
-
-        /**
-         * Sets up a filter to determine the log level for a given response.
-         * For each HTTP response `logger` will invoke `response_filter` to
-         * determine how much (if any) of that response to log. (If you do not
-         * set a response filter, `logger` will just always log responses at
-         * the level passed to `soup_logger_new()`.)
-         * @param response_filter the callback for response debugging
-         */
         set_response_filter(response_filter: LoggerFilter): void;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
     namespace Message {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
-            /**
-             * This signal is emitted after {@link Soup.Message.SignalSignatures.got_headers | Soup.Message::got-headers}, and
-             * before the first {@link Soup.Message.SignalSignatures.got_chunk | Soup.Message::got-chunk}. If content
-             * sniffing is disabled, or no content sniffing will be
-             * performed, due to the sniffer deciding to trust the
-             * Content-Type sent by the server, this signal is emitted
-             * immediately after {@link Soup.Message.SignalSignatures.got_headers | Soup.Message::got-headers}, and `type` is
-             * `null`.
-             * 
-             * If the {@link Soup.ContentSniffer} feature is enabled, and the
-             * sniffer decided to perform sniffing, the first
-             * {@link Soup.Message.SignalSignatures.got_chunk | Soup.Message::got-chunk} emission may be delayed, so that the
-             * sniffer has enough data to correctly sniff the content. It
-             * notified the library user that the content has been
-             * sniffed, and allows it to change the header contents in the
-             * message, if desired.
-             * 
-             * After this signal is emitted, the data that was spooled so
-             * that sniffing could be done is delivered on the first
-             * emission of {@link Soup.Message.SignalSignatures.got_chunk | Soup.Message::got-chunk}.
-             * @signal
-             * @since 2.28
-             * @run-first
-             */
             "content-sniffed": (arg0: string, arg1: { [key: string]: string }) => void;
-            /**
-             * Emitted when all HTTP processing is finished for a message.
-             * (After {@link Soup.Message.SignalSignatures.got_body | Soup.Message::got_body} for client-side messages, or
-             * after {@link Soup.Message.SignalSignatures.wrote_body | Soup.Message::wrote_body} for server-side messages.)
-             * @signal
-             * @run-first
-             */
             finished: () => void;
-            /**
-             * Emitted after receiving the complete message body. (For a
-             * server-side message, this means it has received the request
-             * body. For a client-side message, this means it has received
-             * the response body and is nearly done with the message.)
-             * 
-             * See also `soup_message_add_header_handler()` and
-             * `soup_message_add_status_code_handler()`, which can be used
-             * to connect to a subset of emissions of this signal.
-             * @signal
-             * @run-first
-             */
             "got-body": () => void;
-            /**
-             * Emitted after receiving a chunk of a message body. Note
-             * that "chunk" in this context means any subpiece of the
-             * body, not necessarily the specific HTTP 1.1 chunks sent by
-             * the other side.
-             * 
-             * If you cancel or requeue `msg` while processing this signal,
-             * then the current HTTP I/O will be stopped after this signal
-             * emission finished, and `msg`'s connection will be closed.
-             * @signal
-             * @run-first
-             */
             "got-chunk": (arg0: Buffer) => void;
-            /**
-             * Emitted after receiving all message headers for a message.
-             * (For a client-side message, this is after receiving the
-             * Status-Line and response headers; for a server-side
-             * message, it is after receiving the Request-Line and request
-             * headers.)
-             * 
-             * See also `soup_message_add_header_handler()` and
-             * `soup_message_add_status_code_handler()`, which can be used
-             * to connect to a subset of emissions of this signal.
-             * 
-             * If you cancel or requeue `msg` while processing this signal,
-             * then the current HTTP I/O will be stopped after this signal
-             * emission finished, and `msg`'s connection will be closed.
-             * (If you need to requeue a message--eg, after handling
-             * authentication or redirection--it is usually better to
-             * requeue it from a {@link Soup.Message.SignalSignatures.got_body | Soup.Message::got_body} handler rather
-             * than a {@link Soup.Message.SignalSignatures.got_headers | Soup.Message::got_headers} handler, so that the
-             * existing HTTP connection can be reused.)
-             * @signal
-             * @run-first
-             */
             "got-headers": () => void;
-            /**
-             * Emitted after receiving a 1xx (Informational) response for
-             * a (client-side) message. The response_headers will be
-             * filled in with the headers associated with the
-             * informational response; however, those header values will
-             * be erased after this signal is done.
-             * 
-             * If you cancel or requeue `msg` while processing this signal,
-             * then the current HTTP I/O will be stopped after this signal
-             * emission finished, and `msg`'s connection will be closed.
-             * @signal
-             * @run-first
-             */
             "got-informational": () => void;
-            /**
-             * Emitted to indicate that some network-related event
-             * related to `msg` has occurred. This essentially proxies the
-             * {@link Gio.SocketClient.SignalSignatures.event | Gio.SocketClient::event} signal, but only for events that
-             * occur while `msg` "owns" the connection; if `msg` is sent on
-             * an existing persistent connection, then this signal will
-             * not be emitted. (If you want to force the message to be
-             * sent on a new connection, set the
-             * {@link Soup.MessageFlags.NEW_CONNECTION} flag on it.)
-             * 
-             * See {@link Gio.SocketClient.SignalSignatures.event | Gio.SocketClient::event} for more information on what
-             * the different values of `event` correspond to, and what
-             * `connection` will be in each case.
-             * @signal
-             * @since 2.38
-             * @run-first
-             */
             "network-event": (arg0: Gio.SocketClientEvent, arg1: Gio.IOStream) => void;
-            /**
-             * Emitted when a request that was already sent once is now
-             * being sent again (eg, because the first attempt received a
-             * redirection response, or because we needed to use
-             * authentication).
-             * @signal
-             * @run-first
-             */
             restarted: () => void;
-            /**
-             * Emitted just before a message is sent.
-             * @signal
-             * @since 2.50
-             * @run-first
-             */
             starting: () => void;
-            /**
-             * Emitted immediately after writing the complete body for a
-             * message. (For a client-side message, this means that
-             * libsoup is done writing and is now waiting for the response
-             * from the server. For a server-side message, this means that
-             * libsoup has finished writing the response and is nearly
-             * done with the message.)
-             * @signal
-             * @run-first
-             */
             "wrote-body": () => void;
-            /**
-             * Emitted immediately after writing a portion of the message
-             * body to the network.
-             * 
-             * Unlike {@link Soup.Message.SignalSignatures.wrote_chunk | Soup.Message::wrote_chunk}, this is emitted after
-             * every successful `write()` call, not only after finishing a
-             * complete "chunk".
-             * @signal
-             * @since 2.24
-             * @run-first
-             */
             "wrote-body-data": (arg0: Buffer) => void;
-            /**
-             * Emitted immediately after writing a body chunk for a message.
-             * 
-             * Note that this signal is not parallel to
-             * {@link Soup.Message.SignalSignatures.got_chunk | Soup.Message::got_chunk}; it is emitted only when a complete
-             * chunk (added with `soup_message_body_append()` or
-             * `soup_message_body_append_buffer()`) has been written. To get
-             * more useful continuous progress information, use
-             * {@link Soup.Message.SignalSignatures.wrote_body_data | Soup.Message::wrote_body_data}.
-             * @signal
-             * @run-first
-             */
             "wrote-chunk": () => void;
-            /**
-             * Emitted immediately after writing the headers for a
-             * message. (For a client-side message, this is after writing
-             * the request headers; for a server-side message, it is after
-             * writing the response headers.)
-             * @signal
-             * @run-first
-             */
             "wrote-headers": () => void;
-            /**
-             * Emitted immediately after writing a 1xx (Informational)
-             * response for a (server-side) message.
-             * @signal
-             * @run-first
-             */
             "wrote-informational": () => void;
             "notify::first-party": (pspec: GObject.ParamSpec) => void;
             "notify::flags": (pspec: GObject.ParamSpec) => void;
@@ -6707,8 +1447,6 @@ export namespace Soup {
             "notify::tls-errors": (pspec: GObject.ParamSpec) => void;
             "notify::uri": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps {
             first_party: URI;
             firstParty: URI;
@@ -6746,2005 +1484,345 @@ export namespace Soup {
             uri: URI;
         }
     }
-
-    /**
-     * Represents an HTTP message being sent or received.
-     * 
-     * `status_code` will normally be a {@link Soup.Status} value, eg,
-     * {@link Soup.Status.OK}, though of course it might actually be an unknown
-     * status code. `reason_phrase` is the actual text returned from the
-     * server, which may or may not correspond to the "standard"
-     * description of `status_code`. At any rate, it is almost certainly
-     * not localized, and not very descriptive even if it is in the user's
-     * language; you should not use `reason_phrase` in user-visible
-     * messages. Rather, you should look at `status_code`, and determine an
-     * end-user-appropriate message based on that and on what you were
-     * trying to do.
-     * 
-     * As described in the {@link Soup.MessageBody} documentation, the
-     * `request_body` and `response_body` <literal>data</literal> fields
-     * will not necessarily be filled in at all times. When the body
-     * fields are filled in, they will be terminated with a '\0' byte
-     * (which is not included in the <literal>length</literal>), so you
-     * can use them as ordinary C strings (assuming that you know that the
-     * body doesn't have any other '\0' bytes).
-     * 
-     * For a client-side {@link Soup.Message}, `request_body`'s
-     * <literal>data</literal> is usually filled in right before libsoup
-     * writes the request to the network, but you should not count on
-     * this; use `soup_message_body_flatten()` if you want to ensure that
-     * <literal>data</literal> is filled in. If you are not using
-     * {@link Soup.Request} to read the response, then `response_body`'s
-     * <literal>data</literal> will be filled in before
-     * {@link Soup.Message.SignalSignatures.finished | Soup.Message::finished} is emitted. (If you are using {@link Soup.Request},
-     * then the message body is not accumulated by default, so
-     * `response_body`'s <literal>data</literal> will always be `null`.)
-     * 
-     * For a server-side {@link Soup.Message}, `request_body`'s %data will be
-     * filled in before {@link Soup.Message.SignalSignatures.got_body | Soup.Message::got_body} is emitted.
-     * 
-     * To prevent the %data field from being filled in at all (eg, if you
-     * are handling the data from a {@link Soup.Message.SignalSignatures.got_chunk | Soup.Message::got_chunk}, and so don't
-     * need to see it all at the end), call
-     * `soup_message_body_set_accumulate()` on `response_body` or
-     * `request_body` as appropriate, passing `false`.
-     * @gir-type Class
-     */
     class Message extends GObject.Object {
         static $gtype: GObject.GType<Message>;
-
-        // Properties
-        /**
-         * The {@link Soup.URI} loaded in the application when the message was
-         * queued.
-         * @since 2.30
-         */
         get first_party(): URI;
         set first_party(val: URI);
-
-        /**
-         * The {@link Soup.URI} loaded in the application when the message was
-         * queued.
-         * @since 2.30
-         */
         get firstParty(): URI;
         set firstParty(val: URI);
-
-        /**
-         * @default 0
-         */
         get flags(): MessageFlags;
         set flags(val: MessageFlags);
-
-        /**
-         * @default Soup.HTTPVersion.HTTP_1_1
-         */
         get http_version(): HTTPVersion;
         set http_version(val: HTTPVersion);
-
-        /**
-         * @default Soup.HTTPVersion.HTTP_1_1
-         */
         get httpVersion(): HTTPVersion;
         set httpVersion(val: HTTPVersion);
-
-        /**
-         * Set when the message is navigating between top level domains.
-         * @since 2.70
-         * @default false
-         */
         get is_top_level_navigation(): boolean;
         set is_top_level_navigation(val: boolean);
-
-        /**
-         * Set when the message is navigating between top level domains.
-         * @since 2.70
-         * @default false
-         */
         get isTopLevelNavigation(): boolean;
         set isTopLevelNavigation(val: boolean);
-
-        /**
-         * @default GET
-         */
         get method(): string;
         set method(val: string);
-
-        /**
-         * @default Soup.MessagePriority.NORMAL
-         */
         get priority(): MessagePriority;
         set priority(val: MessagePriority);
-
-        /**
-         * @default null
-         */
         get reason_phrase(): string;
         set reason_phrase(val: string);
-
-        /**
-         * @default null
-         */
         get reasonPhrase(): string;
         set reasonPhrase(val: string);
-
-        /**
-         * @read-only
-         */
         get request_body(): MessageBody;
-
-        /**
-         * @read-only
-         */
         get requestBody(): MessageBody;
-
-        /**
-         * The message's HTTP request body, as a {@link GLib.Bytes}.
-         * @since 2.46
-         * @read-only
-         */
         get request_body_data(): GLib.Bytes;
-
-        /**
-         * The message's HTTP request body, as a {@link GLib.Bytes}.
-         * @since 2.46
-         * @read-only
-         */
         get requestBodyData(): GLib.Bytes;
-
-        /**
-         * @read-only
-         */
         get request_headers(): MessageHeaders;
-
-        /**
-         * @read-only
-         */
         get requestHeaders(): MessageHeaders;
-
-        /**
-         * @read-only
-         */
         get response_body(): MessageBody;
-
-        /**
-         * @read-only
-         */
         get responseBody(): MessageBody;
-
-        /**
-         * The message's HTTP response body, as a {@link GLib.Bytes}.
-         * @since 2.46
-         * @read-only
-         */
         get response_body_data(): GLib.Bytes;
-
-        /**
-         * The message's HTTP response body, as a {@link GLib.Bytes}.
-         * @since 2.46
-         * @read-only
-         */
         get responseBodyData(): GLib.Bytes;
-
-        /**
-         * @read-only
-         */
         get response_headers(): MessageHeaders;
-
-        /**
-         * @read-only
-         */
         get responseHeaders(): MessageHeaders;
-
-        /**
-         * @construct-only
-         * @default false
-         */
         get server_side(): boolean;
-
-        /**
-         * @construct-only
-         * @default false
-         */
         get serverSide(): boolean;
-
         get site_for_cookies(): URI;
         set site_for_cookies(val: URI);
-
         get siteForCookies(): URI;
         set siteForCookies(val: URI);
-
-        /**
-         * @default 0
-         */
         get status_code(): number;
         set status_code(val: number);
-
-        /**
-         * @default 0
-         */
         get statusCode(): number;
         set statusCode(val: number);
-
-        /**
-         * The {@link Gio.TlsCertificate} associated with the message
-         * @since 2.34
-         */
         get tls_certificate(): Gio.TlsCertificate;
         set tls_certificate(val: Gio.TlsCertificate);
-
-        /**
-         * The {@link Gio.TlsCertificate} associated with the message
-         * @since 2.34
-         */
         get tlsCertificate(): Gio.TlsCertificate;
         set tlsCertificate(val: Gio.TlsCertificate);
-
-        /**
-         * The verification errors on {@link Soup.Message.tls_certificate}
-         * @since 2.34
-         * @default Gio.TlsCertificateFlags.NO_FLAGS
-         */
         get tls_errors(): Gio.TlsCertificateFlags;
         set tls_errors(val: Gio.TlsCertificateFlags);
-
-        /**
-         * The verification errors on {@link Soup.Message.tls_certificate}
-         * @since 2.34
-         * @default Gio.TlsCertificateFlags.NO_FLAGS
-         */
         get tlsErrors(): Gio.TlsCertificateFlags;
         set tlsErrors(val: Gio.TlsCertificateFlags);
-
         get uri(): URI;
         set uri(val: URI);
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: Message.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<Message.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](method: string, uri_string: string): Message;
-
         static new_from_uri(method: string, uri: URI): Message;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof Message.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Message.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof Message.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Message.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof Message.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Message.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * @virtual
-         */
         vfunc_finished(): void;
-
-        /**
-         * @virtual
-         */
         vfunc_got_body(): void;
-
-        /**
-         * @param chunk 
-         * @virtual
-         */
         vfunc_got_chunk(chunk: Buffer): void;
-
-        /**
-         * @virtual
-         */
         vfunc_got_headers(): void;
-
-        /**
-         * @virtual
-         */
         vfunc_got_informational(): void;
-
-        /**
-         * @virtual
-         */
         vfunc_restarted(): void;
-
-        /**
-         * @virtual
-         */
         vfunc_starting(): void;
-
-        /**
-         * @virtual
-         */
         vfunc_wrote_body(): void;
-
-        /**
-         * @virtual
-         */
         vfunc_wrote_chunk(): void;
-
-        /**
-         * @virtual
-         */
         vfunc_wrote_headers(): void;
-
-        /**
-         * @virtual
-         */
         vfunc_wrote_informational(): void;
-
-        // Methods
-        /**
-         * @param content_type 
-         * @param params 
-         */
         content_sniffed(content_type: string, params: never): void;
-
-        /**
-         * This disables the actions of {@link Soup.SessionFeature}<!-- -->s with the
-         * given `feature_type` (or a subclass of that type) on `msg`, so that
-         * `msg` is processed as though the feature(s) hadn't been added to the
-         * session. Eg, passing #SOUP_TYPE_CONTENT_SNIFFER for `feature_type`
-         * will disable Content-Type sniffing on the message.
-         * 
-         * You must call this before queueing `msg` on a session; calling it on
-         * a message that has already been queued is undefined. In particular,
-         * you cannot call this on a message that is being requeued after a
-         * redirect or authentication.
-         * @param feature_type the {@link GObject.GType} of a {@link Soup.SessionFeature}
-         */
         disable_feature(feature_type: GObject.GType): void;
-
         finished(): void;
-
-        /**
-         * Gets the address `msg`'s URI points to. After first setting the
-         * URI on a message, this will be unresolved, although the message's
-         * session will resolve it before sending the message.
-         * @returns the address `msg`'s URI points to
-         */
         get_address(): Address;
-
-        /**
-         * Gets `msg`'s first-party {@link Soup.URI}
-         * @returns the `msg`'s first party {@link Soup.URI}
-         */
         get_first_party(): URI;
-
-        /**
-         * Gets the flags on `msg`
-         * @returns the flags
-         */
         get_flags(): MessageFlags;
-
-        /**
-         * Gets the HTTP version of `msg`. This is the minimum of the
-         * version from the request and the version from the response.
-         * @returns the HTTP version
-         */
         get_http_version(): HTTPVersion;
-
-        /**
-         * If `msg` is using https (or attempted to use https but got
-         * {@link Soup.Status.SSL_FAILED}), this retrieves the {@link Gio.TlsCertificate}
-         * associated with its connection, and the {@link Gio.TlsCertificateFlags}
-         * showing what problems, if any, have been found with that
-         * certificate.
-         * 
-         * <note><para>This is only meaningful with messages processed by a {@link Soup.Session} and is
-         * not useful for messages received by a {@link Soup.Server}</para></note>
-         * @returns `true` if `msg` used/attempted https, `false` if not
-         */
         get_https_status(): [boolean, Gio.TlsCertificate, Gio.TlsCertificateFlags];
-
         get_is_top_level_navigation(): boolean;
-
-        /**
-         * Retrieves the {@link Soup.MessagePriority}. If not set this value defaults
-         * to #SOUP_MESSAGE_PRIORITY_NORMAL.
-         * @returns the priority of the message.
-         */
         get_priority(): MessagePriority;
-
-        /**
-         * Gets `msg`'s site for cookies {@link Soup.URI}
-         * @returns the `msg`'s site for cookies {@link Soup.URI}
-         */
         get_site_for_cookies(): URI;
-
-        /**
-         * If `msg` is associated with a {@link Soup.Request}, this returns that
-         * request. Otherwise it returns `null`.
-         * @returns `msg`'s associated {@link Soup.Request}
-         */
         get_soup_request(): Request;
-
-        /**
-         * Gets `msg`'s URI
-         * @returns the URI `msg` is targeted for.
-         */
         get_uri(): URI;
-
         got_body(): void;
-
-        /**
-         * @param chunk 
-         */
         got_chunk(chunk: Buffer): void;
-
         got_headers(): void;
-
         got_informational(): void;
-
-        /**
-         * Get whether {@link Soup.SessionFeature}<!-- -->s of the given `feature_type`
-         * (or a subclass of that type) are disabled on `msg`.
-         * See `soup_message_disable_feature()`.
-         * @param feature_type the {@link GObject.GType} of a {@link Soup.SessionFeature}
-         * @returns `true` if feature is disabled, or `false` otherwise.
-         */
         is_feature_disabled(feature_type: GObject.GType): boolean;
-
-        /**
-         * Determines whether or not `msg`'s connection can be kept alive for
-         * further requests after processing `msg`, based on the HTTP version,
-         * Connection header, etc.
-         * @returns `true` or `false`.
-         */
         is_keepalive(): boolean;
-
         restarted(): void;
-
-        /**
-         * Sets an alternate chunk-allocation function to use when reading
-         * `msg`'s body when using the traditional (ie,
-         * non-{@link Soup.Request}<!-- -->-based) API. Every time data is available
-         * to read, libsoup will call `allocator`, which should return a
-         * {@link Soup.Buffer}. (See {@link Soup.ChunkAllocator} for additional details.)
-         * Libsoup will then read data from the network into that buffer, and
-         * update the buffer's <literal>length</literal> to indicate how much
-         * data it read.
-         * 
-         * Generally, a custom chunk allocator would be used in conjunction
-         * with `soup_message_body_set_accumulate()` `false` and
-         * {@link Soup.Message.SignalSignatures.got_chunk | Soup.Message::got_chunk}, as part of a strategy to avoid unnecessary
-         * copying of data. However, you cannot assume that every call to the
-         * allocator will be followed by a call to your
-         * {@link Soup.Message.SignalSignatures.got_chunk | Soup.Message::got_chunk} handler; if an I/O error occurs, then the
-         * buffer will be unreffed without ever having been used. If your
-         * buffer-allocation strategy requires special cleanup, use
-         * `soup_buffer_new_with_owner()` rather than doing the cleanup from the
-         * {@link Soup.Message.SignalSignatures.got_chunk | Soup.Message::got_chunk} handler.
-         * 
-         * The other thing to remember when using non-accumulating message
-         * bodies is that the buffer passed to the {@link Soup.Message.SignalSignatures.got_chunk | Soup.Message::got_chunk}
-         * handler will be unreffed after the handler returns, just as it
-         * would be in the non-custom-allocated case. If you want to hand the
-         * chunk data off to some other part of your program to use later,
-         * you'll need to ref the {@link Soup.Buffer} (or its owner, in the
-         * `soup_buffer_new_with_owner()` case) to ensure that the data remains
-         * valid.
-         * @param allocator the chunk allocator callback
-         */
         set_chunk_allocator(allocator: ChunkAllocator): void;
-
-        /**
-         * Sets `first_party` as the main document {@link Soup.URI} for `msg`. For
-         * details of when and how this is used refer to the documentation for
-         * {@link Soup.CookieJarAcceptPolicy}.
-         * @param first_party the {@link Soup.URI} for the `msg`'s first party
-         */
         set_first_party(first_party: URI): void;
-
-        /**
-         * Sets the specified flags on `msg`.
-         * @param flags a set of {@link Soup.MessageFlags} values
-         */
         set_flags(flags: MessageFlags): void;
-
-        /**
-         * Sets the HTTP version on `msg`. The default version is
-         * {@link Soup.HTTPVersion.HTTP_1_1}. Setting it to {@link Soup.HTTPVersion.HTTP_1_0} will prevent certain
-         * functionality from being used.
-         * @param version the HTTP version
-         */
         set_http_version(version: HTTPVersion): void;
-
-        /**
-         * See the [same-site spec](https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00)
-         * for more information.
-         * @param is_top_level_navigation if `true` indicate the current request is a top-level navigation
-         */
         set_is_top_level_navigation(is_top_level_navigation: boolean): void;
-
-        /**
-         * Sets the priority of a message. Note that this won't have any
-         * effect unless used before the message is added to the session's
-         * message processing queue.
-         * 
-         * The message will be placed just before any other previously added
-         * message with lower priority (messages with the same priority are
-         * processed on a FIFO basis).
-         * 
-         * Setting priorities does not currently work with {@link Soup.SessionSync}
-         * (or with synchronous messages on a plain {@link Soup.Session}) because in
-         * the synchronous/blocking case, priority ends up being determined
-         * semi-randomly by thread scheduling.
-         * @param priority the {@link Soup.MessagePriority}
-         */
         set_priority(priority: MessagePriority): void;
-
-        /**
-         * Sets `msg`'s status_code to `status_code` and adds a Location header
-         * pointing to `redirect_uri`. Use this from a {@link Soup.Server} when you
-         * want to redirect the client to another URI.
-         * 
-         * `redirect_uri` can be a relative URI, in which case it is
-         * interpreted relative to `msg`'s current URI. In particular, if
-         * `redirect_uri` is just a path, it will replace the path
-         * <emphasis>and query</emphasis> of `msg`'s URI.
-         * @param status_code a 3xx status code
-         * @param redirect_uri the URI to redirect `msg` to
-         */
         set_redirect(status_code: number, redirect_uri: string): void;
-
-        /**
-         * Convenience function to set the request body of a {@link Soup.Message}. If
-         * `content_type` is `null`, the request body must be empty as well.
-         * @param content_type MIME Content-Type of the body
-         * @param req_use a {@link Soup.MemoryUse} describing how to handle `req_body`
-         * @param req_body a data buffer containing the body of the message request.
-         */
         set_request(content_type: string | null, req_use: MemoryUse, req_body: Uint8Array | string | null): void;
-
-        /**
-         * Convenience function to set the response body of a {@link Soup.Message}. If
-         * `content_type` is `null`, the response body must be empty as well.
-         * @param content_type MIME Content-Type of the body
-         * @param resp_use a {@link Soup.MemoryUse} describing how to handle `resp_body`
-         * @param resp_body a data buffer containing the body of the message response.
-         */
         set_response(content_type: string | null, resp_use: MemoryUse, resp_body: Uint8Array | string | null): void;
-
-        /**
-         * Sets `site_for_cookies` as the policy URL for same-site cookies for `msg`.
-         * 
-         * It is either the URL of the top-level document or `null` depending on whether the registrable
-         * domain of this document's URL matches the registrable domain of its parent's/opener's
-         * URL. For the top-level document it is set to the document's URL.
-         * 
-         * See the [same-site spec](https://tools.ietf.org/html/draft-ietf-httpbis-cookie-same-site-00)
-         * for more information.
-         * @param site_for_cookies the {@link Soup.URI} for the `msg`'s site for cookies
-         */
         set_site_for_cookies(site_for_cookies: URI | null): void;
-
-        /**
-         * Sets `msg`'s status code to `status_code`. If `status_code` is a
-         * known value, it will also set `msg`'s reason_phrase.
-         * @param status_code an HTTP status code
-         */
         set_status(status_code: number): void;
-
-        /**
-         * Sets `msg`'s status code and reason phrase.
-         * @param status_code an HTTP status code
-         * @param reason_phrase a description of the status
-         */
         set_status_full(status_code: number, reason_phrase: string): void;
-
-        /**
-         * Sets `msg`'s URI to `uri`. If `msg` has already been sent and you want
-         * to re-send it with the new URI, you need to call
-         * `soup_session_requeue_message()`.
-         * @param uri the new {@link Soup.URI}
-         */
         set_uri(uri: URI): void;
-
         starting(): void;
-
         wrote_body(): void;
-
-        /**
-         * @param chunk 
-         */
         wrote_body_data(chunk: Buffer): void;
-
         wrote_chunk(): void;
-
         wrote_headers(): void;
-
         wrote_informational(): void;
     }
-
-
     namespace MultipartInputStream {
-        // Signal signatures
         interface SignalSignatures extends Gio.FilterInputStream.SignalSignatures {
             "notify::message": (pspec: GObject.ParamSpec) => void;
             "notify::base-stream": (pspec: GObject.ParamSpec) => void;
             "notify::close-base-stream": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends Gio.FilterInputStream.ConstructorProps, Gio.PollableInputStream.ConstructorProps {
             message: Message;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class MultipartInputStream extends Gio.FilterInputStream implements Gio.PollableInputStream {
         static $gtype: GObject.GType<MultipartInputStream>;
-
-        // Properties
-        /**
-         * @construct-only
-         */
         get message(): Message;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: MultipartInputStream.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<MultipartInputStream.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](msg: Message, base_stream: Gio.InputStream): MultipartInputStream;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof MultipartInputStream.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MultipartInputStream.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof MultipartInputStream.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, MultipartInputStream.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof MultipartInputStream.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<MultipartInputStream.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Methods
-        /**
-         * Obtains the headers for the part currently being processed. Note
-         * that the {@link Soup.MessageHeaders} that are returned are owned by the
-         * {@link Soup.MultipartInputStream} and will be replaced when a call is made
-         * to `soup_multipart_input_stream_next_part()` or its async
-         * counterpart, so if keeping the headers is required, a copy must be
-         * made.
-         * 
-         * Note that if a part had no headers at all an empty {@link Soup.MessageHeaders}
-         * will be returned.
-         * @returns a {@link Soup.MessageHeaders} containing the headers for the part currently being processed or `null` if the headers failed to parse.
-         */
         get_headers(): MessageHeaders | null;
-
-        /**
-         * Obtains an input stream for the next part. When dealing with a
-         * multipart response the input stream needs to be wrapped in a
-         * {@link Soup.MultipartInputStream} and this function or its async
-         * counterpart need to be called to obtain the first part for
-         * reading.
-         * 
-         * After calling this function,
-         * `soup_multipart_input_stream_get_headers()` can be used to obtain the
-         * headers for the first part. A read of 0 bytes indicates the end of
-         * the part; a new call to this function should be done at that point,
-         * to obtain the next part.
-         * @param cancellable a {@link Gio.Cancellable}
-         * @returns a new {@link Gio.InputStream}, or `null` if there are no more parts
-         */
         next_part(cancellable: Gio.Cancellable | null): Gio.InputStream | null;
-
-        /**
-         * Obtains a {@link Gio.InputStream} for the next request. See
-         * `soup_multipart_input_stream_next_part()` for details on the
-         * workflow.
-         * @param io_priority the I/O priority for the request.
-         * @param cancellable a {@link Gio.Cancellable}.
-         */
         next_part_async(io_priority: number, cancellable: Gio.Cancellable | null): globalThis.Promise<Gio.InputStream | null>;
-
-        /**
-         * Obtains a {@link Gio.InputStream} for the next request. See
-         * `soup_multipart_input_stream_next_part()` for details on the
-         * workflow.
-         * @param io_priority the I/O priority for the request.
-         * @param cancellable a {@link Gio.Cancellable}.
-         * @param callback callback to call when request is satisfied.
-         */
         next_part_async(io_priority: number, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback<this> | null): void;
-
-        /**
-         * Obtains a {@link Gio.InputStream} for the next request. See
-         * `soup_multipart_input_stream_next_part()` for details on the
-         * workflow.
-         * @param io_priority the I/O priority for the request.
-         * @param cancellable a {@link Gio.Cancellable}.
-         * @param callback callback to call when request is satisfied.
-         */
         next_part_async(io_priority: number, cancellable: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback<this> | null): globalThis.Promise<Gio.InputStream | null> | void;
-
-        /**
-         * Finishes an asynchronous request for the next part.
-         * @param result a {@link Gio.AsyncResult}.
-         * @returns a newly created {@link Gio.InputStream} for reading the next part or `null` if there are no more parts.
-         */
         next_part_finish(result: Gio.AsyncResult): Gio.InputStream | null;
-
-        /**
-         * Checks if `stream` is actually pollable. Some classes may implement
-         * {@link Gio.PollableInputStream} but have only certain instances of that class
-         * be pollable. If this method returns `false`, then the behavior of
-         * other {@link Gio.PollableInputStream} methods is undefined.
-         * 
-         * For any given stream, the value returned by this method is constant;
-         * a stream cannot switch from pollable to non-pollable or vice versa.
-         * @returns `true` if `stream` is pollable, `false` if not.
-         */
         can_poll(): boolean;
-
-        /**
-         * Creates a {@link GLib.Source} that triggers when `stream` can be read, or
-         * `cancellable` is triggered or an error occurs. The callback on the
-         * source is of the {@link Gio.PollableSourceFunc} type.
-         * 
-         * As with `g_pollable_input_stream_is_readable()`, it is possible that
-         * the stream may not actually be readable even after the source
-         * triggers, so you should use `g_pollable_input_stream_read_nonblocking()`
-         * rather than `g_input_stream_read()` from the callback.
-         * 
-         * The behaviour of this method is undefined if
-         * `g_pollable_input_stream_can_poll()` returns `false` for `stream`.
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @returns a new {@link GLib.Source}
-         */
         create_source(cancellable: Gio.Cancellable | null): GLib.Source;
-
-        /**
-         * Checks if `stream` can be read.
-         * 
-         * Note that some stream types may not be able to implement this 100%
-         * reliably, and it is possible that a call to `g_input_stream_read()`
-         * after this returns `true` would still block. To guarantee
-         * non-blocking behavior, you should always use
-         * `g_pollable_input_stream_read_nonblocking()`, which will return a
-         * {@link Gio.IOErrorEnum.WOULD_BLOCK} error rather than blocking.
-         * 
-         * The behaviour of this method is undefined if
-         * `g_pollable_input_stream_can_poll()` returns `false` for `stream`.
-         * @returns `true` if `stream` is readable, `false` if not. If an error   has occurred on `stream`, this will result in   `g_pollable_input_stream_is_readable()` returning `true`, and the   next attempt to read will return the error.
-         */
         is_readable(): boolean;
-
-        /**
-         * Attempts to read up to `count` bytes from `stream` into `buffer`, as
-         * with `g_input_stream_read()`. If `stream` is not currently readable,
-         * this will immediately return {@link Gio.IOErrorEnum.WOULD_BLOCK}, and you can
-         * use `g_pollable_input_stream_create_source()` to create a {@link GLib.Source}
-         * that will be triggered when `stream` is readable.
-         * 
-         * Note that since this method never blocks, you cannot actually
-         * use `cancellable` to cancel it. However, it will return an error
-         * if `cancellable` has already been cancelled when you call, which
-         * may happen if you call this method after a source triggers due
-         * to having been cancelled.
-         * 
-         * The behaviour of this method is undefined if
-         * `g_pollable_input_stream_can_poll()` returns `false` for `stream`.
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @returns the number of bytes read, or -1 on error (including   {@link Gio.IOErrorEnum.WOULD_BLOCK}).
-         */
         read_nonblocking(cancellable: Gio.Cancellable | null): [number, Uint8Array];
-
-        /**
-         * Checks if `stream` is actually pollable. Some classes may implement
-         * {@link Gio.PollableInputStream} but have only certain instances of that class
-         * be pollable. If this method returns `false`, then the behavior of
-         * other {@link Gio.PollableInputStream} methods is undefined.
-         * 
-         * For any given stream, the value returned by this method is constant;
-         * a stream cannot switch from pollable to non-pollable or vice versa.
-         * @virtual
-         */
         vfunc_can_poll(): boolean;
-
-        /**
-         * Creates a {@link GLib.Source} that triggers when `stream` can be read, or
-         * `cancellable` is triggered or an error occurs. The callback on the
-         * source is of the {@link Gio.PollableSourceFunc} type.
-         * 
-         * As with `g_pollable_input_stream_is_readable()`, it is possible that
-         * the stream may not actually be readable even after the source
-         * triggers, so you should use `g_pollable_input_stream_read_nonblocking()`
-         * rather than `g_input_stream_read()` from the callback.
-         * 
-         * The behaviour of this method is undefined if
-         * `g_pollable_input_stream_can_poll()` returns `false` for `stream`.
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @virtual
-         */
         vfunc_create_source(cancellable: Gio.Cancellable | null): GLib.Source;
-
-        /**
-         * Checks if `stream` can be read.
-         * 
-         * Note that some stream types may not be able to implement this 100%
-         * reliably, and it is possible that a call to `g_input_stream_read()`
-         * after this returns `true` would still block. To guarantee
-         * non-blocking behavior, you should always use
-         * `g_pollable_input_stream_read_nonblocking()`, which will return a
-         * {@link Gio.IOErrorEnum.WOULD_BLOCK} error rather than blocking.
-         * 
-         * The behaviour of this method is undefined if
-         * `g_pollable_input_stream_can_poll()` returns `false` for `stream`.
-         * @virtual
-         */
         vfunc_is_readable(): boolean;
-
-        /**
-         * Attempts to read up to `count` bytes from `stream` into `buffer`, as
-         * with `g_input_stream_read()`. If `stream` is not currently readable,
-         * this will immediately return {@link Gio.IOErrorEnum.WOULD_BLOCK}, and you can
-         * use `g_pollable_input_stream_create_source()` to create a {@link GLib.Source}
-         * that will be triggered when `stream` is readable.
-         * 
-         * Note that since this method never blocks, you cannot actually
-         * use `cancellable` to cancel it. However, it will return an error
-         * if `cancellable` has already been cancelled when you call, which
-         * may happen if you call this method after a source triggers due
-         * to having been cancelled.
-         * 
-         * The behaviour of this method is undefined if
-         * `g_pollable_input_stream_can_poll()` returns `false` for `stream`.
-         * @virtual
-         */
         vfunc_read_nonblocking(): [bigint | number, Uint8Array | string | null];
     }
-
-
     namespace ProxyResolverDefault {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
             "notify::gproxy-resolver": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, ProxyURIResolver.ConstructorProps, SessionFeature.ConstructorProps {
             gproxy_resolver: Gio.ProxyResolver;
             gproxyResolver: Gio.ProxyResolver;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class ProxyResolverDefault extends GObject.Object implements ProxyURIResolver, SessionFeature {
         static $gtype: GObject.GType<ProxyResolverDefault>;
-
-        // Properties
-        /**
-         * @write-only
-         */
         set gproxy_resolver(val: Gio.ProxyResolver);
-
-        /**
-         * @write-only
-         */
         set gproxyResolver(val: Gio.ProxyResolver);
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: ProxyResolverDefault.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<ProxyResolverDefault.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof ProxyResolverDefault.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ProxyResolverDefault.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof ProxyResolverDefault.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, ProxyResolverDefault.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof ProxyResolverDefault.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<ProxyResolverDefault.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        /**
-         * Asynchronously determines a proxy URI to use for `msg` and calls
-         * `callback`.
-         * @param uri the {@link Soup.URI} you want a proxy for
-         * @param async_context the {@link GLib.MainContext} to invoke `callback` in
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @param callback callback to invoke with the proxy address
-         */
         get_proxy_uri_async(uri: URI, async_context: GLib.MainContext | null, cancellable: Gio.Cancellable | null, callback: ProxyURIResolverCallback): void;
-
-        /**
-         * Synchronously determines a proxy URI to use for `uri`. If `uri`
-         * should be sent via proxy, *`proxy_uri` will be set to the URI of the
-         * proxy, else it will be set to `null`.
-         * @param uri the {@link Soup.URI} you want a proxy for
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @returns {@link Soup.Status.OK} if successful, or a transport-level error.
-         */
         get_proxy_uri_sync(uri: URI, cancellable: Gio.Cancellable | null): [number, URI];
-
-        /**
-         * Asynchronously determines a proxy URI to use for `msg` and calls
-         * `callback`.
-         * @param uri the {@link Soup.URI} you want a proxy for
-         * @param async_context the {@link GLib.MainContext} to invoke `callback` in
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @param callback callback to invoke with the proxy address
-         * @virtual
-         */
         vfunc_get_proxy_uri_async(uri: URI, async_context: GLib.MainContext | null, cancellable: Gio.Cancellable | null, callback: ProxyURIResolverCallback): void;
-
-        /**
-         * Synchronously determines a proxy URI to use for `uri`. If `uri`
-         * should be sent via proxy, *`proxy_uri` will be set to the URI of the
-         * proxy, else it will be set to `null`.
-         * @param uri the {@link Soup.URI} you want a proxy for
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @virtual
-         */
         vfunc_get_proxy_uri_sync(uri: URI, cancellable: Gio.Cancellable | null): [number, URI];
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
     namespace Request {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
             "notify::session": (pspec: GObject.ParamSpec) => void;
             "notify::uri": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, Gio.Initable.ConstructorProps {
             session: Session;
             uri: URI;
         }
     }
-
-    /**
-     * A request to retrieve a particular URI.
-     * @gir-type Class
-     * @since 2.42
-     */
     class Request extends GObject.Object implements Gio.Initable {
         static $gtype: GObject.GType<Request>;
-
-        // Properties
-        /**
-         * The request's {@link Soup.Session}.
-         * @since 2.42
-         * @construct-only
-         */
         get session(): Session;
-
-        /**
-         * The request URI.
-         * @since 2.42
-         * @construct-only
-         */
         get uri(): URI;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: Request.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<Request.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof Request.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Request.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof Request.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Request.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof Request.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Request.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * @param uri 
-         * @virtual
-         */
         vfunc_check_uri(uri: URI): boolean;
-
-        /**
-         * Gets the length of the data represented by `request`. For most
-         * request types, this will not be known until after you call
-         * `soup_request_send()` or `soup_request_send_finish()`.
-         * @virtual
-         */
         vfunc_get_content_length(): bigint | number;
-
-        /**
-         * Gets the type of the data represented by `request`. For most request
-         * types, this will not be known until after you call
-         * `soup_request_send()` or `soup_request_send_finish()`.
-         * 
-         * As in the HTTP Content-Type header, this may include parameters
-         * after the MIME type.
-         * @virtual
-         */
         vfunc_get_content_type(): string | null;
-
-        /**
-         * Synchronously requests the URI pointed to by `request`, and returns
-         * a {@link Gio.InputStream} that can be used to read its contents.
-         * 
-         * Note that you cannot use this method with `SoupRequests` attached to
-         * a {@link Soup.SessionAsync}.
-         * @param cancellable a {@link Gio.Cancellable} or `null`
-         * @virtual
-         */
         vfunc_send(cancellable: Gio.Cancellable | null): Gio.InputStream;
-
-        /**
-         * Begins an asynchronously request for the URI pointed to by
-         * `request`.
-         * 
-         * Note that you cannot use this method with `SoupRequests` attached to
-         * a {@link Soup.SessionSync}.
-         * @param cancellable a {@link Gio.Cancellable} or `null`
-         * @param callback a {@link Gio.AsyncReadyCallback}
-         * @virtual
-         */
         vfunc_send_async(cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback<this> | null): void;
-
-        /**
-         * Gets the result of a `soup_request_send_async()`.
-         * @param result the {@link Gio.AsyncResult}
-         * @virtual
-         */
         vfunc_send_finish(result: Gio.AsyncResult): Gio.InputStream;
-
-        // Methods
-        /**
-         * Gets the length of the data represented by `request`. For most
-         * request types, this will not be known until after you call
-         * `soup_request_send()` or `soup_request_send_finish()`.
-         * @returns the length of the data represented by `request`,   or -1 if not known.
-         */
         get_content_length(): number;
-
-        /**
-         * Gets the type of the data represented by `request`. For most request
-         * types, this will not be known until after you call
-         * `soup_request_send()` or `soup_request_send_finish()`.
-         * 
-         * As in the HTTP Content-Type header, this may include parameters
-         * after the MIME type.
-         * @returns the type of the data represented by   `request`, or `null` if not known.
-         */
         get_content_type(): string | null;
-
-        /**
-         * Gets `request`'s {@link Soup.Session}
-         * @returns `request`'s {@link Soup.Session}
-         */
         get_session(): Session;
-
-        /**
-         * Gets `request`'s URI
-         * @returns `request`'s URI
-         */
         get_uri(): URI;
-
-        /**
-         * Synchronously requests the URI pointed to by `request`, and returns
-         * a {@link Gio.InputStream} that can be used to read its contents.
-         * 
-         * Note that you cannot use this method with `SoupRequests` attached to
-         * a {@link Soup.SessionAsync}.
-         * @param cancellable a {@link Gio.Cancellable} or `null`
-         * @returns a {@link Gio.InputStream} that can be used to   read from the URI pointed to by `request`.
-         */
         send(cancellable: Gio.Cancellable | null): Gio.InputStream;
-
-        /**
-         * Begins an asynchronously request for the URI pointed to by
-         * `request`.
-         * 
-         * Note that you cannot use this method with `SoupRequests` attached to
-         * a {@link Soup.SessionSync}.
-         * @param cancellable a {@link Gio.Cancellable} or `null`
-         */
         send_async(cancellable: Gio.Cancellable | null): globalThis.Promise<Gio.InputStream>;
-
-        /**
-         * Begins an asynchronously request for the URI pointed to by
-         * `request`.
-         * 
-         * Note that you cannot use this method with `SoupRequests` attached to
-         * a {@link Soup.SessionSync}.
-         * @param cancellable a {@link Gio.Cancellable} or `null`
-         * @param callback a {@link Gio.AsyncReadyCallback}
-         */
         send_async(cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback<this> | null): void;
-
-        /**
-         * Begins an asynchronously request for the URI pointed to by
-         * `request`.
-         * 
-         * Note that you cannot use this method with `SoupRequests` attached to
-         * a {@link Soup.SessionSync}.
-         * @param cancellable a {@link Gio.Cancellable} or `null`
-         * @param callback a {@link Gio.AsyncReadyCallback}
-         */
         send_async(cancellable: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback<this> | null): globalThis.Promise<Gio.InputStream> | void;
-
-        /**
-         * Gets the result of a `soup_request_send_async()`.
-         * @param result the {@link Gio.AsyncResult}
-         * @returns a {@link Gio.InputStream} that can be used to   read from the URI pointed to by `request`.
-         */
         send_finish(result: Gio.AsyncResult): Gio.InputStream;
-
-        /**
-         * Initializes the object implementing the interface.
-         * 
-         * This method is intended for language bindings. If writing in C,
-         * `g_initable_new()` should typically be used instead.
-         * 
-         * The object must be initialized before any real use after initial
-         * construction, either with this function or `g_async_initable_init_async()`.
-         * 
-         * Implementations may also support cancellation. If `cancellable` is not `null`,
-         * then initialization can be cancelled by triggering the cancellable object
-         * from another thread. If the operation was cancelled, the error
-         * {@link Gio.IOErrorEnum.CANCELLED} will be returned. If `cancellable` is not `null` and
-         * the object doesn't support cancellable initialization the error
-         * {@link Gio.IOErrorEnum.NOT_SUPPORTED} will be returned.
-         * 
-         * If the object is not initialized, or initialization returns with an
-         * error, then all operations on the object except `g_object_ref()` and
-         * `g_object_unref()` are considered to be invalid, and have undefined
-         * behaviour. See the [description][iface@Gio.Initable#description] for more details.
-         * 
-         * Callers should not assume that a class which implements {@link Gio.Initable} can be
-         * initialized multiple times, unless the class explicitly documents itself as
-         * supporting this. Generally, a class’ implementation of `init()` can assume
-         * (and assert) that it will only be called once. Previously, this documentation
-         * recommended all {@link Gio.Initable} implementations should be idempotent; that
-         * recommendation was relaxed in GLib 2.54.
-         * 
-         * If a class explicitly supports being initialized multiple times, it is
-         * recommended that the method is idempotent: multiple calls with the same
-         * arguments should return the same results. Only the first call initializes
-         * the object; further calls return the result of the first call.
-         * 
-         * One reason why a class might need to support idempotent initialization is if
-         * it is designed to be used via the singleton pattern, with a
-         * {@link GObject.ObjectClass}.constructor that sometimes returns an existing instance.
-         * In this pattern, a caller would expect to be able to call `g_initable_init()`
-         * on the result of `g_object_new()`, regardless of whether it is in fact a new
-         * instance.
-         * @param cancellable optional {@link Gio.Cancellable} object, `null` to ignore.
-         * @returns `true` if successful. If an error has occurred, this function will     return `false` and set `error` appropriately if present.
-         */
         init(cancellable: Gio.Cancellable | null): boolean;
-
-        /**
-         * Initializes the object implementing the interface.
-         * 
-         * This method is intended for language bindings. If writing in C,
-         * `g_initable_new()` should typically be used instead.
-         * 
-         * The object must be initialized before any real use after initial
-         * construction, either with this function or `g_async_initable_init_async()`.
-         * 
-         * Implementations may also support cancellation. If `cancellable` is not `null`,
-         * then initialization can be cancelled by triggering the cancellable object
-         * from another thread. If the operation was cancelled, the error
-         * {@link Gio.IOErrorEnum.CANCELLED} will be returned. If `cancellable` is not `null` and
-         * the object doesn't support cancellable initialization the error
-         * {@link Gio.IOErrorEnum.NOT_SUPPORTED} will be returned.
-         * 
-         * If the object is not initialized, or initialization returns with an
-         * error, then all operations on the object except `g_object_ref()` and
-         * `g_object_unref()` are considered to be invalid, and have undefined
-         * behaviour. See the [description][iface@Gio.Initable#description] for more details.
-         * 
-         * Callers should not assume that a class which implements {@link Gio.Initable} can be
-         * initialized multiple times, unless the class explicitly documents itself as
-         * supporting this. Generally, a class’ implementation of `init()` can assume
-         * (and assert) that it will only be called once. Previously, this documentation
-         * recommended all {@link Gio.Initable} implementations should be idempotent; that
-         * recommendation was relaxed in GLib 2.54.
-         * 
-         * If a class explicitly supports being initialized multiple times, it is
-         * recommended that the method is idempotent: multiple calls with the same
-         * arguments should return the same results. Only the first call initializes
-         * the object; further calls return the result of the first call.
-         * 
-         * One reason why a class might need to support idempotent initialization is if
-         * it is designed to be used via the singleton pattern, with a
-         * {@link GObject.ObjectClass}.constructor that sometimes returns an existing instance.
-         * In this pattern, a caller would expect to be able to call `g_initable_init()`
-         * on the result of `g_object_new()`, regardless of whether it is in fact a new
-         * instance.
-         * @param cancellable optional {@link Gio.Cancellable} object, `null` to ignore.
-         * @virtual
-         */
         vfunc_init(cancellable: Gio.Cancellable | null): boolean;
     }
-
-
     namespace RequestData {
-        // Signal signatures
         interface SignalSignatures extends Request.SignalSignatures {
             "notify::session": (pspec: GObject.ParamSpec) => void;
             "notify::uri": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends Request.ConstructorProps, Gio.Initable.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class RequestData extends Request implements Gio.Initable {
         static $gtype: GObject.GType<RequestData>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: RequestData.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<RequestData.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof RequestData.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, RequestData.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof RequestData.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, RequestData.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof RequestData.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<RequestData.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        /**
-         * Initializes the object implementing the interface.
-         * 
-         * This method is intended for language bindings. If writing in C,
-         * `g_initable_new()` should typically be used instead.
-         * 
-         * The object must be initialized before any real use after initial
-         * construction, either with this function or `g_async_initable_init_async()`.
-         * 
-         * Implementations may also support cancellation. If `cancellable` is not `null`,
-         * then initialization can be cancelled by triggering the cancellable object
-         * from another thread. If the operation was cancelled, the error
-         * {@link Gio.IOErrorEnum.CANCELLED} will be returned. If `cancellable` is not `null` and
-         * the object doesn't support cancellable initialization the error
-         * {@link Gio.IOErrorEnum.NOT_SUPPORTED} will be returned.
-         * 
-         * If the object is not initialized, or initialization returns with an
-         * error, then all operations on the object except `g_object_ref()` and
-         * `g_object_unref()` are considered to be invalid, and have undefined
-         * behaviour. See the [description][iface@Gio.Initable#description] for more details.
-         * 
-         * Callers should not assume that a class which implements {@link Gio.Initable} can be
-         * initialized multiple times, unless the class explicitly documents itself as
-         * supporting this. Generally, a class’ implementation of `init()` can assume
-         * (and assert) that it will only be called once. Previously, this documentation
-         * recommended all {@link Gio.Initable} implementations should be idempotent; that
-         * recommendation was relaxed in GLib 2.54.
-         * 
-         * If a class explicitly supports being initialized multiple times, it is
-         * recommended that the method is idempotent: multiple calls with the same
-         * arguments should return the same results. Only the first call initializes
-         * the object; further calls return the result of the first call.
-         * 
-         * One reason why a class might need to support idempotent initialization is if
-         * it is designed to be used via the singleton pattern, with a
-         * {@link GObject.ObjectClass}.constructor that sometimes returns an existing instance.
-         * In this pattern, a caller would expect to be able to call `g_initable_init()`
-         * on the result of `g_object_new()`, regardless of whether it is in fact a new
-         * instance.
-         * @param cancellable optional {@link Gio.Cancellable} object, `null` to ignore.
-         * @returns `true` if successful. If an error has occurred, this function will     return `false` and set `error` appropriately if present.
-         */
         init(cancellable: Gio.Cancellable | null): boolean;
-
-        /**
-         * Initializes the object implementing the interface.
-         * 
-         * This method is intended for language bindings. If writing in C,
-         * `g_initable_new()` should typically be used instead.
-         * 
-         * The object must be initialized before any real use after initial
-         * construction, either with this function or `g_async_initable_init_async()`.
-         * 
-         * Implementations may also support cancellation. If `cancellable` is not `null`,
-         * then initialization can be cancelled by triggering the cancellable object
-         * from another thread. If the operation was cancelled, the error
-         * {@link Gio.IOErrorEnum.CANCELLED} will be returned. If `cancellable` is not `null` and
-         * the object doesn't support cancellable initialization the error
-         * {@link Gio.IOErrorEnum.NOT_SUPPORTED} will be returned.
-         * 
-         * If the object is not initialized, or initialization returns with an
-         * error, then all operations on the object except `g_object_ref()` and
-         * `g_object_unref()` are considered to be invalid, and have undefined
-         * behaviour. See the [description][iface@Gio.Initable#description] for more details.
-         * 
-         * Callers should not assume that a class which implements {@link Gio.Initable} can be
-         * initialized multiple times, unless the class explicitly documents itself as
-         * supporting this. Generally, a class’ implementation of `init()` can assume
-         * (and assert) that it will only be called once. Previously, this documentation
-         * recommended all {@link Gio.Initable} implementations should be idempotent; that
-         * recommendation was relaxed in GLib 2.54.
-         * 
-         * If a class explicitly supports being initialized multiple times, it is
-         * recommended that the method is idempotent: multiple calls with the same
-         * arguments should return the same results. Only the first call initializes
-         * the object; further calls return the result of the first call.
-         * 
-         * One reason why a class might need to support idempotent initialization is if
-         * it is designed to be used via the singleton pattern, with a
-         * {@link GObject.ObjectClass}.constructor that sometimes returns an existing instance.
-         * In this pattern, a caller would expect to be able to call `g_initable_init()`
-         * on the result of `g_object_new()`, regardless of whether it is in fact a new
-         * instance.
-         * @param cancellable optional {@link Gio.Cancellable} object, `null` to ignore.
-         * @virtual
-         */
         vfunc_init(cancellable: Gio.Cancellable | null): boolean;
     }
-
-
     namespace RequestFile {
-        // Signal signatures
         interface SignalSignatures extends Request.SignalSignatures {
             "notify::session": (pspec: GObject.ParamSpec) => void;
             "notify::uri": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends Request.ConstructorProps, Gio.Initable.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class RequestFile extends Request implements Gio.Initable {
         static $gtype: GObject.GType<RequestFile>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: RequestFile.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<RequestFile.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof RequestFile.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, RequestFile.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof RequestFile.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, RequestFile.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof RequestFile.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<RequestFile.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Methods
-        /**
-         * Gets a {@link Gio.File} corresponding to `file`'s URI
-         * @returns a {@link Gio.File} corresponding to `file`
-         */
         get_file(): Gio.File;
-
-        /**
-         * Initializes the object implementing the interface.
-         * 
-         * This method is intended for language bindings. If writing in C,
-         * `g_initable_new()` should typically be used instead.
-         * 
-         * The object must be initialized before any real use after initial
-         * construction, either with this function or `g_async_initable_init_async()`.
-         * 
-         * Implementations may also support cancellation. If `cancellable` is not `null`,
-         * then initialization can be cancelled by triggering the cancellable object
-         * from another thread. If the operation was cancelled, the error
-         * {@link Gio.IOErrorEnum.CANCELLED} will be returned. If `cancellable` is not `null` and
-         * the object doesn't support cancellable initialization the error
-         * {@link Gio.IOErrorEnum.NOT_SUPPORTED} will be returned.
-         * 
-         * If the object is not initialized, or initialization returns with an
-         * error, then all operations on the object except `g_object_ref()` and
-         * `g_object_unref()` are considered to be invalid, and have undefined
-         * behaviour. See the [description][iface@Gio.Initable#description] for more details.
-         * 
-         * Callers should not assume that a class which implements {@link Gio.Initable} can be
-         * initialized multiple times, unless the class explicitly documents itself as
-         * supporting this. Generally, a class’ implementation of `init()` can assume
-         * (and assert) that it will only be called once. Previously, this documentation
-         * recommended all {@link Gio.Initable} implementations should be idempotent; that
-         * recommendation was relaxed in GLib 2.54.
-         * 
-         * If a class explicitly supports being initialized multiple times, it is
-         * recommended that the method is idempotent: multiple calls with the same
-         * arguments should return the same results. Only the first call initializes
-         * the object; further calls return the result of the first call.
-         * 
-         * One reason why a class might need to support idempotent initialization is if
-         * it is designed to be used via the singleton pattern, with a
-         * {@link GObject.ObjectClass}.constructor that sometimes returns an existing instance.
-         * In this pattern, a caller would expect to be able to call `g_initable_init()`
-         * on the result of `g_object_new()`, regardless of whether it is in fact a new
-         * instance.
-         * @param cancellable optional {@link Gio.Cancellable} object, `null` to ignore.
-         * @returns `true` if successful. If an error has occurred, this function will     return `false` and set `error` appropriately if present.
-         */
         init(cancellable: Gio.Cancellable | null): boolean;
-
-        /**
-         * Initializes the object implementing the interface.
-         * 
-         * This method is intended for language bindings. If writing in C,
-         * `g_initable_new()` should typically be used instead.
-         * 
-         * The object must be initialized before any real use after initial
-         * construction, either with this function or `g_async_initable_init_async()`.
-         * 
-         * Implementations may also support cancellation. If `cancellable` is not `null`,
-         * then initialization can be cancelled by triggering the cancellable object
-         * from another thread. If the operation was cancelled, the error
-         * {@link Gio.IOErrorEnum.CANCELLED} will be returned. If `cancellable` is not `null` and
-         * the object doesn't support cancellable initialization the error
-         * {@link Gio.IOErrorEnum.NOT_SUPPORTED} will be returned.
-         * 
-         * If the object is not initialized, or initialization returns with an
-         * error, then all operations on the object except `g_object_ref()` and
-         * `g_object_unref()` are considered to be invalid, and have undefined
-         * behaviour. See the [description][iface@Gio.Initable#description] for more details.
-         * 
-         * Callers should not assume that a class which implements {@link Gio.Initable} can be
-         * initialized multiple times, unless the class explicitly documents itself as
-         * supporting this. Generally, a class’ implementation of `init()` can assume
-         * (and assert) that it will only be called once. Previously, this documentation
-         * recommended all {@link Gio.Initable} implementations should be idempotent; that
-         * recommendation was relaxed in GLib 2.54.
-         * 
-         * If a class explicitly supports being initialized multiple times, it is
-         * recommended that the method is idempotent: multiple calls with the same
-         * arguments should return the same results. Only the first call initializes
-         * the object; further calls return the result of the first call.
-         * 
-         * One reason why a class might need to support idempotent initialization is if
-         * it is designed to be used via the singleton pattern, with a
-         * {@link GObject.ObjectClass}.constructor that sometimes returns an existing instance.
-         * In this pattern, a caller would expect to be able to call `g_initable_init()`
-         * on the result of `g_object_new()`, regardless of whether it is in fact a new
-         * instance.
-         * @param cancellable optional {@link Gio.Cancellable} object, `null` to ignore.
-         * @virtual
-         */
         vfunc_init(cancellable: Gio.Cancellable | null): boolean;
     }
-
-
     namespace RequestHTTP {
-        // Signal signatures
         interface SignalSignatures extends Request.SignalSignatures {
             "notify::session": (pspec: GObject.ParamSpec) => void;
             "notify::uri": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends Request.ConstructorProps, Gio.Initable.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class RequestHTTP extends Request implements Gio.Initable {
         static $gtype: GObject.GType<RequestHTTP>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: RequestHTTP.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<RequestHTTP.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof RequestHTTP.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, RequestHTTP.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof RequestHTTP.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, RequestHTTP.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof RequestHTTP.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<RequestHTTP.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Methods
-        /**
-         * Gets a new reference to the {@link Soup.Message} associated to this SoupRequest
-         * @returns a new reference to the {@link Soup.Message}
-         */
         get_message(): Message;
-
-        /**
-         * Initializes the object implementing the interface.
-         * 
-         * This method is intended for language bindings. If writing in C,
-         * `g_initable_new()` should typically be used instead.
-         * 
-         * The object must be initialized before any real use after initial
-         * construction, either with this function or `g_async_initable_init_async()`.
-         * 
-         * Implementations may also support cancellation. If `cancellable` is not `null`,
-         * then initialization can be cancelled by triggering the cancellable object
-         * from another thread. If the operation was cancelled, the error
-         * {@link Gio.IOErrorEnum.CANCELLED} will be returned. If `cancellable` is not `null` and
-         * the object doesn't support cancellable initialization the error
-         * {@link Gio.IOErrorEnum.NOT_SUPPORTED} will be returned.
-         * 
-         * If the object is not initialized, or initialization returns with an
-         * error, then all operations on the object except `g_object_ref()` and
-         * `g_object_unref()` are considered to be invalid, and have undefined
-         * behaviour. See the [description][iface@Gio.Initable#description] for more details.
-         * 
-         * Callers should not assume that a class which implements {@link Gio.Initable} can be
-         * initialized multiple times, unless the class explicitly documents itself as
-         * supporting this. Generally, a class’ implementation of `init()` can assume
-         * (and assert) that it will only be called once. Previously, this documentation
-         * recommended all {@link Gio.Initable} implementations should be idempotent; that
-         * recommendation was relaxed in GLib 2.54.
-         * 
-         * If a class explicitly supports being initialized multiple times, it is
-         * recommended that the method is idempotent: multiple calls with the same
-         * arguments should return the same results. Only the first call initializes
-         * the object; further calls return the result of the first call.
-         * 
-         * One reason why a class might need to support idempotent initialization is if
-         * it is designed to be used via the singleton pattern, with a
-         * {@link GObject.ObjectClass}.constructor that sometimes returns an existing instance.
-         * In this pattern, a caller would expect to be able to call `g_initable_init()`
-         * on the result of `g_object_new()`, regardless of whether it is in fact a new
-         * instance.
-         * @param cancellable optional {@link Gio.Cancellable} object, `null` to ignore.
-         * @returns `true` if successful. If an error has occurred, this function will     return `false` and set `error` appropriately if present.
-         */
         init(cancellable: Gio.Cancellable | null): boolean;
-
-        /**
-         * Initializes the object implementing the interface.
-         * 
-         * This method is intended for language bindings. If writing in C,
-         * `g_initable_new()` should typically be used instead.
-         * 
-         * The object must be initialized before any real use after initial
-         * construction, either with this function or `g_async_initable_init_async()`.
-         * 
-         * Implementations may also support cancellation. If `cancellable` is not `null`,
-         * then initialization can be cancelled by triggering the cancellable object
-         * from another thread. If the operation was cancelled, the error
-         * {@link Gio.IOErrorEnum.CANCELLED} will be returned. If `cancellable` is not `null` and
-         * the object doesn't support cancellable initialization the error
-         * {@link Gio.IOErrorEnum.NOT_SUPPORTED} will be returned.
-         * 
-         * If the object is not initialized, or initialization returns with an
-         * error, then all operations on the object except `g_object_ref()` and
-         * `g_object_unref()` are considered to be invalid, and have undefined
-         * behaviour. See the [description][iface@Gio.Initable#description] for more details.
-         * 
-         * Callers should not assume that a class which implements {@link Gio.Initable} can be
-         * initialized multiple times, unless the class explicitly documents itself as
-         * supporting this. Generally, a class’ implementation of `init()` can assume
-         * (and assert) that it will only be called once. Previously, this documentation
-         * recommended all {@link Gio.Initable} implementations should be idempotent; that
-         * recommendation was relaxed in GLib 2.54.
-         * 
-         * If a class explicitly supports being initialized multiple times, it is
-         * recommended that the method is idempotent: multiple calls with the same
-         * arguments should return the same results. Only the first call initializes
-         * the object; further calls return the result of the first call.
-         * 
-         * One reason why a class might need to support idempotent initialization is if
-         * it is designed to be used via the singleton pattern, with a
-         * {@link GObject.ObjectClass}.constructor that sometimes returns an existing instance.
-         * In this pattern, a caller would expect to be able to call `g_initable_init()`
-         * on the result of `g_object_new()`, regardless of whether it is in fact a new
-         * instance.
-         * @param cancellable optional {@link Gio.Cancellable} object, `null` to ignore.
-         * @virtual
-         */
         vfunc_init(cancellable: Gio.Cancellable | null): boolean;
     }
-
-
     namespace Requester {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {}
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, SessionFeature.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class Requester extends GObject.Object implements SessionFeature {
         static $gtype: GObject.GType<Requester>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: Requester.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<Requester.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](): Requester;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof Requester.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Requester.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof Requester.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Requester.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof Requester.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Requester.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Methods
-        /**
-         * @param uri_string 
-         */
         request(uri_string: string): Request;
-
-        /**
-         * @param uri 
-         */
         request_uri(uri: URI): Request;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
     namespace Server {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
-            /**
-             * Emitted when processing has failed for a message; this
-             * could mean either that it could not be read (if
-             * {@link Soup.Server.SignalSignatures.request_read | Soup.Server::request_read} has not been emitted for it yet),
-             * or that the response could not be written back (if
-             * {@link Soup.Server.SignalSignatures.request_read | Soup.Server::request_read} has been emitted but
-             * {@link Soup.Server.SignalSignatures.request_finished | Soup.Server::request_finished} has not been).
-             * 
-             * `message` is in an undefined state when this signal is
-             * emitted; the signal exists primarily to allow the server to
-             * free any state that it may have allocated in
-             * {@link Soup.Server.SignalSignatures.request_started | Soup.Server::request_started}.
-             * @signal
-             * @run-first
-             */
             "request-aborted": (arg0: Message, arg1: ClientContext) => void;
-            /**
-             * Emitted when the server has finished writing a response to
-             * a request.
-             * @signal
-             * @run-first
-             */
             "request-finished": (arg0: Message, arg1: ClientContext) => void;
-            /**
-             * Emitted when the server has successfully read a request.
-             * `message` will have all of its request-side information
-             * filled in, and if the message was authenticated, `client`
-             * will have information about that. This signal is emitted
-             * before any (non-early) handlers are called for the message,
-             * and if it sets the message's `status_code`, then normal
-             * handler processing will be skipped.
-             * @signal
-             * @run-first
-             */
             "request-read": (arg0: Message, arg1: ClientContext) => void;
-            /**
-             * Emitted when the server has started reading a new request.
-             * `message` will be completely blank; not even the
-             * Request-Line will have been read yet. About the only thing
-             * you can usefully do with it is connect to its signals.
-             * 
-             * If the request is read successfully, this will eventually
-             * be followed by a {@link Soup.Server.SignalSignatures.request_read | Soup.Server::request_read} signal. If a
-             * response is then sent, the request processing will end with
-             * a {@link Soup.Server.SignalSignatures.request_finished | Soup.Server::request_finished} signal. If a network error
-             * occurs, the processing will instead end with
-             * {@link Soup.Server.SignalSignatures.request_aborted | Soup.Server::request_aborted}.
-             * @signal
-             * @run-first
-             */
             "request-started": (arg0: Message, arg1: ClientContext) => void;
             "notify::async-context": (pspec: GObject.ParamSpec) => void;
             "notify::http-aliases": (pspec: GObject.ParamSpec) => void;
@@ -8757,8 +1835,6 @@ export namespace Soup {
             "notify::ssl-key-file": (pspec: GObject.ParamSpec) => void;
             "notify::tls-certificate": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps {
             async_context: null;
             asyncContext: null;
@@ -8780,807 +1856,78 @@ export namespace Soup {
             tlsCertificate: Gio.TlsCertificate;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class Server extends GObject.Object {
         static $gtype: GObject.GType<Server>;
-
-        // Properties
-        /**
-         * The server's {@link GLib.MainContext}, if you are using the old API.
-         * Servers created using `soup_server_listen()` will listen on
-         * the {@link GLib.MainContext} that was the thread-default context at
-         * the time `soup_server_listen()` was called.
-         * @deprecated The new API uses the thread-default {@link GLib.MainContext} rather than having an explicitly-specified one.
-         * @construct-only
-         */
         get async_context(): null;
-
-        /**
-         * The server's {@link GLib.MainContext}, if you are using the old API.
-         * Servers created using `soup_server_listen()` will listen on
-         * the {@link GLib.MainContext} that was the thread-default context at
-         * the time `soup_server_listen()` was called.
-         * @deprecated The new API uses the thread-default {@link GLib.MainContext} rather than having an explicitly-specified one.
-         * @construct-only
-         */
         get asyncContext(): null;
-
-        /**
-         * A `null`-terminated array of URI schemes that should be
-         * considered to be aliases for "http". Eg, if this included
-         * <literal>"dav"</literal>, than a URI of
-         * <literal>dav://example.com/path</literal> would be treated
-         * identically to <literal>http://example.com/path</literal>.
-         * In particular, this is needed in cases where a client
-         * sends requests with absolute URIs, where those URIs do
-         * not use "http:".
-         * 
-         * The default value is an array containing the single element
-         * <literal>"*"</literal>, a special value which means that
-         * any scheme except "https" is considered to be an alias for
-         * "http".
-         * 
-         * See also {@link Soup.Server.https_aliases}.
-         * @since 2.44
-         */
         get http_aliases(): string[];
         set http_aliases(val: string[]);
-
-        /**
-         * A `null`-terminated array of URI schemes that should be
-         * considered to be aliases for "http". Eg, if this included
-         * <literal>"dav"</literal>, than a URI of
-         * <literal>dav://example.com/path</literal> would be treated
-         * identically to <literal>http://example.com/path</literal>.
-         * In particular, this is needed in cases where a client
-         * sends requests with absolute URIs, where those URIs do
-         * not use "http:".
-         * 
-         * The default value is an array containing the single element
-         * <literal>"*"</literal>, a special value which means that
-         * any scheme except "https" is considered to be an alias for
-         * "http".
-         * 
-         * See also {@link Soup.Server.https_aliases}.
-         * @since 2.44
-         */
         get httpAliases(): string[];
         set httpAliases(val: string[]);
-
-        /**
-         * A comma-delimited list of URI schemes that should be
-         * considered to be aliases for "https". See
-         * {@link Soup.Server.http_aliases} for more information.
-         * 
-         * The default value is `null`, meaning that no URI schemes
-         * are considered aliases for "https".
-         * @since 2.44
-         */
         get https_aliases(): string[];
         set https_aliases(val: string[]);
-
-        /**
-         * A comma-delimited list of URI schemes that should be
-         * considered to be aliases for "https". See
-         * {@link Soup.Server.http_aliases} for more information.
-         * 
-         * The default value is `null`, meaning that no URI schemes
-         * are considered aliases for "https".
-         * @since 2.44
-         */
         get httpsAliases(): string[];
         set httpsAliases(val: string[]);
-
-        /**
-         * The address of the network interface the server is
-         * listening on, if you are using the old {@link Soup.Server} API.
-         * (This will not be set if you use `soup_server_listen()`,
-         * etc.)
-         * @deprecated `SoupServers` can listen on multiple interfaces at once now. Use `soup_server_listen()`, etc, to listen on an interface, and `soup_server_get_uris()` to see what addresses are being listened on.
-         * @construct-only
-         */
         get "interface"(): Address;
-
-        /**
-         * The port the server is listening on, if you are using the
-         * old {@link Soup.Server} API. (This will not be set if you use
-         * `soup_server_listen()`, etc.)
-         * @deprecated `SoupServers` can listen on multiple interfaces at once now. Use `soup_server_listen()`, etc, to listen on a port, and `soup_server_get_uris()` to see what ports are being listened on.
-         * @construct-only
-         * @default 0
-         */
         get port(): number;
-
-        /**
-         * @construct-only
-         * @default false
-         */
         get raw_paths(): boolean;
-
-        /**
-         * @construct-only
-         * @default false
-         */
         get rawPaths(): boolean;
-
-        /**
-         * If non-`null`, the value to use for the "Server" header on
-         * {@link Soup.Message}<!-- -->s processed by this server.
-         * 
-         * The Server header is the server equivalent of the
-         * User-Agent header, and provides information about the
-         * server and its components. It contains a list of one or
-         * more product tokens, separated by whitespace, with the most
-         * significant product token coming first. The tokens must be
-         * brief, ASCII, and mostly alphanumeric (although "-", "_",
-         * and "." are also allowed), and may optionally include a "/"
-         * followed by a version string. You may also put comments,
-         * enclosed in parentheses, between or after the tokens.
-         * 
-         * Some HTTP server implementations intentionally do not use
-         * version numbers in their Server header, so that
-         * installations running older versions of the server don't
-         * end up advertising their vulnerability to specific security
-         * holes.
-         * 
-         * As with {@link Soup.Session.user_agent}, if you set a
-         * {@link Soup.Server.server_header} property that has trailing whitespace,
-         * {@link Soup.Server} will append its own product token (eg,
-         * "<literal>libsoup/2.3.2</literal>") to the end of the
-         * header for you.
-         * @default null
-         */
         get server_header(): string;
         set server_header(val: string);
-
-        /**
-         * If non-`null`, the value to use for the "Server" header on
-         * {@link Soup.Message}<!-- -->s processed by this server.
-         * 
-         * The Server header is the server equivalent of the
-         * User-Agent header, and provides information about the
-         * server and its components. It contains a list of one or
-         * more product tokens, separated by whitespace, with the most
-         * significant product token coming first. The tokens must be
-         * brief, ASCII, and mostly alphanumeric (although "-", "_",
-         * and "." are also allowed), and may optionally include a "/"
-         * followed by a version string. You may also put comments,
-         * enclosed in parentheses, between or after the tokens.
-         * 
-         * Some HTTP server implementations intentionally do not use
-         * version numbers in their Server header, so that
-         * installations running older versions of the server don't
-         * end up advertising their vulnerability to specific security
-         * holes.
-         * 
-         * As with {@link Soup.Session.user_agent}, if you set a
-         * {@link Soup.Server.server_header} property that has trailing whitespace,
-         * {@link Soup.Server} will append its own product token (eg,
-         * "<literal>libsoup/2.3.2</literal>") to the end of the
-         * header for you.
-         * @default null
-         */
         get serverHeader(): string;
         set serverHeader(val: string);
-
-        /**
-         * Path to a file containing a PEM-encoded certificate.
-         * 
-         * If you set this property and {@link Soup.Server.ssl_key_file} at
-         * construct time, then `soup_server_new()` will try to read the
-         * files; if it cannot, it will return `null`, with no explicit
-         * indication of what went wrong (and logging a warning with
-         * newer versions of glib, since returning `null` from a
-         * constructor is illegal).
-         * @deprecated use {@link Soup.Server.tls_certificate} or `soup_server_set_ssl_certificate()`.
-         * @construct-only
-         * @default null
-         */
         get ssl_cert_file(): string;
-
-        /**
-         * Path to a file containing a PEM-encoded certificate.
-         * 
-         * If you set this property and {@link Soup.Server.ssl_key_file} at
-         * construct time, then `soup_server_new()` will try to read the
-         * files; if it cannot, it will return `null`, with no explicit
-         * indication of what went wrong (and logging a warning with
-         * newer versions of glib, since returning `null` from a
-         * constructor is illegal).
-         * @deprecated use {@link Soup.Server.tls_certificate} or `soup_server_set_ssl_certificate()`.
-         * @construct-only
-         * @default null
-         */
         get sslCertFile(): string;
-
-        /**
-         * Path to a file containing a PEM-encoded private key. See
-         * {@link Soup.Server.ssl_cert_file} for more information about how this
-         * is used.
-         * @deprecated use {@link Soup.Server.tls_certificate} or `soup_server_set_ssl_certificate()`.
-         * @construct-only
-         * @default null
-         */
         get ssl_key_file(): string;
-
-        /**
-         * Path to a file containing a PEM-encoded private key. See
-         * {@link Soup.Server.ssl_cert_file} for more information about how this
-         * is used.
-         * @deprecated use {@link Soup.Server.tls_certificate} or `soup_server_set_ssl_certificate()`.
-         * @construct-only
-         * @default null
-         */
         get sslKeyFile(): string;
-
-        /**
-         * A {@link Gio.TlsCertificate} that has a {@link Gio.TlsCertificate.private_key}
-         * set. If this is set, then the server will be able to speak
-         * https in addition to (or instead of) plain http.
-         * 
-         * Alternatively, you can call `soup_server_set_ssl_cert_file()`
-         * to have {@link Soup.Server} read in a a certificate from a file.
-         * @since 2.38
-         * @construct-only
-         */
         get tls_certificate(): Gio.TlsCertificate;
-
-        /**
-         * A {@link Gio.TlsCertificate} that has a {@link Gio.TlsCertificate.private_key}
-         * set. If this is set, then the server will be able to speak
-         * https in addition to (or instead of) plain http.
-         * 
-         * Alternatively, you can call `soup_server_set_ssl_cert_file()`
-         * to have {@link Soup.Server} read in a a certificate from a file.
-         * @since 2.38
-         * @construct-only
-         */
         get tlsCertificate(): Gio.TlsCertificate;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: Server.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<Server.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof Server.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Server.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof Server.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Server.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof Server.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Server.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * @param msg 
-         * @param client 
-         * @virtual
-         */
         vfunc_request_aborted(msg: Message, client: ClientContext): void;
-
-        /**
-         * @param msg 
-         * @param client 
-         * @virtual
-         */
         vfunc_request_finished(msg: Message, client: ClientContext): void;
-
-        /**
-         * @param msg 
-         * @param client 
-         * @virtual
-         */
         vfunc_request_read(msg: Message, client: ClientContext): void;
-
-        /**
-         * @param msg 
-         * @param client 
-         * @virtual
-         */
         vfunc_request_started(msg: Message, client: ClientContext): void;
-
-        // Methods
-        /**
-         * Add a new client stream to the `server`.
-         * @param stream a {@link Gio.IOStream}
-         * @param local_addr the local {@link Gio.SocketAddress} associated with the `stream`
-         * @param remote_addr the remote {@link Gio.SocketAddress} associated with the `stream`
-         * @returns `true` on success, `false` if the stream could not be accepted or any other error occurred (in which case `error` will be set).
-         */
         accept_iostream(stream: Gio.IOStream, local_addr: Gio.SocketAddress | null, remote_addr: Gio.SocketAddress | null): boolean;
-
-        /**
-         * Adds an authentication domain to `server`. Each auth domain will
-         * have the chance to require authentication for each request that
-         * comes in; normally auth domains will require authentication for
-         * requests on certain paths that they have been set up to watch, or
-         * that meet other criteria set by the caller. If an auth domain
-         * determines that a request requires authentication (and the request
-         * doesn't contain authentication), `server` will automatically reject
-         * the request with an appropriate status (401 Unauthorized or 407
-         * Proxy Authentication Required). If the request used the
-         * "100-continue" Expectation, `server` will reject it before the
-         * request body is sent.
-         * @param auth_domain a {@link Soup.AuthDomain}
-         */
         add_auth_domain(auth_domain: AuthDomain): void;
-
-        /**
-         * Adds an "early" handler to `server` for requests under `path`. Note
-         * that "normal" and "early" handlers are matched up together, so if
-         * you add a normal handler for "/foo" and an early handler for
-         * "/foo/bar", then a request to "/foo/bar" (or any path below it)
-         * will run only the early handler. (But if you add both handlers at
-         * the same path, then both will get run.)
-         * 
-         * For requests under `path` (that have not already been assigned a
-         * status code by a {@link Soup.AuthDomain} or a signal handler), `callback`
-         * will be invoked after receiving the request headers, but before
-         * receiving the request body; the message's {@link Soup.Message.method} and
-         * {@link Soup.Message.request_headers} fields will be filled in.
-         * 
-         * Early handlers are generally used for processing requests with
-         * request bodies in a streaming fashion. If you determine that the
-         * request will contain a message body, normally you would call
-         * `soup_message_body_set_accumulate()` on the message's
-         * {@link Soup.Message.request_body} to turn off request-body accumulation,
-         * and connect to the message's {@link Soup.Message.SignalSignatures.got_chunk | Soup.Message::got-chunk} signal to
-         * process each chunk as it comes in.
-         * 
-         * To complete the message processing after the full message body has
-         * been read, you can either also connect to {@link Soup.Message.SignalSignatures.got_body | Soup.Message::got-body},
-         * or else you can register a non-early handler for `path` as well. As
-         * long as you have not set the {@link Soup.Message.status_code} by the time
-         * {@link Soup.Message.SignalSignatures.got_body | Soup.Message::got-body} is emitted, the non-early handler will be
-         * run as well.
-         * @param path the toplevel path for the handler
-         * @param callback callback to invoke for requests under `path`
-         */
         add_early_handler(path: string | null, callback: ServerCallback): void;
-
-        /**
-         * Adds a handler to `server` for requests under `path`. If `path` is
-         * `null` or "/", then this will be the default handler for all
-         * requests that don't have a more specific handler. (Note though that
-         * if you want to handle requests to the special "*" URI, you must
-         * explicitly register a handler for "*"; the default handler will not
-         * be used for that case.)
-         * 
-         * For requests under `path` (that have not already been assigned a
-         * status code by a {@link Soup.AuthDomain}, an early `SoupServerHandler`, or a
-         * signal handler), `callback` will be invoked after receiving the
-         * request body; the message's {@link Soup.Message.method},
-         * {@link Soup.Message.request_headers}, and {@link Soup.Message.request_body} fields
-         * will be filled in.
-         * 
-         * After determining what to do with the request, the callback must at
-         * a minimum call `soup_message_set_status()` (or
-         * `soup_message_set_status_full()`) on the message to set the response
-         * status code. Additionally, it may set response headers and/or fill
-         * in the response body.
-         * 
-         * If the callback cannot fully fill in the response before returning
-         * (eg, if it needs to wait for information from a database, or
-         * another network server), it should call `soup_server_pause_message()`
-         * to tell `server` to not send the response right away. When the
-         * response is ready, call `soup_server_unpause_message()` to cause it
-         * to be sent.
-         * 
-         * To send the response body a bit at a time using "chunked" encoding,
-         * first call `soup_message_headers_set_encoding()` to set
-         * {@link Soup.Encoding.CHUNKED} on the {@link Soup.Message.response_headers}. Then call
-         * `soup_message_body_append()` (or `soup_message_body_append_buffer()`)
-         * to append each chunk as it becomes ready, and
-         * `soup_server_unpause_message()` to make sure it's running. (The
-         * server will automatically pause the message if it is using chunked
-         * encoding but no more chunks are available.) When you are done, call
-         * `soup_message_body_complete()` to indicate that no more chunks are
-         * coming.
-         * @param path the toplevel path for the handler
-         * @param callback callback to invoke for requests under `path`
-         */
         add_handler(path: string | null, callback: ServerCallback): void;
-
-        /**
-         * Adds a WebSocket handler to `server` for requests under `path`. (If
-         * `path` is `null` or "/", then this will be the default handler for
-         * all requests that don't have a more specific handler.)
-         * 
-         * When a path has a WebSocket handler registered, `server` will check
-         * incoming requests for WebSocket handshakes after all other handlers
-         * have run (unless some earlier handler has already set a status code
-         * on the message), and update the request's status, response headers,
-         * and response body accordingly.
-         * 
-         * If `origin` is non-`null`, then only requests containing a matching
-         * "Origin" header will be accepted. If `protocols` is non-`null`, then
-         * only requests containing a compatible "Sec-WebSocket-Protocols"
-         * header will be accepted. More complicated requirements can be
-         * handled by adding a normal handler to `path`, and having it perform
-         * whatever checks are needed (possibly calling
-         * `soup_server_check_websocket_handshake()` one or more times), and
-         * setting a failure status code if the handshake should be rejected.
-         * @param path the toplevel path for the handler
-         * @param origin the origin of the connection
-         * @param protocols the protocols   supported by this handler
-         * @param callback callback to invoke for successful WebSocket requests under `path`
-         */
         add_websocket_handler(path: string | null, origin: string | null, protocols: string[] | null, callback: ServerWebsocketCallback): void;
-
-        /**
-         * Closes and frees `server`'s listening sockets. If you are using the
-         * old {@link Soup.Server} APIs, this also includes the effect of
-         * `soup_server_quit()`.
-         * 
-         * Note that if there are currently requests in progress on `server`,
-         * that they will continue to be processed if `server`'s {@link GLib.MainContext}
-         * is still running.
-         * 
-         * You can call `soup_server_listen()`, etc, after calling this function
-         * if you want to start listening again.
-         */
         disconnect(): void;
-
-        /**
-         * Gets `server`'s async_context, if you are using the old API. (With
-         * the new API, the server runs in the thread's thread-default
-         * {@link GLib.MainContext}, regardless of what this method returns.)
-         * 
-         * This does not add a ref to the context, so you will need to ref it
-         * yourself if you want it to outlive its server.
-         * @returns `server`'s {@link GLib.MainContext}, which may be `null`
-         */
         get_async_context(): GLib.MainContext | null;
-
-        /**
-         * Gets `server`'s listening socket, if you are using the old API.
-         * 
-         * You should treat this socket as read-only; writing to it or
-         * modifiying it may cause `server` to malfunction.
-         * @returns the listening socket.
-         */
         get_listener(): Socket;
-
-        /**
-         * Gets `server`'s list of listening sockets.
-         * 
-         * You should treat these sockets as read-only; writing to or
-         * modifiying any of these sockets may cause `server` to malfunction.
-         * 
-         * (Beware that in contrast to the old `soup_server_get_listener()`, this
-         * function returns `GSockets`, not `SoupSockets`.)
-         * @returns a list of listening sockets.
-         */
         get_listeners(): Gio.Socket[];
-
-        /**
-         * Gets the TCP port that `server` is listening on, if you are using
-         * the old API.
-         * @returns the port `server` is listening on.
-         */
         get_port(): number;
-
-        /**
-         * Gets a list of URIs corresponding to the interfaces `server` is
-         * listening on. These will contain IP addresses, not hostnames, and
-         * will also indicate whether the given listener is http or https.
-         * 
-         * Note that if you used `soup_server_listen_all()`, the returned URIs
-         * will use the addresses <literal>0.0.0.0</literal> and
-         * <literal>::</literal>, rather than actually returning separate URIs
-         * for each interface on the system.
-         * @returns a list of `SoupURIs`, which you must free when you are done with it.
-         */
         get_uris(): URI[];
-
-        /**
-         * Checks whether `server` is capable of https.
-         * 
-         * In order for a server to run https, you must call
-         * `soup_server_set_ssl_cert_file()`, or set the
-         * {@link Soup.Server.tls_certificate} property, to provide it with a
-         * certificate to use.
-         * 
-         * If you are using the deprecated single-listener APIs, then a return
-         * value of `true` indicates that the {@link Soup.Server} serves https
-         * exclusively. If you are using `soup_server_listen()`, etc, then a
-         * `true` return value merely indicates that the server is
-         * <emphasis>able</emphasis> to do https, regardless of whether it
-         * actually currently is or not. Use `soup_server_get_uris()` to see if
-         * it currently has any https listeners.
-         * @returns `true` if `server` is configured to serve https.
-         */
         is_https(): boolean;
-
-        /**
-         * This attempts to set up `server` to listen for connections on
-         * `address`.
-         * 
-         * If `options` includes {@link Soup.ServerListenOptions.HTTPS}, and `server` has
-         * been configured for TLS, then `server` will listen for https
-         * connections on this port. Otherwise it will listen for plain http.
-         * 
-         * You may call this method (along with the other "listen" methods)
-         * any number of times on a server, if you want to listen on multiple
-         * ports, or set up both http and https service.
-         * 
-         * After calling this method, `server` will begin accepting and
-         * processing connections as soon as the appropriate {@link GLib.MainContext} is
-         * run.
-         * 
-         * Note that {@link Soup.Server} never makes use of dual IPv4/IPv6 sockets; if
-         * `address` is an IPv6 address, it will only accept IPv6 connections.
-         * You must configure IPv4 listening separately.
-         * @param address the address of the interface to listen on
-         * @param options listening options for this server
-         * @returns `true` on success, `false` if `address` could not be bound or any other error occurred (in which case `error` will be set).
-         */
         listen(address: Gio.SocketAddress, options: ServerListenOptions): boolean;
-
-        /**
-         * This attempts to set up `server` to listen for connections on all
-         * interfaces on the system. (That is, it listens on the addresses
-         * <literal>0.0.0.0</literal> and/or <literal>::</literal>, depending
-         * on whether `options` includes {@link Soup.ServerListenOptions.IPV4_ONLY},
-         * {@link Soup.ServerListenOptions.IPV6_ONLY}, or neither.) If `port` is specified,
-         * `server` will listen on that port. If it is 0, `server` will find an
-         * unused port to listen on. (In that case, you can use
-         * `soup_server_get_uris()` to find out what port it ended up choosing.)
-         * 
-         * See `soup_server_listen()` for more details.
-         * @param port the port to listen on, or 0
-         * @param options listening options for this server
-         * @returns `true` on success, `false` if `port` could not be bound or any other error occurred (in which case `error` will be set).
-         */
         listen_all(port: number, options: ServerListenOptions): boolean;
-
-        /**
-         * This attempts to set up `server` to listen for connections on
-         * `fd`.
-         * 
-         * See `soup_server_listen()` for more details.
-         * 
-         * Note that `server` will close `fd` when you free it or call
-         * `soup_server_disconnect()`.
-         * @param fd the file descriptor of a listening socket
-         * @param options listening options for this server
-         * @returns `true` on success, `false` if an error occurred (in which case `error` will be set).
-         */
         listen_fd(fd: number, options: ServerListenOptions): boolean;
-
-        /**
-         * This attempts to set up `server` to listen for connections on
-         * "localhost" (that is, <literal>127.0.0.1</literal> and/or
-         * <literal>::1</literal>, depending on whether `options` includes
-         * {@link Soup.ServerListenOptions.IPV4_ONLY}, {@link Soup.ServerListenOptions.IPV6_ONLY}, or
-         * neither). If `port` is specified, `server` will listen on that port.
-         * If it is 0, `server` will find an unused port to listen on. (In that
-         * case, you can use `soup_server_get_uris()` to find out what port it
-         * ended up choosing.)
-         * 
-         * See `soup_server_listen()` for more details.
-         * @param port the port to listen on, or 0
-         * @param options listening options for this server
-         * @returns `true` on success, `false` if `port` could not be bound or any other error occurred (in which case `error` will be set).
-         */
         listen_local(port: number, options: ServerListenOptions): boolean;
-
-        /**
-         * This attempts to set up `server` to listen for connections on
-         * `socket`.
-         * 
-         * See `soup_server_listen()` for more details.
-         * @param socket a listening {@link Gio.Socket}
-         * @param options listening options for this server
-         * @returns `true` on success, `false` if an error occurred (in which case `error` will be set).
-         */
         listen_socket(socket: Gio.Socket, options: ServerListenOptions): boolean;
-
-        /**
-         * Pauses I/O on `msg`. This can be used when you need to return from
-         * the server handler without having the full response ready yet. Use
-         * `soup_server_unpause_message()` to resume I/O.
-         * 
-         * This must only be called on `SoupMessages` which were created by the
-         * {@link Soup.Server} and are currently doing I/O, such as those passed into a
-         * {@link Soup.ServerCallback} or emitted in a {@link Soup.Server.SignalSignatures.request_read | Soup.Server::request-read} signal.
-         * @param msg a {@link Soup.Message} associated with `server`.
-         */
         pause_message(msg: Message): void;
-
-        /**
-         * Stops processing for `server`, if you are using the old API. Call
-         * this to clean up after `soup_server_run_async()`, or to terminate a
-         * call to `soup_server_run()`.
-         * 
-         * Note that messages currently in progress will continue to be
-         * handled, if the main loop associated with the server is resumed or
-         * kept running.
-         * 
-         * `server` is still in a working state after this call; you can start
-         * and stop a server as many times as you want.
-         */
         quit(): void;
-
-        /**
-         * Removes `auth_domain` from `server`.
-         * @param auth_domain a {@link Soup.AuthDomain}
-         */
         remove_auth_domain(auth_domain: AuthDomain): void;
-
-        /**
-         * Removes all handlers (early and normal) registered at `path`.
-         * @param path the toplevel path for the handler
-         */
         remove_handler(path: string): void;
-
-        /**
-         * Starts `server`, if you are using the old API, causing it to listen
-         * for and process incoming connections. Unlike
-         * `soup_server_run_async()`, this creates a {@link GLib.MainLoop} and runs it, and
-         * it will not return until someone calls `soup_server_quit()` to stop
-         * the server.
-         */
         run(): void;
-
-        /**
-         * Starts `server`, if you are using the old API, causing it to listen
-         * for and process incoming connections.
-         * 
-         * The server runs in `server`'s {@link GLib.MainContext}. It will not actually
-         * perform any processing unless the appropriate main loop is running.
-         * In the simple case where you did not set the server's
-         * `SOUP_SERVER_ASYNC_CONTEXT` property, this means the server will run
-         * whenever the glib main loop is running.
-         */
         run_async(): void;
-
-        /**
-         * Sets `server` up to do https, using the SSL/TLS certificate
-         * specified by `ssl_cert_file` and `ssl_key_file` (which may point to
-         * the same file).
-         * 
-         * Alternatively, you can set the {@link Soup.Server.tls_certificate} property
-         * at construction time, if you already have a {@link Gio.TlsCertificate}.
-         * @param ssl_cert_file path to a file containing a PEM-encoded SSL/TLS   certificate.
-         * @param ssl_key_file path to a file containing a PEM-encoded private key.
-         * @returns success or failure.
-         */
         set_ssl_cert_file(ssl_cert_file: string, ssl_key_file: string): boolean;
-
-        /**
-         * Resumes I/O on `msg`. Use this to resume after calling
-         * `soup_server_pause_message()`, or after adding a new chunk to a
-         * chunked response.
-         * 
-         * I/O won't actually resume until you return to the main loop.
-         * 
-         * This must only be called on `SoupMessages` which were created by the
-         * {@link Soup.Server} and are currently doing I/O, such as those passed into a
-         * {@link Soup.ServerCallback} or emitted in a {@link Soup.Server.SignalSignatures.request_read | Soup.Server::request-read} signal.
-         * @param msg a {@link Soup.Message} associated with `server`.
-         */
         unpause_message(msg: Message): void;
     }
-
-
     namespace Session {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
-            /**
-             * Emitted when the session requires authentication. If
-             * credentials are available call `soup_auth_authenticate()` on
-             * `auth`. If these credentials fail, the signal will be
-             * emitted again, with `retrying` set to `true`, which will
-             * continue until you return without calling
-             * `soup_auth_authenticate()` on `auth`.
-             * 
-             * Note that this may be emitted before `msg`'s body has been
-             * fully read.
-             * 
-             * If you call `soup_session_pause_message()` on `msg` before
-             * returning, then you can authenticate `auth` asynchronously
-             * (as long as you `g_object_ref()` it to make sure it doesn't
-             * get destroyed), and then unpause `msg` when you are ready
-             * for it to continue.
-             * @signal
-             * @run-first
-             */
             authenticate: (arg0: Message, arg1: Auth, arg2: boolean) => void;
-            /**
-             * Emitted when a new connection is created. This is an
-             * internal signal intended only to be used for debugging
-             * purposes, and may go away in the future.
-             * @signal
-             * @since 2.30
-             * @run-first
-             */
             "connection-created": (arg0: GObject.Object) => void;
-            /**
-             * Emitted when a request is queued on `session`. (Note that
-             * "queued" doesn't just mean `soup_session_queue_message()`;
-             * `soup_session_send_message()` implicitly queues the message
-             * as well.)
-             * 
-             * When sending a request, first {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued}
-             * is emitted, indicating that the session has become aware of
-             * the request.
-             * 
-             * Once a connection is available to send the request on, the
-             * session emits {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started}. Then, various
-             * {@link Soup.Message} signals are emitted as the message is
-             * processed. If the message is requeued, it will emit
-             * {@link Soup.Message.SignalSignatures.restarted | Soup.Message::restarted}, which will then be followed by
-             * another {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} and another set of
-             * {@link Soup.Message} signals when the message is re-sent.
-             * 
-             * Eventually, the message will emit {@link Soup.Message.SignalSignatures.finished | Soup.Message::finished}.
-             * Normally, this signals the completion of message
-             * processing. However, it is possible that the application
-             * will requeue the message from the "finished" handler (or
-             * equivalently, from the `soup_session_queue_message()`
-             * callback). In that case, the process will loop back to
-             * {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started}.
-             * 
-             * Eventually, a message will reach "finished" and not be
-             * requeued. At that point, the session will emit
-             * {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} to indicate that it is done
-             * with the message.
-             * 
-             * To sum up: {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} and
-             * {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} are guaranteed to be emitted
-             * exactly once, but {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} and
-             * {@link Soup.Message.SignalSignatures.finished | Soup.Message::finished} (and all of the other {@link Soup.Message}
-             * signals) may be invoked multiple times for a given message.
-             * @signal
-             * @since 2.24
-             * @run-first
-             */
             "request-queued": (arg0: Message) => void;
-            /**
-             * Emitted just before a request is sent. See
-             * {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} for a detailed description of
-             * the message lifecycle within a session.
-             * @signal
-             * @deprecated since 2.50.: Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-             * @run-first
-             */
             "request-started": (arg0: Message, arg1: Socket) => void;
-            /**
-             * Emitted when a request is removed from `session`'s queue,
-             * indicating that `session` is done with it. See
-             * {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} for a detailed description of the
-             * message lifecycle within a session.
-             * @signal
-             * @since 2.24
-             * @run-first
-             */
             "request-unqueued": (arg0: Message) => void;
-            /**
-             * Emitted when an SSL tunnel is being created on a proxy
-             * connection. This is an internal signal intended only to be
-             * used for debugging purposes, and may go away in the future.
-             * @signal
-             * @since 2.30
-             * @run-first
-             */
             tunneling: (arg0: GObject.Object) => void;
             "notify::accept-language": (pspec: GObject.ParamSpec) => void;
             "notify::accept-language-auto": (pspec: GObject.ParamSpec) => void;
@@ -9603,8 +1950,6 @@ export namespace Soup {
             "notify::use-thread-context": (pspec: GObject.ParamSpec) => void;
             "notify::user-agent": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps {
             accept_language: string;
             acceptLanguage: string;
@@ -9647,1316 +1992,138 @@ export namespace Soup {
             userAgent: string;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class Session extends GObject.Object {
         static $gtype: GObject.GType<Session>;
-
-        // Properties
-        /**
-         * If non-`null`, the value to use for the "Accept-Language" header
-         * on {@link Soup.Message}<!-- -->s sent from this session.
-         * 
-         * Setting this will disable
-         * {@link Soup.Session.accept_language_auto}.
-         * @since 2.30
-         * @default null
-         */
         get accept_language(): string;
         set accept_language(val: string);
-
-        /**
-         * If non-`null`, the value to use for the "Accept-Language" header
-         * on {@link Soup.Message}<!-- -->s sent from this session.
-         * 
-         * Setting this will disable
-         * {@link Soup.Session.accept_language_auto}.
-         * @since 2.30
-         * @default null
-         */
         get acceptLanguage(): string;
         set acceptLanguage(val: string);
-
-        /**
-         * If `true`, {@link Soup.Session} will automatically set the string
-         * for the "Accept-Language" header on every {@link Soup.Message}
-         * sent, based on the return value of `g_get_language_names()`.
-         * 
-         * Setting this will override any previous value of
-         * {@link Soup.Session.accept_language}.
-         * @since 2.30
-         * @default false
-         */
         get accept_language_auto(): boolean;
         set accept_language_auto(val: boolean);
-
-        /**
-         * If `true`, {@link Soup.Session} will automatically set the string
-         * for the "Accept-Language" header on every {@link Soup.Message}
-         * sent, based on the return value of `g_get_language_names()`.
-         * 
-         * Setting this will override any previous value of
-         * {@link Soup.Session.accept_language}.
-         * @since 2.30
-         * @default false
-         */
         get acceptLanguageAuto(): boolean;
         set acceptLanguageAuto(val: boolean);
-
-        /**
-         * The {@link GLib.MainContext} that miscellaneous session-related
-         * asynchronous callbacks are invoked on. (Eg, setting
-         * {@link Soup.Session.idle_timeout} will add a timeout source on this
-         * context.)
-         * 
-         * For a plain {@link Soup.Session}, this property is always set to
-         * the {@link GLib.MainContext} that is the thread-default at the time
-         * the session was created, and cannot be overridden. For the
-         * deprecated {@link Soup.Session} subclasses, the default value is
-         * `null`, meaning to use the global default {@link GLib.MainContext}.
-         * 
-         * If {@link Soup.Session.use_thread_context} is `false`, this context
-         * will also be used for asynchronous HTTP I/O.
-         * @construct-only
-         */
         get async_context(): null;
-
-        /**
-         * The {@link GLib.MainContext} that miscellaneous session-related
-         * asynchronous callbacks are invoked on. (Eg, setting
-         * {@link Soup.Session.idle_timeout} will add a timeout source on this
-         * context.)
-         * 
-         * For a plain {@link Soup.Session}, this property is always set to
-         * the {@link GLib.MainContext} that is the thread-default at the time
-         * the session was created, and cannot be overridden. For the
-         * deprecated {@link Soup.Session} subclasses, the default value is
-         * `null`, meaning to use the global default {@link GLib.MainContext}.
-         * 
-         * If {@link Soup.Session.use_thread_context} is `false`, this context
-         * will also be used for asynchronous HTTP I/O.
-         * @construct-only
-         */
         get asyncContext(): null;
-
-        /**
-         * A `null`-terminated array of URI schemes that should be
-         * considered to be aliases for "http". Eg, if this included
-         * <literal>"dav"</literal>, than a URI of
-         * <literal>dav://example.com/path</literal> would be treated
-         * identically to <literal>http://example.com/path</literal>.
-         * 
-         * In a plain {@link Soup.Session}, the default value is `null`,
-         * meaning that only "http" is recognized as meaning "http".
-         * In {@link Soup.SessionAsync} and {@link Soup.SessionSync}, for backward
-         * compatibility, the default value is an array containing the
-         * single element <literal>"*"</literal>, a special value
-         * which means that any scheme except "https" is considered to
-         * be an alias for "http".
-         * 
-         * See also {@link Soup.Session.https_aliases}.
-         * @since 2.38
-         */
         get http_aliases(): string[];
         set http_aliases(val: string[]);
-
-        /**
-         * A `null`-terminated array of URI schemes that should be
-         * considered to be aliases for "http". Eg, if this included
-         * <literal>"dav"</literal>, than a URI of
-         * <literal>dav://example.com/path</literal> would be treated
-         * identically to <literal>http://example.com/path</literal>.
-         * 
-         * In a plain {@link Soup.Session}, the default value is `null`,
-         * meaning that only "http" is recognized as meaning "http".
-         * In {@link Soup.SessionAsync} and {@link Soup.SessionSync}, for backward
-         * compatibility, the default value is an array containing the
-         * single element <literal>"*"</literal>, a special value
-         * which means that any scheme except "https" is considered to
-         * be an alias for "http".
-         * 
-         * See also {@link Soup.Session.https_aliases}.
-         * @since 2.38
-         */
         get httpAliases(): string[];
         set httpAliases(val: string[]);
-
-        /**
-         * A comma-delimited list of URI schemes that should be
-         * considered to be aliases for "https". See
-         * {@link Soup.Session.http_aliases} for more information.
-         * 
-         * The default value is `null`, meaning that no URI schemes
-         * are considered aliases for "https".
-         * @since 2.38
-         */
         get https_aliases(): string[];
         set https_aliases(val: string[]);
-
-        /**
-         * A comma-delimited list of URI schemes that should be
-         * considered to be aliases for "https". See
-         * {@link Soup.Session.http_aliases} for more information.
-         * 
-         * The default value is `null`, meaning that no URI schemes
-         * are considered aliases for "https".
-         * @since 2.38
-         */
         get httpsAliases(): string[];
         set httpsAliases(val: string[]);
-
-        /**
-         * Connection lifetime (in seconds) when idle. Any connection
-         * left idle longer than this will be closed.
-         * 
-         * Although you can change this property at any time, it will
-         * only affect newly-created connections, not currently-open
-         * ones. You can call `soup_session_abort()` after setting this
-         * if you want to ensure that all future connections will have
-         * this timeout value.
-         * 
-         * Note that the default value of 60 seconds only applies to
-         * plain `SoupSessions`. If you are using {@link Soup.SessionAsync} or
-         * {@link Soup.SessionSync}, the default value is 0 (meaning idle
-         * connections will never time out).
-         * @since 2.24
-         * @default 60
-         */
         get idle_timeout(): number;
         set idle_timeout(val: number);
-
-        /**
-         * Connection lifetime (in seconds) when idle. Any connection
-         * left idle longer than this will be closed.
-         * 
-         * Although you can change this property at any time, it will
-         * only affect newly-created connections, not currently-open
-         * ones. You can call `soup_session_abort()` after setting this
-         * if you want to ensure that all future connections will have
-         * this timeout value.
-         * 
-         * Note that the default value of 60 seconds only applies to
-         * plain `SoupSessions`. If you are using {@link Soup.SessionAsync} or
-         * {@link Soup.SessionSync}, the default value is 0 (meaning idle
-         * connections will never time out).
-         * @since 2.24
-         * @default 60
-         */
         get idleTimeout(): number;
         set idleTimeout(val: number);
-
-        /**
-         * Sets the {@link Soup.Address} to use for the client side of
-         * the connection.
-         * 
-         * Use this property if you want for instance to bind the
-         * local socket to a specific IP address.
-         * @since 2.42
-         * @construct-only
-         */
         get local_address(): Address;
-
-        /**
-         * Sets the {@link Soup.Address} to use for the client side of
-         * the connection.
-         * 
-         * Use this property if you want for instance to bind the
-         * local socket to a specific IP address.
-         * @since 2.42
-         * @construct-only
-         */
         get localAddress(): Address;
-
-        /**
-         * @default 10
-         */
         get max_conns(): number;
         set max_conns(val: number);
-
-        /**
-         * @default 10
-         */
         get maxConns(): number;
         set maxConns(val: number);
-
-        /**
-         * @default 2
-         */
         get max_conns_per_host(): number;
         set max_conns_per_host(val: number);
-
-        /**
-         * @default 2
-         */
         get maxConnsPerHost(): number;
         set maxConnsPerHost(val: number);
-
-        /**
-         * A {@link Gio.ProxyResolver} to use with this session. Setting this
-         * will clear the {@link Soup.Session.proxy_uri} property, and remove
-         * any <type>SoupProxyURIResolver</type> features that have
-         * been added to the session.
-         * 
-         * By default, in a plain {@link Soup.Session}, this is set to the
-         * default {@link Gio.ProxyResolver}, but you can set it to `null` if you
-         * don't want to use proxies, or set it to your own
-         * {@link Gio.ProxyResolver} if you want to control what proxies get
-         * used.
-         * @since 2.42
-         */
         get proxy_resolver(): Gio.ProxyResolver;
         set proxy_resolver(val: Gio.ProxyResolver);
-
-        /**
-         * A {@link Gio.ProxyResolver} to use with this session. Setting this
-         * will clear the {@link Soup.Session.proxy_uri} property, and remove
-         * any <type>SoupProxyURIResolver</type> features that have
-         * been added to the session.
-         * 
-         * By default, in a plain {@link Soup.Session}, this is set to the
-         * default {@link Gio.ProxyResolver}, but you can set it to `null` if you
-         * don't want to use proxies, or set it to your own
-         * {@link Gio.ProxyResolver} if you want to control what proxies get
-         * used.
-         * @since 2.42
-         */
         get proxyResolver(): Gio.ProxyResolver;
         set proxyResolver(val: Gio.ProxyResolver);
-
-        /**
-         * A proxy to use for all http and https requests in this
-         * session. Setting this will clear the
-         * {@link Soup.Session.proxy_resolver} property, and remove any
-         * <type>SoupProxyURIResolver</type> features that have been
-         * added to the session. Setting this property will also
-         * cancel all currently pending messages.
-         * 
-         * Note that {@link Soup.Session} will normally handle looking up the
-         * user's proxy settings for you; you should only use
-         * {@link Soup.Session.proxy_uri} if you need to override the user's
-         * normal proxy settings.
-         * 
-         * Also note that this proxy will be used for
-         * <emphasis>all</emphasis> requests; even requests to
-         * <literal>localhost</literal>. If you need more control over
-         * proxies, you can create a {@link Gio.SimpleProxyResolver} and set the
-         * {@link Soup.Session.proxy_resolver} property.
-         * @deprecated since 2.70: Use SoupSession:proxy-resolver along with {@link Gio.SimpleProxyResolver}.
-         */
         get proxy_uri(): URI;
         set proxy_uri(val: URI);
-
-        /**
-         * A proxy to use for all http and https requests in this
-         * session. Setting this will clear the
-         * {@link Soup.Session.proxy_resolver} property, and remove any
-         * <type>SoupProxyURIResolver</type> features that have been
-         * added to the session. Setting this property will also
-         * cancel all currently pending messages.
-         * 
-         * Note that {@link Soup.Session} will normally handle looking up the
-         * user's proxy settings for you; you should only use
-         * {@link Soup.Session.proxy_uri} if you need to override the user's
-         * normal proxy settings.
-         * 
-         * Also note that this proxy will be used for
-         * <emphasis>all</emphasis> requests; even requests to
-         * <literal>localhost</literal>. If you need more control over
-         * proxies, you can create a {@link Gio.SimpleProxyResolver} and set the
-         * {@link Soup.Session.proxy_resolver} property.
-         * @deprecated since 2.70: Use SoupSession:proxy-resolver along with {@link Gio.SimpleProxyResolver}.
-         */
         get proxyUri(): URI;
         set proxyUri(val: URI);
-
-        /**
-         * File containing SSL CA certificates.
-         * 
-         * If the specified file does not exist or cannot be read,
-         * then libsoup will print a warning, and then behave as
-         * though it had read in a empty CA file, meaning that all SSL
-         * certificates will be considered invalid.
-         * @deprecated use {@link Soup.Session.ssl_use_system_ca_file}, or else {@link Soup.Session.tls_database} with a {@link Gio.TlsFileDatabase} (which allows you to do explicit error handling).
-         * @default null
-         */
         get ssl_ca_file(): string;
         set ssl_ca_file(val: string);
-
-        /**
-         * File containing SSL CA certificates.
-         * 
-         * If the specified file does not exist or cannot be read,
-         * then libsoup will print a warning, and then behave as
-         * though it had read in a empty CA file, meaning that all SSL
-         * certificates will be considered invalid.
-         * @deprecated use {@link Soup.Session.ssl_use_system_ca_file}, or else {@link Soup.Session.tls_database} with a {@link Gio.TlsFileDatabase} (which allows you to do explicit error handling).
-         * @default null
-         */
         get sslCaFile(): string;
         set sslCaFile(val: string);
-
-        /**
-         * Normally, if {@link Soup.Session.tls_database} is set (including if
-         * it was set via {@link Soup.Session.ssl_use_system_ca_file} or
-         * {@link Soup.Session.ssl_ca_file}), then libsoup will reject any
-         * certificate that is invalid (ie, expired) or that is not
-         * signed by one of the given CA certificates, and the
-         * {@link Soup.Message} will fail with the status
-         * {@link Soup.Status.SSL_FAILED}.
-         * 
-         * If you set {@link Soup.Session.ssl_strict} to `false`, then all
-         * certificates will be accepted, and you will need to call
-         * `soup_message_get_https_status()` to distinguish valid from
-         * invalid certificates. (This can be used, eg, if you want to
-         * accept invalid certificates after giving some sort of
-         * warning.)
-         * 
-         * For a plain {@link Soup.Session}, if the session has no CA file or
-         * TLS database, and this property is `true`, then all
-         * certificates will be rejected. However, beware that the
-         * deprecated {@link Soup.Session} subclasses ({@link Soup.SessionAsync} and
-         * {@link Soup.SessionSync}) have the opposite behavior: if there is
-         * no CA file or TLS database, then all certificates are always
-         * accepted, and this property has no effect.
-         * @since 2.30
-         * @default true
-         */
         get ssl_strict(): boolean;
         set ssl_strict(val: boolean);
-
-        /**
-         * Normally, if {@link Soup.Session.tls_database} is set (including if
-         * it was set via {@link Soup.Session.ssl_use_system_ca_file} or
-         * {@link Soup.Session.ssl_ca_file}), then libsoup will reject any
-         * certificate that is invalid (ie, expired) or that is not
-         * signed by one of the given CA certificates, and the
-         * {@link Soup.Message} will fail with the status
-         * {@link Soup.Status.SSL_FAILED}.
-         * 
-         * If you set {@link Soup.Session.ssl_strict} to `false`, then all
-         * certificates will be accepted, and you will need to call
-         * `soup_message_get_https_status()` to distinguish valid from
-         * invalid certificates. (This can be used, eg, if you want to
-         * accept invalid certificates after giving some sort of
-         * warning.)
-         * 
-         * For a plain {@link Soup.Session}, if the session has no CA file or
-         * TLS database, and this property is `true`, then all
-         * certificates will be rejected. However, beware that the
-         * deprecated {@link Soup.Session} subclasses ({@link Soup.SessionAsync} and
-         * {@link Soup.SessionSync}) have the opposite behavior: if there is
-         * no CA file or TLS database, then all certificates are always
-         * accepted, and this property has no effect.
-         * @since 2.30
-         * @default true
-         */
         get sslStrict(): boolean;
         set sslStrict(val: boolean);
-
-        /**
-         * Setting this to `true` is equivalent to setting
-         * {@link Soup.Session.tls_database} to the default system CA database.
-         * (and likewise, setting {@link Soup.Session.tls_database} to the
-         * default database by hand will cause this property to
-         * become `true`).
-         * 
-         * Setting this to `false` (when it was previously `true`) will
-         * clear the {@link Soup.Session.tls_database} field.
-         * 
-         * See {@link Soup.Session.ssl_strict} for more information on how
-         * https certificate validation is handled.
-         * 
-         * If you are using {@link Soup.SessionAsync} or
-         * {@link Soup.SessionSync}, on libsoup older than 2.74.0, the default value
-         * is `false`, for backward compatibility.
-         * @since 2.38
-         * @default true
-         */
         get ssl_use_system_ca_file(): boolean;
         set ssl_use_system_ca_file(val: boolean);
-
-        /**
-         * Setting this to `true` is equivalent to setting
-         * {@link Soup.Session.tls_database} to the default system CA database.
-         * (and likewise, setting {@link Soup.Session.tls_database} to the
-         * default database by hand will cause this property to
-         * become `true`).
-         * 
-         * Setting this to `false` (when it was previously `true`) will
-         * clear the {@link Soup.Session.tls_database} field.
-         * 
-         * See {@link Soup.Session.ssl_strict} for more information on how
-         * https certificate validation is handled.
-         * 
-         * If you are using {@link Soup.SessionAsync} or
-         * {@link Soup.SessionSync}, on libsoup older than 2.74.0, the default value
-         * is `false`, for backward compatibility.
-         * @since 2.38
-         * @default true
-         */
         get sslUseSystemCaFile(): boolean;
         set sslUseSystemCaFile(val: boolean);
-
-        /**
-         * The timeout (in seconds) for socket I/O operations
-         * (including connecting to a server, and waiting for a reply
-         * to an HTTP request).
-         * 
-         * Although you can change this property at any time, it will
-         * only affect newly-created connections, not currently-open
-         * ones. You can call `soup_session_abort()` after setting this
-         * if you want to ensure that all future connections will have
-         * this timeout value.
-         * 
-         * Note that the default value of 60 seconds only applies to
-         * plain `SoupSessions`. If you are using {@link Soup.SessionAsync} or
-         * {@link Soup.SessionSync}, the default value is 0 (meaning socket I/O
-         * will not time out).
-         * 
-         * Not to be confused with {@link Soup.Session.idle_timeout} (which is
-         * the length of time that idle persistent connections will be
-         * kept open).
-         * @default 0
-         */
         get timeout(): number;
         set timeout(val: number);
-
-        /**
-         * Sets the {@link Gio.TlsDatabase} to use for validating SSL/TLS
-         * certificates.
-         * 
-         * Note that setting the {@link Soup.Session.ssl_ca_file} or
-         * {@link Soup.Session.ssl_use_system_ca_file} property will cause
-         * this property to be set to a {@link Gio.TlsDatabase} corresponding to
-         * the indicated file or system default.
-         * 
-         * See {@link Soup.Session.ssl_strict} for more information on how
-         * https certificate validation is handled.
-         * 
-         * If you are using a plain {@link Soup.Session} then
-         * {@link Soup.Session.ssl_use_system_ca_file} will be `true` by
-         * default, and so this property will be a copy of the system
-         * CA database. If you are using {@link Soup.SessionAsync} or
-         * {@link Soup.SessionSync}, on libsoup older than 2.74.0, this property
-         * will be `null` by default.
-         * @since 2.38
-         */
         get tls_database(): Gio.TlsDatabase;
         set tls_database(val: Gio.TlsDatabase);
-
-        /**
-         * Sets the {@link Gio.TlsDatabase} to use for validating SSL/TLS
-         * certificates.
-         * 
-         * Note that setting the {@link Soup.Session.ssl_ca_file} or
-         * {@link Soup.Session.ssl_use_system_ca_file} property will cause
-         * this property to be set to a {@link Gio.TlsDatabase} corresponding to
-         * the indicated file or system default.
-         * 
-         * See {@link Soup.Session.ssl_strict} for more information on how
-         * https certificate validation is handled.
-         * 
-         * If you are using a plain {@link Soup.Session} then
-         * {@link Soup.Session.ssl_use_system_ca_file} will be `true` by
-         * default, and so this property will be a copy of the system
-         * CA database. If you are using {@link Soup.SessionAsync} or
-         * {@link Soup.SessionSync}, on libsoup older than 2.74.0, this property
-         * will be `null` by default.
-         * @since 2.38
-         */
         get tlsDatabase(): Gio.TlsDatabase;
         set tlsDatabase(val: Gio.TlsDatabase);
-
-        /**
-         * A {@link Gio.TlsInteraction} object that will be passed on to any
-         * `GTlsConnections` created by the session. (This can be used to
-         * provide client-side certificates, for example.)
-         * @since 2.48
-         */
         get tls_interaction(): Gio.TlsInteraction;
         set tls_interaction(val: Gio.TlsInteraction);
-
-        /**
-         * A {@link Gio.TlsInteraction} object that will be passed on to any
-         * `GTlsConnections` created by the session. (This can be used to
-         * provide client-side certificates, for example.)
-         * @since 2.48
-         */
         get tlsInteraction(): Gio.TlsInteraction;
         set tlsInteraction(val: Gio.TlsInteraction);
-
-        /**
-         * Whether or not to use NTLM authentication.
-         * @deprecated use `soup_session_add_feature_by_type()` with #SOUP_TYPE_AUTH_NTLM.
-         * @default false
-         */
         get use_ntlm(): boolean;
         set use_ntlm(val: boolean);
-
-        /**
-         * Whether or not to use NTLM authentication.
-         * @deprecated use `soup_session_add_feature_by_type()` with #SOUP_TYPE_AUTH_NTLM.
-         * @default false
-         */
         get useNtlm(): boolean;
         set useNtlm(val: boolean);
-
-        /**
-         * If `true` (which it always is on a plain {@link Soup.Session}),
-         * asynchronous HTTP requests in this session will run in
-         * whatever the thread-default {@link GLib.MainContext} is at the time
-         * they are started, rather than always occurring in
-         * {@link Soup.Session.async_context}.
-         * @since 2.38
-         * @default false
-         */
         get use_thread_context(): boolean;
         set use_thread_context(val: boolean);
-
-        /**
-         * If `true` (which it always is on a plain {@link Soup.Session}),
-         * asynchronous HTTP requests in this session will run in
-         * whatever the thread-default {@link GLib.MainContext} is at the time
-         * they are started, rather than always occurring in
-         * {@link Soup.Session.async_context}.
-         * @since 2.38
-         * @default false
-         */
         get useThreadContext(): boolean;
         set useThreadContext(val: boolean);
-
-        /**
-         * If non-`null`, the value to use for the "User-Agent" header
-         * on {@link Soup.Message}<!-- -->s sent from this session.
-         * 
-         * RFC 2616 says: "The User-Agent request-header field
-         * contains information about the user agent originating the
-         * request. This is for statistical purposes, the tracing of
-         * protocol violations, and automated recognition of user
-         * agents for the sake of tailoring responses to avoid
-         * particular user agent limitations. User agents SHOULD
-         * include this field with requests."
-         * 
-         * The User-Agent header contains a list of one or more
-         * product tokens, separated by whitespace, with the most
-         * significant product token coming first. The tokens must be
-         * brief, ASCII, and mostly alphanumeric (although "-", "_",
-         * and "." are also allowed), and may optionally include a "/"
-         * followed by a version string. You may also put comments,
-         * enclosed in parentheses, between or after the tokens.
-         * 
-         * If you set a {@link Soup.Session.user_agent} property that has trailing
-         * whitespace, {@link Soup.Session} will append its own product token
-         * (eg, "<literal>libsoup/2.3.2</literal>") to the end of the
-         * header for you.
-         * @default null
-         */
         get user_agent(): string;
         set user_agent(val: string);
-
-        /**
-         * If non-`null`, the value to use for the "User-Agent" header
-         * on {@link Soup.Message}<!-- -->s sent from this session.
-         * 
-         * RFC 2616 says: "The User-Agent request-header field
-         * contains information about the user agent originating the
-         * request. This is for statistical purposes, the tracing of
-         * protocol violations, and automated recognition of user
-         * agents for the sake of tailoring responses to avoid
-         * particular user agent limitations. User agents SHOULD
-         * include this field with requests."
-         * 
-         * The User-Agent header contains a list of one or more
-         * product tokens, separated by whitespace, with the most
-         * significant product token coming first. The tokens must be
-         * brief, ASCII, and mostly alphanumeric (although "-", "_",
-         * and "." are also allowed), and may optionally include a "/"
-         * followed by a version string. You may also put comments,
-         * enclosed in parentheses, between or after the tokens.
-         * 
-         * If you set a {@link Soup.Session.user_agent} property that has trailing
-         * whitespace, {@link Soup.Session} will append its own product token
-         * (eg, "<literal>libsoup/2.3.2</literal>") to the end of the
-         * header for you.
-         * @default null
-         */
         get userAgent(): string;
         set userAgent(val: string);
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: Session.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<Session.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](): Session;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof Session.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Session.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof Session.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Session.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof Session.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Session.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * @param msg 
-         * @param auth 
-         * @param retrying 
-         * @virtual
-         */
         vfunc_auth_required(msg: Message, auth: Auth, retrying: boolean): void;
-
-        /**
-         * @param msg 
-         * @param auth 
-         * @param retrying 
-         * @virtual
-         */
         vfunc_authenticate(msg: Message, auth: Auth, retrying: boolean): void;
-
-        /**
-         * Causes `session` to immediately finish processing `msg` (regardless
-         * of its current state) with a final status_code of `status_code`. You
-         * may call this at any time after handing `msg` off to `session`; if
-         * `session` has started sending the request but has not yet received
-         * the complete response, then it will close the request's connection.
-         * Note that with requests that have side effects (eg,
-         * <literal>POST</literal>, <literal>PUT</literal>,
-         * <literal>DELETE</literal>) it is possible that you might cancel the
-         * request after the server acts on it, but before it returns a
-         * response, leaving the remote resource in an unknown state.
-         * 
-         * If the message is cancelled while its response body is being read,
-         * then the response body in `msg` will be left partially-filled-in.
-         * The response headers, on the other hand, will always be either
-         * empty or complete.
-         * 
-         * Beware that with the deprecated {@link Soup.SessionAsync}, messages queued
-         * with `soup_session_queue_message()` will have their callbacks invoked
-         * before `soup_session_cancel_message()` returns. The plain
-         * {@link Soup.Session} does not have this behavior; cancelling an
-         * asynchronous message will merely queue its callback to be run after
-         * returning to the main loop.
-         * @param msg the message to cancel
-         * @param status_code status code to set on `msg` (generally {@link Soup.Status.CANCELLED})
-         * @virtual
-         */
         vfunc_cancel_message(msg: Message, status_code: number): void;
-
-        /**
-         * @virtual
-         */
         vfunc_flush_queue(): void;
-
-        /**
-         * @virtual
-         */
         vfunc_kick(): void;
-
-        /**
-         * Queues the message `msg` for asynchronously sending the request and
-         * receiving a response in the current thread-default {@link GLib.MainContext}.
-         * If `msg` has been processed before, any resources related to the
-         * time it was last sent are freed.
-         * 
-         * Upon message completion, the callback specified in `callback` will
-         * be invoked. If after returning from this callback the message has not
-         * been requeued, `msg` will be unreffed.
-         * 
-         * (The behavior above applies to a plain {@link Soup.Session}; if you are
-         * using {@link Soup.SessionAsync} or {@link Soup.SessionSync}, then the {@link GLib.MainContext}
-         * that is used depends on the settings of {@link Soup.Session.async_context}
-         * and {@link Soup.Session.use_thread_context}, and for {@link Soup.SessionSync}, the
-         * message will actually be sent and processed in another thread, with
-         * only the final callback occurring in the indicated {@link GLib.MainContext}.)
-         * 
-         * Contrast this method with `soup_session_send_async()`, which also
-         * asynchronously sends a message, but returns before reading the
-         * response body, and allows you to read the response via a
-         * {@link Gio.InputStream}.
-         * @param msg the message to queue
-         * @param callback a {@link Soup.SessionCallback} which will be called after the message completes or when an unrecoverable error occurs.
-         * @virtual
-         */
         vfunc_queue_message(msg: Message, callback: SessionCallback | null): void;
-
-        /**
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(msg: Message, socket: Socket): void;
-
-        /**
-         * This causes `msg` to be placed back on the queue to be attempted
-         * again.
-         * @param msg the message to requeue
-         * @virtual
-         */
         vfunc_requeue_message(msg: Message): void;
-
-        /**
-         * Synchronously send `msg`. This call will not return until the
-         * transfer is finished successfully or there is an unrecoverable
-         * error.
-         * 
-         * Unlike with `soup_session_queue_message()`, `msg` is not freed upon
-         * return.
-         * 
-         * (Note that if you call this method on a {@link Soup.SessionAsync}, it will
-         * still use asynchronous I/O internally, running the glib main loop
-         * to process the message, which may also cause other events to be
-         * processed.)
-         * 
-         * Contrast this method with `soup_session_send()`, which also
-         * synchronously sends a message, but returns before reading the
-         * response body, and allows you to read the response via a
-         * {@link Gio.InputStream}.
-         * @param msg the message to send
-         * @virtual
-         */
         vfunc_send_message(msg: Message): number;
-
-        // Methods
-        /**
-         * Cancels all pending requests in `session` and closes all idle
-         * persistent connections.
-         * 
-         * The message cancellation has the same semantics as with
-         * `soup_session_cancel_message()`; asynchronous requests on a
-         * {@link Soup.SessionAsync} will have their callback called before
-         * `soup_session_abort()` returns. Requests on a plain {@link Soup.Session} will
-         * not.
-         */
         abort(): void;
-
-        /**
-         * Causes `session` to immediately finish processing `msg` (regardless
-         * of its current state) with a final status_code of `status_code`. You
-         * may call this at any time after handing `msg` off to `session`; if
-         * `session` has started sending the request but has not yet received
-         * the complete response, then it will close the request's connection.
-         * Note that with requests that have side effects (eg,
-         * <literal>POST</literal>, <literal>PUT</literal>,
-         * <literal>DELETE</literal>) it is possible that you might cancel the
-         * request after the server acts on it, but before it returns a
-         * response, leaving the remote resource in an unknown state.
-         * 
-         * If the message is cancelled while its response body is being read,
-         * then the response body in `msg` will be left partially-filled-in.
-         * The response headers, on the other hand, will always be either
-         * empty or complete.
-         * 
-         * Beware that with the deprecated {@link Soup.SessionAsync}, messages queued
-         * with `soup_session_queue_message()` will have their callbacks invoked
-         * before `soup_session_cancel_message()` returns. The plain
-         * {@link Soup.Session} does not have this behavior; cancelling an
-         * asynchronous message will merely queue its callback to be run after
-         * returning to the main loop.
-         * @param msg the message to cancel
-         * @param status_code status code to set on `msg` (generally {@link Soup.Status.CANCELLED})
-         */
         cancel_message(msg: Message, status_code: number): void;
-
-        /**
-         * Start a connection to `uri`. The operation can be monitored by providing a `progress_callback`
-         * and finishes when the connection is done or an error ocurred.
-         * 
-         * Call `soup_session_connect_finish()` to get the {@link Gio.IOStream} to communicate with the server.
-         * @param uri a {@link Soup.URI} to connect to
-         * @param cancellable a {@link Gio.Cancellable}
-         * @param progress_callback a {@link Soup.SessionConnectProgressCallback} which will be called for every network event that occurs during the connection.
-         */
         connect_async(uri: URI, cancellable: Gio.Cancellable | null, progress_callback: SessionConnectProgressCallback | null): globalThis.Promise<Gio.IOStream>;
-
-        /**
-         * Start a connection to `uri`. The operation can be monitored by providing a `progress_callback`
-         * and finishes when the connection is done or an error ocurred.
-         * 
-         * Call `soup_session_connect_finish()` to get the {@link Gio.IOStream} to communicate with the server.
-         * @param uri a {@link Soup.URI} to connect to
-         * @param cancellable a {@link Gio.Cancellable}
-         * @param progress_callback a {@link Soup.SessionConnectProgressCallback} which will be called for every network event that occurs during the connection.
-         * @param callback the callback to invoke when the operation finishes
-         */
         connect_async(uri: URI, cancellable: Gio.Cancellable | null, progress_callback: SessionConnectProgressCallback | null, callback: Gio.AsyncReadyCallback<this> | null): void;
-
-        /**
-         * Start a connection to `uri`. The operation can be monitored by providing a `progress_callback`
-         * and finishes when the connection is done or an error ocurred.
-         * 
-         * Call `soup_session_connect_finish()` to get the {@link Gio.IOStream} to communicate with the server.
-         * @param uri a {@link Soup.URI} to connect to
-         * @param cancellable a {@link Gio.Cancellable}
-         * @param progress_callback a {@link Soup.SessionConnectProgressCallback} which will be called for every network event that occurs during the connection.
-         * @param callback the callback to invoke when the operation finishes
-         */
         connect_async(uri: URI, cancellable: Gio.Cancellable | null, progress_callback: SessionConnectProgressCallback | null, callback?: Gio.AsyncReadyCallback<this> | null): globalThis.Promise<Gio.IOStream> | void;
-
-        /**
-         * Gets the {@link Gio.IOStream} created for the connection to communicate with the server.
-         * @param result the {@link Gio.AsyncResult} passed to your callback
-         * @returns a new {@link Gio.IOStream}, or `null` on error.
-         */
         connect_finish(result: Gio.AsyncResult): Gio.IOStream;
-
-        /**
-         * Gets `session`'s {@link Soup.Session.async_context}. This does not add a ref
-         * to the context, so you will need to ref it yourself if you want it
-         * to outlive its session.
-         * 
-         * For a modern {@link Soup.Session}, this will always just return the
-         * thread-default {@link GLib.MainContext}, and so is not especially useful.
-         * @returns `session`'s {@link GLib.MainContext}, which may be `null`
-         */
         get_async_context(): GLib.MainContext | null;
-
-        /**
-         * Gets the first feature in `session` of type `feature_type`. For
-         * features where there may be more than one feature of a given type,
-         * use `soup_session_get_features()`.
-         * @param feature_type the {@link GObject.GType} of the feature to get
-         * @returns a {@link Soup.SessionFeature}, or `null`. The feature is owned by `session`.
-         */
         get_feature(feature_type: GObject.GType): SessionFeature | null;
-
-        /**
-         * Gets the first feature in `session` of type `feature_type`, provided
-         * that it is not disabled for `msg`. As with
-         * `soup_session_get_feature()`, this should only be used for features
-         * where `feature_type` is only expected to match a single feature. In
-         * particular, if there are two matching features, and the first is
-         * disabled on `msg`, and the second is not, then this will return
-         * `null`, not the second feature.
-         * @param feature_type the {@link GObject.GType} of the feature to get
-         * @param msg a {@link Soup.Message}
-         * @returns a {@link Soup.SessionFeature}, or `null`. The feature is owned by `session`.
-         */
         get_feature_for_message(feature_type: GObject.GType, msg: Message): SessionFeature | null;
-
-        /**
-         * Generates a list of `session`'s features of type `feature_type`. (If
-         * you want to see all features, you can pass `SOUP_TYPE_SESSION_FEATURE`
-         * for `feature_type`.)
-         * @param feature_type the {@link GObject.GType} of the class of features to get
-         * @returns a list of features. You must free the list, but not its contents
-         */
         get_features(feature_type: GObject.GType): SessionFeature[];
-
-        /**
-         * Tests if `session` has at a feature of type `feature_type` (which can
-         * be the type of either a {@link Soup.SessionFeature}, or else a subtype of
-         * some class managed by another feature, such as {@link Soup.Auth} or
-         * {@link Soup.Request}).
-         * @param feature_type the {@link GObject.GType} of the class of features to check for
-         * @returns `true` or `false`
-         */
         has_feature(feature_type: GObject.GType): boolean;
-
-        /**
-         * Pauses HTTP I/O on `msg`. Call `soup_session_unpause_message()` to
-         * resume I/O.
-         * 
-         * This may only be called for asynchronous messages (those sent on a
-         * {@link Soup.SessionAsync} or using `soup_session_queue_message()`).
-         * @param msg a {@link Soup.Message} currently running on `session`
-         */
         pause_message(msg: Message): void;
-
-        /**
-         * Tells `session` that an URI from the given `hostname` may be requested
-         * shortly, and so the session can try to prepare by resolving the
-         * domain name in advance, in order to work more quickly once the URI
-         * is actually requested.
-         * 
-         * If `cancellable` is non-`null`, it can be used to cancel the
-         * resolution. `callback` will still be invoked in this case, with a
-         * status of {@link Soup.Status.CANCELLED}.
-         * @param hostname a hostname to be resolved
-         * @param cancellable a {@link Gio.Cancellable} object, or `null`
-         * @param callback callback to call with the     result, or `null`
-         */
         prefetch_dns(hostname: string, cancellable: Gio.Cancellable | null, callback: AddressCallback | null): void;
-
-        /**
-         * Tells `session` that `uri` may be requested shortly, and so the
-         * session can try to prepare (resolving the domain name, obtaining
-         * proxy address, etc.) in order to work more quickly once the URI is
-         * actually requested.
-         * @param uri a {@link Soup.URI} which may be required
-         */
         prepare_for_uri(uri: URI): void;
-
-        /**
-         * Queues the message `msg` for asynchronously sending the request and
-         * receiving a response in the current thread-default {@link GLib.MainContext}.
-         * If `msg` has been processed before, any resources related to the
-         * time it was last sent are freed.
-         * 
-         * Upon message completion, the callback specified in `callback` will
-         * be invoked. If after returning from this callback the message has not
-         * been requeued, `msg` will be unreffed.
-         * 
-         * (The behavior above applies to a plain {@link Soup.Session}; if you are
-         * using {@link Soup.SessionAsync} or {@link Soup.SessionSync}, then the {@link GLib.MainContext}
-         * that is used depends on the settings of {@link Soup.Session.async_context}
-         * and {@link Soup.Session.use_thread_context}, and for {@link Soup.SessionSync}, the
-         * message will actually be sent and processed in another thread, with
-         * only the final callback occurring in the indicated {@link GLib.MainContext}.)
-         * 
-         * Contrast this method with `soup_session_send_async()`, which also
-         * asynchronously sends a message, but returns before reading the
-         * response body, and allows you to read the response via a
-         * {@link Gio.InputStream}.
-         * @param msg the message to queue
-         * @param callback a {@link Soup.SessionCallback} which will be called after the message completes or when an unrecoverable error occurs.
-         */
         queue_message(msg: Message, callback: SessionCallback | null): void;
-
-        /**
-         * Updates `msg`'s URI according to its status code and "Location"
-         * header, and requeues it on `session`. Use this when you have set
-         * {@link Soup.MessageFlags.NO_REDIRECT} on a message, but have decided to allow a
-         * particular redirection to occur, or if you want to allow a
-         * redirection that {@link Soup.Session} will not perform automatically (eg,
-         * redirecting a non-safe method such as DELETE).
-         * 
-         * If `msg`'s status code indicates that it should be retried as a GET
-         * request, then `msg` will be modified accordingly.
-         * 
-         * If `msg` has already been redirected too many times, this will
-         * cause it to fail with {@link Soup.Status.TOO_MANY_REDIRECTS}.
-         * @param msg a {@link Soup.Message} that has received a 3xx response
-         * @returns `true` if a redirection was applied, `false` if not (eg, because there was no Location header, or it could not be parsed).
-         */
         redirect_message(msg: Message): boolean;
-
-        /**
-         * Removes `feature`'s functionality from `session`.
-         * @param feature a feature that has previously been added to `session`
-         */
         remove_feature(feature: SessionFeature): void;
-
-        /**
-         * Creates a {@link Soup.Request} for retrieving `uri_string`.
-         * @param uri_string a URI, in string form
-         * @returns a new {@link Soup.Request}, or   `null` on error.
-         */
         request(uri_string: string): Request;
-
-        /**
-         * Creates a {@link Soup.Request} for retrieving `uri_string`, which must be an
-         * "http" or "https" URI (or another protocol listed in `session`'s
-         * {@link Soup.Session.http_aliases} or {@link Soup.Session.https_aliases}).
-         * @param method an HTTP method
-         * @param uri_string a URI, in string form
-         * @returns a new {@link Soup.RequestHTTP}, or   `null` on error.
-         */
         request_http(method: string, uri_string: string): RequestHTTP;
-
-        /**
-         * Creates a {@link Soup.Request} for retrieving `uri`, which must be an
-         * "http" or "https" URI (or another protocol listed in `session`'s
-         * {@link Soup.Session.http_aliases} or {@link Soup.Session.https_aliases}).
-         * @param method an HTTP method
-         * @param uri a {@link Soup.URI} representing the URI to retrieve
-         * @returns a new {@link Soup.RequestHTTP}, or   `null` on error.
-         */
         request_http_uri(method: string, uri: URI): RequestHTTP;
-
-        /**
-         * Creates a {@link Soup.Request} for retrieving `uri`.
-         * @param uri a {@link Soup.URI} representing the URI to retrieve
-         * @returns a new {@link Soup.Request}, or   `null` on error.
-         */
         request_uri(uri: URI): Request;
-
-        /**
-         * This causes `msg` to be placed back on the queue to be attempted
-         * again.
-         * @param msg the message to requeue
-         */
         requeue_message(msg: Message): void;
-
-        /**
-         * Synchronously sends `msg` and waits for the beginning of a response.
-         * On success, a {@link Gio.InputStream} will be returned which you can use to
-         * read the response body. ("Success" here means only that an HTTP
-         * response was received and understood; it does not necessarily mean
-         * that a 2xx class status code was received.)
-         * 
-         * If non-`null`, `cancellable` can be used to cancel the request;
-         * `soup_session_send()` will return a {@link Gio.IOErrorEnum.CANCELLED} error. Note
-         * that with requests that have side effects (eg,
-         * <literal>POST</literal>, <literal>PUT</literal>,
-         * <literal>DELETE</literal>) it is possible that you might cancel the
-         * request after the server acts on it, but before it returns a
-         * response, leaving the remote resource in an unknown state.
-         * 
-         * If `msg` is requeued due to a redirect or authentication, the
-         * initial (3xx/401/407) response body will be suppressed, and
-         * `soup_session_send()` will only return once a final response has been
-         * received.
-         * 
-         * Contrast this method with `soup_session_send_message()`, which also
-         * synchronously sends a {@link Soup.Message}, but doesn't return until the
-         * response has been completely read.
-         * 
-         * (Note that this method cannot be called on the deprecated
-         * {@link Soup.SessionAsync} subclass.)
-         * @param msg a {@link Soup.Message}
-         * @param cancellable a {@link Gio.Cancellable}
-         * @returns a {@link Gio.InputStream} for reading the   response body, or `null` on error.
-         */
         send(msg: Message, cancellable: Gio.Cancellable | null): Gio.InputStream;
-
-        /**
-         * Asynchronously sends `msg` and waits for the beginning of a
-         * response. When `callback` is called, then either `msg` has been sent,
-         * and its response headers received, or else an error has occurred.
-         * Call `soup_session_send_finish()` to get a {@link Gio.InputStream} for reading
-         * the response body.
-         * 
-         * See `soup_session_send()` for more details on the general semantics.
-         * 
-         * Contrast this method with `soup_session_queue_message()`, which also
-         * asynchronously sends a {@link Soup.Message}, but doesn't invoke its
-         * callback until the response has been completely read.
-         * 
-         * (Note that this method cannot be called on the deprecated
-         * {@link Soup.SessionSync} subclass, and can only be called on
-         * {@link Soup.SessionAsync} if you have set the
-         * {@link Soup.Session.use_thread_context} property.)
-         * @param msg a {@link Soup.Message}
-         * @param cancellable a {@link Gio.Cancellable}
-         */
         send_async(msg: Message, cancellable: Gio.Cancellable | null): globalThis.Promise<Gio.InputStream>;
-
-        /**
-         * Asynchronously sends `msg` and waits for the beginning of a
-         * response. When `callback` is called, then either `msg` has been sent,
-         * and its response headers received, or else an error has occurred.
-         * Call `soup_session_send_finish()` to get a {@link Gio.InputStream} for reading
-         * the response body.
-         * 
-         * See `soup_session_send()` for more details on the general semantics.
-         * 
-         * Contrast this method with `soup_session_queue_message()`, which also
-         * asynchronously sends a {@link Soup.Message}, but doesn't invoke its
-         * callback until the response has been completely read.
-         * 
-         * (Note that this method cannot be called on the deprecated
-         * {@link Soup.SessionSync} subclass, and can only be called on
-         * {@link Soup.SessionAsync} if you have set the
-         * {@link Soup.Session.use_thread_context} property.)
-         * @param msg a {@link Soup.Message}
-         * @param cancellable a {@link Gio.Cancellable}
-         * @param callback the callback to invoke
-         */
         send_async(msg: Message, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback<this> | null): void;
-
-        /**
-         * Asynchronously sends `msg` and waits for the beginning of a
-         * response. When `callback` is called, then either `msg` has been sent,
-         * and its response headers received, or else an error has occurred.
-         * Call `soup_session_send_finish()` to get a {@link Gio.InputStream} for reading
-         * the response body.
-         * 
-         * See `soup_session_send()` for more details on the general semantics.
-         * 
-         * Contrast this method with `soup_session_queue_message()`, which also
-         * asynchronously sends a {@link Soup.Message}, but doesn't invoke its
-         * callback until the response has been completely read.
-         * 
-         * (Note that this method cannot be called on the deprecated
-         * {@link Soup.SessionSync} subclass, and can only be called on
-         * {@link Soup.SessionAsync} if you have set the
-         * {@link Soup.Session.use_thread_context} property.)
-         * @param msg a {@link Soup.Message}
-         * @param cancellable a {@link Gio.Cancellable}
-         * @param callback the callback to invoke
-         */
         send_async(msg: Message, cancellable: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback<this> | null): globalThis.Promise<Gio.InputStream> | void;
-
-        /**
-         * Gets the response to a `soup_session_send_async()` call and (if
-         * successful), returns a {@link Gio.InputStream} that can be used to read the
-         * response body.
-         * @param result the {@link Gio.AsyncResult} passed to your callback
-         * @returns a {@link Gio.InputStream} for reading the   response body, or `null` on error.
-         */
         send_finish(result: Gio.AsyncResult): Gio.InputStream;
-
-        /**
-         * Synchronously send `msg`. This call will not return until the
-         * transfer is finished successfully or there is an unrecoverable
-         * error.
-         * 
-         * Unlike with `soup_session_queue_message()`, `msg` is not freed upon
-         * return.
-         * 
-         * (Note that if you call this method on a {@link Soup.SessionAsync}, it will
-         * still use asynchronous I/O internally, running the glib main loop
-         * to process the message, which may also cause other events to be
-         * processed.)
-         * 
-         * Contrast this method with `soup_session_send()`, which also
-         * synchronously sends a message, but returns before reading the
-         * response body, and allows you to read the response via a
-         * {@link Gio.InputStream}.
-         * @param msg the message to send
-         * @returns the HTTP status code of the response
-         */
         send_message(msg: Message): number;
-
-        /**
-         * "Steals" the HTTP connection associated with `msg` from `session`.
-         * This happens immediately, regardless of the current state of the
-         * connection, and `msg`'s callback will not be called. You can steal
-         * the connection from a {@link Soup.Message} signal handler if you need to
-         * wait for part or all of the response to be received first.
-         * 
-         * Calling this function may cause `msg` to be freed if you are not
-         * holding any other reference to it.
-         * @param msg the message whose connection is to be stolen
-         * @returns the {@link Gio.IOStream} formerly associated   with `msg` (or `null` if `msg` was no longer associated with a   connection). No guarantees are made about what kind of {@link Gio.IOStream}   is returned.
-         */
         steal_connection(msg: Message): Gio.IOStream;
-
-        /**
-         * Resumes HTTP I/O on `msg`. Use this to resume after calling
-         * `soup_session_pause_message()`.
-         * 
-         * If `msg` is being sent via blocking I/O, this will resume reading or
-         * writing immediately. If `msg` is using non-blocking I/O, then
-         * reading or writing won't resume until you return to the main loop.
-         * 
-         * This may only be called for asynchronous messages (those sent on a
-         * {@link Soup.SessionAsync} or using `soup_session_queue_message()`).
-         * @param msg a {@link Soup.Message} currently running on `session`
-         */
         unpause_message(msg: Message): void;
-
-        /**
-         * Asynchronously creates a {@link Soup.WebsocketConnection} to communicate
-         * with a remote server.
-         * 
-         * All necessary WebSocket-related headers will be added to `msg`, and
-         * it will then be sent and asynchronously processed normally
-         * (including handling of redirection and HTTP authentication).
-         * 
-         * If the server returns "101 Switching Protocols", then `msg`'s status
-         * code and response headers will be updated, and then the WebSocket
-         * handshake will be completed. On success,
-         * `soup_session_websocket_connect_finish()` will return a new
-         * {@link Soup.WebsocketConnection}. On failure it will return a {@link GLib.Error}.
-         * 
-         * If the server returns a status other than "101 Switching
-         * Protocols", then `msg` will contain the complete response headers
-         * and body from the server's response, and
-         * `soup_session_websocket_connect_finish()` will return
-         * {@link Soup.WebsocketError.NOT_WEBSOCKET}.
-         * @param msg {@link Soup.Message} indicating the WebSocket server to connect to
-         * @param origin origin of the connection
-         * @param protocols a   `null`-terminated array of protocols supported
-         * @param cancellable a {@link Gio.Cancellable}
-         */
         websocket_connect_async(msg: Message, origin: string | null, protocols: string[] | null, cancellable: Gio.Cancellable | null): globalThis.Promise<WebsocketConnection>;
-
-        /**
-         * Asynchronously creates a {@link Soup.WebsocketConnection} to communicate
-         * with a remote server.
-         * 
-         * All necessary WebSocket-related headers will be added to `msg`, and
-         * it will then be sent and asynchronously processed normally
-         * (including handling of redirection and HTTP authentication).
-         * 
-         * If the server returns "101 Switching Protocols", then `msg`'s status
-         * code and response headers will be updated, and then the WebSocket
-         * handshake will be completed. On success,
-         * `soup_session_websocket_connect_finish()` will return a new
-         * {@link Soup.WebsocketConnection}. On failure it will return a {@link GLib.Error}.
-         * 
-         * If the server returns a status other than "101 Switching
-         * Protocols", then `msg` will contain the complete response headers
-         * and body from the server's response, and
-         * `soup_session_websocket_connect_finish()` will return
-         * {@link Soup.WebsocketError.NOT_WEBSOCKET}.
-         * @param msg {@link Soup.Message} indicating the WebSocket server to connect to
-         * @param origin origin of the connection
-         * @param protocols a   `null`-terminated array of protocols supported
-         * @param cancellable a {@link Gio.Cancellable}
-         * @param callback the callback to invoke
-         */
         websocket_connect_async(msg: Message, origin: string | null, protocols: string[] | null, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback<this> | null): void;
-
-        /**
-         * Asynchronously creates a {@link Soup.WebsocketConnection} to communicate
-         * with a remote server.
-         * 
-         * All necessary WebSocket-related headers will be added to `msg`, and
-         * it will then be sent and asynchronously processed normally
-         * (including handling of redirection and HTTP authentication).
-         * 
-         * If the server returns "101 Switching Protocols", then `msg`'s status
-         * code and response headers will be updated, and then the WebSocket
-         * handshake will be completed. On success,
-         * `soup_session_websocket_connect_finish()` will return a new
-         * {@link Soup.WebsocketConnection}. On failure it will return a {@link GLib.Error}.
-         * 
-         * If the server returns a status other than "101 Switching
-         * Protocols", then `msg` will contain the complete response headers
-         * and body from the server's response, and
-         * `soup_session_websocket_connect_finish()` will return
-         * {@link Soup.WebsocketError.NOT_WEBSOCKET}.
-         * @param msg {@link Soup.Message} indicating the WebSocket server to connect to
-         * @param origin origin of the connection
-         * @param protocols a   `null`-terminated array of protocols supported
-         * @param cancellable a {@link Gio.Cancellable}
-         * @param callback the callback to invoke
-         */
         websocket_connect_async(msg: Message, origin: string | null, protocols: string[] | null, cancellable: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback<this> | null): globalThis.Promise<WebsocketConnection> | void;
-
-        /**
-         * Gets the {@link Soup.WebsocketConnection} response to a
-         * `soup_session_websocket_connect_async()` call and (if successful),
-         * returns a {@link Soup.WebsocketConnection} that can be used to communicate
-         * with the server.
-         * @param result the {@link Gio.AsyncResult} passed to your callback
-         * @returns a new {@link Soup.WebsocketConnection}, or   `null` on error.
-         */
         websocket_connect_finish(result: Gio.AsyncResult): WebsocketConnection;
-
-        /**
-         * Checks if `msg` contains a response that would cause `session` to
-         * redirect it to a new URL (ignoring `msg`'s {@link Soup.MessageFlags.NO_REDIRECT}
-         * flag, and the number of times it has already been redirected).
-         * @param msg a {@link Soup.Message} that has response headers
-         * @returns whether `msg` would be redirected
-         */
         would_redirect(msg: Message): boolean;
     }
-
-
     namespace SessionAsync {
-        // Signal signatures
         interface SignalSignatures extends Session.SignalSignatures {
             "notify::accept-language": (pspec: GObject.ParamSpec) => void;
             "notify::accept-language-auto": (pspec: GObject.ParamSpec) => void;
@@ -10979,50 +2146,22 @@ export namespace Soup {
             "notify::use-thread-context": (pspec: GObject.ParamSpec) => void;
             "notify::user-agent": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends Session.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class SessionAsync extends Session {
         static $gtype: GObject.GType<SessionAsync>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: SessionAsync.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<SessionAsync.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](): SessionAsync;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof SessionAsync.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SessionAsync.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof SessionAsync.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SessionAsync.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof SessionAsync.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SessionAsync.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
     }
-
-
     namespace SessionSync {
-        // Signal signatures
         interface SignalSignatures extends Session.SignalSignatures {
             "notify::accept-language": (pspec: GObject.ParamSpec) => void;
             "notify::accept-language-auto": (pspec: GObject.ParamSpec) => void;
@@ -11045,90 +2184,27 @@ export namespace Soup {
             "notify::use-thread-context": (pspec: GObject.ParamSpec) => void;
             "notify::user-agent": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends Session.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class SessionSync extends Session {
         static $gtype: GObject.GType<SessionSync>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: SessionSync.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<SessionSync.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](): SessionSync;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof SessionSync.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SessionSync.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof SessionSync.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SessionSync.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof SessionSync.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SessionSync.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
     }
-
-
     namespace Socket {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
-            /**
-             * Emitted when the socket is disconnected, for whatever
-             * reason.
-             * @signal
-             * @run-last
-             */
             disconnected: () => void;
-            /**
-             * Emitted when a network-related event occurs. See
-             * {@link Gio.SocketClient.SignalSignatures.event | Gio.SocketClient::event} for more details.
-             * @signal
-             * @since 2.38
-             * @run-last
-             */
             event: (arg0: Gio.SocketClientEvent, arg1: Gio.IOStream) => void;
-            /**
-             * Emitted when a listening socket (set up with
-             * `soup_socket_listen()`) receives a new connection.
-             * 
-             * You must ref the `new` if you want to keep it; otherwise it
-             * will be destroyed after the signal is emitted.
-             * @signal
-             * @run-first
-             */
             "new-connection": (arg0: Socket) => void;
-            /**
-             * Emitted when an async socket is readable. See
-             * `soup_socket_read()`, `soup_socket_read_until()` and
-             * {@link Soup.Socket.non_blocking}.
-             * @signal
-             * @run-last
-             */
             readable: () => void;
-            /**
-             * Emitted when an async socket is writable. See
-             * `soup_socket_write()` and {@link Soup.Socket.non_blocking}.
-             * @signal
-             * @run-last
-             */
             writable: () => void;
             "notify::async-context": (pspec: GObject.ParamSpec) => void;
             "notify::fd": (pspec: GObject.ParamSpec) => void;
@@ -11148,8 +2224,6 @@ export namespace Soup {
             "notify::trusted-certificate": (pspec: GObject.ParamSpec) => void;
             "notify::use-thread-context": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, Gio.Initable.ConstructorProps {
             async_context: never;
             asyncContext: never;
@@ -11183,580 +2257,81 @@ export namespace Soup {
             useThreadContext: boolean;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class Socket extends GObject.Object implements Gio.Initable {
         static $gtype: GObject.GType<Socket>;
-
-        // Properties
-        /**
-         * @construct-only
-         */
         get async_context(): null;
-
-        /**
-         * @construct-only
-         */
         get asyncContext(): null;
-
-        /**
-         * @construct-only
-         * @default -1
-         */
         get fd(): number;
-
-        /**
-         * @construct-only
-         */
         set gsocket(val: Gio.Socket);
-
-        /**
-         * @construct-only
-         */
         set iostream(val: Gio.IOStream);
-
-        /**
-         * @default false
-         */
         get ipv6_only(): boolean;
         set ipv6_only(val: boolean);
-
-        /**
-         * @default false
-         */
         get ipv6Only(): boolean;
         set ipv6Only(val: boolean);
-
-        /**
-         * Whether or not the socket is a server socket.
-         * 
-         * Note that for "ordinary" `SoupSockets` this will be set for
-         * both listening sockets and the sockets emitted by
-         * {@link Soup.Socket.SignalSignatures.new_connection | Soup.Socket::new-connection}, but for sockets created by
-         * setting {@link Soup.Socket.fd}, it will only be set for listening
-         * sockets.
-         * @read-only
-         * @default false
-         */
         get is_server(): boolean;
-
-        /**
-         * Whether or not the socket is a server socket.
-         * 
-         * Note that for "ordinary" `SoupSockets` this will be set for
-         * both listening sockets and the sockets emitted by
-         * {@link Soup.Socket.SignalSignatures.new_connection | Soup.Socket::new-connection}, but for sockets created by
-         * setting {@link Soup.Socket.fd}, it will only be set for listening
-         * sockets.
-         * @read-only
-         * @default false
-         */
         get isServer(): boolean;
-
-        /**
-         * @construct-only
-         */
         get local_address(): Address;
-
-        /**
-         * @construct-only
-         */
         get localAddress(): Address;
-
-        /**
-         * Whether or not the socket uses non-blocking I/O.
-         * 
-         * {@link Soup.Socket}'s I/O methods are designed around the idea of
-         * using a single codepath for both synchronous and
-         * asynchronous I/O. If you want to read off a {@link Soup.Socket},
-         * the "correct" way to do it is to call `soup_socket_read()` or
-         * `soup_socket_read_until()` repeatedly until you have read
-         * everything you want. If it returns {@link Soup.SocketIOStatus.WOULD_BLOCK}
-         * at any point, stop reading and wait for it to emit the
-         * {@link Soup.Socket.SignalSignatures.readable | Soup.Socket::readable} signal. Then go back to the
-         * reading-as-much-as-you-can loop. Likewise, for writing to a
-         * {@link Soup.Socket}, you should call `soup_socket_write()` either
-         * until you have written everything, or it returns
-         * {@link Soup.SocketIOStatus.WOULD_BLOCK} (in which case you wait for
-         * {@link Soup.Socket.SignalSignatures.writable | Soup.Socket::writable} and then go back into the loop).
-         * 
-         * Code written this way will work correctly with both
-         * blocking and non-blocking sockets; blocking sockets will
-         * simply never return {@link Soup.SocketIOStatus.WOULD_BLOCK}, and so the
-         * code that handles that case just won't get used for them.
-         * @default true
-         */
         get non_blocking(): boolean;
         set non_blocking(val: boolean);
-
-        /**
-         * Whether or not the socket uses non-blocking I/O.
-         * 
-         * {@link Soup.Socket}'s I/O methods are designed around the idea of
-         * using a single codepath for both synchronous and
-         * asynchronous I/O. If you want to read off a {@link Soup.Socket},
-         * the "correct" way to do it is to call `soup_socket_read()` or
-         * `soup_socket_read_until()` repeatedly until you have read
-         * everything you want. If it returns {@link Soup.SocketIOStatus.WOULD_BLOCK}
-         * at any point, stop reading and wait for it to emit the
-         * {@link Soup.Socket.SignalSignatures.readable | Soup.Socket::readable} signal. Then go back to the
-         * reading-as-much-as-you-can loop. Likewise, for writing to a
-         * {@link Soup.Socket}, you should call `soup_socket_write()` either
-         * until you have written everything, or it returns
-         * {@link Soup.SocketIOStatus.WOULD_BLOCK} (in which case you wait for
-         * {@link Soup.Socket.SignalSignatures.writable | Soup.Socket::writable} and then go back into the loop).
-         * 
-         * Code written this way will work correctly with both
-         * blocking and non-blocking sockets; blocking sockets will
-         * simply never return {@link Soup.SocketIOStatus.WOULD_BLOCK}, and so the
-         * code that handles that case just won't get used for them.
-         * @default true
-         */
         get nonBlocking(): boolean;
         set nonBlocking(val: boolean);
-
-        /**
-         * @construct-only
-         */
         get remote_address(): Address;
-
-        /**
-         * @construct-only
-         */
         get remoteAddress(): Address;
-
         get ssl_creds(): null;
         set ssl_creds(val: never);
-
         get sslCreds(): null;
         set sslCreds(val: never);
-
-        /**
-         * @construct-only
-         * @default false
-         */
         get ssl_fallback(): boolean;
-
-        /**
-         * @construct-only
-         * @default false
-         */
         get sslFallback(): boolean;
-
-        /**
-         * @construct-only
-         * @default true
-         */
         get ssl_strict(): boolean;
-
-        /**
-         * @construct-only
-         * @default true
-         */
         get sslStrict(): boolean;
-
-        /**
-         * @default 0
-         */
         get timeout(): number;
         set timeout(val: number);
-
-        /**
-         * @read-only
-         */
         get tls_certificate(): Gio.TlsCertificate;
-
-        /**
-         * @read-only
-         */
         get tlsCertificate(): Gio.TlsCertificate;
-
-        /**
-         * @read-only
-         * @default Gio.TlsCertificateFlags.NO_FLAGS
-         */
         get tls_errors(): Gio.TlsCertificateFlags;
-
-        /**
-         * @read-only
-         * @default Gio.TlsCertificateFlags.NO_FLAGS
-         */
         get tlsErrors(): Gio.TlsCertificateFlags;
-
-        /**
-         * @read-only
-         * @default false
-         */
         get trusted_certificate(): boolean;
-
-        /**
-         * @read-only
-         * @default false
-         */
         get trustedCertificate(): boolean;
-
-        /**
-         * Use `g_main_context_get_thread_default()`.
-         * @since 2.38
-         * @construct-only
-         * @default false
-         */
         get use_thread_context(): boolean;
-
-        /**
-         * Use `g_main_context_get_thread_default()`.
-         * @since 2.38
-         * @construct-only
-         * @default false
-         */
         get useThreadContext(): boolean;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: Socket.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<Socket.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof Socket.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Socket.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof Socket.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Socket.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof Socket.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Socket.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * @virtual
-         */
         vfunc_disconnected(): void;
-
-        /**
-         * @param new_sock 
-         * @virtual
-         */
         vfunc_new_connection(new_sock: Socket): void;
-
-        /**
-         * @virtual
-         */
         vfunc_readable(): void;
-
-        /**
-         * @virtual
-         */
         vfunc_writable(): void;
-
-        // Methods
-        /**
-         * Begins asynchronously connecting to `sock`'s remote address. The
-         * socket will call `callback` when it succeeds or fails (but not
-         * before returning from this function).
-         * 
-         * If `cancellable` is non-`null`, it can be used to cancel the
-         * connection. `callback` will still be invoked in this case, with a
-         * status of {@link Soup.Status.CANCELLED}.
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @param callback callback to call after connecting
-         */
         connect_async(cancellable: Gio.Cancellable | null, callback: SocketCallback): void;
-
-        /**
-         * Attempt to synchronously connect `sock` to its remote address.
-         * 
-         * If `cancellable` is non-`null`, it can be used to cancel the
-         * connection, in which case `soup_socket_connect_sync()` will return
-         * {@link Soup.Status.CANCELLED}.
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @returns a success or failure code.
-         */
         connect_sync(cancellable: Gio.Cancellable | null): number;
-
-        /**
-         * Disconnects `sock`. Any further read or write attempts on it will
-         * fail.
-         */
         disconnect(): void;
-
-        /**
-         * Gets `sock`'s underlying file descriptor.
-         * 
-         * Note that fiddling with the file descriptor may break the
-         * {@link Soup.Socket}.
-         * @returns `sock`'s file descriptor.
-         */
         get_fd(): number;
-
-        /**
-         * Returns the {@link Soup.Address} corresponding to the local end of `sock`.
-         * 
-         * Calling this method on an unconnected socket is considered to be
-         * an error, and produces undefined results.
-         * @returns the {@link Soup.Address}
-         */
         get_local_address(): Address;
-
-        /**
-         * Returns the {@link Soup.Address} corresponding to the remote end of `sock`.
-         * 
-         * Calling this method on an unconnected socket is considered to be
-         * an error, and produces undefined results.
-         * @returns the {@link Soup.Address}
-         */
         get_remote_address(): Address;
-
-        /**
-         * Tests if `sock` is connected to another host
-         * @returns `true` or `false`.
-         */
         is_connected(): boolean;
-
-        /**
-         * Tests if `sock` is doing (or has attempted to do) SSL.
-         * @returns `true` if `sock` has SSL credentials set
-         */
         is_ssl(): boolean;
-
-        /**
-         * Makes `sock` start listening on its local address. When connections
-         * come in, `sock` will emit {@link Soup.Socket.SignalSignatures.new_connection | Soup.Socket::new_connection}.
-         * @returns whether or not `sock` is now listening.
-         */
         listen(): boolean;
-
-        /**
-         * Attempts to read up to `len` bytes from `sock` into `buffer`. If some
-         * data is successfully read, `soup_socket_read()` will return
-         * {@link Soup.SocketIOStatus.OK}, and *`nread` will contain the number of bytes
-         * actually read (which may be less than `len`).
-         * 
-         * If `sock` is non-blocking, and no data is available, the return
-         * value will be {@link Soup.SocketIOStatus.WOULD_BLOCK}. In this case, the caller
-         * can connect to the {@link Soup.Socket.SignalSignatures.readable | Soup.Socket::readable} signal to know when there
-         * is more data to read. (NB: You MUST read all available data off the
-         * socket first. {@link Soup.Socket.SignalSignatures.readable | Soup.Socket::readable} is only emitted after
-         * `soup_socket_read()` returns {@link Soup.SocketIOStatus.WOULD_BLOCK}, and it is only
-         * emitted once. See the documentation for {@link Soup.Socket.non_blocking}.)
-         * @param buffer buffer to read   into
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @returns a {@link Soup.SocketIOStatus}, as described above (or {@link Soup.SocketIOStatus.EOF} if the socket is no longer connected, or {@link Soup.SocketIOStatus.ERROR} on any other error, in which case `error` will also be set).
-         */
         read(buffer: Uint8Array | string, cancellable: Gio.Cancellable | null): [SocketIOStatus, number];
-
-        /**
-         * Like `soup_socket_read()`, but reads no further than the first
-         * occurrence of `boundary`. (If the boundary is found, it will be
-         * included in the returned data, and *`got_boundary` will be set to
-         * `true`.) Any data after the boundary will returned in future reads.
-         * 
-         * `soup_socket_read_until()` will almost always return fewer than `len`
-         * bytes: if the boundary is found, then it will only return the bytes
-         * up until the end of the boundary, and if the boundary is not found,
-         * then it will leave the last <literal>(boundary_len - 1)</literal>
-         * bytes in its internal buffer, in case they form the start of the
-         * boundary string. Thus, `len` normally needs to be at least 1 byte
-         * longer than `boundary_len` if you want to make any progress at all.
-         * @param buffer buffer to read   into
-         * @param boundary boundary to read until
-         * @param boundary_len length of `boundary` in bytes
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @returns as for `soup_socket_read()`
-         */
         read_until(buffer: Uint8Array | string, boundary: null, boundary_len: bigint | number, cancellable: Gio.Cancellable | null): [SocketIOStatus, number, boolean];
-
-        /**
-         * Starts using SSL on `socket`, expecting to find a host named
-         * `ssl_host`.
-         * @param ssl_host hostname of the SSL server
-         * @param cancellable a {@link Gio.Cancellable}
-         * @returns success or failure
-         */
         start_proxy_ssl(ssl_host: string, cancellable: Gio.Cancellable | null): boolean;
-
-        /**
-         * Starts using SSL on `socket`.
-         * @param cancellable a {@link Gio.Cancellable}
-         * @returns success or failure
-         */
         start_ssl(cancellable: Gio.Cancellable | null): boolean;
-
-        /**
-         * Attempts to write `len` bytes from `buffer` to `sock`. If some data is
-         * successfully written, the return status will be {@link Soup.SocketIOStatus.OK},
-         * and *`nwrote` will contain the number of bytes actually written
-         * (which may be less than `len`).
-         * 
-         * If `sock` is non-blocking, and no data could be written right away,
-         * the return value will be {@link Soup.SocketIOStatus.WOULD_BLOCK}. In this case,
-         * the caller can connect to the {@link Soup.Socket.SignalSignatures.writable | Soup.Socket::writable} signal to know
-         * when more data can be written. (NB: {@link Soup.Socket.SignalSignatures.writable | Soup.Socket::writable} is only
-         * emitted after `soup_socket_write()` returns {@link Soup.SocketIOStatus.WOULD_BLOCK},
-         * and it is only emitted once. See the documentation for
-         * {@link Soup.Socket.non_blocking}.)
-         * @param buffer data to write
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @returns a {@link Soup.SocketIOStatus}, as described above (or {@link Soup.SocketIOStatus.EOF} or {@link Soup.SocketIOStatus.ERROR}. `error` will be set if the return value is {@link Soup.SocketIOStatus.ERROR}.)
-         */
         write(buffer: Uint8Array | string, cancellable: Gio.Cancellable | null): [SocketIOStatus, number];
-
-        /**
-         * Initializes the object implementing the interface.
-         * 
-         * This method is intended for language bindings. If writing in C,
-         * `g_initable_new()` should typically be used instead.
-         * 
-         * The object must be initialized before any real use after initial
-         * construction, either with this function or `g_async_initable_init_async()`.
-         * 
-         * Implementations may also support cancellation. If `cancellable` is not `null`,
-         * then initialization can be cancelled by triggering the cancellable object
-         * from another thread. If the operation was cancelled, the error
-         * {@link Gio.IOErrorEnum.CANCELLED} will be returned. If `cancellable` is not `null` and
-         * the object doesn't support cancellable initialization the error
-         * {@link Gio.IOErrorEnum.NOT_SUPPORTED} will be returned.
-         * 
-         * If the object is not initialized, or initialization returns with an
-         * error, then all operations on the object except `g_object_ref()` and
-         * `g_object_unref()` are considered to be invalid, and have undefined
-         * behaviour. See the [description][iface@Gio.Initable#description] for more details.
-         * 
-         * Callers should not assume that a class which implements {@link Gio.Initable} can be
-         * initialized multiple times, unless the class explicitly documents itself as
-         * supporting this. Generally, a class’ implementation of `init()` can assume
-         * (and assert) that it will only be called once. Previously, this documentation
-         * recommended all {@link Gio.Initable} implementations should be idempotent; that
-         * recommendation was relaxed in GLib 2.54.
-         * 
-         * If a class explicitly supports being initialized multiple times, it is
-         * recommended that the method is idempotent: multiple calls with the same
-         * arguments should return the same results. Only the first call initializes
-         * the object; further calls return the result of the first call.
-         * 
-         * One reason why a class might need to support idempotent initialization is if
-         * it is designed to be used via the singleton pattern, with a
-         * {@link GObject.ObjectClass}.constructor that sometimes returns an existing instance.
-         * In this pattern, a caller would expect to be able to call `g_initable_init()`
-         * on the result of `g_object_new()`, regardless of whether it is in fact a new
-         * instance.
-         * @param cancellable optional {@link Gio.Cancellable} object, `null` to ignore.
-         * @returns `true` if successful. If an error has occurred, this function will     return `false` and set `error` appropriately if present.
-         */
         init(cancellable: Gio.Cancellable | null): boolean;
-
-        /**
-         * Initializes the object implementing the interface.
-         * 
-         * This method is intended for language bindings. If writing in C,
-         * `g_initable_new()` should typically be used instead.
-         * 
-         * The object must be initialized before any real use after initial
-         * construction, either with this function or `g_async_initable_init_async()`.
-         * 
-         * Implementations may also support cancellation. If `cancellable` is not `null`,
-         * then initialization can be cancelled by triggering the cancellable object
-         * from another thread. If the operation was cancelled, the error
-         * {@link Gio.IOErrorEnum.CANCELLED} will be returned. If `cancellable` is not `null` and
-         * the object doesn't support cancellable initialization the error
-         * {@link Gio.IOErrorEnum.NOT_SUPPORTED} will be returned.
-         * 
-         * If the object is not initialized, or initialization returns with an
-         * error, then all operations on the object except `g_object_ref()` and
-         * `g_object_unref()` are considered to be invalid, and have undefined
-         * behaviour. See the [description][iface@Gio.Initable#description] for more details.
-         * 
-         * Callers should not assume that a class which implements {@link Gio.Initable} can be
-         * initialized multiple times, unless the class explicitly documents itself as
-         * supporting this. Generally, a class’ implementation of `init()` can assume
-         * (and assert) that it will only be called once. Previously, this documentation
-         * recommended all {@link Gio.Initable} implementations should be idempotent; that
-         * recommendation was relaxed in GLib 2.54.
-         * 
-         * If a class explicitly supports being initialized multiple times, it is
-         * recommended that the method is idempotent: multiple calls with the same
-         * arguments should return the same results. Only the first call initializes
-         * the object; further calls return the result of the first call.
-         * 
-         * One reason why a class might need to support idempotent initialization is if
-         * it is designed to be used via the singleton pattern, with a
-         * {@link GObject.ObjectClass}.constructor that sometimes returns an existing instance.
-         * In this pattern, a caller would expect to be able to call `g_initable_init()`
-         * on the result of `g_object_new()`, regardless of whether it is in fact a new
-         * instance.
-         * @param cancellable optional {@link Gio.Cancellable} object, `null` to ignore.
-         * @virtual
-         */
         vfunc_init(cancellable: Gio.Cancellable | null): boolean;
     }
-
-
     namespace WebsocketConnection {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
-            /**
-             * Emitted when the connection has completely closed, either
-             * due to an orderly close from the peer, one initiated via
-             * `soup_websocket_connection_close()` or a fatal error
-             * condition that caused a close.
-             * 
-             * This signal will be emitted once.
-             * @signal
-             * @since 2.50
-             * @run-first
-             */
             closed: () => void;
-            /**
-             * This signal will be emitted during an orderly close.
-             * @signal
-             * @since 2.50
-             * @run-last
-             */
             closing: () => void;
-            /**
-             * Emitted when an error occurred on the WebSocket. This may
-             * be fired multiple times. Fatal errors will be followed by
-             * the {@link Soup.WebsocketConnection.SignalSignatures.closed | Soup.WebsocketConnection::closed} signal being emitted.
-             * @signal
-             * @since 2.50
-             * @run-first
-             */
             error: (arg0: GLib.Error) => void;
-            /**
-             * Emitted when we receive a message from the peer.
-             * 
-             * As a convenience, the `message` data will always be
-             * NUL-terminated, but the NUL byte will not be included in
-             * the length count.
-             * @signal
-             * @since 2.50
-             * @run-first
-             */
             message: (arg0: number, arg1: GLib.Bytes) => void;
-            /**
-             * Emitted when we receive a Pong frame (solicited or
-             * unsolicited) from the peer.
-             * 
-             * As a convenience, the `message` data will always be
-             * NUL-terminated, but the NUL byte will not be included in
-             * the length count.
-             * @signal
-             * @since 2.60
-             * @run-first
-             */
             pong: (arg0: GLib.Bytes) => void;
             "notify::connection-type": (pspec: GObject.ParamSpec) => void;
             "notify::extensions": (pspec: GObject.ParamSpec) => void;
@@ -11768,8 +2343,6 @@ export namespace Soup {
             "notify::state": (pspec: GObject.ParamSpec) => void;
             "notify::uri": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps {
             connection_type: WebsocketConnectionType;
             connectionType: WebsocketConnectionType;
@@ -11786,977 +2359,189 @@ export namespace Soup {
             uri: URI;
         }
     }
-
-    /**
-     * A class representing a WebSocket connection.
-     * @gir-type Class
-     * @since 2.50
-     */
     class WebsocketConnection extends GObject.Object {
         static $gtype: GObject.GType<WebsocketConnection>;
-
-        // Properties
-        /**
-         * The type of connection (client/server).
-         * @since 2.50
-         * @construct-only
-         * @default Soup.WebsocketConnectionType.UNKNOWN
-         */
         get connection_type(): WebsocketConnectionType;
-
-        /**
-         * The type of connection (client/server).
-         * @since 2.50
-         * @construct-only
-         * @default Soup.WebsocketConnectionType.UNKNOWN
-         */
         get connectionType(): WebsocketConnectionType;
-
-        /**
-         * List of {@link Soup.WebsocketExtension} objects that are active in the connection.
-         * @since 2.68
-         * @construct-only
-         */
         get extensions(): null;
-
-        /**
-         * The underlying IO stream the WebSocket is communicating
-         * over.
-         * 
-         * The input and output streams must be pollable streams.
-         * @since 2.50
-         * @construct-only
-         */
         get io_stream(): Gio.IOStream;
-
-        /**
-         * The underlying IO stream the WebSocket is communicating
-         * over.
-         * 
-         * The input and output streams must be pollable streams.
-         * @since 2.50
-         * @construct-only
-         */
         get ioStream(): Gio.IOStream;
-
-        /**
-         * Interval in seconds on when to send a ping message which will
-         * serve as a keepalive message. If set to 0 the keepalive message is
-         * disabled.
-         * @since 2.58
-         * @default 0
-         */
         get keepalive_interval(): number;
         set keepalive_interval(val: number);
-
-        /**
-         * Interval in seconds on when to send a ping message which will
-         * serve as a keepalive message. If set to 0 the keepalive message is
-         * disabled.
-         * @since 2.58
-         * @default 0
-         */
         get keepaliveInterval(): number;
         set keepaliveInterval(val: number);
-
-        /**
-         * The maximum payload size for incoming packets the protocol expects
-         * or 0 to not limit it.
-         * @since 2.56
-         * @default 131072
-         */
         get max_incoming_payload_size(): number;
         set max_incoming_payload_size(val: bigint | number);
-
-        /**
-         * The maximum payload size for incoming packets the protocol expects
-         * or 0 to not limit it.
-         * @since 2.56
-         * @default 131072
-         */
         get maxIncomingPayloadSize(): number;
         set maxIncomingPayloadSize(val: bigint | number);
-
-        /**
-         * The client's Origin.
-         * @since 2.50
-         * @construct-only
-         * @default null
-         */
         get origin(): string | null;
-
-        /**
-         * The chosen protocol, or `null` if a protocol was not agreed
-         * upon.
-         * @since 2.50
-         * @construct-only
-         * @default null
-         */
         get protocol(): string | null;
-
-        /**
-         * The current state of the WebSocket.
-         * @since 2.50
-         * @read-only
-         * @default Soup.WebsocketState.OPEN
-         */
         get state(): WebsocketState;
-
-        /**
-         * The URI of the WebSocket.
-         * 
-         * For servers this represents the address of the WebSocket,
-         * and for clients it is the address connected to.
-         * @since 2.50
-         * @construct-only
-         */
         get uri(): URI;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: WebsocketConnection.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<WebsocketConnection.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](stream: Gio.IOStream, uri: URI, type: WebsocketConnectionType, origin: string | null, protocol: string | null): WebsocketConnection;
-
         static new_with_extensions(stream: Gio.IOStream, uri: URI, type: WebsocketConnectionType, origin: string | null, protocol: string | null, extensions: WebsocketExtension[]): WebsocketConnection;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof WebsocketConnection.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WebsocketConnection.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof WebsocketConnection.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WebsocketConnection.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof WebsocketConnection.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<WebsocketConnection.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * default handler for the {@link Soup.WebsocketConnection.SignalSignatures.closed | Soup.WebsocketConnection::closed} signal
-         * @virtual
-         */
         vfunc_closed(): void;
-
-        /**
-         * the default handler for the {@link Soup.WebsocketConnection.closing} signal
-         * @virtual
-         */
         vfunc_closing(): void;
-
-        /**
-         * default handler for the {@link Soup.WebsocketConnection.SignalSignatures.error | Soup.WebsocketConnection::error} signal
-         * @param error 
-         * @virtual
-         */
         vfunc_error(error: GLib.Error): void;
-
-        /**
-         * default handler for the {@link Soup.WebsocketConnection.SignalSignatures.message | Soup.WebsocketConnection::message} signal
-         * @param type 
-         * @param message 
-         * @virtual
-         */
         vfunc_message(type: WebsocketDataType, message: GLib.Bytes): void;
-
-        /**
-         * default handler for the {@link Soup.WebsocketConnection.SignalSignatures.pong | Soup.WebsocketConnection::pong} signal
-         * @param message 
-         * @virtual
-         */
         vfunc_pong(message: GLib.Bytes): void;
-
-        // Methods
-        /**
-         * Close the connection in an orderly fashion.
-         * 
-         * Note that until the {@link Soup.WebsocketConnection.SignalSignatures.closed | Soup.WebsocketConnection::closed} signal fires, the connection
-         * is not yet completely closed. The close message is not even sent until the
-         * main loop runs.
-         * 
-         * The `code` and `data` are sent to the peer along with the close request.
-         * If `code` is {@link Soup.WebsocketCloseCode.NO_STATUS} a close message with no body
-         * (without code and data) is sent.
-         * Note that the `data` must be UTF-8 valid.
-         * @param code close code
-         * @param data close data
-         */
         close(code: number, data: string | null): void;
-
-        /**
-         * Get the close code received from the WebSocket peer.
-         * 
-         * This only becomes valid once the WebSocket is in the
-         * {@link Soup.WebsocketState.CLOSED} state. The value will often be in the
-         * {@link Soup.WebsocketCloseCode} enumeration, but may also be an application
-         * defined close code.
-         * @returns the close code or zero.
-         */
         get_close_code(): number;
-
-        /**
-         * Get the close data received from the WebSocket peer.
-         * 
-         * This only becomes valid once the WebSocket is in the
-         * {@link Soup.WebsocketState.CLOSED} state. The data may be freed once
-         * the main loop is run, so copy it if you need to keep it around.
-         * @returns the close data or `null`
-         */
         get_close_data(): string;
-
-        /**
-         * Get the connection type (client/server) of the connection.
-         * @returns the connection type
-         */
         get_connection_type(): WebsocketConnectionType;
-
-        /**
-         * Get the extensions chosen via negotiation with the peer.
-         * @returns a {@link GLib.List} of {@link Soup.WebsocketExtension} objects
-         */
         get_extensions(): WebsocketExtension[];
-
-        /**
-         * Get the I/O stream the WebSocket is communicating over.
-         * @returns the WebSocket's I/O stream.
-         */
         get_io_stream(): Gio.IOStream;
-
-        /**
-         * Gets the keepalive interval in seconds or 0 if disabled.
-         * @returns the keepalive interval.
-         */
         get_keepalive_interval(): number;
-
-        /**
-         * Gets the maximum payload size allowed for incoming packets.
-         * @returns the maximum payload size.
-         */
         get_max_incoming_payload_size(): number;
-
-        /**
-         * Get the origin of the WebSocket.
-         * @returns the origin, or `null`
-         */
         get_origin(): string | null;
-
-        /**
-         * Get the protocol chosen via negotiation with the peer.
-         * @returns the chosen protocol, or `null`
-         */
         get_protocol(): string | null;
-
-        /**
-         * Get the current state of the WebSocket.
-         * @returns the state
-         */
         get_state(): WebsocketState;
-
-        /**
-         * Get the URI of the WebSocket.
-         * 
-         * For servers this represents the address of the WebSocket, and
-         * for clients it is the address connected to.
-         * @returns the URI
-         */
         get_uri(): URI;
-
-        /**
-         * Send a binary message to the peer. If `length` is 0, `data` may be `null`.
-         * 
-         * The message is queued to be sent and will be sent when the main loop
-         * is run.
-         * @param data the message contents
-         */
         send_binary(data: Uint8Array | string | null): void;
-
-        /**
-         * Send a message of the given `type` to the peer. Note that this method,
-         * allows to send text messages containing `null` characters.
-         * 
-         * The message is queued to be sent and will be sent when the main loop
-         * is run.
-         * @param type the type of message contents
-         * @param message the message data as {@link GLib.Bytes}
-         */
         send_message(type: WebsocketDataType, message: GLib.Bytes | Uint8Array): void;
-
-        /**
-         * Send a `null`-terminated text (UTF-8) message to the peer. If you need
-         * to send text messages containing `null` characters use
-         * `soup_websocket_connection_send_message()` instead.
-         * 
-         * The message is queued to be sent and will be sent when the main loop
-         * is run.
-         * @param text the message contents
-         */
         send_text(text: string): void;
-
-        /**
-         * Sets the interval in seconds on when to send a ping message which will serve
-         * as a keepalive message. If set to 0 the keepalive message is disabled.
-         * @param interval the interval to send a ping message or 0 to disable it
-         */
         set_keepalive_interval(interval: number): void;
-
-        /**
-         * Sets the maximum payload size allowed for incoming packets. It
-         * does not limit the outgoing packet size.
-         * @param max_incoming_payload_size the maximum payload size
-         */
         set_max_incoming_payload_size(max_incoming_payload_size: bigint | number): void;
     }
-
-
     namespace WebsocketExtension {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {}
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     abstract class WebsocketExtension extends GObject.Object {
         static $gtype: GObject.GType<WebsocketExtension>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: WebsocketExtension.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<WebsocketExtension.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof WebsocketExtension.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WebsocketExtension.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof WebsocketExtension.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WebsocketExtension.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof WebsocketExtension.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<WebsocketExtension.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Virtual methods
-        /**
-         * Configures `extension` with the given `params`
-         * @param connection_type either {@link Soup.WebsocketConnectionType.CLIENT} or {@link Soup.WebsocketConnectionType.SERVER}
-         * @param params the parameters, or `null`
-         * @virtual
-         */
         vfunc_configure(connection_type: WebsocketConnectionType, params: never | null): boolean;
-
-        /**
-         * Get the parameters strings to be included in the request header. If the extension
-         * doesn't include any parameter in the request, this function returns `null`.
-         * @virtual
-         */
         vfunc_get_request_params(): string | null;
-
-        /**
-         * Get the parameters strings to be included in the response header. If the extension
-         * doesn't include any parameter in the response, this function returns `null`.
-         * @virtual
-         */
         vfunc_get_response_params(): string | null;
-
-        /**
-         * Process a message after it's received. If the payload isn't changed the given
-         * `payload` is just returned, otherwise `g_bytes_unref()` is called on the given
-         * `payload` and a new {@link GLib.Bytes} is returned with the new data.
-         * 
-         * Extensions using reserved bits of the header will reset them in `header`.
-         * @param header the message header
-         * @param payload the payload data
-         * @virtual
-         */
         vfunc_process_incoming_message(header: number, payload: GLib.Bytes): [GLib.Bytes | Uint8Array, number];
-
-        /**
-         * Process a message before it's sent. If the payload isn't changed the given
-         * `payload` is just returned, otherwise `g_bytes_unref()` is called on the given
-         * `payload` and a new {@link GLib.Bytes} is returned with the new data.
-         * 
-         * Extensions using reserved bits of the header will change them in `header`.
-         * @param header the message header
-         * @param payload the payload data
-         * @virtual
-         */
         vfunc_process_outgoing_message(header: number, payload: GLib.Bytes): [GLib.Bytes | Uint8Array, number];
-
-        // Methods
-        /**
-         * Configures `extension` with the given `params`
-         * @param connection_type either {@link Soup.WebsocketConnectionType.CLIENT} or {@link Soup.WebsocketConnectionType.SERVER}
-         * @param params the parameters, or `null`
-         * @returns `true` if extension could be configured with the given parameters, or `false` otherwise
-         */
         configure(connection_type: WebsocketConnectionType, params: never | null): boolean;
-
-        /**
-         * Get the parameters strings to be included in the request header. If the extension
-         * doesn't include any parameter in the request, this function returns `null`.
-         * @returns a new allocated string with the parameters
-         */
         get_request_params(): string | null;
-
-        /**
-         * Get the parameters strings to be included in the response header. If the extension
-         * doesn't include any parameter in the response, this function returns `null`.
-         * @returns a new allocated string with the parameters
-         */
         get_response_params(): string | null;
-
-        /**
-         * Process a message after it's received. If the payload isn't changed the given
-         * `payload` is just returned, otherwise `g_bytes_unref()` is called on the given
-         * `payload` and a new {@link GLib.Bytes} is returned with the new data.
-         * 
-         * Extensions using reserved bits of the header will reset them in `header`.
-         * @param header the message header
-         * @param payload the payload data
-         * @returns the message payload data, or `null` in case of error
-         */
         process_incoming_message(header: number, payload: GLib.Bytes | Uint8Array): [GLib.Bytes, number];
-
-        /**
-         * Process a message before it's sent. If the payload isn't changed the given
-         * `payload` is just returned, otherwise `g_bytes_unref()` is called on the given
-         * `payload` and a new {@link GLib.Bytes} is returned with the new data.
-         * 
-         * Extensions using reserved bits of the header will change them in `header`.
-         * @param header the message header
-         * @param payload the payload data
-         * @returns the message payload data, or `null` in case of error
-         */
         process_outgoing_message(header: number, payload: GLib.Bytes | Uint8Array): [GLib.Bytes, number];
     }
-
-
     namespace WebsocketExtensionDeflate {
-        // Signal signatures
         interface SignalSignatures extends WebsocketExtension.SignalSignatures {}
-
-        // Constructor properties interface
         interface ConstructorProps extends WebsocketExtension.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class WebsocketExtensionDeflate extends WebsocketExtension {
         static $gtype: GObject.GType<WebsocketExtensionDeflate>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: WebsocketExtensionDeflate.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<WebsocketExtensionDeflate.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof WebsocketExtensionDeflate.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WebsocketExtensionDeflate.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof WebsocketExtensionDeflate.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WebsocketExtensionDeflate.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof WebsocketExtensionDeflate.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<WebsocketExtensionDeflate.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
     }
-
-
     namespace WebsocketExtensionManager {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {}
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps, SessionFeature.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class WebsocketExtensionManager extends GObject.Object implements SessionFeature {
         static $gtype: GObject.GType<WebsocketExtensionManager>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: WebsocketExtensionManager.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<WebsocketExtensionManager.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof WebsocketExtensionManager.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WebsocketExtensionManager.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof WebsocketExtensionManager.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, WebsocketExtensionManager.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof WebsocketExtensionManager.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<WebsocketExtensionManager.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_add_feature(type: GObject.GType): boolean;
-
-        /**
-         * Perform setup when a feature is added to a session
-         * @param session 
-         * @virtual
-         */
         vfunc_attach(session: Session): void;
-
-        /**
-         * Perform cleanup when a feature is removed from a session
-         * @param session 
-         * @virtual
-         */
         vfunc_detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @virtual
-         */
         vfunc_remove_feature(type: GObject.GType): boolean;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_queued(session: Session, msg: Message): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-         * @param session 
-         * @param msg 
-         * @param socket 
-         * @virtual
-         */
         vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-        /**
-         * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-         * @param session 
-         * @param msg 
-         * @virtual
-         */
         vfunc_request_unqueued(session: Session, msg: Message): void;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type AddressClass = typeof Address;
-
-    /**
-     * @gir-type Alias
-     */
     type AuthClass = typeof Auth;
-
-    /**
-     * @gir-type Alias
-     */
     type AuthDomainBasicClass = typeof AuthDomainBasic;
-
-    /**
-     * @gir-type Alias
-     */
     type AuthDomainClass = typeof AuthDomain;
-
-    /**
-     * @gir-type Alias
-     */
     type AuthDomainDigestClass = typeof AuthDomainDigest;
-
-    /**
-     * @gir-type Alias
-     */
     type AuthManagerClass = typeof AuthManager;
-
-    /**
-     * @gir-type Struct
-     */
     abstract class AuthManagerPrivate {
         static $gtype: GObject.GType<AuthManagerPrivate>;
     }
-
-
-    /**
-     * A data buffer, generally used to represent a chunk of a
-     * {@link Soup.MessageBody}.
-     * 
-     * `data` is a #char because that's generally convenient; in some
-     * situations you may need to cast it to `guchar` or another type.
-     * @gir-type Struct
-     */
     class Buffer {
         static $gtype: GObject.GType<Buffer>;
-
-        // Fields
         data: null;
-
         length: number;
-
-        // Constructors
         constructor(use: MemoryUse, data: Uint8Array | string);
-
         static ["new"](data: Uint8Array | string): Buffer;
-
         static new_with_owner(data: Uint8Array | string, owner: null): Buffer;
-
-        // Methods
-        /**
-         * Makes a copy of `buffer`. In reality, {@link Soup.Buffer} is a refcounted
-         * type, and calling `soup_buffer_copy()` will normally just increment
-         * the refcount on `buffer` and return it. However, if `buffer` was
-         * created with #SOUP_MEMORY_TEMPORARY memory, then `soup_buffer_copy()`
-         * will actually return a copy of it, so that the data in the copy
-         * will remain valid after the temporary buffer is freed.
-         * @returns the new (or newly-reffed) buffer
-         */
         copy(): Buffer;
-
-        /**
-         * Frees `buffer`. (In reality, as described in the documentation for
-         * `soup_buffer_copy()`, this is actually an "unref" operation, and may
-         * or may not actually free `buffer`.)
-         */
         free(): void;
-
-        /**
-         * Creates a {@link GLib.Bytes} pointing to the same memory as `buffer`. The
-         * {@link GLib.Bytes} will hold a reference on `buffer` to ensure that it is not
-         * freed while the {@link GLib.Bytes} is still valid.
-         * @returns a new {@link GLib.Bytes} which has the same content as the {@link Soup.Buffer}.
-         */
         get_as_bytes(): GLib.Bytes;
-
-        /**
-         * This function exists for use by language bindings, because it's not
-         * currently possible to get the right effect by annotating the fields
-         * of {@link Soup.Buffer}.
-         */
         get_data(): Uint8Array;
-
-        /**
-         * Gets the "owner" object for a buffer created with
-         * `soup_buffer_new_with_owner()`.
-         * @returns the owner pointer
-         */
         get_owner(): null;
-
-        /**
-         * Creates a new {@link Soup.Buffer} containing `length` bytes "copied" from
-         * `parent` starting at `offset`. (Normally this will not actually copy
-         * any data, but will instead simply reference the same data as
-         * `parent` does.)
-         * @param offset offset within `parent` to start at
-         * @param length number of bytes to copy from `parent`
-         * @returns the new {@link Soup.Buffer}.
-         */
         new_subbuffer(offset: bigint | number, length: bigint | number): Buffer;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type CacheClass = typeof Cache;
-
-    /**
-     * @gir-type Struct
-     */
     abstract class CachePrivate {
         static $gtype: GObject.GType<CachePrivate>;
     }
-
-
-    /**
-     * A {@link Soup.ClientContext} provides additional information about the
-     * client making a particular request. In particular, you can use
-     * `soup_client_context_get_auth_domain()` and
-     * `soup_client_context_get_auth_user()` to determine if HTTP
-     * authentication was used successfully.
-     * 
-     * `soup_client_context_get_remote_address()` and/or
-     * `soup_client_context_get_host()` can be used to get information for
-     * logging or debugging purposes. `soup_client_context_get_gsocket()` may
-     * also be of use in some situations (eg, tracking when multiple
-     * requests are made on the same connection).
-     * @gir-type Struct
-     */
     abstract class ClientContext {
         static $gtype: GObject.GType<ClientContext>;
-
-        // Methods
-        /**
-         * Retrieves the {@link Soup.Address} associated with the remote end
-         * of a connection.
-         * @returns the {@link Soup.Address} associated with the remote end of a connection, it may be `null` if you used `soup_server_accept_iostream()`.
-         */
         get_address(): Address | null;
-
-        /**
-         * Checks whether the request associated with `client` has been
-         * authenticated, and if so returns the {@link Soup.AuthDomain} that
-         * authenticated it.
-         * @returns a {@link Soup.AuthDomain}, or `null` if the request was not authenticated.
-         */
         get_auth_domain(): AuthDomain | null;
-
-        /**
-         * Checks whether the request associated with `client` has been
-         * authenticated, and if so returns the username that the client
-         * authenticated as.
-         * @returns the authenticated-as user, or `null` if the request was not authenticated.
-         */
         get_auth_user(): string | null;
-
-        /**
-         * Retrieves the {@link Gio.Socket} that `client` is associated with.
-         * 
-         * If you are using this method to observe when multiple requests are
-         * made on the same persistent HTTP connection (eg, as the ntlm-test
-         * test program does), you will need to pay attention to socket
-         * destruction as well (eg, by using weak references), so that you do
-         * not get fooled when the allocator reuses the memory address of a
-         * previously-destroyed socket to represent a new socket.
-         * @returns the {@link Gio.Socket} that `client` is associated with, `null` if you used `soup_server_accept_iostream()`.
-         */
         get_gsocket(): Gio.Socket | null;
-
-        /**
-         * Retrieves the IP address associated with the remote end of a
-         * connection.
-         * @returns the IP address associated with the remote end of a connection, it may be `null` if you used `soup_server_accept_iostream()`.
-         */
         get_host(): string | null;
-
-        /**
-         * Retrieves the {@link Gio.SocketAddress} associated with the local end
-         * of a connection.
-         * @returns the {@link Gio.SocketAddress} associated with the local end of a connection, it may be `null` if you used `soup_server_accept_iostream()`.
-         */
         get_local_address(): Gio.SocketAddress | null;
-
-        /**
-         * Retrieves the {@link Gio.SocketAddress} associated with the remote end
-         * of a connection.
-         * @returns the {@link Gio.SocketAddress} associated with the remote end of a connection, it may be `null` if you used `soup_server_accept_iostream()`.
-         */
         get_remote_address(): Gio.SocketAddress | null;
-
-        /**
-         * Retrieves the {@link Soup.Socket} that `client` is associated with.
-         * 
-         * If you are using this method to observe when multiple requests are
-         * made on the same persistent HTTP connection (eg, as the ntlm-test
-         * test program does), you will need to pay attention to socket
-         * destruction as well (either by using weak references, or by
-         * connecting to the {@link Soup.Socket.SignalSignatures.disconnected | Soup.Socket::disconnected} signal), so that you do
-         * not get fooled when the allocator reuses the memory address of a
-         * previously-destroyed socket to represent a new socket.
-         * @returns the {@link Soup.Socket} that `client` is associated with.
-         */
         get_socket(): Socket;
-
-        /**
-         * "Steals" the HTTP connection associated with `client` from its
-         * {@link Soup.Server}. This happens immediately, regardless of the current
-         * state of the connection; if the response to the current
-         * {@link Soup.Message} has not yet finished being sent, then it will be
-         * discarded; you can steal the connection from a
-         * {@link Soup.Message.wrote_informational} or {@link Soup.Message.wrote_body} signal
-         * handler if you need to wait for part or all of the response to be
-         * sent.
-         * 
-         * Note that when calling this function from C, `client` will most
-         * likely be freed as a side effect.
-         * @returns the {@link Gio.IOStream} formerly associated   with `client` (or `null` if `client` was no longer associated with a   connection). No guarantees are made about what kind of {@link Gio.IOStream}   is returned.
-         */
         steal_connection(): Gio.IOStream;
     }
-
-
-    /**
-     * @gir-type Struct
-     */
     abstract class Connection {
         static $gtype: GObject.GType<Connection>;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type ContentDecoderClass = typeof ContentDecoder;
-
-    /**
-     * @gir-type Struct
-     */
     abstract class ContentDecoderPrivate {
         static $gtype: GObject.GType<ContentDecoderPrivate>;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type ContentSnifferClass = typeof ContentSniffer;
-
-    /**
-     * @gir-type Struct
-     */
     abstract class ContentSnifferPrivate {
         static $gtype: GObject.GType<ContentSnifferPrivate>;
     }
-
-
-    /**
-     * An HTTP cookie.
-     * 
-     * `name` and `value` will be set for all cookies. If the cookie is
-     * generated from a string that appears to have no name, then `name`
-     * will be the empty string.
-     * 
-     * `domain` and `path` give the host or domain, and path within that
-     * host/domain, to restrict this cookie to. If `domain` starts with
-     * ".", that indicates a domain (which matches the string after the
-     * ".", or any hostname that has `domain` as a suffix). Otherwise, it
-     * is a hostname and must match exactly.
-     * 
-     * `expires` will be non-`null` if the cookie uses either the original
-     * "expires" attribute, or the newer "max-age" attribute. If `expires`
-     * is `null`, it indicates that neither "expires" nor "max-age" was
-     * specified, and the cookie expires at the end of the session.
-     * 
-     * If `http_only` is set, the cookie should not be exposed to untrusted
-     * code (eg, javascript), so as to minimize the danger posed by
-     * cross-site scripting attacks.
-     * @gir-type Struct
-     * @since 2.24
-     */
     class Cookie {
         static $gtype: GObject.GType<Cookie>;
-
-        // Fields
         name: string;
-
         value: string;
-
         domain: string;
-
         path: string;
-
         expires: Date;
-
         secure: boolean;
-
         http_only: boolean;
-
-        // Constructors
-
         constructor(properties?: Partial<{
             name: string;
             value: string;
@@ -12765,249 +2550,46 @@ export namespace Soup {
             secure: boolean;
             http_only: boolean;
         }>);
-
         static ["new"](name: string, value: string, domain: string, path: string, max_age: number): Cookie;
-
-        // Static methods
-        /**
-         * Parses `header` and returns a {@link Soup.Cookie}. (If `header` contains
-         * multiple cookies, only the first one will be parsed.)
-         * 
-         * If `header` does not have "path" or "domain" attributes, they will
-         * be defaulted from `origin`. If `origin` is `null`, path will default
-         * to "/", but domain will be left as `null`. Note that this is not a
-         * valid state for a {@link Soup.Cookie}, and you will need to fill in some
-         * appropriate string for the domain if you want to actually make use
-         * of the cookie.
-         * @param header a cookie string (eg, the value of a Set-Cookie header)
-         * @param origin origin of the cookie, or `null`
-         */
         static parse(header: string, origin: URI): Cookie | null;
-
-        // Methods
-        /**
-         * Tests if `cookie` should be sent to `uri`.
-         * 
-         * (At the moment, this does not check that `cookie`'s domain matches
-         * `uri`, because it assumes that the caller has already done that.
-         * But don't rely on that; it may change in the future.)
-         * @param uri a {@link Soup.URI}
-         * @returns `true` if `cookie` should be sent to `uri`, `false` if not
-         */
         applies_to_uri(uri: URI): boolean;
-
-        /**
-         * Copies `cookie`.
-         * @returns a copy of `cookie`
-         */
         copy(): Cookie;
-
-        /**
-         * Checks if the `cookie`'s domain and `host` match in the sense that
-         * `cookie` should be sent when making a request to `host`, or that
-         * `cookie` should be accepted when receiving a response from `host`.
-         * @param host a URI
-         * @returns `true` if the domains match, `false` otherwise
-         */
         domain_matches(host: string): boolean;
-
-        /**
-         * Tests if `cookie1` and `cookie2` are equal.
-         * 
-         * Note that currently, this does not check that the cookie domains
-         * match. This may change in the future.
-         * @param cookie2 a {@link Soup.Cookie}
-         * @returns whether the cookies are equal.
-         */
         equal(cookie2: Cookie): boolean;
-
-        /**
-         * Frees `cookie`
-         */
         free(): void;
-
-        /**
-         * Gets `cookie`'s domain
-         * @returns `cookie`'s domain
-         */
         get_domain(): string;
-
-        /**
-         * Gets `cookie`'s expiration time.
-         * @returns `cookie`'s expiration time, which is owned by `cookie` and should not be modified or freed.
-         */
         get_expires(): Date | null;
-
-        /**
-         * Gets `cookie`'s HttpOnly attribute
-         * @returns `cookie`'s HttpOnly attribute
-         */
         get_http_only(): boolean;
-
-        /**
-         * Gets `cookie`'s name
-         * @returns `cookie`'s name
-         */
         get_name(): string;
-
-        /**
-         * Gets `cookie`'s path
-         * @returns `cookie`'s path
-         */
         get_path(): string;
-
-        /**
-         * @returns a {@link Soup.SameSitePolicy}
-         */
         get_same_site_policy(): SameSitePolicy;
-
-        /**
-         * Gets `cookie`'s secure attribute
-         * @returns `cookie`'s secure attribute
-         */
         get_secure(): boolean;
-
-        /**
-         * Gets `cookie`'s value
-         * @returns `cookie`'s value
-         */
         get_value(): string;
-
-        /**
-         * Sets `cookie`'s domain to `domain`
-         * @param domain the new domain
-         */
         set_domain(domain: string): void;
-
-        /**
-         * Sets `cookie`'s expiration time to `expires`. If `expires` is `null`,
-         * `cookie` will be a session cookie and will expire at the end of the
-         * client's session.
-         * 
-         * (This sets the same property as `soup_cookie_set_max_age()`.)
-         * @param expires the new expiration time, or `null`
-         */
         set_expires(expires: Date): void;
-
-        /**
-         * Sets `cookie`'s HttpOnly attribute to `http_only`. If `true`, `cookie`
-         * will be marked as "http only", meaning it should not be exposed to
-         * web page scripts or other untrusted code.
-         * @param http_only the new value for the HttpOnly attribute
-         */
         set_http_only(http_only: boolean): void;
-
-        /**
-         * Sets `cookie`'s max age to `max_age`. If `max_age` is -1, the cookie
-         * is a session cookie, and will expire at the end of the client's
-         * session. Otherwise, it is the number of seconds until the cookie
-         * expires. You can use the constants `SOUP_COOKIE_MAX_AGE_ONE_HOUR`,
-         * `SOUP_COOKIE_MAX_AGE_ONE_DAY`, `SOUP_COOKIE_MAX_AGE_ONE_WEEK` and
-         * `SOUP_COOKIE_MAX_AGE_ONE_YEAR` (or multiples thereof) to calculate
-         * this value. (A value of 0 indicates that the cookie should be
-         * considered already-expired.)
-         * 
-         * (This sets the same property as `soup_cookie_set_expires()`.)
-         * @param max_age the new max age
-         */
         set_max_age(max_age: number): void;
-
-        /**
-         * Sets `cookie`'s name to `name`
-         * @param name the new name
-         */
         set_name(name: string): void;
-
-        /**
-         * Sets `cookie`'s path to `path`
-         * @param path the new path
-         */
         set_path(path: string): void;
-
-        /**
-         * When used in conjunction with `soup_cookie_jar_get_cookie_list_with_same_site_info()` this
-         * sets the policy of when this cookie should be exposed.
-         * @param policy a {@link Soup.SameSitePolicy}
-         */
         set_same_site_policy(policy: SameSitePolicy): void;
-
-        /**
-         * Sets `cookie`'s secure attribute to `secure`. If `true`, `cookie` will
-         * only be transmitted from the client to the server over secure
-         * (https) connections.
-         * @param secure the new value for the secure attribute
-         */
         set_secure(secure: boolean): void;
-
-        /**
-         * Sets `cookie`'s value to `value`
-         * @param value the new value
-         */
         set_value(value: string): void;
-
-        /**
-         * Serializes `cookie` in the format used by the Cookie header (ie, for
-         * returning a cookie from a {@link Soup.Session} to a server).
-         * @returns the header
-         */
         to_cookie_header(): string;
-
-        /**
-         * Serializes `cookie` in the format used by the Set-Cookie header
-         * (ie, for sending a cookie from a {@link Soup.Server} to a client).
-         * @returns the header
-         */
         to_set_cookie_header(): string;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type CookieJarClass = typeof CookieJar;
-
-    /**
-     * @gir-type Alias
-     */
     type CookieJarDBClass = typeof CookieJarDB;
-
-    /**
-     * @gir-type Alias
-     */
     type CookieJarTextClass = typeof CookieJarText;
-
-    /**
-     * A date and time. The date is assumed to be in the (proleptic)
-     * Gregorian calendar. The time is in UTC if `utc` is `true`. Otherwise,
-     * the time is a local time, and `offset` gives the offset from UTC in
-     * minutes (such that adding `offset` to the time would give the
-     * correct UTC time). If `utc` is `false` and `offset` is 0, then the
-     * %SoupDate represents a "floating" time with no associated timezone
-     * information.
-     * @gir-type Struct
-     */
     class Date {
         static $gtype: GObject.GType<Date>;
-
-        // Fields
         year: number;
-
         month: number;
-
         day: number;
-
         hour: number;
-
         minute: number;
-
         second: number;
-
         utc: boolean;
-
         offset: number;
-
-        // Constructors
-
         constructor(properties?: Partial<{
             year: number;
             month: number;
@@ -13018,1105 +2600,183 @@ export namespace Soup {
             utc: boolean;
             offset: number;
         }>);
-
         static ["new"](year: number, month: number, day: number, hour: number, minute: number, second: number): Date;
-
         static new_from_now(offset_seconds: number): Date;
-
         static new_from_string(date_string: string): Date;
-
         static new_from_time_t(when: bigint | number): Date;
-
-        // Methods
-        /**
-         * Copies `date`.
-         */
         copy(): Date;
-
-        /**
-         * Frees `date`.
-         */
         free(): void;
-
-        /**
-         * Gets `date`'s day.
-         * @returns `date`'s day
-         */
         get_day(): number;
-
-        /**
-         * Gets `date`'s hour.
-         * @returns `date`'s hour
-         */
         get_hour(): number;
-
-        /**
-         * Gets `date`'s minute.
-         * @returns `date`'s minute
-         */
         get_minute(): number;
-
-        /**
-         * Gets `date`'s month.
-         * @returns `date`'s month
-         */
         get_month(): number;
-
-        /**
-         * Gets `date`'s offset from UTC.
-         * @returns `date`'s offset from UTC. If `soup_date_get_utc()` returns `false` but `soup_date_get_offset()` returns 0, that means the date is a "floating" time with no associated offset information.
-         */
         get_offset(): number;
-
-        /**
-         * Gets `date`'s second.
-         * @returns `date`'s second
-         */
         get_second(): number;
-
-        /**
-         * Gets `date`'s UTC flag
-         * @returns `true` if `date` is UTC.
-         */
         get_utc(): number;
-
-        /**
-         * Gets `date`'s year.
-         * @returns `date`'s year
-         */
         get_year(): number;
-
-        /**
-         * Determines if `date` is in the past.
-         * @returns `true` if `date` is in the past
-         */
         is_past(): boolean;
-
-        /**
-         * Converts `date` to a string in the format described by `format`.
-         * @param format the format to generate the date in
-         * @returns `date` as a string
-         */
         to_string(format: DateFormat): string;
-
-        /**
-         * Converts `date` to a <type>time_t</type>, assumming it to be in
-         * UTC.
-         * 
-         * If `date` is not representable as a <type>time_t</type>, it will be
-         * clamped into range. (In particular, some HTTP cookies have
-         * expiration dates after "Y2.038k" (2038-01-19T03:14:07Z).)
-         * @returns `date` as a <type>time_t</type>
-         */
         to_time_t(): number;
-
-        /**
-         * Converts `date` to a {@link GLib.TimeVal}.
-         */
         to_timeval(): GLib.TimeVal;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type HSTSEnforcerClass = typeof HSTSEnforcer;
-
-    /**
-     * @gir-type Alias
-     */
     type HSTSEnforcerDBClass = typeof HSTSEnforcerDB;
-
-    /**
-     * @gir-type Struct
-     */
     abstract class HSTSEnforcerDBPrivate {
         static $gtype: GObject.GType<HSTSEnforcerDBPrivate>;
     }
-
-
-    /**
-     * @gir-type Struct
-     */
     abstract class HSTSEnforcerPrivate {
         static $gtype: GObject.GType<HSTSEnforcerPrivate>;
     }
-
-
-    /**
-     * An HTTP Strict Transport Security policy.
-     * 
-     * `domain` represents the host that this policy applies to. The domain
-     * must be IDNA-canonicalized. `soup_hsts_policy_new()` and related methods
-     * will do this for you.
-     * 
-     * `max_age` contains the 'max-age' value from the Strict Transport
-     * Security header and indicates the time to live of this policy,
-     * in seconds.
-     * 
-     * `expires` will be non-`null` if the policy has been set by the host and
-     * hence has an expiry time. If `expires` is `null`, it indicates that the
-     * policy is a permanent session policy set by the user agent.
-     * 
-     * If `include_subdomains` is `true`, the Strict Transport Security policy
-     * must also be enforced on subdomains of `domain`.
-     * @gir-type Struct
-     * @since 2.68
-     */
     class HSTSPolicy {
         static $gtype: GObject.GType<HSTSPolicy>;
-
-        // Fields
         domain: string;
-
         max_age: number;
-
         expires: Date;
-
         include_subdomains: boolean;
-
-        // Constructors
         constructor(domain: string, max_age: bigint | number, include_subdomains: boolean);
-
         static ["new"](domain: string, max_age: bigint | number, include_subdomains: boolean): HSTSPolicy;
-
         static new_from_response(msg: Message): HSTSPolicy;
-
         static new_full(domain: string, max_age: bigint | number, expires: Date, include_subdomains: boolean): HSTSPolicy;
-
         static new_session_policy(domain: string, include_subdomains: boolean): HSTSPolicy;
-
-        // Methods
-        /**
-         * Copies `policy`.
-         * @returns a copy of `policy`
-         */
         copy(): HSTSPolicy;
-
-        /**
-         * Tests if `policy1` and `policy2` are equal.
-         * @param policy2 a {@link Soup.HSTSPolicy}
-         * @returns whether the policies are equal.
-         */
         equal(policy2: HSTSPolicy): boolean;
-
-        /**
-         * Frees `policy`.
-         */
         free(): void;
-
-        /**
-         * Gets `policy`'s domain.
-         * @returns `policy`'s domain.
-         */
         get_domain(): string;
-
-        /**
-         * Gets whether `policy` include its subdomains.
-         * @returns `true` if `policy` includes subdomains, `false` otherwise.
-         */
         includes_subdomains(): boolean;
-
-        /**
-         * Gets whether `policy` is expired. Permanent policies never
-         * expire.
-         * @returns `true` if `policy` is expired, `false` otherwise.
-         */
         is_expired(): boolean;
-
-        /**
-         * Gets whether `policy` is a non-permanent, non-expirable session policy.
-         * see `soup_hsts_policy_new_session_policy()` for details.
-         * @returns `true` if `policy` is permanent, `false` otherwise
-         */
         is_session_policy(): boolean;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type LoggerClass = typeof Logger;
-
-    /**
-     * A {@link Soup.Message} request or response body.
-     * 
-     * Note that while `length` always reflects the full length of the
-     * message body, `data` is normally `null`, and will only be filled in
-     * after `soup_message_body_flatten()` is called. For client-side
-     * messages, this automatically happens for the response body after it
-     * has been fully read, unless you set the
-     * {@link Soup.MessageFlags.OVERWRITE_CHUNKS} flags. Likewise, for server-side
-     * messages, the request body is automatically filled in after being
-     * read.
-     * 
-     * As an added bonus, when `data` is filled in, it is always terminated
-     * with a '\0' byte (which is not reflected in `length`).
-     * @gir-type Struct
-     */
     class MessageBody {
         static $gtype: GObject.GType<MessageBody>;
-
-        // Fields
         data: string;
-
         length: number;
-
-        // Constructors
-
         constructor(properties?: Partial<{
             data: string;
             length: number;
         }>);
-
         static ["new"](): MessageBody;
-
-        // Methods
-        /**
-         * Appends the data from `buffer` to `body`. ({@link Soup.MessageBody} uses
-         * `SoupBuffers` internally, so this is normally a constant-time
-         * operation that doesn't actually require copying the data in
-         * `buffer`.)
-         * @param buffer a {@link Soup.Buffer}
-         */
         append_buffer(buffer: Buffer): void;
-
-        /**
-         * Appends `length` bytes from `data` to `body`.
-         * 
-         * This function is exactly equivalent to `soup_message_body_append()`
-         * with {@link Soup.MemoryUse.TAKE} as second argument; it exists mainly for
-         * convenience and simplifying language bindings.
-         * @param data data to append
-         */
         append(data: Uint8Array | string): void;
-
-        /**
-         * Tags `body` as being complete; Call this when using chunked encoding
-         * after you have appended the last chunk.
-         */
         complete(): void;
-
-        /**
-         * Fills in `body`'s data field with a buffer containing all of the
-         * data in `body` (plus an additional '\0' byte not counted by `body`'s
-         * length field).
-         * @returns a {@link Soup.Buffer} containing the same data as `body`. (You must free this buffer if you do not want it.)
-         */
         flatten(): Buffer;
-
-        /**
-         * Frees `body`. You will not normally need to use this, as
-         * {@link Soup.Message} frees its associated message bodies automatically.
-         */
         free(): void;
-
-        /**
-         * Gets the accumulate flag on `body`; see
-         * `soup_message_body_set_accumulate()` for details.
-         * @returns the accumulate flag for `body`.
-         */
         get_accumulate(): boolean;
-
-        /**
-         * Gets a {@link Soup.Buffer} containing data from `body` starting at `offset`.
-         * The size of the returned chunk is unspecified. You can iterate
-         * through the entire body by first calling
-         * `soup_message_body_get_chunk()` with an offset of 0, and then on each
-         * successive call, increment the offset by the length of the
-         * previously-returned chunk.
-         * 
-         * If `offset` is greater than or equal to the total length of `body`,
-         * then the return value depends on whether or not
-         * `soup_message_body_complete()` has been called or not; if it has,
-         * then `soup_message_body_get_chunk()` will return a 0-length chunk
-         * (indicating the end of `body`). If it has not, then
-         * `soup_message_body_get_chunk()` will return `null` (indicating that
-         * `body` may still potentially have more data, but that data is not
-         * currently available).
-         * @param offset an offset
-         * @returns a {@link Soup.Buffer}, or `null`.
-         */
         get_chunk(offset: bigint | number): Buffer | null;
-
-        /**
-         * Handles the {@link Soup.MessageBody} part of receiving a chunk of data from
-         * the network. Normally this means appending `chunk` to `body`, exactly
-         * as with `soup_message_body_append_buffer()`, but if you have set
-         * `body`'s accumulate flag to `false`, then that will not happen.
-         * 
-         * This is a low-level method which you should not normally need to
-         * use.
-         * @param chunk a {@link Soup.Buffer} received from the network
-         */
         got_chunk(chunk: Buffer): void;
-
-        /**
-         * Sets or clears the accumulate flag on `body`. (The default value is
-         * `true`.) If set to `false`, `body`'s %data field will not be filled in
-         * after the body is fully sent/received, and the chunks that make up
-         * `body` may be discarded when they are no longer needed.
-         * 
-         * In particular, if you set this flag to `false` on an "incoming"
-         * message body (that is, the {@link Soup.Message.response_body} of a
-         * client-side message, or {@link Soup.Message.request_body} of a server-side
-         * message), this will cause each chunk of the body to be discarded
-         * after its corresponding {@link Soup.Message.SignalSignatures.got_chunk | Soup.Message::got_chunk} signal is emitted.
-         * (This is equivalent to setting the deprecated
-         * {@link Soup.MessageFlags.OVERWRITE_CHUNKS} flag on the message.)
-         * 
-         * If you set this flag to `false` on the {@link Soup.Message.response_body} of
-         * a server-side message, it will cause each chunk of the body to be
-         * discarded after its corresponding {@link Soup.Message.SignalSignatures.wrote_chunk | Soup.Message::wrote_chunk} signal
-         * is emitted.
-         * 
-         * If you set the flag to `false` on the {@link Soup.Message.request_body} of a
-         * client-side message, it will block the accumulation of chunks into
-         * `body`'s %data field, but it will not normally cause the chunks to
-         * be discarded after being written like in the server-side
-         * {@link Soup.Message.response_body} case, because the request body needs to
-         * be kept around in case the request needs to be sent a second time
-         * due to redirection or authentication. However, if you set the
-         * {@link Soup.MessageFlags.CAN_REBUILD} flag on the message, then the chunks will
-         * be discarded, and you will be responsible for recreating the
-         * request body after the {@link Soup.Message.SignalSignatures.restarted | Soup.Message::restarted} signal is emitted.
-         * @param accumulate whether or not to accumulate body chunks in `body`
-         */
         set_accumulate(accumulate: boolean): void;
-
-        /**
-         * Deletes all of the data in `body`.
-         */
         truncate(): void;
-
-        /**
-         * Handles the {@link Soup.MessageBody} part of writing a chunk of data to the
-         * network. Normally this is a no-op, but if you have set `body`'s
-         * accumulate flag to `false`, then this will cause `chunk` to be
-         * discarded to free up memory.
-         * 
-         * This is a low-level method which you should not need to use, and
-         * there are further restrictions on its proper use which are not
-         * documented here.
-         * @param chunk a {@link Soup.Buffer} returned from `soup_message_body_get_chunk()`
-         */
         wrote_chunk(chunk: Buffer): void;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type MessageClass = typeof Message;
-
-    /**
-     * The HTTP message headers associated with a request or response.
-     * @gir-type Struct
-     */
     class MessageHeaders {
         static $gtype: GObject.GType<MessageHeaders>;
-
-        // Constructors
         constructor(type: MessageHeadersType);
-
         static ["new"](type: MessageHeadersType): MessageHeaders;
-
-        // Methods
-        /**
-         * Appends a new header with name `name` and value `value` to `hdrs`. (If
-         * there is an existing header with name `name`, then this creates a
-         * second one, which is only allowed for list-valued headers; see also
-         * `soup_message_headers_replace()`.)
-         * 
-         * The caller is expected to make sure that `name` and `value` are
-         * syntactically correct.
-         * @param name the header name to add
-         * @param value the new value of `name`
-         */
         append(name: string, value: string): void;
-
-        /**
-         * Removes all the headers listed in the Connection header.
-         */
         clean_connection_headers(): void;
-
-        /**
-         * Clears `hdrs`.
-         */
         clear(): void;
-
-        /**
-         * Calls `func` once for each header value in `hdrs`.
-         * 
-         * Beware that unlike `soup_message_headers_get()`, this processes the
-         * headers in exactly the way they were added, rather than
-         * concatenating multiple same-named headers into a single value.
-         * (This is intentional; it ensures that if you call
-         * `soup_message_headers_append()` multiple times with the same name,
-         * then the I/O code will output multiple copies of the header when
-         * sending the message to the remote implementation, which may be
-         * required for interoperability in some cases.)
-         * 
-         * You may not modify the headers from `func`.
-         * @param func callback function to run for each header
-         */
         foreach(func: MessageHeadersForeachFunc): void;
-
-        /**
-         * Frees `hdrs`.
-         */
         free(): void;
-
-        /**
-         * Frees the array of ranges returned from `soup_message_headers_get_ranges()`.
-         * @param ranges an array of {@link Soup.Range}
-         */
         free_ranges(ranges: Range): void;
-
-        /**
-         * Gets the value of header `name` in `hdrs`.
-         * 
-         * This method was supposed to work correctly for both single-valued
-         * and list-valued headers, but because some HTTP clients/servers
-         * mistakenly send multiple copies of headers that are supposed to be
-         * single-valued, it sometimes returns incorrect results. To fix this,
-         * the methods `soup_message_headers_get_one()` and
-         * `soup_message_headers_get_list()` were introduced, so callers can
-         * explicitly state which behavior they are expecting.
-         * @param name header name
-         * @returns as with `soup_message_headers_get_list()`.
-         */
         get(name: string): string | null;
-
-        /**
-         * Looks up the "Content-Disposition" header in `hdrs`, parses it, and
-         * returns its value in *`disposition` and *`params`. `params` can be
-         * `null` if you are only interested in the disposition-type.
-         * 
-         * In HTTP, the most common use of this header is to set a
-         * disposition-type of "attachment", to suggest to the browser that a
-         * response should be saved to disk rather than displayed in the
-         * browser. If `params` contains a "filename" parameter, this is a
-         * suggestion of a filename to use. (If the parameter value in the
-         * header contains an absolute or relative path, libsoup will truncate
-         * it down to just the final path component, so you do not need to
-         * test this yourself.)
-         * 
-         * Content-Disposition is also used in "multipart/form-data", however
-         * this is handled automatically by {@link Soup.Multipart} and the associated
-         * form methods.
-         * @returns `true` if `hdrs` contains a "Content-Disposition" header, `false` if not (in which case *`disposition` and *`params` will be unchanged).
-         */
         get_content_disposition(): [boolean, string, { [key: string]: string }];
-
-        /**
-         * Gets the message body length that `hdrs` declare. This will only
-         * be non-0 if `soup_message_headers_get_encoding()` returns
-         * {@link Soup.Encoding.CONTENT_LENGTH}.
-         * @returns the message body length declared by `hdrs`.
-         */
         get_content_length(): number;
-
-        /**
-         * Parses `hdrs`'s Content-Range header and returns it in `start`,
-         * `end`, and `total_length`. If the total length field in the header
-         * was specified as "*", then `total_length` will be set to -1.
-         * @returns `true` if `hdrs` contained a "Content-Range" header containing a byte range which could be parsed, `false` otherwise.
-         */
         get_content_range(): [boolean, number, number, number];
-
-        /**
-         * Looks up the "Content-Type" header in `hdrs`, parses it, and returns
-         * its value in *`content_type` and *`params`. `params` can be `null` if you
-         * are only interested in the content type itself.
-         * @returns a string with the value of the "Content-Type" header or `null` if `hdrs` does not contain that header or it cannot be parsed (in which case *`params` will be unchanged).
-         */
         get_content_type(): [string | null, { [key: string]: string } | null];
-
-        /**
-         * Gets the message body encoding that `hdrs` declare. This may not
-         * always correspond to the encoding used on the wire; eg, a HEAD
-         * response may declare a Content-Length or Transfer-Encoding, but
-         * it will never actually include a body.
-         * @returns the encoding declared by `hdrs`.
-         */
         get_encoding(): Encoding;
-
-        /**
-         * Gets the expectations declared by `hdrs`'s "Expect" header.
-         * Currently this will either be {@link Soup.Expectation.CONTINUE} or
-         * {@link Soup.Expectation.UNRECOGNIZED}.
-         * @returns the contents of `hdrs`'s "Expect" header
-         */
         get_expectations(): Expectation;
-
-        /**
-         * Gets the type of headers.
-         * @returns the header's type.
-         */
         get_headers_type(): MessageHeadersType;
-
-        /**
-         * Gets the value of header `name` in `hdrs`. Use this for headers whose
-         * values are comma-delimited lists, and which are therefore allowed
-         * to appear multiple times in the headers. For non-list-valued
-         * headers, use `soup_message_headers_get_one()`.
-         * 
-         * If `name` appears multiple times in `hdrs`,
-         * `soup_message_headers_get_list()` will concatenate all of the values
-         * together, separated by commas. This is sometimes awkward to parse
-         * (eg, WWW-Authenticate, Set-Cookie), but you have to be able to deal
-         * with it anyway, because the HTTP spec explicitly states that this
-         * transformation is allowed, and so an upstream proxy could do the
-         * same thing.
-         * @param name header name
-         * @returns the header's value or `null` if not found.
-         */
         get_list(name: string): string | null;
-
-        /**
-         * Gets the value of header `name` in `hdrs`. Use this for headers whose
-         * values are <emphasis>not</emphasis> comma-delimited lists, and
-         * which therefore can only appear at most once in the headers. For
-         * list-valued headers, use `soup_message_headers_get_list()`.
-         * 
-         * If `hdrs` does erroneously contain multiple copies of the header, it
-         * is not defined which one will be returned. (Ideally, it will return
-         * whichever one makes libsoup most compatible with other HTTP
-         * implementations.)
-         * @param name header name
-         * @returns the header's value or `null` if not found.
-         */
         get_one(name: string): string | null;
-
-        /**
-         * Parses `hdrs`'s Range header and returns an array of the requested
-         * byte ranges. The returned array must be freed with
-         * `soup_message_headers_free_ranges()`.
-         * 
-         * If `total_length` is non-0, its value will be used to adjust the
-         * returned ranges to have explicit start and end values, and the
-         * returned ranges will be sorted and non-overlapping. If
-         * `total_length` is 0, then some ranges may have an end value of -1,
-         * as described under {@link Soup.Range}, and some of the ranges may be
-         * redundant.
-         * 
-         * Beware that even if given a `total_length`, this function does not
-         * check that the ranges are satisfiable.
-         * 
-         * <note><para>
-         * {@link Soup.Server} has built-in handling for range requests. If your
-         * server handler returns a {@link Soup.Status.OK} response containing the
-         * complete response body (rather than pausing the message and
-         * returning some of the response body later), and there is a Range
-         * header in the request, then libsoup will automatically convert the
-         * response to a {@link Soup.Status.PARTIAL_CONTENT} response containing only
-         * the range(s) requested by the client.
-         * 
-         * The only time you need to process the Range header yourself is if
-         * either you need to stream the response body rather than returning
-         * it all at once, or you do not already have the complete response
-         * body available, and only want to generate the parts that were
-         * actually requested by the client.
-         * </para></note>
-         * @param total_length the total_length of the response body
-         * @returns `true` if `hdrs` contained a syntactically-valid "Range" header, `false` otherwise (in which case `range` and `length` will not be set).
-         */
         get_ranges(total_length: bigint | number): [boolean, Range[]];
-
-        /**
-         * Checks whether the list-valued header `name` is present in `hdrs`,
-         * and contains a case-insensitive match for `token`.
-         * 
-         * (If `name` is present in `hdrs`, then this is equivalent to calling
-         * `soup_header_contains()` on its value.)
-         * @param name header name
-         * @param token token to look for
-         * @returns `true` if the header is present and contains `token`,   `false` otherwise.
-         */
         header_contains(name: string, token: string): boolean;
-
-        /**
-         * Checks whether the header `name` is present in `hdrs` and is
-         * (case-insensitively) equal to `value`.
-         * @param name header name
-         * @param value expected value
-         * @returns `true` if the header is present and its value is   `value`, `false` otherwise.
-         */
         header_equals(name: string, value: string): boolean;
-
-        /**
-         * Removes `name` from `hdrs`. If there are multiple values for `name`,
-         * they are all removed.
-         * @param name the header name to remove
-         */
         remove(name: string): void;
-
-        /**
-         * Replaces the value of the header `name` in `hdrs` with `value`. (See
-         * also `soup_message_headers_append()`.)
-         * 
-         * The caller is expected to make sure that `name` and `value` are
-         * syntactically correct.
-         * @param name the header name to replace
-         * @param value the new value of `name`
-         */
         replace(name: string, value: string): void;
-
-        /**
-         * Sets the "Content-Disposition" header in `hdrs` to `disposition`,
-         * optionally with additional parameters specified in `params`.
-         * 
-         * See `soup_message_headers_get_content_disposition()` for a discussion
-         * of how Content-Disposition is used in HTTP.
-         * @param disposition the disposition-type
-         * @param params additional parameters, or `null`
-         */
         set_content_disposition(disposition: string, params: { [key: string]: string } | null): void;
-
-        /**
-         * Sets the message body length that `hdrs` will declare, and sets
-         * `hdrs`'s encoding to {@link Soup.Encoding.CONTENT_LENGTH}.
-         * 
-         * You do not normally need to call this; if `hdrs` is set to use
-         * Content-Length encoding, libsoup will automatically set its
-         * Content-Length header for you immediately before sending the
-         * headers. One situation in which this method is useful is when
-         * generating the response to a HEAD request; Calling
-         * `soup_message_headers_set_content_length()` allows you to put the
-         * correct content length into the response without needing to waste
-         * memory by filling in a response body which won't actually be sent.
-         * @param content_length the message body length
-         */
         set_content_length(content_length: bigint | number): void;
-
-        /**
-         * Sets `hdrs`'s Content-Range header according to the given values.
-         * (Note that `total_length` is the total length of the entire resource
-         * that this is a range of, not simply `end` - `start` + 1.)
-         * 
-         * <note><para>
-         * {@link Soup.Server} has built-in handling for range requests, and you do
-         * not normally need to call this function youself. See
-         * `soup_message_headers_get_ranges()` for more details.
-         * </para></note>
-         * @param start the start of the range
-         * @param end the end of the range
-         * @param total_length the total length of the resource, or -1 if unknown
-         */
         set_content_range(start: bigint | number, end: bigint | number, total_length: bigint | number): void;
-
-        /**
-         * Sets the "Content-Type" header in `hdrs` to `content_type`,
-         * optionally with additional parameters specified in `params`.
-         * @param content_type the MIME type
-         * @param params additional parameters, or `null`
-         */
         set_content_type(content_type: string, params: { [key: string]: string } | null): void;
-
-        /**
-         * Sets the message body encoding that `hdrs` will declare. In particular,
-         * you should use this if you are going to send a request or response in
-         * chunked encoding.
-         * @param encoding a {@link Soup.Encoding}
-         */
         set_encoding(encoding: Encoding): void;
-
-        /**
-         * Sets `hdrs`'s "Expect" header according to `expectations`.
-         * 
-         * Currently {@link Soup.Expectation.CONTINUE} is the only known expectation
-         * value. You should set this value on a request if you are sending a
-         * large message body (eg, via POST or PUT), and want to give the
-         * server a chance to reject the request after seeing just the headers
-         * (eg, because it will require authentication before allowing you to
-         * post, or because you're POSTing to a URL that doesn't exist). This
-         * saves you from having to transmit the large request body when the
-         * server is just going to ignore it anyway.
-         * @param expectations the expectations to set
-         */
         set_expectations(expectations: Expectation): void;
-
-        /**
-         * Sets `hdrs`'s Range header to request the indicated range.
-         * `start` and `end` are interpreted as in a {@link Soup.Range}.
-         * 
-         * If you need to request multiple ranges, use
-         * `soup_message_headers_set_ranges()`.
-         * @param start the start of the range to request
-         * @param end the end of the range to request
-         */
         set_range(start: bigint | number, end: bigint | number): void;
-
-        /**
-         * Sets `hdrs`'s Range header to request the indicated ranges. (If you
-         * only want to request a single range, you can use
-         * `soup_message_headers_set_range()`.)
-         * @param ranges an array of {@link Soup.Range}
-         * @param length the length of `range`
-         */
         set_ranges(ranges: Range, length: number): void;
     }
-
-
-    /**
-     * An opaque type used to iterate over a %SoupMessageHeaders
-     * structure.
-     * 
-     * After intializing the iterator with
-     * `soup_message_headers_iter_init()`, call
-     * `soup_message_headers_iter_next()` to fetch data from it.
-     * 
-     * You may not modify the headers while iterating over them.
-     * @gir-type Struct
-     */
     class MessageHeadersIter {
         static $gtype: GObject.GType<MessageHeadersIter>;
-
-        // Constructors
         constructor(properties?: Partial<{}>);
-
-        // Static methods
-        /**
-         * Initializes `iter` for iterating `hdrs`.
-         * @param hdrs a %SoupMessageHeaders
-         */
         static init(hdrs: MessageHeaders): MessageHeadersIter;
-
-        /**
-         * Yields the next name/value pair in the %SoupMessageHeaders being
-         * iterated by `iter`. If `iter` has already yielded the last header,
-         * then `soup_message_headers_iter_next()` will return `false` and `name`
-         * and `value` will be unchanged.
-         * @param iter a %SoupMessageHeadersIter
-         */
         static next(iter: MessageHeadersIter): [boolean, MessageHeadersIter, string, string];
     }
-
-
-    /**
-     * @gir-type Struct
-     */
     abstract class MessageQueue {
         static $gtype: GObject.GType<MessageQueue>;
     }
-
-
-    /**
-     * @gir-type Struct
-     */
     abstract class MessageQueueItem {
         static $gtype: GObject.GType<MessageQueueItem>;
     }
-
-
-    /**
-     * Represents a multipart HTTP message body, parsed according to the
-     * syntax of RFC 2046. Of particular interest to HTTP are
-     * <literal>multipart/byte-ranges</literal> and
-     * <literal>multipart/form-data</literal>.
-     * 
-     * Although the headers of a {@link Soup.Multipart} body part will contain the
-     * full headers from that body part, libsoup does not interpret them
-     * according to MIME rules. For example, each body part is assumed to
-     * have "binary" Content-Transfer-Encoding, even if its headers
-     * explicitly state otherwise. In other words, don't try to use
-     * {@link Soup.Multipart} for handling real MIME multiparts.
-     * @gir-type Struct
-     * @since 2.26
-     */
     class Multipart {
         static $gtype: GObject.GType<Multipart>;
-
-        // Constructors
         constructor(mime_type: string);
-
         static ["new"](mime_type: string): Multipart;
-
         static new_from_message(headers: MessageHeaders, body: MessageBody): Multipart;
-
-        // Methods
-        /**
-         * Adds a new MIME part containing `body` to `multipart`, using
-         * "Content-Disposition: form-data", as per the HTML forms
-         * specification. See `soup_form_request_new_from_multipart()` for more
-         * details.
-         * @param control_name the name of the control associated with this file
-         * @param filename the name of the file, or `null` if not known
-         * @param content_type the MIME type of the file, or `null` if not known
-         * @param body the file data
-         */
         append_form_file(control_name: string, filename: string, content_type: string, body: Buffer): void;
-
-        /**
-         * Adds a new MIME part containing `data` to `multipart`, using
-         * "Content-Disposition: form-data", as per the HTML forms
-         * specification. See `soup_form_request_new_from_multipart()` for more
-         * details.
-         * @param control_name the name of the control associated with `data`
-         * @param data the body data
-         */
         append_form_string(control_name: string, data: string): void;
-
-        /**
-         * Adds a new MIME part to `multipart` with the given headers and body.
-         * (The multipart will make its own copies of `headers` and `body`, so
-         * you should free your copies if you are not using them for anything
-         * else.)
-         * @param headers the MIME part headers
-         * @param body the MIME part body
-         */
         append_part(headers: MessageHeaders, body: Buffer): void;
-
-        /**
-         * Frees `multipart`
-         */
         free(): void;
-
-        /**
-         * Gets the number of body parts in `multipart`
-         * @returns the number of body parts in `multipart`
-         */
         get_length(): number;
-
-        /**
-         * Gets the indicated body part from `multipart`.
-         * @param part the part number to get (counting from 0)
-         * @returns `true` on success, `false` if `part` is out of range (in which case `headers` and `body` won't be set)
-         */
         get_part(part: number): [boolean, MessageHeaders, Buffer];
-
-        /**
-         * Serializes `multipart` to `dest_headers` and `dest_body`.
-         * @param dest_headers the headers of the HTTP message to serialize `multipart` to
-         * @param dest_body the body of the HTTP message to serialize `multipart` to
-         */
         to_message(dest_headers: MessageHeaders, dest_body: MessageBody): void;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type MultipartInputStreamClass = typeof MultipartInputStream;
-
-    /**
-     * @gir-type Struct
-     */
     abstract class MultipartInputStreamPrivate {
         static $gtype: GObject.GType<MultipartInputStreamPrivate>;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type PasswordManagerInterface = typeof PasswordManager;
-
-    /**
-     * @gir-type Alias
-     */
     type ProxyResolverDefaultClass = typeof ProxyResolverDefault;
-
-    /**
-     * @gir-type Alias
-     */
     type ProxyResolverInterface = typeof ProxyResolver;
-
-    /**
-     * @gir-type Alias
-     */
     type ProxyURIResolverInterface = typeof ProxyURIResolver;
-
-    /**
-     * Represents a byte range as used in the Range header.
-     * 
-     * If `end` is non-negative, then `start` and `end` represent the bounds
-     * of of the range, counting from 0. (Eg, the first 500 bytes would be
-     * represented as `start` = 0 and `end` = 499.)
-     * 
-     * If `end` is -1 and `start` is non-negative, then this represents a
-     * range starting at `start` and ending with the last byte of the
-     * requested resource body. (Eg, all but the first 500 bytes would be
-     * `start` = 500, and `end` = -1.)
-     * 
-     * If `end` is -1 and `start` is negative, then it represents a "suffix
-     * range", referring to the last -`start` bytes of the resource body.
-     * (Eg, the last 500 bytes would be `start` = -500 and `end` = -1.)
-     * @gir-type Struct
-     * @since 2.26
-     */
     class Range {
         static $gtype: GObject.GType<Range>;
-
-        // Fields
         start: number;
-
         end: number;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type RequestClass = typeof Request;
-
-    /**
-     * @gir-type Alias
-     */
     type RequestDataClass = typeof RequestData;
-
-    /**
-     * @gir-type Struct
-     */
     abstract class RequestDataPrivate {
         static $gtype: GObject.GType<RequestDataPrivate>;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type RequestFileClass = typeof RequestFile;
-
-    /**
-     * @gir-type Struct
-     */
     abstract class RequestFilePrivate {
         static $gtype: GObject.GType<RequestFilePrivate>;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type RequestHTTPClass = typeof RequestHTTP;
-
-    /**
-     * @gir-type Struct
-     */
     abstract class RequestHTTPPrivate {
         static $gtype: GObject.GType<RequestHTTPPrivate>;
     }
-
-
-    /**
-     * @gir-type Struct
-     */
     abstract class RequestPrivate {
         static $gtype: GObject.GType<RequestPrivate>;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type RequesterClass = typeof Requester;
-
-    /**
-     * @gir-type Struct
-     */
     abstract class RequesterPrivate {
         static $gtype: GObject.GType<RequesterPrivate>;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type ServerClass = typeof Server;
-
-    /**
-     * @gir-type Alias
-     */
     type SessionAsyncClass = typeof SessionAsync;
-
-    /**
-     * @gir-type Alias
-     */
     type SessionClass = typeof Session;
-
-    /**
-     * @gir-type Alias
-     */
     type SessionFeatureInterface = typeof SessionFeature;
-
-    /**
-     * @gir-type Alias
-     */
     type SessionSyncClass = typeof SessionSync;
-
-    /**
-     * @gir-type Alias
-     */
     type SocketClass = typeof Socket;
-
-    /**
-     * A {@link Soup.URI} represents a (parsed) URI. {@link Soup.URI} supports RFC 3986
-     * (URI Generic Syntax), and can parse any valid URI. However, libsoup
-     * only uses "http" and "https" URIs internally; You can use
-     * SOUP_URI_VALID_FOR_HTTP() to test if a {@link Soup.URI} is a valid HTTP
-     * URI.
-     * 
-     * `scheme` will always be set in any URI. It is an interned string and
-     * is always all lowercase. (If you parse a URI with a non-lowercase
-     * scheme, it will be converted to lowercase.) The macros
-     * `SOUP_URI_SCHEME_HTTP` and `SOUP_URI_SCHEME_HTTPS` provide the
-     * interned values for "http" and "https" and can be compared against
-     * URI `scheme` values.
-     * 
-     * `user` and `password` are parsed as defined in the older URI specs
-     * (ie, separated by a colon; RFC 3986 only talks about a single
-     * "userinfo" field). Note that `password` is not included in the
-     * output of `soup_uri_to_string()`. libsoup does not normally use these
-     * fields; authentication is handled via {@link Soup.Session} signals.
-     * 
-     * `host` contains the hostname, and `port` the port specified in the
-     * URI. If the URI doesn't contain a hostname, `host` will be `null`,
-     * and if it doesn't specify a port, `port` may be 0. However, for
-     * "http" and "https" URIs, `host` is guaranteed to be non-`null`
-     * (trying to parse an http URI with no `host` will return `null`), and
-     * `port` will always be non-0 (because libsoup knows the default value
-     * to use when it is not specified in the URI).
-     * 
-     * `path` is always non-`null`. For http/https URIs, `path` will never be
-     * an empty string either; if the input URI has no path, the parsed
-     * {@link Soup.URI} will have a `path` of "/".
-     * 
-     * `query` and `fragment` are optional for all URI types.
-     * `soup_form_decode()` may be useful for parsing `query`.
-     * 
-     * Note that `path`, `query`, and `fragment` may contain
-     * %<!-- -->-encoded characters. `soup_uri_new()` calls
-     * `soup_uri_normalize()` on them, but not `soup_uri_decode()`. This is
-     * necessary to ensure that `soup_uri_to_string()` will generate a URI
-     * that has exactly the same meaning as the original. (In theory,
-     * {@link Soup.URI} should leave `user`, `password`, and `host` partially-encoded
-     * as well, but this would be more annoying than useful.)
-     * @gir-type Struct
-     */
     class URI {
         static $gtype: GObject.GType<URI>;
-
-        // Fields
         scheme: string;
-
         user: string;
-
         password: string;
-
         host: string;
-
         port: number;
-
         path: string;
-
         query: string;
-
         fragment: string;
-
-        // Constructors
-
         constructor(properties?: Partial<{
             scheme: string;
             user: string;
@@ -14127,649 +2787,136 @@ export namespace Soup {
             query: string;
             fragment: string;
         }>);
-
         static ["new"](uri_string: string | null): URI;
-
         static new_with_base(base: URI, uri_string: string): URI;
-
-        // Static methods
-        /**
-         * Fully %<!-- -->-decodes `part`.
-         * 
-         * In the past, this would return `null` if `part` contained invalid
-         * percent-encoding, but now it just ignores the problem (as
-         * `soup_uri_new()` already did).
-         * @param part a URI part
-         */
         static decode(part: string): string;
-
-        /**
-         * This %<!-- -->-encodes the given URI part and returns the escaped
-         * version in allocated memory, which the caller must free when it is
-         * done.
-         * @param part a URI part
-         * @param escape_extra additional reserved characters to escape (or `null`)
-         */
         static encode(part: string, escape_extra: string | null): string;
-
-        /**
-         * %<!-- -->-decodes any "unreserved" characters (or characters in
-         * `unescape_extra`) in `part`, and %<!-- -->-encodes any non-ASCII
-         * characters, spaces, and non-printing characters in `part`.
-         * 
-         * "Unreserved" characters are those that are not allowed to be used
-         * for punctuation according to the URI spec. For example, letters are
-         * unreserved, so `soup_uri_normalize()` will turn
-         * <literal>http://example.com/foo/b%<!-- -->61r</literal> into
-         * <literal>http://example.com/foo/bar</literal>, which is guaranteed
-         * to mean the same thing. However, "/" is "reserved", so
-         * <literal>http://example.com/foo%<!-- -->2Fbar</literal> would not
-         * be changed, because it might mean something different to the
-         * server.
-         * 
-         * In the past, this would return `null` if `part` contained invalid
-         * percent-encoding, but now it just ignores the problem (as
-         * `soup_uri_new()` already did).
-         * @param part a URI part
-         * @param unescape_extra reserved characters to unescape (or `null`)
-         */
         static normalize(part: string, unescape_extra: string | null): string;
-
-        // Methods
-        /**
-         * Copies `uri`
-         * @returns a copy of `uri`, which must be freed with `soup_uri_free()`
-         */
         copy(): URI;
-
-        /**
-         * Makes a copy of `uri`, considering only the protocol, host, and port
-         * @returns the new {@link Soup.URI}
-         */
         copy_host(): URI;
-
-        /**
-         * Tests whether or not `uri1` and `uri2` are equal in all parts
-         * @param uri2 another {@link Soup.URI}
-         * @returns `true` or `false`
-         */
         equal(uri2: URI): boolean;
-
-        /**
-         * Frees `uri`.
-         */
         free(): void;
-
-        /**
-         * Gets `uri`'s fragment.
-         * @returns `uri`'s fragment.
-         */
         get_fragment(): string;
-
-        /**
-         * Gets `uri`'s host.
-         * @returns `uri`'s host.
-         */
         get_host(): string;
-
-        /**
-         * Gets `uri`'s password.
-         * @returns `uri`'s password.
-         */
         get_password(): string;
-
-        /**
-         * Gets `uri`'s path.
-         * @returns `uri`'s path.
-         */
         get_path(): string;
-
-        /**
-         * Gets `uri`'s port.
-         * @returns `uri`'s port.
-         */
         get_port(): number;
-
-        /**
-         * Gets `uri`'s query.
-         * @returns `uri`'s query.
-         */
         get_query(): string;
-
-        /**
-         * Gets `uri`'s scheme.
-         * @returns `uri`'s scheme.
-         */
         get_scheme(): string;
-
-        /**
-         * Gets `uri`'s user.
-         * @returns `uri`'s user.
-         */
         get_user(): string;
-
-        /**
-         * Compares `v1` and `v2`, considering only the scheme, host, and port.
-         * @param v2 a {@link Soup.URI} with a non-`null` `host` member
-         * @returns whether or not the URIs are equal in scheme, host, and port.
-         */
         host_equal(v2: URI): boolean;
-
-        /**
-         * Hashes `key`, considering only the scheme, host, and port.
-         * @returns a hash
-         */
         host_hash(): number;
-
-        /**
-         * Sets `uri`'s fragment to `fragment`.
-         * @param fragment the fragment
-         */
         set_fragment(fragment: string | null): void;
-
-        /**
-         * Sets `uri`'s host to `host`.
-         * 
-         * If `host` is an IPv6 IP address, it should not include the brackets
-         * required by the URI syntax; they will be added automatically when
-         * converting `uri` to a string.
-         * 
-         * http and https URIs should not have a `null` `host`.
-         * @param host the hostname or IP address, or `null`
-         */
         set_host(host: string | null): void;
-
-        /**
-         * Sets `uri`'s password to `password`.
-         * @param password the password, or `null`
-         */
         set_password(password: string | null): void;
-
-        /**
-         * Sets `uri`'s path to `path`.
-         * @param path the non-`null` path
-         */
         set_path(path: string): void;
-
-        /**
-         * Sets `uri`'s port to `port`. If `port` is 0, `uri` will not have an
-         * explicitly-specified port.
-         * @param port the port, or 0
-         */
         set_port(port: number): void;
-
-        /**
-         * Sets `uri`'s query to `query`.
-         * @param query the query
-         */
         set_query(query: string | null): void;
-
-        /**
-         * Sets `uri`'s query to the result of encoding `form` according to the
-         * HTML form rules. See `soup_form_encode_hash()` for more information.
-         * @param form a {@link GLib.HashTable} containing HTML form information
-         */
         set_query_from_form(form: { [key: string]: string }): void;
-
-        /**
-         * Sets `uri`'s scheme to `scheme`. This will also set `uri`'s port to
-         * the default port for `scheme`, if known.
-         * @param scheme the URI scheme
-         */
         set_scheme(scheme: string): void;
-
-        /**
-         * Sets `uri`'s user to `user`.
-         * @param user the username, or `null`
-         */
         set_user(user: string | null): void;
-
-        /**
-         * Returns a string representing `uri`.
-         * 
-         * If `just_path_and_query` is `true`, this concatenates the path and query
-         * together. That is, it constructs the string that would be needed in
-         * the Request-Line of an HTTP request for `uri`.
-         * 
-         * Note that the output will never contain a password, even if `uri`
-         * does.
-         * @param just_path_and_query if `true`, output just the path and query portions
-         * @returns a string representing `uri`, which the caller must free.
-         */
         to_string(just_path_and_query: boolean): string;
-
-        /**
-         * Tests if `uri` uses the default port for its scheme. (Eg, 80 for
-         * http.) (This only works for http, https and ftp; libsoup does not know
-         * the default ports of other protocols.)
-         * @returns `true` or `false`
-         */
         uses_default_port(): boolean;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type WebsocketConnectionClass = typeof WebsocketConnection;
-
-    /**
-     * @gir-type Struct
-     */
     abstract class WebsocketConnectionPrivate {
         static $gtype: GObject.GType<WebsocketConnectionPrivate>;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type WebsocketExtensionClass = typeof WebsocketExtension;
-
-    /**
-     * @gir-type Alias
-     */
     type WebsocketExtensionDeflateClass = typeof WebsocketExtensionDeflate;
-
-    /**
-     * @gir-type Alias
-     */
     type WebsocketExtensionManagerClass = typeof WebsocketExtensionManager;
-
-    /**
-     * Opaque structure containing XML-RPC methodCall parameter values.
-     * Can be parsed using `soup_xmlrpc_params_parse()` and freed with
-     * `soup_xmlrpc_params_free()`.
-     * @gir-type Struct
-     * @since 2.52
-     */
     abstract class XMLRPCParams {
         static $gtype: GObject.GType<XMLRPCParams>;
-
-        // Methods
-        /**
-         * Free a {@link Soup.XMLRPCParams} returned by `soup_xmlrpc_parse_request()`.
-         */
         free(): void;
-
-        /**
-         * Parse method parameters returned by `soup_xmlrpc_parse_request()`.
-         * 
-         * Deserialization details:
-         *  - If `signature` is provided, &lt;int&gt; and &lt;i4&gt; can be deserialized
-         *    to byte, int16, uint16, int32, uint32, int64 or uint64. Otherwise
-         *    it will be deserialized to int32. If the value is out of range
-         *    for the target type it will return an error.
-         *  - &lt;struct&gt; will be deserialized to "a{sv}". `signature` could define
-         *    another value type (e.g. "a{ss}").
-         *  - &lt;array&gt; will be deserialized to "av". `signature` could define
-         *    another element type (e.g. "as") or could be a tuple (e.g. "(ss)").
-         *  - &lt;base64&gt; will be deserialized to "ay".
-         *  - &lt;string&gt; will be deserialized to "s".
-         *  - &lt;dateTime.iso8601&gt; will be deserialized to an unspecified variant
-         *    type. If `signature` is provided it must have the generic "v" type, which
-         *    means there is no guarantee that it's actually a datetime that has been
-         *    received. `soup_xmlrpc_variant_get_datetime()` must be used to parse and
-         *    type check this special variant.
-         *  - `signature` must not have maybes, otherwise an error is returned.
-         *  - Dictionaries must have string keys, otherwise an error is returned.
-         * @param signature A valid {@link GLib.Variant} type string, or `null`
-         * @returns a new (non-floating) {@link GLib.Variant}, or `null`
-         */
         parse(signature: string | null): GLib.Variant;
     }
-
-
     namespace PasswordManager {
-        /**
-         * Interface for implementing PasswordManager.
-         * Contains only the virtual methods that need to be implemented.
-         */
         interface Interface extends SessionFeature.Interface {
-
-            // Virtual methods
-            /**
-             * @param msg 
-             * @param auth 
-             * @param retrying 
-             * @param async_context 
-             * @param cancellable 
-             * @param callback 
-             * @virtual
-             */
             vfunc_get_passwords_async(msg: Message, auth: Auth, retrying: boolean, async_context: GLib.MainContext, cancellable: Gio.Cancellable | null, callback: PasswordManagerCallback): void;
-
-            /**
-             * @param msg 
-             * @param auth 
-             * @param cancellable 
-             * @virtual
-             */
             vfunc_get_passwords_sync(msg: Message, auth: Auth, cancellable: Gio.Cancellable | null): void;
         }
-
-
-        // Constructor properties interface
         interface ConstructorProps extends SessionFeature.ConstructorProps {}
     }
-
     export interface PasswordManagerNamespace {
         $gtype: GObject.GType<PasswordManager>;
         prototype: PasswordManager;
     }
-    /**
-     * @gir-type Interface
-     */
     interface PasswordManager extends SessionFeature, PasswordManager.Interface {
-
-        // Methods
-        /**
-         * @param msg 
-         * @param auth 
-         * @param retrying 
-         * @param async_context 
-         * @param cancellable 
-         * @param callback 
-         */
         get_passwords_async(msg: Message, auth: Auth, retrying: boolean, async_context: GLib.MainContext, cancellable: Gio.Cancellable | null, callback: PasswordManagerCallback): void;
-
-        /**
-         * @param msg 
-         * @param auth 
-         * @param cancellable 
-         */
         get_passwords_sync(msg: Message, auth: Auth, cancellable: Gio.Cancellable | null): void;
     }
-
-
     export const PasswordManager: PasswordManagerNamespace & {
-        new (): PasswordManager; // This allows `obj instanceof PasswordManager`
+        new (): PasswordManager; 
     };
-
     namespace ProxyResolver {
-        /**
-         * Interface for implementing ProxyResolver.
-         * Contains only the virtual methods that need to be implemented.
-         */
         interface Interface extends SessionFeature.Interface {
-
-            // Virtual methods
-            /**
-             * @param msg 
-             * @param async_context 
-             * @param cancellable 
-             * @param callback 
-             * @virtual
-             */
             vfunc_get_proxy_async(msg: Message, async_context: GLib.MainContext, cancellable: Gio.Cancellable | null, callback: ProxyResolverCallback): void;
-
-            /**
-             * @param msg 
-             * @param cancellable 
-             * @virtual
-             */
             vfunc_get_proxy_sync(msg: Message, cancellable: Gio.Cancellable | null): [number, Address];
         }
-
-
-        // Constructor properties interface
         interface ConstructorProps extends SessionFeature.ConstructorProps {}
     }
-
     export interface ProxyResolverNamespace {
         $gtype: GObject.GType<ProxyResolver>;
         prototype: ProxyResolver;
     }
-    /**
-     * @gir-type Interface
-     */
     interface ProxyResolver extends SessionFeature, ProxyResolver.Interface {
-
-        // Methods
-        /**
-         * @param msg 
-         * @param async_context 
-         * @param cancellable 
-         * @param callback 
-         */
         get_proxy_async(msg: Message, async_context: GLib.MainContext, cancellable: Gio.Cancellable | null, callback: ProxyResolverCallback): void;
-
-        /**
-         * @param msg 
-         * @param cancellable 
-         */
         get_proxy_sync(msg: Message, cancellable: Gio.Cancellable | null): [number, Address];
     }
-
-
     export const ProxyResolver: ProxyResolverNamespace & {
-        new (): ProxyResolver; // This allows `obj instanceof ProxyResolver`
+        new (): ProxyResolver; 
     };
-
     namespace ProxyURIResolver {
-        /**
-         * Interface for implementing ProxyURIResolver.
-         * Contains only the virtual methods that need to be implemented.
-         */
         interface Interface extends SessionFeature.Interface {
-
-            // Virtual methods
-            /**
-             * Asynchronously determines a proxy URI to use for `msg` and calls
-             * `callback`.
-             * @param uri the {@link Soup.URI} you want a proxy for
-             * @param async_context the {@link GLib.MainContext} to invoke `callback` in
-             * @param cancellable a {@link Gio.Cancellable}, or `null`
-             * @param callback callback to invoke with the proxy address
-             * @virtual
-             */
             vfunc_get_proxy_uri_async(uri: URI, async_context: GLib.MainContext | null, cancellable: Gio.Cancellable | null, callback: ProxyURIResolverCallback): void;
-
-            /**
-             * Synchronously determines a proxy URI to use for `uri`. If `uri`
-             * should be sent via proxy, *`proxy_uri` will be set to the URI of the
-             * proxy, else it will be set to `null`.
-             * @param uri the {@link Soup.URI} you want a proxy for
-             * @param cancellable a {@link Gio.Cancellable}, or `null`
-             * @virtual
-             */
             vfunc_get_proxy_uri_sync(uri: URI, cancellable: Gio.Cancellable | null): [number, URI];
         }
-
-
-        // Constructor properties interface
         interface ConstructorProps extends SessionFeature.ConstructorProps {}
     }
-
     export interface ProxyURIResolverNamespace {
         $gtype: GObject.GType<ProxyURIResolver>;
         prototype: ProxyURIResolver;
     }
-    /**
-     * @gir-type Interface
-     */
     interface ProxyURIResolver extends SessionFeature, ProxyURIResolver.Interface {
-
-        // Methods
-        /**
-         * Asynchronously determines a proxy URI to use for `msg` and calls
-         * `callback`.
-         * @param uri the {@link Soup.URI} you want a proxy for
-         * @param async_context the {@link GLib.MainContext} to invoke `callback` in
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @param callback callback to invoke with the proxy address
-         */
         get_proxy_uri_async(uri: URI, async_context: GLib.MainContext | null, cancellable: Gio.Cancellable | null, callback: ProxyURIResolverCallback): void;
-
-        /**
-         * Synchronously determines a proxy URI to use for `uri`. If `uri`
-         * should be sent via proxy, *`proxy_uri` will be set to the URI of the
-         * proxy, else it will be set to `null`.
-         * @param uri the {@link Soup.URI} you want a proxy for
-         * @param cancellable a {@link Gio.Cancellable}, or `null`
-         * @returns {@link Soup.Status.OK} if successful, or a transport-level error.
-         */
         get_proxy_uri_sync(uri: URI, cancellable: Gio.Cancellable | null): [number, URI];
     }
-
-
     export const ProxyURIResolver: ProxyURIResolverNamespace & {
-        new (): ProxyURIResolver; // This allows `obj instanceof ProxyURIResolver`
+        new (): ProxyURIResolver; 
     };
-
     namespace SessionFeature {
-        /**
-         * Interface for implementing SessionFeature.
-         * Contains only the virtual methods that need to be implemented.
-         */
         interface Interface {
-
-            // Virtual methods
-            /**
-             * Adds a "sub-feature" of type `type` to the base feature `feature`.
-             * This is used for features that can be extended with multiple
-             * different types. Eg, the authentication manager can be extended
-             * with subtypes of {@link Soup.Auth}.
-             * @param type the {@link GObject.GType} of a "sub-feature"
-             * @virtual
-             */
             vfunc_add_feature(type: GObject.GType): boolean;
-
-            /**
-             * Perform setup when a feature is added to a session
-             * @param session 
-             * @virtual
-             */
             vfunc_attach(session: Session): void;
-
-            /**
-             * Perform cleanup when a feature is removed from a session
-             * @param session 
-             * @virtual
-             */
             vfunc_detach(session: Session): void;
-
-            /**
-             * Tests if `feature` has a "sub-feature" of type `type`. See
-             * `soup_session_feature_add_feature()`.
-             * @param type the {@link GObject.GType} of a "sub-feature"
-             * @virtual
-             */
             vfunc_has_feature(type: GObject.GType): boolean;
-
-            /**
-             * Removes the "sub-feature" of type `type` from the base feature
-             * `feature`. See `soup_session_feature_add_feature()`.
-             * @param type the {@link GObject.GType} of a "sub-feature"
-             * @virtual
-             */
             vfunc_remove_feature(type: GObject.GType): boolean;
-
-            /**
-             * Proxies the session's {@link Soup.Session.SignalSignatures.request_queued | Soup.Session::request_queued} signal
-             * @param session 
-             * @param msg 
-             * @virtual
-             */
             vfunc_request_queued(session: Session, msg: Message): void;
-
-            /**
-             * Proxies the session's {@link Soup.Session.SignalSignatures.request_started | Soup.Session::request_started} signal. Deprecated 2.50. Use {@link Soup.Message.SignalSignatures.starting | Soup.Message::starting} instead.
-             * @param session 
-             * @param msg 
-             * @param socket 
-             * @virtual
-             */
             vfunc_request_started(session: Session, msg: Message, socket: Socket): void;
-
-            /**
-             * Proxies the session's {@link Soup.Session.SignalSignatures.request_unqueued | Soup.Session::request_unqueued} signal
-             * @param session 
-             * @param msg 
-             * @virtual
-             */
             vfunc_request_unqueued(session: Session, msg: Message): void;
         }
-
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps {}
     }
-
     export interface SessionFeatureNamespace {
         $gtype: GObject.GType<SessionFeature>;
         prototype: SessionFeature;
     }
-    /**
-     * An object that implement some sort of optional feature for
-     * {@link Soup.Session}.
-     * @gir-type Interface
-     * @since 2.24
-     */
     interface SessionFeature extends GObject.Object, SessionFeature.Interface {
-
-        // Methods
-        /**
-         * Adds a "sub-feature" of type `type` to the base feature `feature`.
-         * This is used for features that can be extended with multiple
-         * different types. Eg, the authentication manager can be extended
-         * with subtypes of {@link Soup.Auth}.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` accepted `type` as a subfeature.
-         */
         add_feature(type: GObject.GType): boolean;
-
-        /**
-         * @param session 
-         */
         attach(session: Session): void;
-
-        /**
-         * @param session 
-         */
         detach(session: Session): void;
-
-        /**
-         * Tests if `feature` has a "sub-feature" of type `type`. See
-         * `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `feature` has a subfeature of type `type`
-         */
         has_feature(type: GObject.GType): boolean;
-
-        /**
-         * Removes the "sub-feature" of type `type` from the base feature
-         * `feature`. See `soup_session_feature_add_feature()`.
-         * @param type the {@link GObject.GType} of a "sub-feature"
-         * @returns `true` if `type` was removed from `feature`
-         */
         remove_feature(type: GObject.GType): boolean;
     }
-
-
     export const SessionFeature: SessionFeatureNamespace & {
-        new (): SessionFeature; // This allows `obj instanceof SessionFeature`
+        new (): SessionFeature; 
     };
-
-    /**
-     * Name of the imported GIR library
-     * `see` https://gitlab.gnome.org/GNOME/gjs/-/blob/master/gi/ns.cpp#L188
-     */
     const __name__: string;
-
-    /**
-     * Version of the imported GIR library
-     * `see` https://gitlab.gnome.org/GNOME/gjs/-/blob/master/gi/ns.cpp#L189
-     */
     const __version__: string;
 }
-
 export default Soup;
-
 }
-
 declare module 'gi://Soup' {
     import Soup24 from 'gi://Soup?version=2.4';
     export default Soup24;
 }
-// END

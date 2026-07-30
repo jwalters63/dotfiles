@@ -1,31 +1,4 @@
-/// <reference path="./gtk-3.0.d.ts" />
-/// <reference path="./xlib-2.0.d.ts" />
-/// <reference path="./gdk-3.0.d.ts" />
-/// <reference path="./cairo-1.0.d.ts" />
-/// <reference path="./cairo.d.ts" />
-/// <reference path="./gobject-2.0.d.ts" />
-/// <reference path="./glib-2.0.d.ts" />
-/// <reference path="./pango-1.0.d.ts" />
-/// <reference path="./harfbuzz-0.0.d.ts" />
-/// <reference path="./freetype2-2.0.d.ts" />
-/// <reference path="./gio-2.0.d.ts" />
-/// <reference path="./gmodule-2.0.d.ts" />
-/// <reference path="./gdkpixbuf-2.0.d.ts" />
-/// <reference path="./atk-1.0.d.ts" />
-/// <reference path="./colord-1.0.d.ts" />
-
-/**
- * Type Definitions for Gjs (https://gjs.guide/)
- *
- * These type definitions are automatically generated, do not edit them by hand.
- * If you found a bug fix it in `ts-for-gir` or create a bug report on https://github.com/gjsify/ts-for-gir
- *
- * The based EJS template file is used for the generated .d.ts file of each GIR module like Gtk-4.0, GObject-2.0, ...
- */
-
 declare module 'gi://ColordGtk?version=1.0' {
-
-// Module dependencies
 import type Gtk from 'gi://Gtk?version=3.0';
 import type xlib from 'gi://xlib?version=2.0';
 import type Gdk from 'gi://Gdk?version=3.0';
@@ -40,35 +13,15 @@ import type GModule from 'gi://GModule?version=2.0';
 import type GdkPixbuf from 'gi://GdkPixbuf?version=2.0';
 import type Atk from 'gi://Atk?version=1.0';
 import type Colord from 'gi://Colord?version=1.0';
-
 export namespace ColordGtk {
-
-    /**
-     * ColordGtk-1.0
-     */
-
-
-    /**
-     * Errors that can be thrown
-     * @gir-type Enum
-     */
     enum WindowError {
-        /**
-         * the transaction failed for an unknown reason
-         */
         FAILED,
         LAST,
     }
-
-
     const GTK_MAJOR_VERSION: number;
-
     const GTK_MICRO_VERSION: number;
-
     const GTK_MINOR_VERSION: number;
-
     namespace SampleWidget {
-        // Signal signatures
         interface SignalSignatures extends Gtk.DrawingArea.SignalSignatures {
             "notify::color": (pspec: GObject.ParamSpec) => void;
             "notify::app-paintable": (pspec: GObject.ParamSpec) => void;
@@ -111,63 +64,27 @@ export namespace ColordGtk {
             "notify::width-request": (pspec: GObject.ParamSpec) => void;
             "notify::window": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends Gtk.DrawingArea.ConstructorProps, Atk.ImplementorIface.ConstructorProps, Gtk.Buildable.ConstructorProps {
             color: Colord.ColorRGB;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class SampleWidget extends Gtk.DrawingArea implements Atk.ImplementorIface, Gtk.Buildable {
         static $gtype: GObject.GType<SampleWidget>;
-
-        // Properties
         get color(): Colord.ColorRGB;
         set color(val: Colord.ColorRGB);
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: SampleWidget.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<SampleWidget.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](): SampleWidget;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof SampleWidget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SampleWidget.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof SampleWidget.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SampleWidget.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof SampleWidget.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SampleWidget.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Methods
-        /**
-         * Sets the color for the sample widget
-         * @param color A color
-         */
         set_color(color: Colord.ColorRGB): void;
     }
-
-
     namespace SampleWindow {
-        // Signal signatures
         interface SignalSignatures extends Gtk.Window.SignalSignatures {
             "notify::accept-focus": (pspec: GObject.ParamSpec) => void;
             "notify::application": (pspec: GObject.ParamSpec) => void;
@@ -245,267 +162,72 @@ export namespace ColordGtk {
             "notify::width-request": (pspec: GObject.ParamSpec) => void;
             "notify::window": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends Gtk.Window.ConstructorProps, Atk.ImplementorIface.ConstructorProps, Gtk.Buildable.ConstructorProps {}
     }
-
-    /**
-     * @gir-type Class
-     */
     class SampleWindow extends Gtk.Window implements Atk.ImplementorIface, Gtk.Buildable {
         static $gtype: GObject.GType<SampleWindow>;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: SampleWindow.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<SampleWindow.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](): SampleWindow;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof SampleWindow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SampleWindow.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof SampleWindow.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, SampleWindow.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof SampleWindow.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<SampleWindow.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Methods
-        /**
-         * Sets the window to a specific color.
-         * @param color the color
-         */
         set_color(color: Colord.ColorRGB): void;
-
-        /**
-         * Sets the percentage value on the window.
-         * @param fraction the fraction value to show, or -1 for pulsing.
-         */
         set_fraction(fraction: number): void;
     }
-
-
     namespace Window {
-        // Signal signatures
         interface SignalSignatures extends GObject.Object.SignalSignatures {
-            /**
-             * The ::changed signal is emitted when the device profile has
-             * changed. The {@link Colord.Profile} that is referenced in the callback
-             * has not been connected to, and you will need to call
-             * `cd_profile_connect()` if the ICC filename is required.
-             * @signal
-             * @since 0.1.20
-             * @run-last
-             */
             changed: (arg0: Colord.Profile) => void;
             "notify::profile": (pspec: GObject.ParamSpec) => void;
         }
-
-        // Constructor properties interface
         interface ConstructorProps extends GObject.Object.ConstructorProps {
             Profile: string;
         }
     }
-
-    /**
-     * @gir-type Class
-     */
     class Window extends GObject.Object {
         static $gtype: GObject.GType<Window>;
-
-        // Properties
-        /**
-         * @read-only
-         * @default null
-         */
         get Profile(): string;
-
-        /**
-         * Compile-time signal type information.
-         *
-         * This instance property is generated only for TypeScript type checking.
-         * It is not defined at runtime and should not be accessed in JS code.
-         * @internal
-         */
         $signals: Window.SignalSignatures;
-
-        // Constructors
         constructor(properties?: Partial<Window.ConstructorProps>, ...args: any[]);
-
         _init(...args: any[]): void;
-
         static ["new"](): Window;
-
-        // Signals
-        /** @signal */
         connect<K extends keyof Window.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Window.SignalSignatures[K]>): number;
         connect(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         connect_after<K extends keyof Window.SignalSignatures>(signal: K, callback: GObject.SignalCallback<this, Window.SignalSignatures[K]>): number;
         connect_after(signal: string, callback: (...args: any[]) => any): number;
-
-        /** @signal */
         emit<K extends keyof Window.SignalSignatures>(signal: K, ...args: GObject.GjsParameters<Window.SignalSignatures[K]> extends [any, ...infer Q] ? Q : never): void;
         emit(signal: string, ...args: any[]): void;
-
-        // Static methods
         static error_quark(): GLib.Quark;
-
-        // Virtual methods
-        /**
-         * @param profile 
-         * @virtual
-         */
         vfunc_changed(profile: Colord.Profile): void;
-
-        // Methods
-        /**
-         * Gets the color profile to use for this widget.
-         * @returns a {@link Colord.Profile}
-         */
         get_last_profile(): Colord.Profile;
-
-        /**
-         * Gets the screen profile that should be used for the widget,
-         * which corresponds to the screen output the widget most covers.
-         * 
-         * This method should be called when the widget has mapped, i.e.
-         * g_signal_connect (dialog, "map", G_CALLBACK (map_cb), priv);
-         * 
-         * Note, the returned profile from `cd_client_get_profile_for_widget_finish()`
-         * has already been connected to, as is ready to use.
-         * @param widget a {@link Gtk.Widget}
-         * @param cancellable a {@link Gio.Cancellable} or `null`
-         */
         get_profile(widget: Gtk.Widget, cancellable: Gio.Cancellable | null): globalThis.Promise<Colord.Profile>;
-
-        /**
-         * Gets the screen profile that should be used for the widget,
-         * which corresponds to the screen output the widget most covers.
-         * 
-         * This method should be called when the widget has mapped, i.e.
-         * g_signal_connect (dialog, "map", G_CALLBACK (map_cb), priv);
-         * 
-         * Note, the returned profile from `cd_client_get_profile_for_widget_finish()`
-         * has already been connected to, as is ready to use.
-         * @param widget a {@link Gtk.Widget}
-         * @param cancellable a {@link Gio.Cancellable} or `null`
-         * @param callback the function to run on completion
-         */
         get_profile(widget: Gtk.Widget, cancellable: Gio.Cancellable | null, callback: Gio.AsyncReadyCallback<this> | null): void;
-
-        /**
-         * Gets the screen profile that should be used for the widget,
-         * which corresponds to the screen output the widget most covers.
-         * 
-         * This method should be called when the widget has mapped, i.e.
-         * g_signal_connect (dialog, "map", G_CALLBACK (map_cb), priv);
-         * 
-         * Note, the returned profile from `cd_client_get_profile_for_widget_finish()`
-         * has already been connected to, as is ready to use.
-         * @param widget a {@link Gtk.Widget}
-         * @param cancellable a {@link Gio.Cancellable} or `null`
-         * @param callback the function to run on completion
-         */
         get_profile(widget: Gtk.Widget, cancellable: Gio.Cancellable | null, callback?: Gio.AsyncReadyCallback<this> | null): globalThis.Promise<Colord.Profile> | void;
-
-        /**
-         * Gets the result from the asynchronous function.
-         * @param res the {@link Gio.AsyncResult}
-         * @returns a {@link Colord.Profile} or `null`
-         */
         get_profile_finish(res: Gio.AsyncResult): Colord.Profile;
-
-        /**
-         * Gets the screen profile that should be used for the widget,
-         * which corresponds to the screen output the widget most covers.
-         * 
-         * WARNING: This function is synchronous, and may block.
-         * Do not use it in GUI applications.
-         * @param widget a {@link Gtk.Widget}
-         * @param cancellable a {@link Gio.Cancellable} or `null`
-         * @returns a {@link Colord.Profile} or `null`
-         */
         get_profile_sync(widget: Gtk.Widget, cancellable: Gio.Cancellable | null): Colord.Profile;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type SampleWidgetClass = typeof SampleWidget;
-
-    /**
-     * @gir-type Struct
-     */
     abstract class SampleWidgetPrivate {
         static $gtype: GObject.GType<SampleWidgetPrivate>;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type SampleWindowClass = typeof SampleWindow;
-
-    /**
-     * Private {@link ColordGtk.SampleWindow} data
-     * @gir-type Struct
-     */
     abstract class SampleWindowPrivate {
         static $gtype: GObject.GType<SampleWindowPrivate>;
     }
-
-
-    /**
-     * @gir-type Alias
-     */
     type WindowClass = typeof Window;
-
-    /**
-     * Private {@link ColordGtk.Window} data
-     * @gir-type Struct
-     */
     abstract class WindowPrivate {
         static $gtype: GObject.GType<WindowPrivate>;
     }
-
-
-    /**
-     * Name of the imported GIR library
-     * `see` https://gitlab.gnome.org/GNOME/gjs/-/blob/master/gi/ns.cpp#L188
-     */
     const __name__: string;
-
-    /**
-     * Version of the imported GIR library
-     * `see` https://gitlab.gnome.org/GNOME/gjs/-/blob/master/gi/ns.cpp#L189
-     */
     const __version__: string;
 }
-
 export default ColordGtk;
-
 }
-
 declare module 'gi://ColordGtk' {
     import ColordGtk10 from 'gi://ColordGtk?version=1.0';
     export default ColordGtk10;
 }
-// END

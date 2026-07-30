@@ -1,331 +1,60 @@
-/// <reference path="./gobject-2.0.d.ts" />
-/// <reference path="./glib-2.0.d.ts" />
-/// <reference path="./gettext.d.ts" />
-/// <reference path="./system.d.ts" />
-/// <reference path="./cairo.d.ts" />
-/// <reference path="./gi.d.ts" />
-
-/**
- * Type Definitions for Gjs (https://gjs.guide/)
- *
- * These type definitions are automatically generated, do not edit them by hand.
- * If you found a bug fix it in ts-for-gir itself or create a bug report on https://github.com/gjsify/ts-for-gir
- */
-
 import type GObject from 'gi://GObject?version=2.0';
 import type GLib from 'gi://GLib?version=2.0';
-
 import gettext from 'gettext';
 import system from 'system';
 import cairo from 'cairo';
-
-// https://gitlab.gnome.org/GNOME/gjs/-/blob/1.72.0/modules/script/package.js
 declare namespace package {
-    /**
-     * Although there are references in the documentation of more properties that
-     * this object should accepts, only the following are actually used in the init code,
-     * and all the other have their values derived from them.
-     */
     interface PackageInitParams {
-        /** The base name of the entry point (eg. org.foo.Bar.App) */
         name: string
-        /** The version of the package */
         version: string
-        /** The prefix of the package */
         prefix: string
-        /**
-         * The final datadir and libdir when installed;
-         * usually, these would be prefix + '/share' and
-         * and prefix + '/lib' (or '/lib64')
-         */
         libdir: string
-        /**
-         * The final datadir and libdir when installed;
-         * usually, these would be prefix + '/share' and
-         * and prefix + '/lib' (or '/lib64')
-         */
         datadir?: string
     }
-
-    /**
-     * The base name of the entry point (eg. org.foo.Bar.App)
-     * 
-     * Note: Run `pkg.init()` before accessing this property.
-     */
     export const name: string
-    /**
-     * The version of the package
-     * 
-     * Note: Run `pkg.init()` before accessing this property.
-     */
     export const version: string
-    /**
-     * The prefix of the package
-     * 
-     * Note: Run `pkg.init()` before accessing this property.
-     */
     export const prefix: string
-    /**
-     * The final datadir when installed; usually, these would be prefix + '/share'
-     * 
-     * Note: Run `pkg.init()` before accessing this property.
-     */
     export const datadir: string
-    /**
-     * The final libdir when installed; usually, these would be prefix + '/lib' (or '/lib64')
-     * 
-     * Note: Run `pkg.init()` before accessing this property.
-     */
     export const libdir: string
-    /**
-     * The final pkglibdir when installed; usually, this would be prefix + '/lib' (or '/lib64')
-     * 
-     * Note: Run `pkg.init()` before accessing this property.
-     */
     export const pkglibdir: string
-    /**
-     * The final moduledir when installed; usually, this would be prefix + '/lib' (or '/lib64')
-     * 
-     * Note: Run `pkg.init()` before accessing this property.
-     */
     export const moduledir: string
-    /**
-     * The directory containing gettext translation files; this will be datadir + '/locale' when installed and './po' in the source tree
-     * 
-     * Note: Run `pkg.init()` before accessing this property.
-     */
     export const localedir: string
-
-    /**
-     * Initialize directories and global variables. Must be called
-     * before any of other API in Package is used.
-     * `params` must be an object with at least the following keys:
-     *  - name: the package name ($(PACKAGE_NAME) in autotools,
-     *          eg. org.foo.Bar)
-     *  - version: the package version
-     *  - prefix: the installation prefix
-     *
-     * init() will take care to check if the program is running from
-     * the source directory or not, by looking for a 'src' directory.
-     *
-     * At the end, the global variable 'pkg' will contain the
-     * Package module (imports.package). Additionally, the following
-     * module variables will be available:
-     *  - name: the base name of the entry point (eg. org.foo.Bar.App)
-     *  - version: same as in @params
-     *  - prefix: the installation prefix (as passed in @params)
-     *  - datadir, libdir: the final datadir and libdir when installed;
-     *                     usually, these would be prefix + '/share' and
-     *                     and prefix + '/lib' (or '/lib64')
-     *  - pkgdatadir: the directory to look for private data files, such as
-     *                images, stylesheets and UI definitions;
-     *                this will be datadir + name when installed and
-     *                './data' when running from the source tree
-     *  - pkglibdir: the directory to look for private typelibs and C
-     *               libraries;
-     *               this will be libdir + name when installed and
-     *               './lib' when running from the source tree
-     *  - moduledir: the directory to look for JS modules;
-     *               this will be pkglibdir when installed and
-     *               './src' when running from the source tree
-     *  - localedir: the directory containing gettext translation files;
-     *               this will be datadir + '/locale' when installed
-     *               and './po' in the source tree
-     *
-     * All paths are absolute and will not end with '/'.
-     *
-     * As a side effect, init() calls GLib.set_prgname().
-     *
-     * @param {object} params package parameters
-     */
     export function init(params: PackageInitParams): void;
-    /**
-     * This is the function to use if you want to have multiple
-     * entry points in one package.
-     * You must define a main(ARGV) function inside the passed
-     * in module, and then the launcher would be
-     *
-     * imports.package.init(...);
-     * imports.package.run(imports.entrypoint);
-     *
-     * @param module the module to run
-     * @returns the exit code of the module's main() function
-     */
     export function run(module: { main: (argv: string[]) => void }): number | undefined;
-    /**
-     * This is a convenience function if your package has a
-     * single entry point.
-     * You must define a main(ARGV) function inside a main.js
-     * module in moduledir.
-     *
-     * @param params see init()
-     */
     export function start(params: PackageInitParams): void;
-    /**
-     * Mark a dependency on a specific version of one or more
-     * external GI typelibs.
-     * `libs` must be an object whose keys are a typelib name,
-     * and values are the respective version. The empty string
-     * indicates any version.
-     * @param deps The external dependencies to import
-     */
     export function require(deps: Record<string, string>): void;
-    /**
-     * As checkSymbol(), but exit with an error if the
-     * dependency cannot be satisfied.
-     *
-     * @param lib an external dependency to import
-     * @param ver version of the dependency
-     * @param symbol symbol to check for
-     */
     export function requireSymbol(lib: string, ver?: string, symbol?: string): void;
-    /**
-     * Check whether an external GI typelib can be imported
-     * and provides @symbol.
-     *
-     * Symbols may refer to
-     *  - global functions         ('main_quit')
-     *  - classes                  ('Window')
-     *  - class / instance methods ('IconTheme.get_default' / 'IconTheme.has_icon')
-     *  - GObject properties       ('Window.default_height')
-     *
-     * @param lib an external dependency to import
-     * @param ver version of the dependency
-     * @param symbol symbol to check for
-     * @returns true if `lib` can be imported and provides `symbol`, false
-     * otherwise
-     */
     export function checkSymbol(lib: string, ver: string, symbol: string): boolean;
-    /**
-     * Initialize `gettext`.
-     * After calling this method `globalThis._`, `globalThis.C_` and `globalThis.N_` will be available.
-     */
     export function initGettext(): void;
-    /**
-     * Initializes string formatting capabilities by adding a format() method to String.prototype.
-     * 
-     * After calling this method, you can use a printf-style string formatting by calling
-     * the format() method on any string:
-     * 
-     * @example
-     * ```ts
-     * pkg.initFormat();
-     * 
-     * // Now you can use format() on any string
-     * const name = "User";
-     * const count = 5;
-     * const formatted = "Hello %s, you have %d items".format(name, count);
-     * // formatted = "Hello User, you have 5 items"
-     * 
-     * // Format numbers with precision
-     * const price = 10.5;
-     * const priceStr = "Price: $%.2f".format(price);
-     * // priceStr = "Price: $10.50"
-     * 
-     * // Pad with zeros
-     * const id = 42;
-     * const idStr = "ID: %05d".format(id);
-     * // idStr = "ID: 00042"
-     * ```
-     */
     export function initFormat(): void;
-    /**
-     * As checkSymbol(), but exit with an error if the
-     * dependency cannot be satisfied.
-     *
-     * @param lib an external dependency to import
-     * @param ver version of the dependency
-     * @param symbol symbol to check for
-     */
     export function initSubmodule(lib: string, ver?: string, symbol?: string): void;
-    /**
-     * Load and register a GResource named @name. @name is optional and defaults to ${package-name}
-     * @param name The name of the GResource to load
-     */
     export function loadResource(name?: string): void;
 }
-
 declare namespace byteArray {
     export class ByteArray {
         static get(target: any, property: string, receiver: any): any
         static set(target: any, property: string, value: any, receiver: any): boolean
-
         length: number
         protected _array: Uint8Array
-
         constructor(x: Uint8Array | number)
         toString(encoding?: TextDecoderEncoding): string
         fromString(input: string, encoding?: TextDecoderEncoding): ByteArray
         toGBytes(): GLib.Bytes
     }
-
-    /** @deprecated Use {@link TextEncoder.encode} instead */
     export function fromString(input: string, encoding?: TextDecoderEncoding): Uint8Array
-
-    /** @deprecated Use {@link GLib.Bytes.toArray} instead */
     export function fromGBytes(input: GLib.Bytes): Uint8Array
-
-    /** @deprecated Use {@link TextDecoder.decode} instead */
     export function toString(x: Uint8Array, encoding?: TextDecoderEncoding): string
-
-    /** @deprecated Use {@link GLib.Bytes new GLib.Bytes() } instead */
     export function toGBytes(x: Uint8Array): GLib.Bytes
-
-    /** @deprecated Use {@link ByteArray new ByteArray()} instead */
     export function fromArray(array: Iterable<number>): ByteArray
 }
-
 declare namespace lang {
-    // TODO: There is a lot more in Lang
     export function Class(props: any): void
 }
-
 declare namespace format {
-    /**
-     * Formats a string using printf-style format specifiers.
-     * 
-     * @param str The format string
-     * @param args The arguments to be formatted
-     * @returns The formatted string
-     */
     export function vprintf(str: string, args: (string | number | boolean | null | undefined)[]): string;
-    
-    /**
-     * Prints a formatted string to the console.
-     * Similar to C's printf function.
-     * 
-     * @param fmt The format string
-     * @param args The arguments to be formatted
-     */
     export function printf(fmt: string, ...args: (string | number | boolean | null | undefined)[]): void;
-    
-    /**
-     * Formats a string with the given arguments.
-     * This is the implementation that backs String.prototype.format
-     * when pkg.initFormat() is called.
-     * 
-     * Supported format specifiers:
-     * - %s: Formats as a string
-     * - %d: Formats as an integer
-     * - %x: Formats as a hexadecimal number
-     * - %f: Formats as a floating point number, optionally with precision (e.g. %.2f)
-     * 
-     * All specifiers can be prefixed with a minimum field width, e.g. "%5s" will pad with spaces.
-     * If the width is prefixed with '0', it will pad with zeroes instead of spaces.
-     * 
-     * @example
-     * ```ts
-     * format.format("Hello %s, you have %d items", "User", 5);
-     * // Returns: "Hello User, you have 5 items"
-     * ```
-     * 
-     * @param fmt The format string
-     * @param args The arguments to format the string with
-     * @returns The formatted string
-     */
     export function format(fmt: string, ...args: (string | number | boolean | null | undefined)[]): string;
 }
-
 declare namespace mainloop {
     export function quit(name: string): void
     export function idle_source(handler: any, priority?: number): any
@@ -337,77 +66,17 @@ declare namespace mainloop {
     export function source_remove(id: any): any
     export function run(name: string): void
 }
-
-/**
- * You can use the `Signals.addSignalMethods` method to apply the `Signals` convenience methods to an `Object`.
- * Generally, this is called on an object prototype, but may also be called on an object instance.
- * You can use this Interface for this object or prototype to make the methods in typescript known
- * @example
- * ```ts
- * const Signals = imports.signals;
- * 
- * // Define an interface with the same name of your class to make the methods known
- * interface Events extends Signals.Methods {}
- * 
- * class Events {}
- * Signals.addSignalMethods(Events.prototype);
- * 
- * const events = new Events();
- * 
- * // Typescript will not complain here
- * events.emit("test-signal", "test argument");
- * ```
- */
 export interface SignalMethods {
-    /**
-     * Connects a callback to a signal for an object. Pass the returned ID to
-     * `disconnect()` to remove the handler.
-     * 
-     * If `callback` returns `true`, emission will stop and no other handlers will be
-     * invoked.
-     * 
-     * > Warning: Unlike GObject signals, `this` within a signal callback will always
-     * > refer to the global object (ie. `globalThis`).
-     * 
-     * @param sigName A signal name
-     * @param callback A callback function
-     * @returns A handler ID
-     */
     connect(sigName: string, callback: (self: any, ...args: any[]) => void): number;
-    /**
-     * Emits a signal for an object. Emission stops if a signal handler returns `true`.
-     * 
-     * Unlike GObject signals, it is not necessary to declare signals or define their
-     * signature. Simply call `emit()` with whatever signal name you wish, with
-     * whatever arguments you wish.
-     * @param sigName A signal name
-     * @param args Any number of arguments, of any type
-     */
     emit(sigName: string, ...args: any[]): void;
-    /**
-     * Disconnects a handler for a signal.
-     * @param id The ID of the handler to be disconnected
-     */
     disconnect(id: number): void;
-    /**
-     * Disconnects all signal handlers for an object.
-     */
     disconnectAll(): void
-    /**
-     * Checks if a handler ID is connected.
-     * @param id The ID of the handler to be disconnected
-     * @returns `true` if connected, or `false` if not
-     */
     signalHandlerIsConnected(id: number): boolean;
 }
-
 declare namespace signals {
     export function addSignalMethods<T = any>(proto: T): proto is T & SignalMethods;
 }
-
 declare global {
-
-    // https://gitlab.gnome.org/GNOME/gjs/-/blob/1.73.2/modules/esm/_encoding/encodingMap.js#L7-232
     type TextDecoderEncoding =
         | 'unicode-1-1-utf-8'
         | 'unicode11utf8'
@@ -629,14 +298,11 @@ declare global {
         | 'unicodefeff'
         | 'utf-16'
         | 'utf-16le'
-
     interface GjsGiImports {
-        // Will be extended by the import of more gir types
         versions: {
             [namespace: string]: string
         }
     }
-    
     interface GjsImports {
         gi: GjsGiImports
         lang: typeof lang
@@ -650,108 +316,40 @@ declare global {
         format: typeof format
         cairo: typeof cairo
     }
-
-    // Overwrites, see https://gitlab.gnome.org/GNOME/gjs/-/blob/master/modules/script/package.js
-    /**
-     * Run `pkg.initGettext()` before using this.
-     * See {@link gettext.gettext}
-     */
     const _: typeof gettext.gettext
-    /**
-     * Run `pkg.initGettext()` before using this.
-     * See {@link gettext.pgettext}
-     */
     const C_: typeof gettext.pgettext
-    /**
-     * Run `pkg.initGettext()` before using this.
-     * Currently not implemented.
-     */
     const N_: ((x: string) => string)
-
     function print(...args: any[]): void
     function printerr(...args: any[]): void
     function log(obj: object, others?: object[]): void;
     function log(msg: string, substitutions?: any[]): void;
     function logError(exception: object, message?: any): void
     function logError(message?: any): void
-
     const pkg: typeof package
-
     interface BooleanConstructor {
         $gtype: GObject.GType<boolean>
     }
-
     interface NumberConstructor {
         $gtype: GObject.GType<number>
     }
-
     interface StringConstructor {
         $gtype: GObject.GType<string>
     }
-
     interface StringConstructor {
         $gtype: GObject.GType<string>
     }
-
     interface ObjectConstructor {
         $gtype: GObject.GType<Object>;
     }
-
     const imports: GjsImports
-
     const ARGV: string[]
-
     interface String {
-        /**
-         * Formats a string with the given arguments.
-         * This method is made available by calling `pkg.initFormat()`.
-         *
-         * Supported format specifiers:
-         * - %s: Formats as a string
-         * - %d: Formats as an integer
-         * - %x: Formats as a hexadecimal number
-         * - %f: Formats as a floating point number, optionally with precision (e.g. %.2f)
-         *
-         * All specifiers can be prefixed with a minimum field width, e.g. "%5s" will pad with spaces.
-         * If the width is prefixed with '0', it will pad with zeroes instead of spaces.
-         *
-         * @example
-         * ```ts
-         * // After calling pkg.initFormat()
-         * "Hello %s, you have %d items".format("User", 5);
-         * // Returns: "Hello User, you have 5 items"
-         *
-         * "Price: $%.2f".format(10.5);
-         * // Returns: "Price: $10.50"
-         *
-         * "ID: %05d".format(42);
-         * // Returns: "ID: 00042"
-         * ```
-         *
-         * @param args The arguments to format the string with
-         * @returns The formatted string
-         */
         format(...args: (string | number | boolean | null | undefined)[]): string;
     }
-
     interface Error {
-        /**
-         * Checks if this error matches a GLib error domain and code.
-         *
-         * Added to the global `Error` prototype by the GLib override so that
-         * `e.matches(Ns.FooError, Ns.FooError.SOME_CODE)` works without an
-         * `instanceof` check. Always returns `false` for standard JavaScript
-         * errors; only `GLib.Error` instances provide a meaningful implementation.
-         *
-         * @param domain A GLib error domain (error class constructor or quark)
-         * @param code The error code to match against
-         * @returns `false` for native JS errors, `true` if a GLib.Error matches
-         */
         matches(domain: unknown, code: number): boolean;
     }
 }
-
 declare const _imports: GjsImports
 export default _imports
 export { _imports as imports }
-

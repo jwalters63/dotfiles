@@ -1,33 +1,23 @@
-/* Gruvbox Light Tokens */
-@define-color systemMaterial rgba(255, 241, 232, 0.75); /* 75% opacity for balanced blur and legibility */
-@define-color labelPrimary rgb(40, 40, 40); /* Darkened for better contrast */
-@define-color labelSecondary rgb(80, 73, 69); /* Darkened for legibility */
+@define-color systemMaterial rgba(255, 241, 232, 0.75); 
+@define-color labelPrimary rgb(40, 40, 40); 
+@define-color labelSecondary rgb(80, 73, 69); 
 @define-color controlAccent rgb(213, 196, 161);
-
-/* Base Window */
 notificationwindow, blankwindow, .blank-window {
     background: transparent;
 }
-
-/* Control Center - Non-rendering pass-through */
 .control-center {
     background: transparent;
     border: none;
     box-shadow: none;
 }
-
-/* Floating Notifications */
 .floating-notifications {
     background: transparent;
     margin-top: 12px;
     margin-right: 12px;
 }
-
 .control-center-list {
     background: transparent;
 }
-
-/* Platter Base Styles */
 .widget-title,
 .widget-dnd,
 .widget-label,
@@ -46,10 +36,6 @@ notificationwindow, blankwindow, .blank-window {
     box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.6), 0px 8px 24px rgba(0, 0, 0, 0.15);
     color: @labelPrimary;
 }
-
-/* Specific Widget Overrides */
-
-/* Title */
 .widget-title label {
     color: @labelPrimary;
     font-weight: bold;
@@ -63,8 +49,6 @@ notificationwindow, blankwindow, .blank-window {
 .widget-title button:hover {
     background-color: @controlAccent;
 }
-
-/* DND */
 .widget-dnd label {
     color: @labelPrimary;
 }
@@ -79,17 +63,13 @@ notificationwindow, blankwindow, .blank-window {
     background-color: @labelPrimary;
     border-radius: 100%;
 }
-
-/* Label */
 .widget-label {
     color: @labelPrimary;
 }
-
-/* MPRIS */
 .widget-mpris-player {
     padding: 8px;
     border-radius: 12px;
-    background-color: rgb(255, 250, 245); /* Solid for readability */
+    background-color: rgb(255, 250, 245); 
 }
 .widget-mpris-title {
     color: @labelPrimary;
@@ -101,13 +81,11 @@ notificationwindow, blankwindow, .blank-window {
 .widget-mpris-album-art {
     border-radius: 8px;
 }
-
-/* Buttons Grid */
 .widget-buttons-grid {
     padding: 12px;
 }
 .widget-buttons-grid flowboxchild button {
-    background-color: rgb(255, 250, 245); /* Solid for readability */
+    background-color: rgb(255, 250, 245); 
     border-radius: 12px;
     color: @labelPrimary;
     padding: 8px 16px;
@@ -121,8 +99,6 @@ notificationwindow, blankwindow, .blank-window {
     background-color: @controlAccent;
     color: @labelPrimary;
 }
-
-/* Menubar */
 .widget-menubar {
     padding: 12px;
 }
@@ -134,8 +110,6 @@ notificationwindow, blankwindow, .blank-window {
 .widget-menubar button:hover {
     background-color: @controlAccent;
 }
-
-/* Volume / Slider / Backlight */
 .widget-volume,
 .widget-slider,
 .widget-backlight {
@@ -162,8 +136,6 @@ scale slider {
     min-height: 16px;
     box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
 }
-
-/* Inhibitors */
 .widget-inhibitors {
     padding: 12px;
 }
@@ -180,8 +152,6 @@ scale slider {
 .widget-inhibitors button:hover {
     background-color: @controlAccent;
 }
-
-/* Notifications Stream */
 .widget-notifications {
     padding: 12px;
 }
@@ -214,16 +184,16 @@ scale slider {
 }
 .notification-background .notification,
 .notification-background .notification:focus {
-    background-color: rgb(255, 250, 245); /* Solid background ensures contrast */
+    background-color: rgb(255, 250, 245); 
     outline: none;
     border: 1px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08); /* Shadow to stand out from the Platter */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08); 
     border-radius: 12px;
     margin: 0;
     padding: 0;
 }
 .notification-default-action {
-    background-color: transparent; /* Background now handled by .notification */
+    background-color: transparent; 
     border-radius: 12px;
     color: @labelPrimary;
     border: none;
@@ -258,8 +228,6 @@ scale slider {
 .close-button:hover {
     background-color: @controlAccent;
 }
-
-/* Notification Grouping */
 .notification-group,
 .notification-group:focus,
 .notification-group:hover,
@@ -294,14 +262,12 @@ scale slider {
 .notification-group-buttons button:hover {
     background-color: @controlAccent;
 }
-
-/* Stacked Notifications Illusion (Collapsed Group) */
 .notification-group.collapsed .notification-row:not(:last-child) .notification-default-action,
 .notification-group.collapsed .notification-row:not(:last-child) .notification-action {
-    opacity: 0; /* Hide content of lower notifications */
+    opacity: 0; 
 }
 .notification-group.collapsed .notification-row:not(:last-child) .notification {
-    background-color: rgb(240, 235, 230); /* Solid back-cards for stacked illusion */
+    background-color: rgb(240, 235, 230); 
     box-shadow: none;
     border-color: rgba(0, 0, 0, 0.05);
 }

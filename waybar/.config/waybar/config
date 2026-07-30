@@ -7,6 +7,7 @@
     "gtk-layer-shell": true,
     "spacing": 0,
     "modules-left": [
+		"custom/shadow",
         "hyprland/workspaces",
         "cpu",
         "temperature#cpu",
@@ -134,5 +135,9 @@
         "return-type": "json",
         "interval": 1,
         "tooltip": false
-    }
+    },
+    "custom/shadow": {
+    "exec": "flock -n /tmp/waybar_shadow.lock /home/jwalters/.config/waybar/scripts/waybar_shadow",
+    "format": ""
+}
 }

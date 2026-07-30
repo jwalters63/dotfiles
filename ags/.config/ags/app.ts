@@ -1,7 +1,6 @@
 import app from "ags/gtk4/app"
 import style from "./style.scss"
 import AppLauncher from "./AppLauncher.tsx"
-
 app.start({
   css: style,
   requestHandler(request, res) {

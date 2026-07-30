@@ -1,30 +1,19 @@
-/* ---------------------------------------------------------
- * Arquitectura UI: Spotlight / Gruvbox Light Custom (#fff1e8)
- * --------------------------------------------------------- */
-
 configuration {
     show-icons: true;
     icon-theme: "Papirus";
     display-drun: "";
     drun-display-format: "{name} <span foreground='#7c6f64' size='small'>({comment})</span>";
     drun-match-fields: "name,exec";
-
-    /* Habilita el resaltado automático al pasar el cursor */
     hover-select: true;
-
-    /* Ejecución con 1 solo clic */
     me-select-entry: "";
     me-accept-entry: "MousePrimary";
 }
-
 * {
-    /* ── Mapeo de tu paleta personalizada ── */
     bg-col:       #fff1e8;                
     fg-col:       #3c3836;                
     fg-inact:     #7c6f64;                
     border-col:   rgba(60, 56, 54, 0.15); 
     bg-selected:  rgba(60, 56, 54, 0.06); 
-
     background-color: transparent;
     text-color: @fg-col;
     font: "Motiva Sans Regular 12";
@@ -32,31 +21,21 @@ configuration {
     padding: 0;
     border: 0;
 }
-
-/* 1. El Lienzo de la Sombra (Resolución 1209x617 - Desplazado) */
 window {
     width: 1209px;
     background-color: transparent;
     background-image: url("~/.config/rofi/sombra.png", width);
     border: 0px;
-    
-    /* padding: Arriba Derecha Abajo Izquierda */
     padding: 139px 150px 154px 149px; 
 }
-
 mainbox {
     background-color: @bg-col;
-    
-    /* Restauración del borde */
-    border: 2px solid;        /* Ajusta el grosor al valor que tenías originalmente */
-    border-color: @border-col; /* Utiliza la variable de color de tu tema actual */
-    
+    border: 2px solid;        
+    border-color: @border-col; 
     border-radius: 18px;
     clip-to-border: true;
     children: [ inputbar, listview ];
 }
-
-/* ── Área de Búsqueda ── */
 inputbar {
     margin: 0px 15px;      
     padding: 18px 9px;     
@@ -66,13 +45,11 @@ inputbar {
     border-color: @border-col;
     children: [ prompt, entry ];
 }
-
 prompt {
     text-color: @fg-inact;
     font: "Symbols Nerd Font 12";
     vertical-align: 0.5;
 }
-
 entry {
     placeholder: "Search...";
     placeholder-color: @fg-inact;
@@ -80,8 +57,6 @@ entry {
     vertical-align: 0.5;
     text-color: @fg-col;
 }
-
-/* ── Área de Resultados ── */
 listview {
     lines: 5;
     padding: 8px 0px;
@@ -90,22 +65,17 @@ listview {
     background-color: transparent;
     scrollbar: false;
 }
-
 element {
     padding: 12px 24px;
     spacing: 16px;
     background-color: transparent;
     children: [ element-icon, element-text ];
 }
-
-/* Estado base: Transparente */
 element normal.normal, 
 element alternate.normal {
     background-color: transparent;
     text-color: @fg-col;
 }
-
-/* Estado de selección (Activado por teclado o ratón) */
 element selected.normal,
 element selected.active,
 element selected.urgent {
@@ -113,12 +83,10 @@ element selected.urgent {
     text-color: @fg-col;
     border-radius: 6px; 
 }
-
 element-icon {
     size: 24px;
     vertical-align: 0.5;
 }
-
 element-text {
     vertical-align: 0.5;
     font: "Motiva Sans Regular 12";

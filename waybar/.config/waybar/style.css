@@ -1,5 +1,4 @@
 @import "colors.css";
-
 * {
     border: none;
     border-radius: 0;
@@ -9,25 +8,11 @@
     box-shadow: none;
     text-shadow: none;
 }
-
 window#waybar {
-    background: alpha(@bg_color, 0.45);
-    color: @text_color;
-    border-bottom: 0.5px solid;
-    border-image: linear-gradient(to right,
-        alpha(#ffffff, 0.04) 0%,
-        alpha(#ffffff, 0.55) 12%,
-        alpha(#ffffff, 0.07) 30%,
-        alpha(#ffffff, 0.35) 45%,
-        alpha(#ffffff, 0.05) 60%,
-        alpha(#ffffff, 0.5) 78%,
-        alpha(#ffffff, 0.06) 92%,
-        alpha(#ffffff, 0.3) 100%
-    ) 1;
-    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.35);
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
-
-/* ── Logo ── */
 #custom-logo {
     min-width: 20px;
     background-image: url('/home/jwalters/.config/waybar/assets/dragonicon.png');
@@ -37,8 +22,6 @@ window#waybar {
     padding-left: 14px;
     padding-right: 14px;
 }
-
-/* ── Métricas: CPU, RAM, GPU ── */
 #cpu,
 #memory,
 #custom-gpu {
@@ -49,8 +32,6 @@ window#waybar {
     font-weight: 600;
     font-feature-settings: "tnum";
 }
-
-/* ── Temperaturas ── */
 #temperature {
     padding: 0px 10px 0px 6px;
     background: transparent;
@@ -59,44 +40,33 @@ window#waybar {
     font-weight: 600;
     font-feature-settings: "tnum";
 }
-
-/* ── Workspaces ── */
 #workspaces {
     padding-left: 6px;
     padding-right: 18px;
     background: transparent;
 }
-
 #workspaces button {
     padding: 0px 4px;
     background: transparent;
     color: rgba(128, 128, 128, 0.5);
     transition: color 0.3s ease;
 }
-
-/* Tiene ventanas pero NO es el focus → ○ blanco */
 #workspaces button:not(.active):not(.empty) {
     color: rgba(255, 255, 255, 0.85);
 }
-
-/* Workspace activo → ● con color acento */
 #workspaces button.active {
     color: @accent;
     text-shadow: 0 0 4px @accent;
 }
-
 #workspaces button:hover {
     color: @text_color;
 }
-
-/* ── Centro y Derecha ── */
 #window {
     font-family: "Motiva Sans", "Symbols Nerd Font", sans-serif;
     font-weight: 600;
     color: @text_color;
     background: transparent;
 }
-
 #tray,
 #pulseaudio,
 #network,
@@ -105,28 +75,25 @@ window#waybar {
     padding: 0px 8px;
     background: transparent;
     font-weight: 500;
+    color: #ffffff;
 }
-
 #custom-notification_center {
     padding-right: 14px;
 }
-
-/* ── Indicador de Grabación (GPU Screen Recorder) ── */
 #custom-recording {
     padding: 0px 8px;
     font-size: 14px;
     background: transparent;
-    /* Define la curva de animación para el fade */
     transition: color 0.4s ease-in-out;
 }
-
-/* Estado inactivo: Gris mitigado (coincidente con los workspaces vacíos) */
 #custom-recording.inactive {
     color: rgba(128, 128, 128, 0.5);
 }
-
-/* Estado activo: Rojo con emisión de luz */
 #custom-recording.recording {
     color: #cc241d; 
     text-shadow: 0 0 4px rgba(204, 36, 29, 0.6);
+}
+#custom-shadow {
+    padding: 0;
+    margin: 0;
 }
